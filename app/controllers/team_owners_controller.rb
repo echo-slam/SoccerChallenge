@@ -1,0 +1,2 @@
+class TeamOwnersController < ApplicationController
+end
