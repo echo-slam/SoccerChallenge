@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20170318141947) do
 
   create_table "players", force: :cascade do |t|
     t.integer  "team_id"
-    t.integer  "team_owner_id"
     t.string   "full_name"
     t.string   "email"
     t.string   "password_digest"
@@ -71,11 +70,11 @@ ActiveRecord::Schema.define(version: 20170318141947) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.integer  "team_id"
+    t.integer  "team_owner_id"
     t.string   "name"
     t.integer  "points"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end
