@@ -3,7 +3,7 @@ class CreateTeams < ActiveRecord::Migration[5.0]
     create_table :teams do |t|
       t.integer :team_owner_id
       t.string :name
-      t.integer :points
+      t.integer :points, :default => 1000
 
       t.timestamps
     end
