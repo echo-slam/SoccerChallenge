@@ -1,0 +1,2 @@
+class FieldOwnersController < ApplicationController
+end
