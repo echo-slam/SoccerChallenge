@@ -9,6 +9,12 @@
   </head>
 
   <body>
-  <%= yield %>
+    <%= render 'layouts/navbar' %>
+
+    <div class="ui container">
+      <%= flash_messages %>
+    </div>
+
+    <%= yield %>
   </body>
 </html>

@@ -1,0 +1,21 @@
+<div class="ui container">
+  <div class="ui form">
+    <h1 class="ui header">Sign Up</h1><br>   
+    <%= form_for @player do |f| %>
+      <div class="field" >
+        <%= f.text_field :full_name, placeholder: 'Fill your name here' %>
+      </div>
+
+      <div class="field" >
+        <%= f.text_field :email, placeholder: 'Fill your email here' %>
+      </div>
+
+      <div class="field" >
+        <%= f.password_field :password, placeholder: 'Fill your password here' %>
+      </div>
+
+      <br>
+      <%= f.submit 'Create Player', class: 'ui green button' %>
+    <% end %>
+  </div>
+</div>
