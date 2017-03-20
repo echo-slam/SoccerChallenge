@@ -7,6 +7,7 @@ class PlayersController < ApplicationController
     @player = Player.new player_params
     if @player.save
       flash[:success] = 'Register successfully'
+      session[:player_id] = @player.id
 
       #Create team_owner record
       @player.create_team_owner
