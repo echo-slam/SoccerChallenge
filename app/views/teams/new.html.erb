@@ -1,0 +1,12 @@
+<div class="ui container">
+  <h1 class="ui header">Create New Team</h1>
+  <%= form_for @team do |f| %>
+    <div class="ui large form">
+      <div class="field">
+        <label>Name</label>
+        <%= f.text_field :name %>
+      </div>
+      <%= f.submit "Create", :disable_with => 'Creating team...', class: 'ui large green button' %>
+    </div>
+  <% end %>
+</div>

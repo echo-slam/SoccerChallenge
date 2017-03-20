@@ -1,22 +1,66 @@
-<% if current_player %>
-  <%= current_player.email %>
-<% elsif current_field_owner %>
-  <%= current_field_owner.email %>
-<% end %>
+<div class="ui container">
+  <div class="ui grid">
+    <div class="ui four wide column"></div>
 
-<h1> Sign in</h1>
+    <div class="ui eight wide column">
+      <% if current_player %>
+        <%= current_player.email %>
+      <% elsif current_field_owner %>
+        <%= current_field_owner.email %>
+      <% end %>
 
-<%= form_tag signin_path, method: 'post' do %>
-  <div class="form-group">
-      <%= label_tag :Email %>
-      <%= text_field_tag :email, "", class: 'form-control' %>
+      <h1 class="ui center aligned icon header">
+        <i class="sign in icon"></i>
+        Sign In
+      </h1>
+    </div>
+    
+    <div class="ui four wide column"></div>
+
+    <div class="ui divider"></div>
   </div>
 
-  <div class="form-group">
-      <%= label_tag :password %>
-      <%= password_field_tag :password, "", class: 'form-control' %>
-  </div>
+  <div class="ui grid">
+    <div class="column"></div>
 
-  <%= submit_tag 'Sign in as player', :name => 'sign_in_player' %>
-  <%= submit_tag 'Sign in as field owner', :name => 'sign_in_field_owner' %>
-<% end %>
+    <div class="class seven wide column">
+      <div class="ui large attached positive message">
+        <div class="header">
+          Sign In Into Your Account
+        </div>
+      </div>
+      <div class="ui large form attached fluid segment">
+        <%= form_tag signin_path, method: 'post' do %>
+          <div class="field">
+            <%= text_field_tag :email, params[:email], placeholder: "Email" %>
+          </div>
+
+          <div class="field">
+              <%= password_field_tag :password, nil, placeholder: "Password" %>
+          </div>
+          <%= submit_tag 'Sign In as Player', name: 'sign_in_player', class: 'ui large green button' %>
+          <%= submit_tag 'Sign In as Field Owner', name: 'sign_in_field_owner', class: 'ui large blue button' %>
+        <% end %>
+      </div>
+      <div class="ui large bottom attached warning message">
+        <i class="icon help"></i>
+        Don't have an account? <a href="<%= new_player_path %>">Sign Up</a>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="ui vertical divider">Or</div>
+    </div>
+
+    <div class="four wide middle aligned column">
+      <a href="/auth/facebook">
+        <button class="ui large facebook button">
+          <i class="facebook icon"></i>
+          Sign In with Facebook
+        </button>
+      </a>
+    </div>
+
+    <div class="four wide column"></div>
+  </div>
+</div>
