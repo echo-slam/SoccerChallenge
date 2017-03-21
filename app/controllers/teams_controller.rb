@@ -24,7 +24,7 @@ class TeamsController < ApplicationController
       Match.update_match_data(params[:r_id])
     end
     @team = Team.find_by(:id => params[:id])
-    @pending_requests = @team.match_requests.where({:status => "PENDING"})
+    @pending_requests = MatchRequest.where({:requested_team_id => @team.id, :status => "PENDING"})
   end
 
   private

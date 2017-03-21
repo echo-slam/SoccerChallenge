@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
     @current_player ||= Player.find_by_id(session[:player_id])
   end
 
+  def check_team_owner_permission
+    @team = Team.find_by_id(params[:id])
+    unless current_player.team_owner.team_id == @team.id
+      flash[:error] = "You must be team owner to conduct this action"
+      redirect_to root_path
+    end
+  end
 end
