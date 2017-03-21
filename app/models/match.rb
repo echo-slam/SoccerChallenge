@@ -9,4 +9,9 @@ class Match < ApplicationRecord
       m.save
     end
   end
+  
+  def self.upcoming
+    where("starts_at > ?", Time.now)
+  end
+  
 end
