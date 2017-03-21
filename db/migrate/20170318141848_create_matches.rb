@@ -6,7 +6,7 @@ class CreateMatches < ActiveRecord::Migration[5.0]
       t.integer :field_id
       t.datetime :starts_at
       t.datetime :ends_at
-      t.boolean :is_start
+      t.boolean :is_start, :default => false
       t.integer :home_goal
       t.integer :away_goal
 

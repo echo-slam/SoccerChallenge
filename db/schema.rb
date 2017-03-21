@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(version: 20170321070250) do
     t.string   "full_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "fields", force: :cascade do |t|
@@ -29,15 +29,15 @@ ActiveRecord::Schema.define(version: 20170321070250) do
     t.string   "addr"
     t.string   "image_url"
     t.string   "venue"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "match_requests", force: :cascade do |t|
     t.integer  "match_id"
     t.integer  "team_id"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer  "team_request_id"
     t.string   "status",          default: "PENDING"
   end
@@ -48,11 +48,11 @@ ActiveRecord::Schema.define(version: 20170321070250) do
     t.integer  "field_id"
     t.datetime "starts_at"
     t.datetime "ends_at"
-    t.boolean  "is_start"
+    t.boolean  "is_start",      default: false
     t.integer  "home_goal"
     t.integer  "away_goal"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "players", force: :cascade do |t|
@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 20170321070250) do
     t.string   "full_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "team_owners", force: :cascade do |t|
@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(version: 20170321070250) do
   create_table "teams", force: :cascade do |t|
     t.integer  "team_owner_id"
     t.string   "name"
-    t.integer  "points",        default: 1000
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.integer  "points",  default: 1000
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end
