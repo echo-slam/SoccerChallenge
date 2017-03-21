@@ -6,4 +6,8 @@ class FieldOwner < ApplicationRecord
   validates :email, uniqueness: true
   validates :full_name, presence: true
 
+  def to_s
+    full_name
+  end
+
 end

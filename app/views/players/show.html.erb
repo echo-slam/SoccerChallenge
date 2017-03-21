@@ -1,0 +1,32 @@
+<br><br>
+<div class="ui container">
+  <%= flash_messages %>
+  <div class="ui grid">
+    <div class="eight wide column">
+      <h1 class="ui header">
+        Profile
+      </h1>
+      <div class="ui card">
+        <div class="image">
+          <%= image_tag("muller.jpg", class: "ui fluid rounded image") %>
+        </div>
+        <div class="content">
+          <a class="header"><%= @player.full_name %></a>
+          <div class="meta">
+            <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
+          </div>
+          <div class="description">
+            Team: <%= @team.name if @team %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eight wide column">
+      <% unless current_player.team_id %>
+        <%= link_to 'Create Team', new_team_path, class: 'ui green button' %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

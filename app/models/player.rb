@@ -5,6 +5,9 @@ class Player < ApplicationRecord
   validates :full_name, presence: true
 
   belongs_to :team, optional: true
-  has_one :team_owner
+  has_one :team_owner, dependent: :destroy
 
+  def to_s
+    full_name
+  end
 end
