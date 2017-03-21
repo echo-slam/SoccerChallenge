@@ -18,6 +18,15 @@ class TeamsController < ApplicationController
     end
   end
 
+  def show
+    if params[:status]
+      MatchRequest.update_request_status(params[:r_id], params[:status])
+      Match.update_match_data(params[:r_id])
+    end
+    @team = Team.find_by(:id => params[:id])
+    @pending_requests = @team.match_requests.where({:status => "PENDING"})
+  end
+
   private
     def team_params
       params.require(:team).permit(:name)

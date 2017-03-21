@@ -1,0 +1,16 @@
+<div class="ui container">
+  <h1 class="ui header"> <%= @team.name %> </h1>
+  
+  <% @pending_requests.each do |p_request| %>
+    <div class="ui cards">
+      <div class="card">
+        <div class="content">
+          <div class="ui two buttons">
+            <%= link_to 'Approve', team_path(@team, :status => 'ACCEPT', :r_id => p_request.id), class: "ui inverted green button"  %>
+            <%= link_to 'Decline', team_path(@team, :status => 'DECLINE', :r_id => p_request.id), class: "ui inverted red button"  %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+ </div>

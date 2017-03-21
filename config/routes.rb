@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  resources :match_requests
   resources :matches
-  resources :teams
   resources :team_owners
   resources :players
 
+  resources :teams do
+    resources :match_requests, :only => [:create, :index, :destroy]
+  end
+  
   resources :field_owners, :only => [:index, :new, :create] do 
     resources :fields, :only => [:index, :new, :create, :destroy]
   end
