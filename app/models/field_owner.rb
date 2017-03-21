@@ -4,6 +4,6 @@ class FieldOwner < ApplicationRecord
   has_many :fields 
 
   validates :email, uniqueness: true
-  validates :name, presence: true
+  validates :full_name, presence: true
 
 end
