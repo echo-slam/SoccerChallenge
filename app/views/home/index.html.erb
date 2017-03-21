@@ -1,7 +1,38 @@
-<div class="home-bg">
-    <div class="ui black inverted raise segment middle">
-      <h1><i class="soccer icon" aria-hidden="true"></i>Soccer Challenge</h1>
-      <%= link_to 'Sign In', signin_path, class: 'ui green button' %>
-      <%= link_to 'Sign Up', new_player_path, class: 'ui orange button' %>
+<%= image_tag("grosso.gif", class: "ui fluid image home-gif") %>
+<div class="ui black inverted raise segment main-board-align">
+  <h1><i class="soccer icon" aria-hidden="true"></i>Soccer Challenge</h1>
+  <br><br>
+
+  <div class="ui grid">
+    <div class="ui row">
+      <div class="four wide center aligned column">
+        <i class="huge pie chart icon"></i><br>
+        <h4>Field Owners can manage their fields online</h4>
+      </div>
+      <div class="four wide center aligned column">
+        <i class="huge users icon"></i><br>
+        <h4>Build your own soccer team with friends</h4>
+      </div>
+
+      <div class="four wide center aligned column">
+        <i class="huge soccer icon"></i><br>
+        <h4>Challege other teams with fairplay spirit</h4>
+      </div>
+
+      <div class="four wide center aligned column">
+        <i class="huge trophy icon"></i>
+        <h4>Amazing rating system. Track your result and be come legend</h4>
+      </div>
     </div>
+
+    <div class="ui row">
+      <div class="four wide column">
+      </div>
+
+      <div class="eight wide center aligned column">
+        <%= link_to 'Sign in', signin_path, class: 'ui green button' %>
+        <%= link_to 'Sign up', new_player_path, class: 'ui blue button' %>
+      </div>
+    </div>
+  </div>
 </div>

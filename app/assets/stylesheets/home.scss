@@ -1,15 +1,13 @@
-.home-bg {
-  background-image: url("grosso.gif");
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
+.home-gif {
+  size: 100% 100%;
   height: 100%;
   position: relative;
 }
 
-.middle {
+.main-board-align {
     position: absolute;
-    left: 30%;
-    top: 60%;
-    width: 40%;
+    left: 20%;
+    top: -55%;
+    width: 60%;
     opacity: 0.8;
 }
