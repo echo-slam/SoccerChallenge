@@ -54,3 +54,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rails-assets-semantic', source: 'https://rails-assets.org'
+gem 'rails-assets-datetimepicker', source: 'https://rails-assets.org'
