@@ -1,6 +1,4 @@
 class MatchesController < ApplicationController
-  before_action :set_team_owner, only: [:new, :create]
-
   def show
     set_match
   end
@@ -11,9 +9,9 @@ class MatchesController < ApplicationController
 
   def create
     @match = Match.new match_params
-    @match.team_owner = current_player.team_id
+    @match.team_owner_id = current_player.team_id
     if @match.save
-      redirect_to matche_path(@match), flash: {success: 'Create match successfully'}
+      redirect_to match_path(@match), flash: {success: 'Create match successfully'}
     else
       flash[:error] = @match.errors.full_messages.to_sentence
       render 'new'
@@ -21,10 +19,6 @@ class MatchesController < ApplicationController
   end
 
   private
-    def set_team_owner
-      @team_owner = TeamOwner.find_by(player_id: current_player.id)
-    end
-
     def set_match
       @match = Match.find(params[:id])
     end
