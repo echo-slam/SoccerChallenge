@@ -10,4 +10,8 @@ class Player < ApplicationRecord
   def to_s
     full_name
   end
+
+  def self.search(search)
+    where("full_name ILIKE ?", "%#{search}%")
+  end
 end

@@ -1,0 +1,40 @@
+<br><br>
+<div class="ui container">
+  <h1 class="ui header" id="my_image">
+    Meet these teams
+  </h1>
+
+  <%= link_to "Find Player ?", players_path, class: "ui blue button" %>
+  <br><br>
+
+  <div class="ui grid">
+    <div class="eight wide column">
+    <form class="ui icon form">
+      <div class="field">
+        <div class="ui icon input">
+          <input placeholder="Search teams name" type="text" name="search">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  <br><br>
+
+  <div class="ui five link cards">
+    <% @teams.each do |team| %>
+      <div class="ui card">
+        <%= link_to team_path(team) do %>
+          <%= image_tag("logo_1.png", 
+              class: "ui rounded four-three-image image") %>
+        <% end %>
+
+        <div class="center aligned content">
+          <div class="ui small header">
+            <%= link_to team.name, team_path(team), class: "black-color" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,4 +1,12 @@
 class PlayersController < ApplicationController
+  def index
+    @players = Player.all.order("full_name DESC")
+
+    if params[:search]
+      @players = Player.search(params[:search]).order("full_name DESC")
+    end
+  end
+
   def show
     set_player
     @team = Team.find(@player.team_id) if @player.team_id
