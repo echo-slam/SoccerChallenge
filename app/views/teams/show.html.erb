@@ -34,7 +34,7 @@
         </h1>
 
         <div class="ui black segment team-member-segment" >
-          <div class="ui four link cards">
+          <div class="ui five link cards">
             <% @players.each do |player| %>
                 <div class="ui card">
                   <%= link_to player_path(player) do %>
@@ -43,16 +43,9 @@
                   <% end %>
 
                   <div class="content">
-                    <div class="header">
+                    <h4>
                       <%= link_to player.full_name, player_path(player) %>
-                    </div>
-
-                    <div class="meta">
-                      <span class="date">Joined in <%= player.created_at.strftime("%Y-%m-%d") %></span>
-                    </div>
-
-                    <div class="description">
-                    </div>
+                    </h4>
                   </div>
                 </div>
             <% end %>
