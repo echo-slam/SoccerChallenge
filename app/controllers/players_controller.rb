@@ -1,4 +1,9 @@
 class PlayersController < ApplicationController
+  def show
+    set_player
+    @team = Team.find(@player.team_id) if @player.team_id
+  end
+
   def new
     @player = Player.new
   end
@@ -21,8 +26,10 @@ class PlayersController < ApplicationController
   end
 
   private
+    def set_player
+      @player = current_player
+    end
     def player_params
       params.require(:player).permit(:full_name, :email, :password)
     end
-
 end

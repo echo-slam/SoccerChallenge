@@ -1,12 +1,26 @@
 <div class="ui top fixed large inverted menu">
+  <div class="item">
+    <%= image_tag("logo_2.png", class: "ui rounded image my-logo-small") %>
+  </div>
   <a class="item" href="<%= root_path %>">
-    <strong><i class="soccer icon" aria-hidden="true"></i> Soccer Challenge</strong>
+    <strong>Soccer Challenge</strong>
   </a>
-  <a class="item" href="<%= signin_path %>">
-    Sign In
-  </a>
-  <a class="item" href="<%= new_player_path %>">
-    Sign Up
-  </a>
+  <div class="right menu">
+    <% if current_player %> 
+      <a class="ui active item">Player: <%= current_player %></a>
+      <%= link_to "Profile", player_path(current_player), class: 'ui item' %>
+      <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
+    <% elsif current_field_owner %>
+      <a class="ui active item">Field Owner: <%= current_field_owner %></a>
+      <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
+    <% else %>
+      <a class="item" href="<%= signin_path %>">
+        Sign in
+      </a>
+      <a class="item" href="<%= new_player_path %>">
+        Sign up
+      </a>
+    <% end %>
+  </div>
 </div>
 <br><br>

@@ -1,29 +1,21 @@
+<br><br>
 <div class="ui container">
+  <%= flash_messages %>
   <div class="ui grid">
-    <div class="ui four wide column"></div>
-
-    <div class="ui eight wide column">
-      <% if current_player %>
-        <%= current_player.email %>
-      <% elsif current_field_owner %>
-        <%= current_field_owner.email %>
-      <% end %>
-
-      <h1 class="ui center aligned icon header">
-        <i class="sign in icon"></i>
+    <div class="four wide column"></div>
+    <div class="eight wide column">
+      <h1 class="ui header">
         Sign In
       </h1>
     </div>
-    
-    <div class="ui four wide column"></div>
-
-    <div class="ui divider"></div>
+    <div class="four wide column"></div>
+    <div class="ui hidden divider"></div>
   </div>
 
   <div class="ui grid">
     <div class="column"></div>
 
-    <div class="class seven wide column">
+    <div class="seven wide column">
       <div class="ui large attached positive message">
         <div class="header">
           Sign In Into Your Account
@@ -61,6 +53,6 @@
       </a>
     </div>
 
-    <div class="four wide column"></div>
+    <div class="three wide column"></div>
   </div>
 </div>
