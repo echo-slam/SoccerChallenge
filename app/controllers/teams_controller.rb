@@ -22,6 +22,15 @@ class TeamsController < ApplicationController
     end
   end
 
+  def show
+    @team = Team.find(params[:id])
+    @players = @team.players
+    @team_owner = TeamOwner.find(@team.team_owner_id)
+    @home_matches = Match.where(team_owner_id: @team_owner.id)
+    @away_matches = Match.where(team_away_id: @team.id)
+    @number_of_matches = (@home_matches.count + @away_matches.count) || 0
+  end
+
   private
     def set_team_owner
       @team_owner = TeamOwner.find_by(player_id: current_player.id)

@@ -1,0 +1,63 @@
+<br><br>
+<div class="ui container">
+  <div class="ui grid">
+    <div class="ui row">
+      <div class="six wide column">
+        <h1 class="ui header">
+          Team
+        </h1>
+
+        <div class="ui card">
+          <div class="image">
+            <%= image_tag("logo_1.png", class: "ui fluid rounded image") %>
+          </div>
+
+          <div class="content">
+            <div class="header"><%= @team.name %></div>
+
+            <div class="meta">
+              <span class="date">Founded in <%= @team.created_at.strftime("%Y") %></span>
+            </div>
+
+            <div class="description">
+              <p><strong>Captain: </strong><%= @team.team_owner.player.full_name %></p>
+              <p><strong>Matches played: </strong><%= @number_of_matches %></p>
+              <p><strong>Point: </strong><%= @team.points %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="ten wide column">
+        <h1 class="ui header">
+          Members
+        </h1>
+
+        <div class="ui black segment team-member-segment" >
+          <div class="ui four link cards">
+            <% @players.each do |player| %>
+                <div class="ui card">
+                  <%= link_to player_path(player) do %>
+                    <%= image_tag("muller.jpg", 
+                        class: "ui rounded team-member-image image") %>
+                  <% end %>
+
+                  <div class="content">
+                    <div class="header">
+                      <%= link_to player.full_name, player_path(player) %>
+                    </div>
+
+                    <div class="meta">
+                      <span class="date">Joined in <%= player.created_at.strftime("%Y-%m-%d") %></span>
+                    </div>
+
+                    <div class="description">
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
