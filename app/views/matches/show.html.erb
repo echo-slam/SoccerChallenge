@@ -2,15 +2,24 @@
 <div class="ui container">
   <div class="ui grid">
     <div class="ten wide column">
-      <h1 class="ui header">Match</h1>
-      
+      <h1 class="ui header">Home</h1>
+      <h1 class="ui header">Away</h1>
       <div class="ui hidden divider"></div>
       <p>Messages</p>
       <p>Message box</p>
     </div>
     <div class="ui six wide column">
-      <h1 class="ui header">Home</h1>
-      <h1 class="ui header">Away</h1>
+      <div class="ui message">
+        <h2 class="ui header">Match Information</h2>
+        <div class="ui bulleted list">
+          <div class="ui item">
+            <div class="ui content">
+              <strong>Start:</strong>
+              <%= @match.starts_at.strftime("%b %e, %Y - %H %M") %>
+            </div>
+          </div>
+        </div>
+      </div>
       <button class="ui large green button">Select Field</button>
     </div>
   </div>

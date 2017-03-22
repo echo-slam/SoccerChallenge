@@ -6,13 +6,14 @@ class MatchesController < ApplicationController
   end
 
   def new
-    @match = @team_owner.matches.build
+    @match = Match.new
   end
 
   def create
-    @match = @team_owner.matches.build(match_params)
+    @match = Match.new match_params
+    @match.team_owner = current_player.team_id
     if @match.save
-      redirect_to root_path, flash: {success: 'Create match successfully'}
+      redirect_to matche_path(@match), flash: {success: 'Create match successfully'}
     else
       flash[:error] = @match.errors.full_messages.to_sentence
       render 'new'
