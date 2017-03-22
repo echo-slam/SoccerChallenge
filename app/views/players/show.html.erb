@@ -9,7 +9,7 @@
 
       <div class="ui card">
         <div class="image">
-          <%= image_tag("muller.jpg", class: "ui fluid rounded image") %>
+          <%= image_tag("muller.jpg", class: "ui rounded player-image image") %>
         </div>
 
         <div class="content">
@@ -21,7 +21,7 @@
 
           <div class="description">
             <% if @team %>
-              Team: <%= link_to @team.name, team_path(@team) %>
+              Team: <%= link_to @team.name, team_path(@team), class: 'black-color' %>
             <% else %>
               Team: None
             <% end %>

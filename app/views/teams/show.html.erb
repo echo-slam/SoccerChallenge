@@ -2,7 +2,7 @@
 <div class="ui container">
   <div class="ui grid">
     <div class="ui row">
-      <div class="six wide column">
+      <div class="five wide column">
         <h1 class="ui header">
           Team
         </h1>
@@ -28,26 +28,26 @@
         </div>
       </div>
 
-      <div class="ten wide column">
+      <div class="eleven wide column">
         <h1 class="ui header">
           Members
         </h1>
 
-        <div class="ui black segment team-member-segment" >
+        <div class="ui segment team-member-segment" >
           <div class="ui five link cards">
             <% @players.each do |player| %>
-                <div class="ui card">
-                  <%= link_to player_path(player) do %>
-                    <%= image_tag("muller.jpg", 
-                        class: "ui rounded team-member-image image") %>
-                  <% end %>
+              <div class="ui card">
+                <%= link_to player_path(player) do %>
+                  <%= image_tag("muller.jpg", 
+                      class: "ui rounded team-member-image image") %>
+                <% end %>
 
-                  <div class="content">
-                    <h4>
-                      <%= link_to player.full_name, player_path(player) %>
-                    </h4>
+                <div class="center aligned content">
+                  <div class="ui small header">
+                    <%= link_to player.full_name, player_path(player), class: "black-color" %>
                   </div>
                 </div>
+              </div>
             <% end %>
           </div>
       </div>
