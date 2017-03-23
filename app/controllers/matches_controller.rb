@@ -33,7 +33,7 @@ class MatchesController < ApplicationController
       if @match.update(match_params)
         format.html { render :show, info: 'Match was successfully updated.' }
       else
-        format.html { render :show }
+        format.html { render :waiting }
       end
     end
   end

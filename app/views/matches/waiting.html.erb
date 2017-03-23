@@ -31,16 +31,18 @@
         </div>
       <% else %>
         <div class="ui three cards">
-          <% @pending_requests.each do |request| %>
-            <div class="ui card">
-              <div class="content">
-                <div class="header"><%= Team.find(request.team_id).name %></div>
+          <% if @match.team_owner_id == current_player.team_owner.team_id %>
+            <% @pending_requests.each do |request| %>
+              <div class="ui card">
+                <div class="content">
+                  <div class="header"><%= Team.find(request.team_id).name %></div>
+                </div>
+                <div class="ui two buttons">
+                  <%= link_to 'Accept', match_path(@match, status: 'ACCEPT', request_id: request.id), class: 'ui green attached button' %>
+                  <%= link_to 'Decline', match_path(@match, status: 'DECLINE', request_id: request.id), class: 'ui red attached button' %>
+                </div>
               </div>
-              <div class="ui two buttons">
-                <%= link_to 'Accept', match_path(@match, status: 'ACCEPT', request_id: request.id), class: 'ui green attached button' %>
-                <%= link_to 'Decline', match_path(@match, status: 'DECLINE', request_id: request.id), class: 'ui red attached button' %>
-              </div>
-            </div>
+            <% end %>
           <% end %>
         </div>
       <% end %>
