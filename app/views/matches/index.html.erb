@@ -1,5 +1,6 @@
 <br><br>
 <div class="ui container">
+  <%= flash_messages %>
   <div class="ui three cards">
     <% @matches.each do |match| %>
       <div class="card">
@@ -10,10 +11,7 @@
             Start: <%= match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
           </div>
         </div>
-        <div class="ui bottom attached button">
-          <i class="add icon"></i>
-          Join
-        </div>
+        <%= link_to 'Join', match_requests_path(match_id: match), method: 'post', class: 'ui green attached button' %>
       </div>
     <% end %>
   </div>
