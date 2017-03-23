@@ -1,5 +1,6 @@
 <br><br>
 <div class="ui container">
+  <%= flash_messages %>
   <h1 class="ui header" id="my_image">
     Meet these teams
   </h1>
@@ -32,10 +33,39 @@
         </div>
 
         <div class="center aligned content">
-          <div class="ui small header">
+          <div class="ui tiny header">
             <%= link_to team.name, team_path(team), class: "black-color" %>
+            <a class="ui circular tiny blue label">
+              <%= team.points %> pts
+            </a>
           </div>
         </div>
+
+        <% if current_player.is_team_owner? == false %>
+          <% if current_player.free_player? %>
+            <% if @team_invites.where(team_id: team.id).count == 0  %>
+              <% if @team_requests.where(team_id: team.id).count == 0 %>
+                <%= link_to "Request to join",
+                    team_requests_path(team_id: team.id),
+                    :method => :post, class: 'ui tiny green button' %>
+              <% else %>
+                <%= link_to "Cancel request",
+                    team_request_path(id: @team_requests.where(team_id: team.id),
+                                      team_id: team.id),
+                    :method => :delete, class: 'ui tiny black button' %>
+              <% end %>
+            <% else %>
+              <div class="ui tiny buttons">
+                <%= link_to "Accept",
+                    accept_team_request_path(team_id: team.id),
+                                             :method => :delete, class: 'ui tiny green button' %>
+                <%= link_to "Decline",
+                    decline_team_request_path(team_id: team.id),
+                                              :method => :delete, class: 'ui tiny red button' %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
   </div>

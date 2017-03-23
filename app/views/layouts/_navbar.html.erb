@@ -5,6 +5,14 @@
   <a class="item" href="<%= root_path %>">
     <strong>Soccer Challenge</strong>
   </a>
+  <% if current_player %>
+    <a class="item" href="<%= teams_path %>">
+      Teams
+    </a>
+    <a class="item" href="<%= players_path %>">
+      Players
+    </a>
+  <% end %>
   <div class="right menu">
     <% if current_player %> 
       <a class="ui active item">Player: <%= current_player %></a>

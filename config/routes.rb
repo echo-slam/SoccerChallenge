@@ -8,8 +8,11 @@ Rails.application.routes.draw do
   resources :players
   resources :matches
   resources :match_requests
+  resources :team_requests
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   delete 'signout' => 'sessions#destroy'
+  delete 'accept_team_request' => 'team_requests#accept'
+  delete 'decline_team_request' => 'team_requests#decline'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
