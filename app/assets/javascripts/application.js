@@ -6,4 +6,3 @@
 //= require_tree .
 //= require flash_semantic
 //= require timepicker
-//= require imageResizing
