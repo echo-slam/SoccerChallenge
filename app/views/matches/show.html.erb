@@ -3,24 +3,50 @@
   <div class="ui grid">
     <div class="ten wide column">
       <h1 class="ui header">Home</h1>
+        <div class="ui five cards">
+          <% @home_team_players.each do |player| %>
+            <div class="card">
+              <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
+              <div class="center aligned content">
+                <div class="ui small header">
+                  <%= player.full_name  %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+
       <h1 class="ui header">Away</h1>
+
       <div class="ui hidden divider"></div>
       <p>Messages</p>
       <p>Message box</p>
     </div>
     <div class="ui six wide column">
-      <div class="ui message">
+      <div class="ui large message">
         <h2 class="ui header">Match Information</h2>
-        <div class="ui bulleted list">
-          <div class="ui item">
-            <div class="ui content">
-              <strong>Start:</strong>
-              <%= @match.starts_at.strftime("%b %e, %Y - %H %M") %>
+        <div class="ui large form">
+          <%= form_for @match, method: 'put' do |f| %>
+            <div class="field">
+              <label><strong>Venue:</strong></label>
+              <%= f.select :venue_id, Venue.all.map {|v| [v.name, v.id]} %>
             </div>
-          </div>
+            <div class="field">
+              <label><strong>Field:</strong></label>
+              <%= f.select :field_id, Field.where(venue_id: @match.venue_id).map {|f| [f.name, f.id]} %>
+            </div>
+            <div class="field">
+              <label><strong>Start:</strong></label>
+              <%= f.text_field :starts_at, id: 'start-time' %>
+            </div>
+            <div class="field">
+              <label><strong>End:</strong></label>
+              <%= f.text_field :ends_at, id: 'end-time' %>
+            </div>
+            <%= f.submit 'Book Match', :disable_with => 'Booking...',class: 'ui large green button' %>
+          <% end %>
         </div>
       </div>
-      <button class="ui large green button">Select Field</button>
     </div>
   </div>
 </div>

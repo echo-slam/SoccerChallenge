@@ -1,10 +1,28 @@
 class MatchesController < ApplicationController
+  before_action :set_match, only: [:show,:update]
+
+  def index
+    @matches = Match.all
+  end
+
   def show
-    set_match
+    @home_team_players = Player.where(team_id: @match.team_owner_id)
+    @away_team_players = Player.where(team_id: @match.team_away_id)
   end
 
   def new
     @match = Match.new
+  end
+
+  def update
+    @home_team_players = Player.where(team_id: @match.team_owner_id)
+    respond_to do |format|
+      if @match.update(match_params)
+        format.html { render :show, info: 'Match was successfully updated.' }
+      else
+        format.html { render :show }
+      end
+    end
   end
 
   def create

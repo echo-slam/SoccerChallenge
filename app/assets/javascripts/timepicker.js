@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function(){
-  $('#datetimepicker').datetimepicker({
-    timepicker: false,
+  $('#start-time, #end-time').datetimepicker({
     minDate: '0',
-    format: 'M d, Y'
+    formatDate: 'M d, Y',
+    formatTime: 'H:i'
   });
 });

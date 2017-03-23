@@ -1,0 +1,20 @@
+<br><br>
+<div class="ui container">
+  <div class="ui three cards">
+    <% @matches.each do |match| %>
+      <div class="card">
+        <div class="content">
+          <div class="header"><%= match.home_team_name %></div>
+          <div class="description">
+            <%= match.venue_name %><br>
+            Start: <%= match.starts_at.strftime("%Y/%m/%d - %H:%m") %>
+          </div>
+        </div>
+        <div class="ui bottom attached button">
+          <i class="add icon"></i>
+          Join
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
