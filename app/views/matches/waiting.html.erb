@@ -2,6 +2,7 @@
 <div class="ui container">
   <div class="ui grid">
     <div class="ten wide column">
+
       <h1 class="ui header">Home</h1>
       <div class="ui five cards">
         <% @home_team_players.each do |player| %>
@@ -15,18 +16,39 @@
           </div>
         <% end %>
       </div>
+
       <h1 class="ui header">Away</h1>
-      <div class="ui five cards">
-        <% @away_team_players.each do |player| %>
-          <div class="card">
-            <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
-            <div class="center aligned content">
-              <div class="ui small header"><%= player.full_name  %></div>
+      <% if @match.is_start %>
+        <div class="ui five cards">
+          <% @away_team_players.each do |player| %>
+            <div class="card">
+              <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
+              <div class="center aligned content">
+                <div class="ui small header"><%= player.full_name  %></div>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="ui three cards">
+          <% @pending_requests.each do |request| %>
+            <div class="ui card">
+              <div class="content">
+                <div class="header"><%= Team.find(request.team_id).name %></div>
+              </div>
+              <div class="ui two buttons">
+                <%= link_to 'Accept', match_path(@match, status: 'ACCEPT', request_id: request.id), class: 'ui green attached button' %>
+                <%= link_to 'Decline', match_path(@match, status: 'DECLINE', request_id: request.id), class: 'ui red attached button' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <p>Messages</p>
+      <p>Message box</p>
     </div>
+
     <div class="six wide column">
       <div class="ui large message">
         <h2 class="ui header">Match Information</h2>

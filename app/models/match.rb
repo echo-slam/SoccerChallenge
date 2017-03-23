@@ -14,6 +14,6 @@ class Match < ApplicationRecord
   end
 
   def self.not_started
-    where.not(is_start: nil)
+    where(is_start: nil)
   end
 end

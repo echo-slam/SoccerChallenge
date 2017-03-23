@@ -1,13 +1,14 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show,:update]
+  before_action :set_match, only: [:show, :waiting, :update]
 
   def index
     @matches = Match.upcoming.not_started
   end
 
   def show
-    @home_team_players = Player.where(team_id: @match.team_owner_id)
-    @away_team_players = Player.where(team_id: @match.team_away_id)
+  end
+
+  def waiting
     @pending_requests = MatchRequest.where(team_received_id: @match.team_owner_id).where(status: 'PENDING')
 
     if params[:status]
@@ -19,7 +20,7 @@ class MatchesController < ApplicationController
         @match.is_start = true
         @match.save
       end
-      render 'show'
+      render 'waiting'
     end
   end
 
@@ -28,7 +29,6 @@ class MatchesController < ApplicationController
   end
 
   def update
-    @home_team_players = Player.where(team_id: @match.team_owner_id)
     respond_to do |format|
       if @match.update(match_params)
         format.html { render :show, info: 'Match was successfully updated.' }
@@ -52,6 +52,8 @@ class MatchesController < ApplicationController
   private
     def set_match
       @match = Match.find(params[:id])
+      @home_team_players = Player.where(team_id: @match.team_owner_id)
+      @away_team_players = Player.where(team_id: @match.team_away_id)
     end
 
     def match_params
