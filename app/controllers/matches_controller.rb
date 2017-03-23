@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   before_action :set_match, only: [:show,:update]
 
   def index
-    @matches = Match.all
+    @matches = Match.upcoming
   end
 
   def show
