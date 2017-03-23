@@ -3,6 +3,7 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="ten wide column">
+
       <h1 class="ui header">Home</h1>
       <div class="ui five cards">
         <% @home_team_players.each do |player| %>
@@ -16,6 +17,7 @@
           </div>
         <% end %>
       </div>
+
       <h1 class="ui header">Away</h1>
       <div class="ui five cards">
         <% @away_team_players.each do |player| %>
@@ -27,7 +29,9 @@
           </div>
         <% end %>
       </div>
+
     </div>
+
     <div class="six wide column">
       <h1 class="ui header">Match Information</h1>
       <div class="ui large message">
@@ -39,6 +43,7 @@
               <%= @match.venue_name %>
             </div>
           </div>
+
           <div class="item">
             <i class="marker icon"></i>
             <div class="content">
@@ -46,6 +51,7 @@
               <%= @match.field_name %>
             </div>
           </div>
+
           <div class="item">
             <i class="clock icon"></i>
             <div class="content">
@@ -53,6 +59,7 @@
               <%= @match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
             </div>
           </div>
+
           <div class="item">
             <i class="clock icon"></i>
             <div class="content">
@@ -61,7 +68,9 @@
             </div>
           </div>
         </div>
+      
       </div>
     </div>
+
   </div>
 </div>
