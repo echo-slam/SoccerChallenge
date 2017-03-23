@@ -1,8 +1,4 @@
 class MatchRequestsController < ApplicationController
-  def new
-    @match_request = MatchRequest.new
-  end
-
   def create
     @team_request = Team.find(current_player.team_owner.team_id)
     @match = Match.find(params[:match_id])
