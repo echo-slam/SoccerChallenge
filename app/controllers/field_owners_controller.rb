@@ -6,6 +6,8 @@ class FieldOwnersController < ApplicationController
   def create
     @field_owner = FieldOwner.new field_owner_params
     if @field_owner.save
+      FieldOwnerMailer.welcome_field_owner(@field_owner).deliver_later
+
       flash[:success] = 'Register successfully'
       session[:field_owner_id] = @field_owner.id
       

@@ -85,4 +85,23 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.default_url_options = { :host => 'soccerchallenge.herokuapp.com' }
+
+  config.action_mailer.delivery_method = :smtp
+  
+  ## SMTP settings for zoho email
+
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.zoho.com",
+    :port                 => 587,
+    :domain               => 'soccerchallenge.herokuapp.com',
+    :user_name            => ENV['ZOHO_USERNAME'],
+    :password             => ENV['ZOHO_PASSWORD'],
+    :authentication       => "plain",
+    :enable_starttls_auto => true
+  }
+
+  config.action_mailer.perform_deliveries = true
+
 end
