@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170322052036) do
+ActiveRecord::Schema.define(version: 20170323100608) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,10 @@ ActiveRecord::Schema.define(version: 20170322052036) do
   create_table "match_requests", force: :cascade do |t|
     t.integer  "match_id"
     t.integer  "team_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.integer  "team_received_id"
+    t.string   "status",           default: "PENDING"
   end
 
   create_table "matches", force: :cascade do |t|

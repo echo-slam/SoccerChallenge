@@ -6,9 +6,8 @@ Rails.application.routes.draw do
   resources :team_owners
   resources :teams
   resources :players
-  resources :matches do
-    resources :match_requests
-  end
+  resources :matches
+  resources :match_requests
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   delete 'signout' => 'sessions#destroy'
