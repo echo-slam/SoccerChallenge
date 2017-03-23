@@ -3,9 +3,9 @@ class FieldOwnerMailer < ApplicationMailer
  
   def welcome_field_owner(field_owner)
     @field_owner = field_owner
-    @url  = 'localhost:3000'
+    @url  = 'https://soccerchallenge.herokuapp.com'
     subject = "Welcome #{@field_owner.full_name}"
 
-    mail(to: @field_owner.email, subject: "Welcome to my site")
+    mail(to: @field_owner.email, subject: subject)
   end
 end
