@@ -1,6 +1,14 @@
 class TeamsController < ApplicationController
   before_action :set_team_owner, only: [:new, :create]
 
+  def index
+    @teams = Team.all.order("name DESC")
+
+    if params[:search]
+      @teams = Team.search(params[:search]).order("name DESC")
+    end
+  end
+
   def new
     @player = current_player
     @team = @team_owner.build_team

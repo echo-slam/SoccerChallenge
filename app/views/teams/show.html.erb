@@ -8,9 +8,7 @@
         </h1>
 
         <div class="ui card">
-          <div class="image">
-            <%= image_tag("logo_1.png", class: "ui fluid rounded image") %>
-          </div>
+          <%= image_tag("logo_1.png", class: "ui rounded four-three-image image") %>
 
           <div class="content">
             <div class="header"><%= @team.name %></div>
@@ -37,10 +35,12 @@
           <div class="ui five link cards">
             <% @players.each do |player| %>
               <div class="ui card">
-                <%= link_to player_path(player) do %>
-                  <%= image_tag("muller.jpg", 
-                      class: "ui rounded team-member-image image") %>
-                <% end %>
+                <div class="ui segment card-segment-small">
+                  <%= link_to player_path(player) do %>
+                    <%= image_tag("muller.jpg", 
+                        class: "ui centered rounded card-image image") %>
+                  <% end %>
+                </div>
 
                 <div class="center aligned content">
                   <div class="ui small header">

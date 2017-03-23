@@ -4,5 +4,7 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
-  #accepts_nested_attributes_for :players
+  def self.search(search)
+    where("name ILIKE ?", "%#{search}%")
+  end
 end
