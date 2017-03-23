@@ -17,7 +17,21 @@
         </div>
 
       <h1 class="ui header">Away</h1>
-
+      <div class="ui three cards">
+        <% @pending_requests.each do |request| %>
+          <div class="ui card">
+            <div class="content">
+              <div class="header">
+                <%= Team.find(request.team_id).name %>
+              </div>
+            </div>
+            <div class="ui two buttons">
+              <%= link_to 'Accept', match_path(@match, status: 'ACCEPT', request_id: request.id), class: 'ui green attached button' %>
+              <%= link_to 'Decline', match_path(@match, status: 'DECLINE', request_id: request.id), class: 'ui red attached button' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
       <div class="ui hidden divider"></div>
       <p>Messages</p>
       <p>Message box</p>

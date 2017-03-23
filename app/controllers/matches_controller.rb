@@ -8,6 +8,18 @@ class MatchesController < ApplicationController
   def show
     @home_team_players = Player.where(team_id: @match.team_owner_id)
     @away_team_players = Player.where(team_id: @match.team_away_id)
+    @pending_requests = MatchRequest.where(team_received_id: @match.team_owner_id).where(status: 'PENDING')
+
+    if params[:status]
+      @match_request = MatchRequest.find(params[:request_id])
+      @match_request.status = params[:status]
+      @match_request.save
+      if params[:status] = 'ACCEPT'
+        @match.team_away_id = @match_request.team_id
+        @match.save
+      end
+      render 'show'
+    end
   end
 
   def new
