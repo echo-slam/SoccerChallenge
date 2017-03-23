@@ -1,19 +1,35 @@
 class MatchesController < ApplicationController
-  before_action :set_team_owner, only: [:new, :create]
+  before_action :set_match, only: [:show,:update]
+
+  def index
+    @matches = Match.upcoming
+  end
 
   def show
-    set_match
+    @home_team_players = Player.where(team_id: @match.team_owner_id)
+    @away_team_players = Player.where(team_id: @match.team_away_id)
   end
 
   def new
     @match = Match.new
   end
 
+  def update
+    @home_team_players = Player.where(team_id: @match.team_owner_id)
+    respond_to do |format|
+      if @match.update(match_params)
+        format.html { render :show, info: 'Match was successfully updated.' }
+      else
+        format.html { render :show }
+      end
+    end
+  end
+
   def create
     @match = Match.new match_params
-    @match.team_owner = current_player.team_id
+    @match.team_owner_id = current_player.team_id
     if @match.save
-      redirect_to matche_path(@match), flash: {success: 'Create match successfully'}
+      redirect_to match_path(@match), flash: {success: 'Create match successfully'}
     else
       flash[:error] = @match.errors.full_messages.to_sentence
       render 'new'
@@ -21,10 +37,6 @@ class MatchesController < ApplicationController
   end
 
   private
-    def set_team_owner
-      @team_owner = TeamOwner.find_by(player_id: current_player.id)
-    end
-
     def set_match
       @match = Match.find(params[:id])
     end
