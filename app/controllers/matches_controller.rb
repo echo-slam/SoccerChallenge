@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   before_action :set_match, only: [:show,:update]
 
   def index
-    @matches = Match.upcoming
+    @matches = Match.upcoming.not_started
   end
 
   def show
@@ -16,6 +16,7 @@ class MatchesController < ApplicationController
       @match_request.save
       if params[:status] = 'ACCEPT'
         @match.team_away_id = @match_request.team_id
+        @match.is_start = true
         @match.save
       end
       render 'show'

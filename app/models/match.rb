@@ -12,4 +12,8 @@ class Match < ApplicationRecord
   def self.upcoming
     where("starts_at > ?", Time.now)
   end
+
+  def self.not_started
+    where.not(is_start: nil)
+  end
 end

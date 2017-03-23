@@ -2,41 +2,54 @@
 <div class="ui container">
   <div class="ui grid">
     <div class="ten wide column">
-      <h1 class="ui header">Home</h1>
-        <div class="ui five cards">
-          <% @home_team_players.each do |player| %>
-            <div class="card">
-              <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
-              <div class="center aligned content">
-                <div class="ui small header">
-                  <%= player.full_name  %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        </div>
 
-      <h1 class="ui header">Away</h1>
-      <div class="ui three cards">
-        <% @pending_requests.each do |request| %>
-          <div class="ui card">
-            <div class="content">
-              <div class="header">
-                <%= Team.find(request.team_id).name %>
+      <h1 class="ui header">Home</h1>
+      <div class="ui five cards">
+        <% @home_team_players.each do |player| %>
+          <div class="card">
+            <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
+            <div class="center aligned content">
+              <div class="ui small header">
+                <%= player.full_name  %>
               </div>
-            </div>
-            <div class="ui two buttons">
-              <%= link_to 'Accept', match_path(@match, status: 'ACCEPT', request_id: request.id), class: 'ui green attached button' %>
-              <%= link_to 'Decline', match_path(@match, status: 'DECLINE', request_id: request.id), class: 'ui red attached button' %>
             </div>
           </div>
         <% end %>
       </div>
-      <div class="ui hidden divider"></div>
+
+      <h1 class="ui header">Away</h1>
+      <% if @match.is_start %>
+        <div class="ui five cards">
+          <% @away_team_players.each do |player| %>
+            <div class="card">
+              <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
+              <div class="center aligned content">
+                <div class="ui small header"><%= player.full_name  %></div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="ui three cards">
+          <% @pending_requests.each do |request| %>
+            <div class="ui card">
+              <div class="content">
+                <div class="header"><%= Team.find(request.team_id).name %></div>
+              </div>
+              <div class="ui two buttons">
+                <%= link_to 'Accept', match_path(@match, status: 'ACCEPT', request_id: request.id), class: 'ui green attached button' %>
+                <%= link_to 'Decline', match_path(@match, status: 'DECLINE', request_id: request.id), class: 'ui red attached button' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
       <p>Messages</p>
       <p>Message box</p>
     </div>
-    <div class="ui six wide column">
+
+    <div class="six wide column">
       <div class="ui large message">
         <h2 class="ui header">Match Information</h2>
         <div class="ui large form">
@@ -45,18 +58,22 @@
               <label><strong>Venue:</strong></label>
               <%= f.select :venue_id, Venue.all.map {|v| [v.name, v.id]} %>
             </div>
+
             <div class="field">
               <label><strong>Field:</strong></label>
               <%= f.select :field_id, Field.where(venue_id: @match.venue_id).map {|f| [f.name, f.id]} %>
             </div>
+
             <div class="field">
               <label><strong>Start:</strong></label>
               <%= f.text_field :starts_at, id: 'start-time' %>
             </div>
+
             <div class="field">
               <label><strong>End:</strong></label>
               <%= f.text_field :ends_at, id: 'end-time' %>
             </div>
+
             <%= f.submit 'Book Match', :disable_with => 'Booking...',class: 'ui large green button' %>
           <% end %>
         </div>
