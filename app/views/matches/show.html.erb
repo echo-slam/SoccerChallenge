@@ -1,5 +1,6 @@
 <br><br>
 <div class="ui container">
+  <%= flash_messages %>
   <div class="ui grid">
     <div class="ten wide column">
       <h1 class="ui header">Home</h1>
@@ -28,32 +29,37 @@
       </div>
     </div>
     <div class="six wide column">
+      <h1 class="ui header">Match Information</h1>
       <div class="ui large message">
-        <h2 class="ui header">Match Information</h2>
-        <div class="ui large form">
-          <%= form_for @match, method: 'put' do |f| %>
-            <div class="field">
-              <label><strong>Venue:</strong></label>
-              <%= f.select :venue_id, Venue.all.map {|v| [v.name, v.id]} %>
+        <div class="ui list">
+          <div class="item">
+            <i class="marker icon"></i>
+            <div class="content">
+              <strong>District:</strong>
+              <%= @match.venue_name %>
             </div>
-
-            <div class="field">
-              <label><strong>Field:</strong></label>
-              <%= f.select :field_id, Field.where(venue_id: @match.venue_id).map {|f| [f.name, f.id]} %>
+          </div>
+          <div class="item">
+            <i class="marker icon"></i>
+            <div class="content">
+              <strong>Field:</strong>
+              <%= @match.field_name %>
             </div>
-
-            <div class="field">
-              <label><strong>Start:</strong></label>
-              <%= f.text_field :starts_at, id: 'start-time' %>
+          </div>
+          <div class="item">
+            <i class="clock icon"></i>
+            <div class="content">
+              <strong>Start:</strong>
+              <%= @match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
             </div>
-
-            <div class="field">
-              <label><strong>End:</strong></label>
-              <%= f.text_field :ends_at, id: 'end-time' %>
+          </div>
+          <div class="item">
+            <i class="clock icon"></i>
+            <div class="content">
+              <strong>End:</strong>
+              <%= @match.ends_at.strftime("%Y/%m/%d - %H:%M") %>
             </div>
-
-            <%= f.submit 'Book Match', :disable_with => 'Booking...',class: 'ui large green button' %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>

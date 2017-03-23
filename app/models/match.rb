@@ -5,6 +5,10 @@ class Match < ApplicationRecord
     Venue.find(venue_id).name
   end
 
+  def field_name
+    Field.find(field_id).name
+  end
+
   def home_team_name
     Team.find(team_owner_id).name
   end
