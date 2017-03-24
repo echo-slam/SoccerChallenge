@@ -11,7 +11,11 @@
             Start: <%= match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
           </div>
         </div>
-        <%= link_to 'Join', match_requests_path(match_id: match), method: 'post', class: 'ui green attached button' %>
+        <% if match.team_owner_id == current_player.team_id %>
+          <%= link_to 'View', waiting_match_path(match), class: 'ui blue attached button' %>
+        <% else %>
+          <%= link_to 'Join', join_match_requests_path(match_id: match), method: 'post', class: 'ui green attached button' %>
+        <% end %>
       </div>
     <% end %>
   </div>

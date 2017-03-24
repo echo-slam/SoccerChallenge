@@ -11,7 +11,16 @@ Rails.application.routes.draw do
       get 'waiting'
     end
   end
-  resources :match_requests
+  resources :match_requests do
+    collection do
+      post 'join'
+      get 'invite'
+    end
+    member do
+      get 'accept'
+      get 'decline'
+    end
+  end
   resources :team_requests
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'

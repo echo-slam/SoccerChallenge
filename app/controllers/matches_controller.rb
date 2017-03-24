@@ -10,18 +10,6 @@ class MatchesController < ApplicationController
 
   def waiting
     @pending_requests = MatchRequest.where(team_received_id: @match.team_owner_id).where(status: 'PENDING')
-
-    if params[:status]
-      @match_request = MatchRequest.find(params[:request_id])
-      @match_request.status = params[:status]
-      @match_request.save
-      if params[:status] = 'ACCEPT'
-        @match.team_away_id = @match_request.team_id
-        @match.is_start = true
-        @match.save
-      end
-      render 'waiting'
-    end
   end
 
   def new
@@ -42,7 +30,7 @@ class MatchesController < ApplicationController
     @match = Match.new match_params
     @match.team_owner_id = current_player.team_id
     if @match.save
-      redirect_to match_path(@match), flash: {success: 'Create match successfully'}
+      redirect_to waiting_match_path(@match), flash: {success: 'Create match successfully'}
     else
       flash[:error] = @match.errors.full_messages.to_sentence
       render 'new'
