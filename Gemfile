@@ -59,3 +59,4 @@ source 'https://rails-assets.org' do
 end
 
 gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-aws'
