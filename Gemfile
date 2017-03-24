@@ -57,3 +57,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-semantic'
   gem 'rails-assets-datetimepicker'
 end
+
+gem 'carrierwave', '~> 1.0'

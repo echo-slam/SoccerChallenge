@@ -20,6 +20,6 @@ class FieldOwnersController < ApplicationController
 
   private
     def field_owner_params
-      params.require(:field_owner).permit(:full_name, :email, :password)
+      params.require(:field_owner).permit(:full_name, :email, :password, :image_url)
     end
 end
