@@ -139,6 +139,30 @@
           </div>
         </div>
       <% end %>
+
+      <% if current_player.id == @team_owner.player_id %>
+        <h1 class="ui header">
+          Match Invites
+        </h1>
+
+        <div class="ui segment match-invite-segment">
+          <div class="ui five link cards">
+            <% @match_invites.each do |match_invite| %>
+             <div class="ui card">
+                <div class="content">
+                  <div class="header"><%= Team.find(match_invite.team_received_id).name %></div>
+                </div>
+                <div class="ui two buttons">
+                  <%= link_to 'Accept', accept_match_request_path(match_invite), class: 'ui green attached button' %>
+                  <%= link_to 'Decline', decline_match_request_path(match_invite,  team_id: @team.id), class: 'ui red attached button' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
+
     </div>
   </div>
 </div>

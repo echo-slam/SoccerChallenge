@@ -44,6 +44,8 @@ class TeamsController < ApplicationController
     @home_matches = Match.where(team_owner_id: @team_owner.id)
     @away_matches = Match.where(team_away_id: @team.id)
     @number_of_matches = (@home_matches.count + @away_matches.count) || 0
+
+    @match_invites = MatchRequest.where(team_id: @team.id).where(status: 'INVITE')
   end
 
   private
