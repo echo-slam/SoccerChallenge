@@ -1,7 +1,8 @@
 <br><br>
 <div class="ui container">
+  <%= flash_messages %>
   <h1 class="ui header">
-    Meet new players
+    Meet these players
   </h1>
 
   <%= link_to "Find Team ?", teams_path, class: "ui green button" %>
@@ -36,6 +37,43 @@
             <%= link_to player.full_name, player_path(player), class: "black-color" %>
           </div>
         </div>
+
+        <% if current_player.is_team_owner? %>
+          <% if @team_requests.where(player_id: player.id).count == 0 %>
+            <% if player.free_player? %>
+              <% if @team_invites.where(player_id: player.id).count == 0 %>
+                <%= link_to "Invite player",
+                    team_requests_path(player_id: player.id),
+                    :method => :post, class: 'ui tiny green button' %>
+              <% else %>
+                <%= link_to "Cancel invitation",
+                    team_request_path(id: @team_invites.where(player_id: player.id).first,
+                                      player_id: player.id),
+                    :method => :delete, class: 'ui tiny black button' %>
+              <% end %>
+            <% else %>
+              <%= link_to "Team: #{player.team.name}",
+                  team_path(player.team), class: "ui tiny violet button" %>
+            <% end %>
+          <% else %>
+            <div class="ui tiny buttons">
+              <%= link_to "Accept",
+                  accept_team_request_path(player_id: player.id),
+                                           :method => :delete, class: 'ui green button' %>
+              <%= link_to "Decline",
+                  decline_team_request_path(player_id: player.id),
+                                            :method => :delete, class: 'ui red button' %>
+            </div>
+          <% end %>
+        <% else %>
+          <% if player.team_id == nil %>
+            <%= link_to "Free player",
+                player_path(player), class: "ui tiny orange button" %>
+          <% else %>
+            <%= link_to "Team: #{player.team.name}",
+                team_path(player.team), class: "ui tiny violet button" %>
+          <% end %>
+        <% end %>
       </div>
     <% end %>
   </div>

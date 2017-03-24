@@ -14,4 +14,12 @@ class Player < ApplicationRecord
   def self.search(search)
     where("full_name ILIKE ?", "%#{search}%")
   end
+
+  def is_team_owner?
+    self.team_owner.team_id != nil
+  end
+
+  def free_player?
+    self.team_id == nil
+  end
 end
