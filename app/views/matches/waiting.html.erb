@@ -39,8 +39,8 @@
                   <div class="header"><%= Team.find(request.team_id).name %></div>
                 </div>
                 <div class="ui two buttons">
-                  <%= link_to 'Accept', match_path(@match, status: 'ACCEPT', request_id: request.id), class: 'ui green attached button' %>
-                  <%= link_to 'Decline', match_path(@match, status: 'DECLINE', request_id: request.id), class: 'ui red attached button' %>
+                  <%= link_to 'Accept', accept_match_request_path(request, match_id: @match), class: 'ui green attached button' %>
+                  <%= link_to 'Decline', decline_match_request_path(request, match_id: @match), class: 'ui red attached button' %>
                 </div>
               </div>
             <% end %>
