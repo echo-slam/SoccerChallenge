@@ -19,6 +19,7 @@ class TeamsController < ApplicationController
   def create
     @player = current_player
     @team = @team_owner.build_team(team_params)
+    
     if @team.save
       @team_owner.team_id = @team.id
       @player.team_id = @team.id
@@ -34,6 +35,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
+    @team_messages = @team.team_messages
 
     @players = @team.players
     @player_requests = TeamRequest.where(team_id: @team.id).where(kind: "request")

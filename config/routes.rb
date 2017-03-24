@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     resources :fields, :only => [:index, :new, :create, :destroy]
   end
   resources :team_owners
-  resources :teams
+  resources :teams do
+    resources :team_messages
+  end
   resources :players
   resources :matches do
     member do
