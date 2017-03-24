@@ -33,6 +33,53 @@
       </div>
 
     <div class="eleven wide column">
+      <% if current_player.team_id == @team.id %>
+        <h1 class="ui header">
+          Team Discussion
+        </h1>
+
+        <div class="ui segment team-request-segment">
+          <% @team_messages.each do |team_message| %>
+            <% player = Player.find(team_message.player_id) %>
+
+            <% if player == current_player %>
+              <p>
+                <a class="ui small circular red label">
+                  <%= player.full_name %>: 
+                </a>
+                <%= team_message.body %>
+              </p>
+            <% else %>
+              <p>
+                <a class="ui small circular blue label">
+                  <%= player.full_name %>: 
+                </a>
+                <%= team_message.body %>
+              </p>
+            <% end %>
+          <% end %>
+        </div>
+
+        <%= form_for [@team, TeamMessage.new()] do |f| %>
+          <div class="ui form grid">
+            <div class="ui row">
+              <div class="fourteen wide column">
+                <div class="field">
+                  <%= f.text_area :body, placeholder: "Your message", rows: "1" %><br>
+                </div>
+              </div>
+
+              <div class="one wide column">
+              </div>
+
+              <div class="one wide column">
+                <%= f.submit "Send", class: "ui green right floated button" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+
       <h1 class="ui header">
         Members
       </h1>
@@ -57,40 +104,6 @@
           <% end %>
         </div>
       </div>
-
-      <h1 class="ui header">
-        Team Discussion
-      </h1>
-
-      <div class="ui segment team-request-segment">
-        <% @team_messages.each do |team_message| %>
-          <% player = Player.find(team_message.player_id) %>
-
-          <% if player == current_player %>
-            <p>
-              <a class="ui small circular red label">
-                <%= player.full_name %>: 
-              </a>
-              <%= team_message.body %>
-            </p>
-          <% else %>
-            <p>
-              <a class="ui small circular blue label">
-                <%= player.full_name %>: 
-              </a>
-              <%= team_message.body %>
-            </p>
-          <% end %>
-        <% end %>
-      </div>
-      <%= form_for [@team, TeamMessage.new()] do |f| %>
-        <div class="ui form">
-          <div class="field">
-            <%= f.text_area :body, placeholder: "Your message", rows: "2" %>
-          </div>
-          <%= f.submit "Send", class: "ui green button" %>
-        </div>
-      <% end %>
 
       <% if current_player.id == @team_owner.player_id %>
         <h1 class="ui header">
