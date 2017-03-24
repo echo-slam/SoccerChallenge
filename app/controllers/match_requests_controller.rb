@@ -17,31 +17,62 @@ class MatchRequestsController < ApplicationController
   end
 
   def invite
-    
+    if params[:match_id]
+      @team_away = Team.find(params[:team_id])
+      @match = Match.find(params[:match_id])
+      @match_invite = @team_away.match_requests.build
+      @match_invite.match_id = params[:match_id]
+      @match_invite.team_received_id = @match.team_owner_id
+      @match_invite.status = 'INVITE'
+
+      if @match_invite.save
+        flash[:success] = 'Send invitation'
+      else
+        flash[:error] = @match_invite.errors.full_messages.to_sentence
+      end
+      redirect_to waiting_match_path(@match)
+    end
   end
 
   def accept
-    @match = Match.find(params[:match_id])
     @match_request.status = 'ACCEPTED'
-    if @match_request.save
-      @match.team_away_id = @match_request.team_id
-      @match.is_start = true
-      @match.save
-      flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
-    else
-      flash[:error] = 'Error happen when accept a request'
+    if params[:match_id]
+      if @match_request.save
+        @match.team_away_id = @match_request.team_id
+        @match.is_start = true
+        @match.save
+        flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
+      else
+        flash[:error] = 'Error happen when accept a request'
+      end
+      redirect_to waiting_match_path(params[:match_id])
+    else # accept invite
+      if @match_request.save
+        @match.team_away_id = @match_request.team_id
+        @match.is_start = true
+        @match.save
+        flash[:success] = "Accept request from #{Team.find(@match_request.team_received_id).name}"
+      else
+        flash[:error] = 'Error happen when accept a request'
+      end
+      redirect_to waiting_match_path(@match_request.match_id)
     end
-    redirect_to waiting_match_path(params[:match_id])
   end
 
   def decline
     @match_request.destroy
-    flash[:notice] = "Decline request"
-    redirect_to waiting_match_path(params[:match_id])
+    if params[:match_id]
+      flash[:notice] = "Decline request"
+      redirect_to waiting_match_path(params[:match_id])
+    else # decline invite
+      flash[:notice] = "Decline invite"
+      redirect_to team_path(params[:team_id])
+    end
   end
 
   private
     def set_match_request
       @match_request = MatchRequest.find(params[:id])
+      @match = Match.find(@match_request.match_id)
     end
 end

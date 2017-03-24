@@ -31,8 +31,19 @@
           <% end %>
         </div>
       <% else %>
-        <div class="ui three cards">
-          <% if @match.team_owner_id == current_player.team_owner.team_id %>
+        <% if @match.team_owner_id == current_player.team_owner.team_id %>
+          <div class="ui list">
+            <% @teams.each do |team| %>
+              <div class="item">
+                <i class="soccer middle aligned icon"></i>
+                <div class="content">
+                  <%= link_to team.name, team_path(id: team.id) %>
+                  <%= link_to 'Invite', invite_match_requests_path(match_id: @match, team_id: team), class: 'ui green mini button' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="ui three cards">
             <% @pending_requests.each do |request| %>
               <div class="ui card">
                 <div class="content">
@@ -44,8 +55,8 @@
                 </div>
               </div>
             <% end %>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       <% end %>
 
       <p>Messages</p>
