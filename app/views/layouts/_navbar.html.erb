@@ -6,15 +6,11 @@
     <strong>Soccer Challenge</strong>
   </a>
   <% if current_player %>
-    <a class="item" href="<%= teams_path %>">
-      Teams
-    </a>
-    <a class="item" href="<%= players_path %>">
-      Players
-    </a>
-    <a class="item" href="<%= matches_path %>">
-      Matches
-    </a>
+    <a class="item" href="<%= teams_path %>">Teams</a>
+    <a class="item" href="<%= players_path %>">Players</a>
+    <a class="item" href="<%= matches_path %>">Matches</a>
+  <% elsif current_field_owner %>
+    <a class="item" href="<%= field_owner_fields_path(field_owner_id: current_field_owner) %>">Fields</a>
   <% end %>
   <div class="right menu">
     <% if current_player %> 
@@ -24,6 +20,7 @@
       <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
     <% elsif current_field_owner %>
       <a class="ui active item">Field Owner: <%= current_field_owner %></a>
+      <%= link_to "Profile", field_owner_path(current_field_owner), class: 'ui item' %>
       <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
     <% else %>
       <a class="item" href="<%= signin_path %>">
