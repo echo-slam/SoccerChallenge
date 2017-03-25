@@ -23,7 +23,7 @@ class MatchRequestsController < ApplicationController
       @match_invite = @team_away.match_requests.build
       @match_invite.match_id = params[:match_id]
       @match_invite.team_received_id = @match.team_owner_id
-      @match_invite.status = 'INVITE'
+      @match_invite.status = 'INVITATION'
 
       if @match_invite.save
         flash[:success] = 'Send invitation'
@@ -35,26 +35,19 @@ class MatchRequestsController < ApplicationController
   end
 
   def accept
-    @match_request.status = 'ACCEPTED'
     if params[:match_id]
-      if @match_request.save
-        @match.team_away_id = @match_request.team_id
-        @match.is_start = true
-        @match.save
-        flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
-      else
-        flash[:error] = 'Error happen when accept a request'
-      end
+      @match.team_away_id = @match_request.team_id
+      @match.is_start = true
+      @match.save
+      @match.match_requests.destroy_all
+      flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
       redirect_to waiting_match_path(params[:match_id])
     else # accept invite
-      if @match_request.save
-        @match.team_away_id = @match_request.team_id
-        @match.is_start = true
-        @match.save
-        flash[:success] = "Accept request from #{Team.find(@match_request.team_received_id).name}"
-      else
-        flash[:error] = 'Error happen when accept a request'
-      end
+      @match.team_away_id = @match_request.team_id
+      @match.is_start = true
+      @match.save
+      @match.match_requests.destroy_all
+      flash[:success] = "Accept request from #{Team.find(@match_request.team_received_id).name}"
       redirect_to waiting_match_path(@match_request.match_id)
     end
   end
@@ -66,7 +59,7 @@ class MatchRequestsController < ApplicationController
       redirect_to waiting_match_path(params[:match_id])
     else # decline invite
       flash[:notice] = "Decline invite"
-      redirect_to team_path(params[:team_id])
+      redirect_to matches_path
     end
   end
 
