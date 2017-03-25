@@ -10,6 +10,12 @@
             <label>Name</label>
             <%= f.text_field :name, placeholder: 'Name of your team' %>
           </div>
+
+          <div class="field">
+            <label>Avatar</label>
+            <%= f.file_field :image_url %>
+          </div>
+
           <%= f.submit "Create", :disable_with => 'Creating team...', class: 'ui large green button' %>
         </div>
       <% end %>

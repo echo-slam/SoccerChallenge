@@ -7,6 +7,8 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  mount_uploader :image_url, ImageUploader
+  
   def self.search(search)
     where("name ILIKE ?", "%#{search}%")
   end

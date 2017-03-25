@@ -41,6 +41,6 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
     end
     def player_params
-      params.require(:player).permit(:full_name, :email, :password)
+      params.require(:player).permit(:full_name, :email, :password, :image_url)
     end
 end
