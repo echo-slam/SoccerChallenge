@@ -1,8 +1,4 @@
-
-<br>
-<br>
-<br>
-<%= form_for [field_owner, field] do |f| %>
+<%= form_for [current_field_owner, field] do |f| %>
   <div class="field">
     <%= f.label :Name %>
     <%= f.text_field :name %>
@@ -15,7 +11,7 @@
 
   <div class="field"> 
     <%= f.label :Venue %>
-    <%= f.select(:venue_id, options_from_collection_for_select(@venues, "id", "name"), {}, {class: 'form-control'} ) %>
+    <%= f.select :venue_id, options_from_collection_for_select(Venue.all, "id", "name") %>
   </div>
 
   <div class="field">
@@ -23,5 +19,5 @@
     <%= f.file_field :image_url %>
   </div>
   
-  <%= f.submit "#{submit}" %>
+  <%= f.submit 'Submit', class: 'ui green large button' %>
 <% end %>

@@ -1,1 +1,27 @@
-<%= render partial: 'fields/form', locals: {venues: @venues, field: @field, field_owner: @field_owner, submit:'new'} %>
+<br><br>
+<div class="ui container">
+  <%= flash_messages %>
+  <div class="ui grid">
+    <div class="eight wide column">
+      <div class="ui large form">
+        <%= render partial: 'fields/form', locals: {field: @field} %>
+      </div>
+    </div>
+
+    <div class="two wide column"></div>
+
+    <div class="six wide column">
+      <%= image_tag("paul.jpg", class: "ui fluid rounded image") %>
+
+      <div class="ui medium info message">
+        <div class="header"><i class="info circle icon"></i>
+          What is Field?
+        </div>
+        <ul class="list">
+          <li>Field Owner is the person who have fields for rent.</li>
+          <li>Soccer Challenge provide nice service for you to manage your fields.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
