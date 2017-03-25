@@ -32,6 +32,7 @@
         </div>
       <% else %>
         <% if @match.team_owner_id == current_player.team_owner.team_id %>
+        
           <div class="ui list">
             <% @teams.each do |team| %>
               <div class="item">
@@ -56,10 +57,10 @@
               </div>
             <% end %>
           </div>
+
         <% end %>
       <% end %>
 
-      <p>Messages</p>
       <p>Message box</p>
     </div>
 

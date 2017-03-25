@@ -35,26 +35,19 @@ class MatchRequestsController < ApplicationController
   end
 
   def accept
-    @match_request.status = 'ACCEPTED'
     if params[:match_id]
-      if @match_request.save
-        @match.team_away_id = @match_request.team_id
-        @match.is_start = true
-        @match.save
-        flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
-      else
-        flash[:error] = 'Error happen when accept a request'
-      end
+      @match.team_away_id = @match_request.team_id
+      @match.is_start = true
+      @match.save
+      @match.match_requests.destroy_all
+      flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
       redirect_to waiting_match_path(params[:match_id])
     else # accept invite
-      if @match_request.save
-        @match.team_away_id = @match_request.team_id
-        @match.is_start = true
-        @match.save
-        flash[:success] = "Accept request from #{Team.find(@match_request.team_received_id).name}"
-      else
-        flash[:error] = 'Error happen when accept a request'
-      end
+      @match.team_away_id = @match_request.team_id
+      @match.is_start = true
+      @match.save
+      @match.match_requests.destroy_all
+      flash[:success] = "Accept request from #{Team.find(@match_request.team_received_id).name}"
       redirect_to waiting_match_path(@match_request.match_id)
     end
   end
