@@ -23,7 +23,7 @@ class MatchRequestsController < ApplicationController
       @match_invite = @team_away.match_requests.build
       @match_invite.match_id = params[:match_id]
       @match_invite.team_received_id = @match.team_owner_id
-      @match_invite.status = 'INVITE'
+      @match_invite.status = 'INVITATION'
 
       if @match_invite.save
         flash[:success] = 'Send invitation'
@@ -66,7 +66,7 @@ class MatchRequestsController < ApplicationController
       redirect_to waiting_match_path(params[:match_id])
     else # decline invite
       flash[:notice] = "Decline invite"
-      redirect_to team_path(params[:team_id])
+      redirect_to matches_path
     end
   end
 

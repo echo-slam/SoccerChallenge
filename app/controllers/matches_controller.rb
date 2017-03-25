@@ -3,6 +3,8 @@ class MatchesController < ApplicationController
 
   def index
     @matches = Match.upcoming.not_started
+    @match_requests = MatchRequest.where(team_id: current_player.team_id).where(status: 'PENDING')
+    @match_invitations = MatchRequest.where(team_id: current_player.team_id).where(status: 'INVITATION')
   end
 
   def show
