@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
 
   def show
     @team = Team.find(params[:id])
-    @team_messages = @team.team_messages
+    @team_messages = @team.team_messages.order(created_at: "DESC").first(50)
 
     @players = @team.players
     @player_requests = TeamRequest.where(team_id: @team.id).where(kind: "request")

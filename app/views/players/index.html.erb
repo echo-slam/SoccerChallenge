@@ -38,6 +38,8 @@
           </div>
         </div>
 
+        <div class="extra center aligned content">
+
         <% if current_player.is_team_owner? %>
           <% if @team_requests.where(player_id: player.id).count == 0 %>
             <% if player.free_player? %>
@@ -52,11 +54,11 @@
                     :method => :delete, class: 'ui tiny black button' %>
               <% end %>
             <% else %>
-              <%= link_to "Team: #{player.team.name}",
+              <%= link_to "#{player.team.name}",
                   team_path(player.team), class: "ui tiny violet button" %>
             <% end %>
           <% else %>
-            <div class="ui tiny buttons">
+            <div class="ui two tiny buttons">
               <%= link_to "Accept",
                   accept_team_request_path(player_id: player.id),
                                            :method => :delete, class: 'ui green button' %>
@@ -70,10 +72,12 @@
             <%= link_to "Free player",
                 player_path(player), class: "ui tiny orange button" %>
           <% else %>
-            <%= link_to "Team: #{player.team.name}",
+            <%= link_to "#{player.team.name}",
                 team_path(player.team), class: "ui tiny violet button" %>
           <% end %>
         <% end %>
+
+        </div>
       </div>
     <% end %>
   </div>

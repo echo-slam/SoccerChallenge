@@ -21,7 +21,10 @@
 
           <div class="description">
             <% if @team %>
-              Team: <%= link_to @team.name, team_path(@team), class: 'black-color' %>
+              <strong>Team: </strong>
+              <a class="ui circular violet label" href="<%= team_path(@team) %>">
+                <%= @team.name %>
+              </a>
             <% else %>
               Team: None
             <% end %>
@@ -29,8 +32,10 @@
         </div>
       </div>
       <% unless current_player.team_id %>
-        <%= link_to 'Find Team', teams_path, class: 'ui blue button' %>
-        <%= link_to 'Create Team', new_team_path, class: 'ui green button' %>
+        <% if @player == current_player %>
+          <%= link_to 'Find Team', teams_path, class: 'ui blue button' %>
+          <%= link_to 'Create Team', new_team_path, class: 'ui green button' %>
+        <% end %>
       <% end %>
     </div>
 
@@ -41,7 +46,7 @@
           </h1>
 
           <div class="ui segment player-invite-segment" >
-            <div class="ui five link cards">
+            <div class="ui three link cards">
               <% @team_invitations.each do |team_invitation| %>
                 <% team = team_invitation.team %>
 
@@ -59,12 +64,16 @@
                     </div>
                   </div>
 
-                  <%= link_to "Accept",
-                      accept_team_request_path(team_id: team.id),
-                                               :method => :delete, class: 'ui tiny green button' %>
-                  <%= link_to "Decline",
-                      decline_team_request_path(team_id: team.id),
-                                                :method => :delete, class: 'ui tiny red button' %>
+                  <div class="extra content">
+                    <div class="ui two tiny buttons">
+                      <%= link_to "Accept",
+                          accept_team_request_path(team_id: team.id),
+                                                   :method => :delete, class: 'ui green button' %>
+                      <%= link_to "Decline",
+                          decline_team_request_path(team_id: team.id),
+                                                    :method => :delete, class: 'ui red button' %>
+                    </div>
+                  </div>
                 </div>
               <% end %>
             </div>

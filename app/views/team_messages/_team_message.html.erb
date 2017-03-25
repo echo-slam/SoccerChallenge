@@ -1,0 +1,17 @@
+<% player = Player.find(team_message.player_id) %>
+
+<% if player == current_player %>
+  <p>
+    <a class="ui small circular red label">
+      <%= player.full_name %>: 
+    </a>
+    <%= team_message.body %>
+  </p>
+<% else %>
+  <p>
+    <a class="ui small circular blue label">
+      <%= player.full_name %>: 
+    </a>
+    <%= team_message.body %>
+  </p>
+<% end %>

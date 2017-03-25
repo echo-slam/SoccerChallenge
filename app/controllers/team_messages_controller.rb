@@ -1,4 +1,14 @@
 class TeamMessagesController < ApplicationController
+  def index
+    set_team
+    @team_messages = @team.team_messages.order(created_at: "DESC").first(50)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
   def create
     set_team
     @team_message = @team.team_messages.build team_message_params
