@@ -1,0 +1,20 @@
+<br><br>
+<div class="ui container">
+  <%= flash_messages %>
+  <div class="ui grid">
+    <div class="five wide column">
+      <h1 class="ui header">
+        Profile
+      </h1>
+      <div class="ui card">
+        <div class="custom_img" style="background-image: url(<%= @field_owner.image_url %>);"></div>
+        <div class="content">
+          <div class="header"><%= @field_owner.full_name %></div>
+          <div class="meta">
+            <span class="date">Joined in <%= @field_owner.created_at.strftime("%Y-%m-%d") %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
