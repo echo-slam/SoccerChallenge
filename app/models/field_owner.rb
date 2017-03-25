@@ -1,5 +1,5 @@
 class FieldOwner < ApplicationRecord
-  has_secure_password  
+  has_secure_password
   has_many :fields
   mount_uploader :image_url, ImageUploader
 

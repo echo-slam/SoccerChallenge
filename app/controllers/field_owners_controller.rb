@@ -1,6 +1,20 @@
 class FieldOwnersController < ApplicationController
+  before_action :set_team_owner, only: [:show, :edit, :update]
+
+  def index
+    @field_owners = FieldOwner.all
+  end
+
+  def show
+    
+  end
+
   def new
     @field_owner = FieldOwner.new
+  end
+
+  def edit
+    
   end
 
   def create
@@ -18,7 +32,20 @@ class FieldOwnersController < ApplicationController
     end
   end
 
+  def update
+    if @field_owner.update(field_owner_params)
+      redirect_to field_owner_path, flash: { success: 'Field Owner profile was successfully updated' }
+    else
+      flash[:error] = @field_owner.errors.full_messages.to_sentence
+      render 'edit'
+    end
+  end
+
   private
+    def set_team_owner
+      @field_owner = FieldOwner.find(params[:id])
+    end
+
     def field_owner_params
       params.require(:field_owner).permit(:full_name, :email, :password, :image_url)
     end
