@@ -1,0 +1,27 @@
+
+<br>
+<br>
+<br>
+<%= form_for [field_owner, field] do |f| %>
+  <div class="field">
+    <%= f.label :Name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Address %>
+    <%= f.text_field :addr %>
+  </div>
+
+  <div class="field"> 
+    <%= f.label :Venue %>
+    <%= f.select(:venue_id, options_from_collection_for_select(@venues, "id", "name"), {}, {class: 'form-control'} ) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Image %> 
+    <%= f.file_field :image_url %>
+  </div>
+  
+  <%= f.submit "#{submit}" %>
+<% end %>
