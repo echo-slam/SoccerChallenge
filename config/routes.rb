@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'home#index'
-  resources :field_owners, :only => [:index, :new, :create] do 
-    resources :fields, :only => [:index, :new, :create, :destroy]
+  resources :field_owners do 
+    resources :fields
   end
   resources :team_owners
   resources :teams do
