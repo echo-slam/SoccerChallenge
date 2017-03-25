@@ -41,31 +41,35 @@
           </div>
         </div>
 
-        <% if current_player.is_team_owner? == false %>
-          <% if current_player.free_player? %>
-            <% if @team_invites.where(team_id: team.id).count == 0  %>
-              <% if @team_requests.where(team_id: team.id).count == 0 %>
-                <%= link_to "Request to join",
-                    team_requests_path(team_id: team.id),
-                    :method => :post, class: 'ui tiny green button' %>
+        <div class="extra center aligned content">
+        
+          <% if current_player.is_team_owner? == false %>
+            <% if current_player.free_player? %>
+              <% if @team_invites.where(team_id: team.id).count == 0  %>
+                <% if @team_requests.where(team_id: team.id).count == 0 %>
+                  <%= link_to "Request to join",
+                      team_requests_path(team_id: team.id),
+                      :method => :post, class: 'ui tiny green button' %>
+                <% else %>
+                  <%= link_to "Cancel request",
+                      team_request_path(id: @team_requests.where(team_id: team.id),
+                                        team_id: team.id),
+                      :method => :delete, class: 'ui tiny black button' %>
+                <% end %>
               <% else %>
-                <%= link_to "Cancel request",
-                    team_request_path(id: @team_requests.where(team_id: team.id),
-                                      team_id: team.id),
-                    :method => :delete, class: 'ui tiny black button' %>
+                <div class="ui two tiny buttons">
+                  <%= link_to "Accept",
+                      accept_team_request_path(team_id: team.id),
+                                               :method => :delete, class: 'ui tiny green button' %>
+                  <%= link_to "Decline",
+                      decline_team_request_path(team_id: team.id),
+                                                :method => :delete, class: 'ui tiny red button' %>
+                </div>
               <% end %>
-            <% else %>
-              <div class="ui tiny buttons">
-                <%= link_to "Accept",
-                    accept_team_request_path(team_id: team.id),
-                                             :method => :delete, class: 'ui tiny green button' %>
-                <%= link_to "Decline",
-                    decline_team_request_path(team_id: team.id),
-                                              :method => :delete, class: 'ui tiny red button' %>
-              </div>
             <% end %>
           <% end %>
-        <% end %>
+
+        </div>
       </div>
     <% end %>
   </div>
