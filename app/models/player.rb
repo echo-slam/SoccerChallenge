@@ -7,6 +7,8 @@ class Player < ApplicationRecord
   belongs_to :team, optional: true
   has_one :team_owner, dependent: :destroy
 
+  mount_uploader :image_url, ImageUploader
+  
   def to_s
     full_name
   end
