@@ -6,6 +6,3 @@
 //= require_tree .
 //= require flash_semantic
 //= require timepicker
-
-$(document).on('turbolinks:load', function(){
-});
