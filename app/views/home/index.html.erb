@@ -42,9 +42,36 @@
       </div>
 
       <div class="eight wide center aligned column">
-        <%= link_to 'Sign in', signin_path, class: 'ui green button' %>
+        <%= link_to 'Sign in', '#' , class: 'ui green button', :id => 'signin_index', :remote => true %>
         <%= link_to 'Sign up', new_player_path, class: 'ui blue button' %>
       </div>
     </div>
+  </div>
+</div>
+
+
+<div class="ui modal">
+  <div class="ui icon header">
+    <i class="archive icon"></i>
+    Sign in
+  </div>
+  <div class="content">
+    <div class="ui large form attached fluid segment">
+      <%= form_tag signin_path, method: 'post' do %>
+        <div class="field">
+          <%= text_field_tag :email, params[:email], placeholder: "Email" %>
+        </div>
+
+        <div class="field">
+            <%= password_field_tag :password, nil, placeholder: "Password" %>
+        </div>
+        <%= submit_tag 'Sign In as Player', name: 'sign_in_player', class: 'ui large green button' %>
+        <%= submit_tag 'Sign In as Field Owner', name: 'sign_in_field_owner', class: 'ui large blue button' %>
+      <% end %>
+    </div>
+  </div>
+  <div class="ui large bottom attached warning message">
+    <i class="icon help"></i>
+    Don't have an account? <a href="<%= new_player_path %>">Sign Up</a>
   </div>
 </div>
