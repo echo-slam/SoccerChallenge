@@ -60,3 +60,4 @@ end
 
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
+gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
