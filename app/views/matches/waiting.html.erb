@@ -8,7 +8,7 @@
       <div class="ui five cards">
         <% @home_team_players.each do |player| %>
           <div class="card">
-            <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(muller.jpg);"></div></a>
+            <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
             <div class="center aligned content">
               <div class="ui small header">
                 <%= player.full_name  %>
@@ -23,7 +23,7 @@
         <div class="ui five cards">
           <% @away_team_players.each do |player| %>
             <div class="card">
-              <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(muller.jpg);"></div></a>
+              <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
               <div class="center aligned content">
                 <div class="ui small header"><%= player.full_name  %></div>
               </div>
