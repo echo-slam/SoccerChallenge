@@ -27,8 +27,8 @@
       <div class="ui card">
         <div class="ui basic segment card-segment">
           <%= link_to player_path(player) do %>
-            <%= image_tag("muller.jpg", 
-                class: "ui centered rounded card-image image") %>
+            <%= image_tag(player.image_url_or_default,
+                class: "ui rounded centered card-image image") %>
           <% end %>
         </div>
 

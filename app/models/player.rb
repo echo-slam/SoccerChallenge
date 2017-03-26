@@ -25,6 +25,10 @@ class Player < ApplicationRecord
     self.team_id == nil
   end
 
+  def image_url_or_default
+    self.image_url.url.presence || "http://i.imgur.com/sn1jE2z.jpg"
+  end
+
   private
     def image_size_validation
       errors[:image_url] << "should be less than 500KB" if image_url.size > 0.5.megabytes

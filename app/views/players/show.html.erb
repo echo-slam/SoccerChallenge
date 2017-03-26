@@ -9,7 +9,8 @@
 
       <div class="ui card">
         <div class="image">
-          <%= image_tag("muller.jpg", class: "ui rounded four-three-image image") %>
+          <%= image_tag(@player.image_url_or_default,
+              class: "ui rounded image") %>
         </div>
 
         <div class="content">
