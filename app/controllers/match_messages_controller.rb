@@ -1,8 +1,17 @@
 class MatchMessagesController < ApplicationController
-  before_action :set_match, only: [:create]
+  before_action :set_match, only: [:index, :create]
+
+  def index
+    @match_messages = @match.match_messages.order(created_at: "DESC").first(50)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def create
-    @match_message = @match.match_messages.build message_params
+    @match_message = @match.match_messages.build match_message_params
     @match_message.player_id = current_player.id
     @match_message.save
 
@@ -25,7 +34,7 @@ class MatchMessagesController < ApplicationController
       @match = Match.find(params[:match_id])
     end
 
-    def message_params
+    def match_message_params
       params.require(:match_message).permit(:body)
     end
 end

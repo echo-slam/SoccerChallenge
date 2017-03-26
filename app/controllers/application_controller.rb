@@ -4,10 +4,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_field_owner, :current_player, :player_belongs_to_team
 
   def current_field_owner
+    return @current_field_owner if @current_field_owner
     @current_field_owner ||= FieldOwner.find_by_id(session[:field_owner_id])
   end
 
   def current_player
+    return @current_player if @current_player
     @current_player ||= Player.find_by_id(session[:player_id])
   end
 
