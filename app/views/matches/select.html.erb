@@ -1,0 +1,28 @@
+<br><br>
+<div class="ui container">
+  <%= flash_messages %>
+  <div class="ui grid">
+    <div class="ten wide column">
+      <div class="calendar"></div>
+    </div>
+
+    <div class="six wide column">
+      <h1 class="ui header">Select Time</h1>
+      <div class="ui large form">
+        <%= form_for @match do |f| %>
+          <div class="field">
+            <label><strong>Field:</strong></label>
+            <%= f.select :field_id, Field.where(venue_id: @match.venue_id).map {|f| [f.name, f.id]} %>
+          </div>
+
+          <% if @match.team_owner_id == current_player.team_owner.team_id %>
+            <div class="ui basic center aligned segment">
+              <%= link_to 'Book Match', match_path(@match), class: 'ui massive green button' %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+  </div>
+</div>

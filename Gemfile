@@ -64,3 +64,5 @@ gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
 
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'fullcalendar-rails'
+gem 'momentjs-rails'

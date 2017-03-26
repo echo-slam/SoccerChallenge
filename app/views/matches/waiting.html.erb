@@ -4,7 +4,7 @@
   <div class="ui grid">
     <div class="ten wide column">
 
-      <h1 class="ui header">Home</h1>
+      <h1 class="ui blue header">Home: <%= @home_team.name %></h1>
       <div class="ui five cards">
         <% @home_team_players.each do |player| %>
           <div class="card">
@@ -17,9 +17,9 @@
           </div>
         <% end %>
       </div>
-
-      <h1 class="ui header">Away</h1>
+      
       <% if @match.is_start %>
+        <h1 class="ui red header">Away: <%= @away_team.name %></h1>
         <div class="ui five cards">
           <% @away_team_players.each do |player| %>
             <div class="card">
@@ -32,7 +32,7 @@
         </div>
       <% else %>
         <% if @match.team_owner_id == current_player.team_owner.team_id %>
-        
+          <h1 class="ui header">Free Teams</h1>
           <div class="ui list">
             <% @teams.each do |team| %>
               <div class="item">
@@ -44,6 +44,7 @@
               </div>
             <% end %>
           </div>
+          <h1 class="ui header">Pending Requests</h1>
           <div class="ui three cards">
             <% @pending_requests.each do |request| %>
               <div class="ui card">
@@ -57,9 +58,39 @@
               </div>
             <% end %>
           </div>
-
         <% end %>
       <% end %>
+    </div>
+
+    <div class="six wide column">
+      <h1 class="ui header">Match Information</h1>
+      <div class="ui list">
+        <div class="item">
+          <i class="marker icon"></i>
+          <div class="content">
+            <strong>District:</strong>
+            <%= @match.venue_name %>
+          </div>
+        </div>
+      </div>
+      <div class="ui large form">
+        <%= form_for @match do |f| %>
+          <div class="field">
+            <label><strong>Field:</strong></label>
+            <%= f.select :field_id, Field.where(venue_id: @match.venue_id).map {|f| [f.name, f.id]} %>
+          </div>
+
+          <% if @match.team_owner_id == current_player.team_owner.team_id %>
+            <div class="ui basic center aligned segment">
+              <%= link_to 'Select Field', select_match_path(@match), class: 'ui massive green button' %>
+            </div>
+          <% else %>
+            <div class="ui basic center aligned segment">
+              <%= link_to 'View', match_path(@match), class: 'ui massive blue button' %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
       <h1 class="ui header">Match Discussion</h1>
 
@@ -71,40 +102,9 @@
           </div>
         </div>
       <% end %>
-      <div class="match-messages ui large message">
+
+      <div class="match-messages ui basic segment">
         <%= render @match_messages %>
-      </div>
-
-    </div>
-
-    <div class="six wide column">
-      <div class="ui large message">
-        <h2 class="ui header">Match Information</h2>
-        <div class="ui large form">
-          <%= form_for @match, method: 'put' do |f| %>
-            <div class="field">
-              <label><strong>Venue:</strong></label>
-              <%= f.select :venue_id, Venue.all.map {|v| [v.name, v.id]} %>
-            </div>
-
-            <div class="field">
-              <label><strong>Field:</strong></label>
-              <%= f.select :field_id, Field.where(venue_id: @match.venue_id).map {|f| [f.name, f.id]} %>
-            </div>
-
-            <div class="field">
-              <label><strong>Start:</strong></label>
-              <%= f.text_field :starts_at, id: 'start-time' %>
-            </div>
-
-            <div class="field">
-              <label><strong>End:</strong></label>
-              <%= f.text_field :ends_at, id: 'end-time' %>
-            </div>
-
-            <%= f.submit 'Book Match', :disable_with => 'Booking...',class: 'ui large green button' %>
-          <% end %>
-        </div>
       </div>
     </div>
   </div>

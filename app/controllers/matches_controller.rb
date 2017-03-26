@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :waiting, :update]
+  before_action :set_match, only: [:show, :waiting, :select, :update]
 
   def index
     @matches = Match.upcoming.not_started
@@ -8,18 +8,22 @@ class MatchesController < ApplicationController
   end
 
   def show
+
+  end
+
+  def new
+    @match = Match.new
   end
 
   def waiting
     @pending_requests = MatchRequest.where(team_received_id: @match.team_owner_id).where(status: 'PENDING')
     @team_requested_ids = @match.match_requests.select(:team_id)
     @teams = Team.where.not(id: @match.team_owner_id).where.not(id: @team_requested_ids)
-
     @match_messages = @match.match_messages.order(created_at: "DESC").first(50)
   end
 
-  def new
-    @match = Match.new
+  def select
+
   end
 
   def update
@@ -46,8 +50,10 @@ class MatchesController < ApplicationController
   private
     def set_match
       @match = Match.find(params[:id])
-      @home_team_players = Player.where(team_id: @match.team_owner_id)
-      @away_team_players = Player.where(team_id: @match.team_away_id)
+      @home_team = Team.find(@match.team_owner_id)
+      @away_team = Team.find(@match.team_away_id)
+      @home_team_players = @home_team.players
+      @away_team_players = @away_team.players
     end
 
     def match_params
