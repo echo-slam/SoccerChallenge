@@ -13,3 +13,5 @@
  'Hoc Mon', 'Nha Be', 'Phu Nhuan', 'Tan Binh', 'Tan Phu', 'Thu Duc'].each do |d|
      Venue.create(name: d)
    end
+
+Rake::Task['fetch_player'].invoke
