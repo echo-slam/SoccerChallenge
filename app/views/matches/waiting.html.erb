@@ -63,20 +63,7 @@
 
       <h1 class="ui header">Match Discussion</h1>
 
-      <div class="ui large attached segment">
-        <% @match_messages.each do |match_message| %>
-          <p>
-            <% if match_message.player_id == current_player.id %>
-              <a class="ui small circular red label"><%= match_message.player_name %></a> : 
-            <% else %>
-              <a class="ui small circular blue label"><%= match_message.player_name %></a> : 
-            <% end %>
-            <%= match_message.body %>
-          </p>
-        <% end %>
-      </div>
-
-      <%= form_for [@match, MatchMessage.new] do |f| %>
+      <%= form_for [@match, MatchMessage.new], remote: true do |f| %>
         <div class="ui large form">
           <div class="fields">
             <%= f.text_field :body, placeholder: 'New message', required: true %>
@@ -84,6 +71,9 @@
           </div>
         </div>
       <% end %>
+      <div class="match-messages ui large message">
+        <%= render @match_messages %>
+      </div>
 
     </div>
 
@@ -119,3 +109,13 @@
     </div>
   </div>
 </div>
+
+<script>
+  function reload() {
+    $.get("<%= match_match_messages_path(@match, format: :js) %>", function(response) {
+      console.log("Reload successfully", response)
+    });
+  }
+
+  setInterval(reload, 3000);
+</script>
