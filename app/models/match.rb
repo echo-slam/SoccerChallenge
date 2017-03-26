@@ -1,5 +1,6 @@
 class Match < ApplicationRecord
   has_many :match_requests
+  has_many :match_messages, dependent: :destroy
 
   def venue_name
     Venue.find(venue_id).name
