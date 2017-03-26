@@ -11,7 +11,6 @@ task :fetch_player => :environment do
   image = []
   club = []
 
-
   doc.css(".b-loaded").each do |image_url|
     file = image_url["data-imgstem"] + '/500.jpg'
     image.push file 
