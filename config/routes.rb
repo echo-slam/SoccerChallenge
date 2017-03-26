@@ -11,7 +11,9 @@ Rails.application.routes.draw do
   resources :matches do
     member do
       get 'waiting'
+      get 'select'
     end
+    resources :match_messages
   end
   resources :match_requests do
     collection do
