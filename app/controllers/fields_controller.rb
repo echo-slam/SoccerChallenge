@@ -8,7 +8,11 @@ class FieldsController < ApplicationController
   end
 
   def show
-
+    @field = Field.find(params[:id])
+    @hash = Gmaps4rails.build_markers(@field) do |field, marker|
+      marker.lat field.latitude
+      marker.lng field.longitude
+    end
   end
 
   def new

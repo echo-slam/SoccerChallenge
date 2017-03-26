@@ -1,4 +1,7 @@
 class Field < ApplicationRecord
+  geocoded_by :addr
+  after_validation :geocode, :if => lambda{ |obj| obj.addr_changed? } 
+
   belongs_to :field_owner
   belongs_to :venue
   mount_uploader :image_url, ImageUploader
