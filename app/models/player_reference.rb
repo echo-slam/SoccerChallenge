@@ -1,0 +1,2 @@
+class PlayerReference < ApplicationRecord
+end
