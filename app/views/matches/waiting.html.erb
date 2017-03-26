@@ -61,7 +61,30 @@
         <% end %>
       <% end %>
 
-      <p>Message box</p>
+      <h1 class="ui header">Match Discussion</h1>
+
+      <div class="ui large attached segment">
+        <% @match_messages.each do |match_message| %>
+          <p>
+            <% if match_message.player_id == current_player.id %>
+              <a class="ui small circular red label"><%= match_message.player_name %></a> : 
+            <% else %>
+              <a class="ui small circular blue label"><%= match_message.player_name %></a> : 
+            <% end %>
+            <%= match_message.body %>
+          </p>
+        <% end %>
+      </div>
+
+      <%= form_for [@match, MatchMessage.new] do |f| %>
+        <div class="ui large form">
+          <div class="fields">
+            <%= f.text_field :body, placeholder: 'New message', required: true %>
+            <%= f.submit 'Send', class: 'ui large green button' %>
+          </div>
+        </div>
+      <% end %>
+
     </div>
 
     <div class="six wide column">
