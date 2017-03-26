@@ -15,11 +15,3 @@
    end
 
 Rake::Task['fetch_player'].invoke
-
-# Create player from references
-
-(0..4).each do |player|
-  random_index = rand(1..100)
-  player = PlayerReference.find(random_index)
-  Player.create(full_name: player.name, email: player.name.delete(' ') + "@gmail.com", password: "123")
-end
