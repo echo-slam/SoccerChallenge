@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :teams do
     resources :team_messages
   end
+  resources :team_requests
   resources :players
   resources :matches do
     member do
@@ -25,7 +26,7 @@ Rails.application.routes.draw do
       get 'decline'
     end
   end
-  resources :team_requests
+  resources :time_slots
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   delete 'signout' => 'sessions#destroy'

@@ -1,8 +1,7 @@
 var initialize_calendar;
 initialize_calendar = function() {
-  $('.calendar').each(function(){
+  $('.field-calendar').each(function(){
     var calendar = $(this);
-    var current_path = window.location.pathname
     calendar.fullCalendar({
       defaultView: 'agendaWeek',
       header: {
@@ -12,12 +11,13 @@ initialize_calendar = function() {
       },
       firstDay: 1,
       minTime: '06:00:00',
-      maxTime: '23:00:00',
       selectable: true,
       selectHelper: true,
       editable: true,
-      eventLimit: true
+      eventLimit: true,
+      events: '/matches.json'
     });
   })
 };
+
 $(document).on('turbolinks:load', initialize_calendar)
