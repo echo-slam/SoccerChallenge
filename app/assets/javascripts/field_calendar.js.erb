@@ -1,0 +1,23 @@
+var initialize_calendar;
+initialize_calendar = function() {
+  $('.calendar').each(function(){
+    var calendar = $(this);
+    var current_path = window.location.pathname
+    calendar.fullCalendar({
+      defaultView: 'agendaWeek',
+      header: {
+        left: '',
+        center: 'title',
+        right: ''
+      },
+      firstDay: 1,
+      minTime: '06:00:00',
+      maxTime: '23:00:00',
+      selectable: true,
+      selectHelper: true,
+      editable: true,
+      eventLimit: true
+    });
+  })
+};
+$(document).on('turbolinks:load', initialize_calendar)
