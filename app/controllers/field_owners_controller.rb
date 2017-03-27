@@ -6,7 +6,7 @@ class FieldOwnersController < ApplicationController
   end
 
   def show
-    @matches = Match.all
+
   end
 
   def new
