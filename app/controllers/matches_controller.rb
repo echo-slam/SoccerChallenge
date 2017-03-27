@@ -2,7 +2,7 @@ class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :waiting, :select, :update]
 
   def index
-    @matches = Match.upcoming.not_started
+    @matches = Match.upcoming
     @match_requests = MatchRequest.where(team_id: current_player.team_id).where(status: 'PENDING')
     @match_invitations = MatchRequest.where(team_id: current_player.team_id).where(status: 'INVITATION')
   end
