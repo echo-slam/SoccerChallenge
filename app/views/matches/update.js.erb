@@ -1,0 +1,7 @@
+$('.field-calendar').fullCalendar('removeEvents', [<%= @match.id %>]);
+$('.field-calendar').fullCalendar(
+  'renderEvent', 
+  $.parseJSON("<%=j render(@match, format: :json).html_safe %>"), 
+  true
+);
+$('#edit_event').modal('hide');

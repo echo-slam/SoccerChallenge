@@ -14,17 +14,21 @@
         <% if match.team_owner_id == current_player.team_id %>
           <%= link_to 'View', waiting_match_path(match), class: 'ui blue attached button' %>
         <% else %>
-          <% if @match_invitations.where(team_received_id: match.team_owner_id).count == 0 %>
-            <% if @match_requests.where(team_received_id: match.team_owner_id).count == 0 %>
-              <%= link_to 'Join', join_match_requests_path(match_id: match), method: 'post', class: 'ui green attached button' %>
-            <% else %>
-              <%= link_to 'Cancel', decline_match_request_path(match.match_requests.first.id, team_id: current_player.team_id) ,class: 'ui red attached button' %>
-            <% end %>
+          <% if match.is_start %>
+            <%= link_to 'View', waiting_match_path(match), class: 'ui blue attached button' %>
           <% else %>
-            <div class="ui two buttons">
-              <%= link_to 'Accept', accept_match_request_path(match.match_requests.first.id), class: 'ui green attached button' %>
-              <%= link_to 'Decline', decline_match_request_path(match.match_requests.first.id, team_id: current_player.team_id), class: 'ui red attached button' %>
-            </div>
+            <% if @match_invitations.where(team_received_id: match.team_owner_id).count == 0 %>
+              <% if @match_requests.where(team_received_id: match.team_owner_id).count == 0 %>
+                <%= link_to 'Join', join_match_requests_path(match_id: match), method: 'post', class: 'ui green attached button' %>
+              <% else %>
+                <%= link_to 'Cancel', decline_match_request_path(match.match_requests.first.id, team_id: current_player.team_id) ,class: 'ui red attached button' %>
+              <% end %>
+            <% else %>
+              <div class="ui two buttons">
+                <%= link_to 'Accept', accept_match_request_path(match.match_requests.first.id), class: 'ui green attached button' %>
+                <%= link_to 'Decline', decline_match_request_path(match.match_requests.first.id, team_id: current_player.team_id), class: 'ui red attached button' %>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       </div>

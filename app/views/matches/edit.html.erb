@@ -1,0 +1,37 @@
+<br><br>
+<div class="ui container">
+  <%= flash_messages %>
+  <div class="ui grid">
+    <div class="eight wide column">
+      <h1 class="ui header">Edit Match</h1>
+      <div class="ui large form">
+        <%= form_for @match do |f| %>
+          <div class="field">
+            <%= f.label :home_goal %>
+            <%= f.text_field :home_goal %>
+          </div>
+          <div class="field">
+            <%= f.label :away_goal %>
+            <%= f.text_field :away_goal %>
+          </div>
+          <%= f.submit "Submit", class: 'ui large green button' %>
+        <% end %>
+      </div>
+    </div>
+    <div class="two wide column"></div>
+
+    <div class="six wide column">
+      <%= image_tag("muller.jpg", class: "ui fluid rounded image") %>
+
+      <div class="ui medium info message">
+        <div class="header"><i class="info circle icon"></i>
+          What is a Match?
+        </div>
+        <ul class="list">
+          <li>Team.</li>
+          <li>Team.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

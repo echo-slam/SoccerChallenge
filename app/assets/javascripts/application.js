@@ -4,10 +4,8 @@
 //= require semantic
 //= require flash_semantic
 //= require datetimepicker
-//= require timepicker
 //= require underscore
 //= require gmaps/google
 //= require moment
 //= require fullcalendar
-//= require field_calendar
 //= require_tree .

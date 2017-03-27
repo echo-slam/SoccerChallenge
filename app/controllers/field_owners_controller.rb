@@ -6,7 +6,7 @@ class FieldOwnersController < ApplicationController
   end
 
   def show
-    
+
   end
 
   def new
