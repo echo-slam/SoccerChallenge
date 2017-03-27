@@ -26,7 +26,6 @@ Rails.application.routes.draw do
       get 'decline'
     end
   end
-  resources :time_slots
   get 'signin' => 'sessions#new'
   get 'signed_in_index' => 'home#signed_in_index'
   post 'signin' => 'sessions#create'
