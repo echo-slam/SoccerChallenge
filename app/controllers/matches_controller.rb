@@ -42,8 +42,11 @@ class MatchesController < ApplicationController
   end
 
   def update
-    @match.is_end = true if @match.home_goal and @match.away_goal
     if @match.update(match_params)
+      if @match.home_goal and @match.away_goal
+        @match.is_end = true
+        @match.save
+      end
       redirect_to match_path(@match), flash: { info: 'Match was successfully updated.' }
     else
       flash[:error] = @match.errors.full_messages.to_sentence
