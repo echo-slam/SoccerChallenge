@@ -3,9 +3,7 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="five wide column">
-      <h1 class="ui header">
-        Profile
-      </h1>
+      <h1 class="ui header">Field</h1>
       <div class="ui card">
         <div class="custom_img" style="background-image: url(<%= @field.image_url %>);"></div>
         <div class="content">
@@ -16,11 +14,13 @@
         </div>
       </div>
     </div>
+    <div class="eleven wide column">
+      <h1 class="ui header">Direction</h1>
+      <div style='width: 800px;'>
+        <div id="map" style='width: 800px; height: 400px;'></div>
+      </div>
+    </div>
   </div>
-  <div style='width: 800px;'>
-    <div id="map" style='width: 800px; height: 400px;'></div>
-  </div>
-
 </div>
 
 <script src="//maps.google.com/maps/api/js?key=AIzaSyB-njOYmM-TZiBmdwGZXuniH2rf5I1MWeg"></script>

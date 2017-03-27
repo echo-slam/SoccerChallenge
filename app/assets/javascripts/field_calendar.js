@@ -11,6 +11,8 @@ initialize_calendar = function() {
       },
       firstDay: 1,
       minTime: '06:00:00',
+      defaultTimedEventDuration: '01:00:00',
+      forceEventDuration: true,
       selectable: true,
       selectHelper: true,
       editable: true,
@@ -22,7 +24,12 @@ initialize_calendar = function() {
           $('#start-time').val(moment(event.start).format('YYYY-MM-DD HH:mm'));
           $('#end-time').val(moment(event.end).format('YYYY-MM-DD HH:mm'));
         });
-      }
+      },
+
+      eventResize: function(event, delta, revertFunc) {
+        event.end.format();
+      },
+
     });
   })
 };
