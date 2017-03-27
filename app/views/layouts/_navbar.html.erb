@@ -1,9 +1,6 @@
 <div class="ui top fixed large inverted menu">
-  <div class="item">
-    <%= image_tag("logo_2.png", class: "ui rounded image my-logo-small") %>
-  </div>
   <a class="item" href="<%= root_path %>">
-    <strong>Soccer Challenge</strong>
+    <%= image_tag("logo_2.png", class: "ui circular image my-logo-small") %>
   </a>
   <% if current_player %>
     <a class="item" href="<%= teams_path %>">Teams</a>

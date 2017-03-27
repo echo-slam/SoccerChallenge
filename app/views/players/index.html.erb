@@ -1,84 +1,92 @@
-<br><br>
-<div class="ui container">
-  <%= flash_messages %>
-  <h1 class="ui header">
-    Meet these players
-  </h1>
-
-  <%= link_to "Find Team ?", teams_path, class: "ui green button" %>
+<div class="main-bg">
   <br><br>
 
   <div class="ui grid">
-    <div class="eight wide column">
-    <form class="ui icon form">
-      <div class="field">
-        <div class="ui icon input">
-          <input placeholder="Search players name" type="text" name="search">
-          <i class="search link icon"></i>
-        </div>
-      </div>
-    </form>
-    </div>
-  </div>
-  <br><br>
+    <div class="row main-bg">
+      <div class="ui container">
+        <%= flash_messages %>
+        <h1 class="ui header">
+          Meet these players
+        </h1>
 
-  <div class="ui five link cards">
-    <% @players.each do |player| %>
-      <div class="ui card">
-        <div class="ui basic segment card-segment">
-          <%= link_to player_path(player) do %>
-            <%= image_tag(player.image_url_or_default,
-                class: "ui rounded centered card-image image") %>
-          <% end %>
-        </div>
+        <%= link_to "Find Team ?", teams_path, class: "ui green button" %>
+        <br><br>
 
-        <div class="center aligned content">
-          <div class="ui small header">
-            <%= link_to player.full_name, player_path(player), class: "black-color" %>
+        <div class="ui grid">
+          <div class="eight wide column">
+          <form class="ui icon form">
+            <div class="field">
+              <div class="ui icon input">
+                <input placeholder="Search players name" type="text" name="search">
+                <i class="search link icon"></i>
+              </div>
+            </div>
+          </form>
           </div>
         </div>
+        <br><br>
 
-        <div class="extra center aligned content">
+        <div class="ui five link cards">
+          <% @players.each do |player| %>
+            <div class="ui card" id="card-bg">
 
-        <% if current_player.is_team_owner? %>
-          <% if @team_requests.where(player_id: player.id).count == 0 %>
-            <% if player.free_player? %>
-              <% if @team_invites.where(player_id: player.id).count == 0 %>
-                <%= link_to "Invite player",
-                    team_requests_path(player_id: player.id),
-                    :method => :post, class: 'ui tiny green button' %>
-              <% else %>
-                <%= link_to "Cancel invitation",
-                    team_request_path(id: @team_invites.where(player_id: player.id).first,
-                                      player_id: player.id),
-                    :method => :delete, class: 'ui tiny black button' %>
-              <% end %>
-            <% else %>
-              <%= link_to "#{player.team.name}",
-                  team_path(player.team), class: "ui tiny violet button" %>
-            <% end %>
-          <% else %>
-            <div class="ui two tiny buttons">
-              <%= link_to "Accept",
-                  accept_team_request_path(player_id: player.id),
-                                           :method => :delete, class: 'ui green button' %>
-              <%= link_to "Decline",
-                  decline_team_request_path(player_id: player.id),
-                                            :method => :delete, class: 'ui red button' %>
+              <div class="ui basic segment card-segment">
+                <%= link_to player_path(player) do %>
+                  <%= image_tag(player.image_url_or_default,
+                      class: "ui rounded centered card-image image") %>
+                <% end %>
+              </div>
+
+              <div class="center aligned content">
+                <div class="ui small header">
+                  <%= link_to player.full_name, player_path(player), class: "red-color" %>
+                </div>
+              </div>
+
+              <div class="extra center aligned content">
+
+                <% if current_player.is_team_owner? %>
+                  <% if @team_requests.where(player_id: player.id).count == 0 %>
+                    <% if player.free_player? %>
+                      <% if @team_invites.where(player_id: player.id).count == 0 %>
+                        <%= link_to "Invite player",
+                            team_requests_path(player_id: player.id),
+                            :method => :post, class: 'ui tiny green button' %>
+                      <% else %>
+                        <%= link_to "Cancel invitation",
+                            team_request_path(id: @team_invites.where(player_id: player.id).first,
+                                              player_id: player.id),
+                            :method => :delete, class: 'ui tiny black button' %>
+                      <% end %>
+                    <% else %>
+                      <%= link_to "#{player.team.name}",
+                          team_path(player.team), class: "ui tiny violet button" %>
+                    <% end %>
+                  <% else %>
+                    <div class="ui two tiny buttons">
+                      <%= link_to "Accept",
+                          accept_team_request_path(player_id: player.id),
+                                                   :method => :delete, class: 'ui green button' %>
+                      <%= link_to "Decline",
+                          decline_team_request_path(player_id: player.id),
+                                                    :method => :delete, class: 'ui red button' %>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <% if player.team_id == nil %>
+                    <%= link_to "Free player",
+                        player_path(player), class: "ui tiny orange button" %>
+                  <% else %>
+                    <%= link_to "#{player.team.name}",
+                        team_path(player.team), class: "ui tiny violet button" %>
+                  <% end %>
+                <% end %>
+
+              </div>
             </div>
           <% end %>
-        <% else %>
-          <% if player.team_id == nil %>
-            <%= link_to "Free player",
-                player_path(player), class: "ui tiny orange button" %>
-          <% else %>
-            <%= link_to "#{player.team.name}",
-                team_path(player.team), class: "ui tiny violet button" %>
-          <% end %>
-        <% end %>
-
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

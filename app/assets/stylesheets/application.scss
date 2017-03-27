@@ -19,6 +19,18 @@ body {
   color: black;
 }
 
+.red-color {
+  color: #ce2b37;
+}
+
+.green-color {
+  color: #009246;
+}
+
+.blue-color {
+  color: #000066;
+}
+
 .card-segment {
   width: 100%;
   height: 170px;
@@ -29,6 +41,11 @@ body {
   height: 120px;
 }
 
+.justify-text {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 .card-image {
   max-height: 100%;
 }
@@ -36,4 +53,16 @@ body {
 .right-button {
   position:relative;
   right:0;
-} 
+}
+
+.main-bg {
+  background-image: url("white_polygon.jpg");
+  background-repeat: repeat;
+  height: 100%;
+}
+
+#card-bg {
+  background-image: url("white_paper.png");
+  background-repeat: repeat;
+  box-shadow: 2px 2px 2px #888888;
+}

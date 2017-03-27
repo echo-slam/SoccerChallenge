@@ -1,85 +1,85 @@
-<br><br>
-<div class="ui container">
-  <%= flash_messages %>
-  <div class="ui grid">
-    <div class="five wide column">
-      <h1 class="ui header">
-        Profile
-      </h1>
+<div class="main-bg">
+  <br><br>
+  <div class="ui container">
+    <%= flash_messages %>
+    <div class="ui grid">
+      <div class="five wide column">
+        <h1 class="ui header">
+          Profile
+        </h1>
 
-      <div class="ui card">
-        <div class="image">
-          <%= image_tag(@player.image_url_or_default,
-              class: "ui rounded image") %>
-        </div>
-
-        <div class="content">
-          <div class="header"><%= @player.full_name %></div>
-
-          <div class="meta">
-            <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
+        <div class="ui red basic segment team-profile-segment">
+          <div class="image">
+            <%= image_tag(@player.image_url_or_default,
+                class: "ui rounded image") %>
           </div>
 
-          <div class="description">
-            <% if @team %>
-              <strong>Team: </strong>
-              <a class="ui circular violet label" href="<%= team_path(@team) %>">
-                <%= @team.name %>
-              </a>
-            <% else %>
-              Team: None
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <% unless current_player.team_id %>
-        <% if @player == current_player %>
-          <%= link_to 'Find Team', teams_path, class: 'ui blue button' %>
-          <%= link_to 'Create Team', new_team_path, class: 'ui green button' %>
-        <% end %>
-      <% end %>
-    </div>
+            <h3 class="red-color"><%= @player.full_name %></h3>
 
-    <% if current_player.id == @player.id %>
-      <div class="eleven wide column">
-          <h1 class="ui header">
-            Team Invitations
-          </h1>
+            <div class="meta">
+              <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
+            </div>
 
-          <div class="ui segment player-invite-segment" >
-            <div class="ui three link cards">
-              <% @team_invitations.each do |team_invitation| %>
-                <% team = team_invitation.team %>
-
-                <div class="ui card">
-                  <div class="ui basic segment card-segment-small">
-                    <%= link_to team_path(team) do %>
-                      <%= image_tag("logo_1.png", 
-                          class: "ui centered rounded card-image image") %>
-                    <% end %>
-                  </div>
-
-                  <div class="center aligned content">
-                    <div class="ui tiny header">
-                      <%= link_to team.name, team_path(team), class: "black-color" %>
-                    </div>
-                  </div>
-
-                  <div class="extra content">
-                    <div class="ui two tiny buttons">
-                      <%= link_to "Accept",
-                          accept_team_request_path(team_id: team.id),
-                                                   :method => :delete, class: 'ui green button' %>
-                      <%= link_to "Decline",
-                          decline_team_request_path(team_id: team.id),
-                                                    :method => :delete, class: 'ui red button' %>
-                    </div>
-                  </div>
-                </div>
+            <div class="description">
+              <% if @team %>
+                <strong>Team: </strong>
+                <a class="ui circular violet label" href="<%= team_path(@team) %>">
+                  <%= @team.name %>
+                </a>
+              <% else %>
+                Team: None
               <% end %>
             </div>
         </div>
+        <% unless current_player.team_id %>
+          <% if @player == current_player %>
+            <%= link_to 'Find Team', teams_path, class: 'ui blue button' %>
+            <%= link_to 'Create Team', new_team_path, class: 'ui green button' %>
+          <% end %>
+        <% end %>
       </div>
-    <% end %>
+
+      <% if current_player.id == @player.id %>
+        <div class="eleven wide column">
+            <h1 class="ui header">
+              Team Invitations
+            </h1>
+
+            <div class="ui violet basic segment player-invite-segment" >
+              <div class="ui three link cards">
+                <% @team_invitations.each do |team_invitation| %>
+                  <% team = team_invitation.team %>
+
+                  <div class="ui card">
+                    <div class="ui basic segment card-segment-small">
+                      <%= link_to team_path(team) do %>
+                        <%= image_tag("logo_1.png", 
+                            class: "ui centered rounded card-image image") %>
+                      <% end %>
+                    </div>
+
+                    <div class="center aligned content">
+                      <div class="ui tiny header">
+                        <%= link_to team.name, team_path(team), class: "black-color" %>
+                      </div>
+                    </div>
+
+                    <div class="extra content">
+                      <div class="ui two tiny buttons">
+                        <%= link_to "Accept",
+                            accept_team_request_path(team_id: team.id),
+                                                     :method => :delete, class: 'ui green button' %>
+                        <%= link_to "Decline",
+                            decline_team_request_path(team_id: team.id),
+                                                      :method => :delete, class: 'ui red button' %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

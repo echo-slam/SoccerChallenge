@@ -26,7 +26,7 @@ class Player < ApplicationRecord
   end
 
   def image_url_or_default
-    self.image_url.url.presence || "http://i.imgur.com/sn1jE2z.jpg"
+    self.image_url.url.presence || "http://i.imgur.com/3Jd3Vic.png"
   end
 
   private
