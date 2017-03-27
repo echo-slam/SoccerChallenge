@@ -59,6 +59,7 @@ source 'https://rails-assets.org' do
 end
 
 gem 'carrierwave', '~> 1.0'
+gem "mini_magick"
 gem 'carrierwave-aws'
 gem 'dotenv-rails', groups: [:development, :test], require: 'dotenv/rails-now'
 

@@ -46,12 +46,8 @@
               <% @player_requests.each do |player_request| %>
                 <% player = player_request.player %>
                 <div class="ui link card">
-                  <div class="ui basic segment card-segment-small">
-                    <%= link_to player_path(player) do %>
-                      <%= image_tag(player.image_url_or_default,
-                          class: "ui rounded centered card-image image") %>
-                    <% end %>
-                  </div>
+                  <%= image_tag(player.image_url_or_default,
+                      class: "ui rounded centered card-image image") %>
 
                   <div class="center aligned content">
                     <div class="ui small header">
