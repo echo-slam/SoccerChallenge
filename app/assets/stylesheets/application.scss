@@ -50,19 +50,6 @@ body {
   max-height: 100%;
 }
 
-.right-button {
-  position:relative;
-  right:0;
-}
-
-.main-bg {
-  background-image: url("white_polygon.jpg");
-  background-repeat: repeat;
-  height: 100%;
-}
-
 #card-bg {
-  background-image: url("white_paper.png");
-  background-repeat: repeat;
-  box-shadow: 2px 2px 2px #888888;
+ box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
 }
