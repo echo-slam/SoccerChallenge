@@ -18,7 +18,7 @@ class Match < ApplicationRecord
     where("starts_at > ?", Time.now)
   end
 
-  def self.not_started
-    where(is_start: nil)
+  def self.not_ended
+    where(is_end: nil)
   end
 end
