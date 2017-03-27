@@ -42,6 +42,7 @@ class MatchesController < ApplicationController
   end
 
   def update
+    @match.is_end = true if @match.home_goal and @match.away_goal
     if @match.update(match_params)
       redirect_to match_path(@match), flash: { info: 'Match was successfully updated.' }
     else
@@ -62,6 +63,6 @@ class MatchesController < ApplicationController
     end
 
     def match_params
-      params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :home_goal, :away_goal)
+      params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :home_goal, :away_goal, :is_end)
     end
 end
