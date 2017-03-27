@@ -1,76 +1,83 @@
-<br><br>
-<div class="ui container">
-  <%= flash_messages %>
-  <h1 class="ui header" id="my_image">
-    Meet these teams
-  </h1>
-
-  <%= link_to "Find Player ?", players_path, class: "ui blue button" %>
+<div class="main-bg">
   <br><br>
 
   <div class="ui grid">
-    <div class="eight wide column">
-    <form class="ui icon form">
-      <div class="field">
-        <div class="ui icon input">
-          <input placeholder="Search teams name" type="text" name="search">
-          <i class="search link icon"></i>
-        </div>
-      </div>
-    </form>
-    </div>
-  </div>
-  <br><br>
+    <div class="row main-bg">
+      <div class="ui container">
+        <%= flash_messages %>
+        <h1 class="ui header" id="my_image">
+          Meet these teams
+        </h1>
 
-  <div class="ui five link cards">
-    <% @teams.each do |team| %>
-      <div class="ui card">
-        <div class="ui basic segment card-segment">
-          <%= link_to team_path(team) do %>
-            <%= image_tag("logo_1.png", 
-                class: "ui centered rounded card-image image") %>
-          <% end %>
-        </div>
+        <%= link_to "Find Player ?", players_path, class: "ui blue button" %>
+        <br><br>
 
-        <div class="center aligned content">
-          <div class="ui tiny header">
-            <%= link_to team.name, team_path(team), class: "black-color" %>
-            <a class="ui circular tiny blue label">
-              <%= team.points %> pts
-            </a>
+        <div class="ui grid">
+          <div class="eight wide column">
+          <form class="ui icon form">
+            <div class="field">
+              <div class="ui icon input">
+                <input placeholder="Search teams name" type="text" name="search">
+                <i class="search link icon"></i>
+              </div>
+            </div>
+          </form>
           </div>
         </div>
+        <br><br>
 
-        <div class="extra center aligned content">
-        
-          <% if current_player.is_team_owner? == false %>
-            <% if current_player.free_player? %>
-              <% if @team_invites.where(team_id: team.id).count == 0  %>
-                <% if @team_requests.where(team_id: team.id).count == 0 %>
-                  <%= link_to "Request to join",
-                      team_requests_path(team_id: team.id),
-                      :method => :post, class: 'ui tiny green button' %>
-                <% else %>
-                  <%= link_to "Cancel request",
-                      team_request_path(id: @team_requests.where(team_id: team.id),
-                                        team_id: team.id),
-                      :method => :delete, class: 'ui tiny black button' %>
+        <div class="ui five link cards">
+          <% @teams.each do |team| %>
+            <div class="ui card" id="card-bg">
+              <div class="ui basic segment card-segment">
+                <%= link_to team_path(team) do %>
+                  <%= image_tag("logo_1.png", 
+                      class: "ui centered rounded card-image image") %>
                 <% end %>
-              <% else %>
-                <div class="ui two tiny buttons">
-                  <%= link_to "Accept",
-                      accept_team_request_path(team_id: team.id),
-                                               :method => :delete, class: 'ui tiny green button' %>
-                  <%= link_to "Decline",
-                      decline_team_request_path(team_id: team.id),
-                                                :method => :delete, class: 'ui tiny red button' %>
-                </div>
-              <% end %>
-            <% end %>
-          <% end %>
+              </div>
 
+              <div class="center aligned content">
+                <div class="ui tiny header">
+                  <%= link_to team.name, team_path(team), class: "red-color" %>
+                  <a class="ui circular tiny blue label">
+                    <%= team.points %> pts
+                  </a>
+                </div>
+              </div>
+
+              <div class="extra center aligned content">
+              
+                <% if current_player.is_team_owner? == false %>
+                  <% if current_player.free_player? %>
+                    <% if @team_invites.where(team_id: team.id).count == 0  %>
+                      <% if @team_requests.where(team_id: team.id).count == 0 %>
+                        <%= link_to "Request to join",
+                            team_requests_path(team_id: team.id),
+                            :method => :post, class: 'ui tiny green button' %>
+                      <% else %>
+                        <%= link_to "Cancel request",
+                            team_request_path(id: @team_requests.where(team_id: team.id),
+                                              team_id: team.id),
+                            :method => :delete, class: 'ui tiny black button' %>
+                      <% end %>
+                    <% else %>
+                      <div class="ui two tiny buttons">
+                        <%= link_to "Accept",
+                            accept_team_request_path(team_id: team.id),
+                                                     :method => :delete, class: 'ui tiny green button' %>
+                        <%= link_to "Decline",
+                            decline_team_request_path(team_id: team.id),
+                                                      :method => :delete, class: 'ui tiny red button' %>
+                      </div>
+                    <% end %>
+                  <% end %>
+                <% end %>
+
+              </div>
+            </div>
+          <% end %>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

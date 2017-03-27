@@ -1,146 +1,157 @@
-<br><br>
-<div class="ui container">
-  <%= flash_messages %>
+<div class="main-bg">
+  <br><br>
   <div class="ui grid">
-    <div class="ui row">
-      <div class="five wide column">
-        <h1 class="ui header">
-          Team
-        </h1>
+    <div class="row main-bg">
+      <div class="ui container">
+        <%= flash_messages %>
+        <div class="ui grid">
+          <div class="ui row">
+            <div class="five wide column">
+              <h1 class="ui header">
+                Team
+              </h1>
 
-        <div class="ui team-profile-segment segment">
-          <%= image_tag("logo_1.png", class: "ui rounded image") %>
+              <div class="ui basic green team-profile-segment segment">
+                <%= image_tag("logo_1.png", class: "ui rounded image") %><br>
 
-          <div class="content">
-            <div class="header">
-              <%= @team.name %>
+                <div class="content">
+                  <div class="header">
+                    <strong class="red-color"><h3><%= @team.name %></strong>
 
-              <a class="ui circular blue label">
-                <%= @team.points %> pts
-              </a>
-            </div><br>
+                    <a class="ui circular blue label">
+                      <%= @team.points %> pts
+                    </a>
+                  </div><br>
 
-            <div class="meta">
-              <span class="date">Founded in <%= @team.created_at.strftime("%Y") %></span>
-            </div>
+                  <div class="description">
+                    <p><a class="ui green circular label">
+                      Founded in <%= @team.created_at.strftime("%Y") %>
+                    </a></p>
+                    <p><a class="ui red circular label">C</a>
+                      <%= link_to player_path(@team.team_owner.player) do %>
+                        <strong class="blue-color"><%= @team.team_owner.player.full_name %></strong>
+                      <% end %>
+                    </p>
+                    <a class="ui violet circular label">
+                      Matches played: <%= @number_of_matches %>
+                    </a>
+                  </div>
+                </div>
+              </div>
 
-            <div class="description">
-              <p><strong>Captain: </strong><%= @team.team_owner.player.full_name %></p>
-              <p><strong>Matches played: </strong><%= @number_of_matches %></p>
-            </div>
-          </div>
-        </div>
+              <% if current_player.id == @team_owner.player_id %>
+                <h1 class="ui header">
+                  Join Requests
+                </h1>
 
-        <% if current_player.id == @team_owner.player_id %>
-          <h1 class="ui header">
-            Join Requests
-          </h1>
+                <div class="ui orange basic segment team-request-segment" >
+                  <div class="ui one link cards">
+                    <% @player_requests.each do |player_request| %>
+                      <% player = player_request.player %>
+                      <div class="ui link card">
+                        <div class="ui basic segment card-segment-small">
+                          <%= link_to player_path(player) do %>
+                            <%= image_tag(player.image_url_or_default,
+                                class: "ui rounded centered card-image image") %>
+                          <% end %>
+                        </div>
 
-          <div class="ui segment team-request-segment" >
-            <div class="ui one link cards">
-              <% @player_requests.each do |player_request| %>
-                <% player = player_request.player %>
-                <div class="ui link card">
-                  <div class="ui basic segment card-segment-small">
-                    <%= link_to player_path(player) do %>
-                      <%= image_tag(player.image_url_or_default,
-                          class: "ui rounded centered card-image image") %>
+                        <div class="center aligned content">
+                          <div class="ui small header">
+                            <%= link_to player.full_name, player_path(player), class: "black-color" %>
+                          </div>
+                        </div>
+
+                        <div class="extra content">
+                          <div class="ui two buttons">
+                            <%= link_to "Accept",
+                                accept_team_request_path(player_id: player.id),
+                                                         :method => :delete, class: 'ui green button' %>
+                            <%= link_to "Decline",
+                                decline_team_request_path(player_id: player.id),
+                                                          :method => :delete, class: 'ui red button' %>
+                          </div>
+                        </div>
+                      </div>
                     <% end %>
-                  </div>
-
-                  <div class="center aligned content">
-                    <div class="ui small header">
-                      <%= link_to player.full_name, player_path(player), class: "black-color" %>
-                    </div>
-                  </div>
-
-                  <div class="extra content">
-                    <div class="ui two buttons">
-                      <%= link_to "Accept",
-                          accept_team_request_path(player_id: player.id),
-                                                   :method => :delete, class: 'ui green button' %>
-                      <%= link_to "Decline",
-                          decline_team_request_path(player_id: player.id),
-                                                    :method => :delete, class: 'ui red button' %>
-                    </div>
                   </div>
                 </div>
               <% end %>
             </div>
-          </div>
-        <% end %>
-      </div>
 
-    <div class="eleven wide column">
-      <% if current_player.team_id == @team.id %>
-        <h1 class="ui header">
-          Team Discussion
-        </h1>
+          <div class="eleven wide column">
+            <% if current_player.team_id == @team.id %>
+              <h1 class="ui header">
+                Team Discussion
+              </h1>
 
-        <div class="ui segment">
-          <%= form_for [@team, TeamMessage.new()], remote: true do |f| %>
-            <div class="ui form">
-              <div class="fields">
-                <%= f.text_field :body, placeholder: "Your message" %><br>
-                <%= f.submit "Send", class: "ui green right floated button" %>
+              <div class="ui red basic segment">
+                <%= form_for [@team, TeamMessage.new()], remote: true do |f| %>
+                  <div class="ui form">
+                    <div class="fields">
+                      <%= f.text_field :body, placeholder: "Your message" %><br>
+                      <%= f.submit "Send", class: "ui green right floated button" %>
+                    </div>
+                  </div>
+                <% end %>
+
+                <div class="ui basic segment team-discussion-segment">
+                  <%= render @team_messages %>
+                </div>
               </div>
-            </div>
-          <% end %>
 
-          <div class="ui basic segment team-discussion-segment">
-            <%= render @team_messages %>
-          </div>
-        </div>
+            <% end %>
 
-      <% end %>
+            <h1 class="ui header">
+              Members
+            </h1>
 
-      <h1 class="ui header">
-        Members
-      </h1>
+            <div class="ui basic blue segment team-member-segment" >
+              <div class="ui five link cards">
+                <% @players.each do |player| %>
+                  <div class="ui card" id="card-bg">
+                    <div class="ui basic segment card-segment-small">
+                      <%= link_to player_path(player) do %>
+                        <%= image_tag(player.image_url_or_default,
+                            class: "ui rounded centered card-image image") %>
+                      <% end %>
+                    </div>
 
-      <div class="ui segment team-member-segment" >
-        <div class="ui five link cards">
-          <% @players.each do |player| %>
-            <div class="ui card">
-              <div class="ui basic segment card-segment-small">
-                <%= link_to player_path(player) do %>
-                  <%= image_tag(player.image_url_or_default,
-                      class: "ui rounded centered card-image image") %>
+                    <div class="center aligned content">
+                      <div class="ui small header">
+                        <%= link_to player.full_name, player_path(player), class: "red-color" %>
+                      </div>
+                    </div>
+                  </div>
                 <% end %>
               </div>
-
-              <div class="center aligned content">
-                <div class="ui small header">
-                  <%= link_to player.full_name, player_path(player), class: "black-color" %>
-                </div>
-              </div>
             </div>
-          <% end %>
-        </div>
-      </div>
 
-      <% if current_player.id == @team_owner.player_id %>
-        <h1 class="ui header">
-          Match Invites
-        </h1>
+            <% if current_player.id == @team_owner.player_id %>
+              <h1 class="ui header">
+                Match Invites
+              </h1>
 
-        <div class="ui segment match-invite-segment">
-          <div class="ui five link cards">
-            <% @match_invites.each do |match_invite| %>
-             <div class="ui card">
-                <div class="content">
-                  <div class="header"><%= Team.find(match_invite.team_received_id).name %></div>
-                </div>
-                <div class="ui two buttons">
-                  <%= link_to 'Accept', accept_match_request_path(match_invite), class: 'ui green attached button' %>
-                  <%= link_to 'Decline', decline_match_request_path(match_invite, team_id: @team.id), class: 'ui red attached button' %>
+              <div class="ui violet basic segment match-invite-segment">
+                <div class="ui five link cards">
+                  <% @match_invites.each do |match_invite| %>
+                   <div class="ui card">
+                      <div class="content">
+                        <div class="header"><%= Team.find(match_invite.team_received_id).name %></div>
+                      </div>
+                      <div class="ui two buttons">
+                        <%= link_to 'Accept', accept_match_request_path(match_invite), class: 'ui green attached button' %>
+                        <%= link_to 'Decline', decline_match_request_path(match_invite, team_id: @team.id), class: 'ui red attached button' %>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             <% end %>
+
           </div>
         </div>
-      <% end %>
-
+      </div>
     </div>
   </div>
 </div>
