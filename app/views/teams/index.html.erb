@@ -26,8 +26,8 @@
   <div class="ui five link cards">
     <% @teams.each do |team| %>
       <div class="ui card" id="card-bg">
-        <%= image_tag("default_club_logo.png", 
-            class: "ui centered top rounded card-image image") %>
+        <%= image_tag(team.image_url_or_default, 
+            class: "ui image") %>
 
         <div class="center aligned content">
           <div class="ui tiny header">

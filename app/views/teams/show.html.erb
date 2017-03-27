@@ -9,7 +9,7 @@
         </h1>
 
         <div class="ui card">
-          <%= image_tag("default_club_logo.png", class: "ui rounded image") %><br>
+          <%= image_tag(@team.image_url_or_default, class: "ui image") %><br>
 
           <div class="content">
             <div class="header">
@@ -47,7 +47,7 @@
                 <% player = player_request.player %>
                 <div class="ui link card">
                   <%= image_tag(player.image_url_or_default,
-                      class: "ui rounded centered card-image image") %>
+                      class: "ui image") %>
 
                   <div class="center aligned content">
                     <div class="ui small header">
@@ -104,8 +104,8 @@
           <% @players.each do |player| %>
             <div class="ui card " id="card-bg">
               <%= image_tag(player.image_url_or_default,
-                  class: "ui card-image image") %>
-              <div class="content">
+                  class: "ui image") %>
+              <div class="center aligned content">
                 <div class="ui small header">
                   <%= link_to player.full_name, player_path(player), class: "red-color" %>
                 </div>
@@ -136,7 +136,6 @@
           </div>
         </div>
       <% end %>
-
     </div>
   </div>
 </div>

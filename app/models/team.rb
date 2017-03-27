@@ -14,6 +14,10 @@ class Team < ApplicationRecord
     where("name ILIKE ?", "%#{search}%")
   end
 
+  def image_url_or_default
+    self.image_url.url.presence || "http://i.imgur.com/J9vqujR.png"
+  end
+
   private
     def image_size_validation
       errors[:image_url] << "should be less than 500KB" if image_url.size > 0.5.megabytes
