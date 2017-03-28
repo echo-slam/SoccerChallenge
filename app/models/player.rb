@@ -3,12 +3,29 @@ class Player < ApplicationRecord
   belongs_to :team, optional: true
   has_one :team_owner, dependent: :destroy
   mount_uploader :image_url, ImageUploader
+  
+  has_many :notifications, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :full_name, presence: true
   validates_processing_of :image_url
   validate :image_size_validation
 
+  def create_notification(id, notice_messages)
+    unless id == current_player.id
+      Notification.create(
+        notified_by_id: current_player.id,
+        player_id: id,
+        notice_type: 'player',
+        notice_messages: notice_messages
+      )
+    end 
+  end
+  
+  def notify_messages
+    Notification.where(player_id: self.id)
+  end
+  
   def to_s
     full_name
   end
