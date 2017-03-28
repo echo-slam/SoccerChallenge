@@ -38,14 +38,34 @@ class TeamsController < ApplicationController
     @team_messages = @team.team_messages.order(created_at: "DESC").first(50)
 
     @players = @team.players
+    @first_five_players = @team.players.first(5)
+
+
     @player_requests = TeamRequest.where(team_id: @team.id).where(kind: "request")
 
+    if @player_requests.count > 0
+      @team_request_string = "#{@player_requests.count} Team Requests"
+    else
+      @team_request_string = "Team Request"
+    end
+
     @team_owner = TeamOwner.find(@team.team_owner_id)
-    @home_matches = Match.where(team_owner_id: @team_owner.id)
-    @away_matches = Match.where(team_away_id: @team.id)
-    @number_of_matches = (@home_matches.count + @away_matches.count) || 0
+    @home_matches = Match.where(team_owner_id: @team_owner.id).where(is_end: true)
+    @away_matches = Match.where(team_away_id: @team.id).where(is_end: true)
+    @games_played = (@home_matches.count + @away_matches.count) || 0
 
     @match_invites = MatchRequest.where(team_id: @team.id).where(status: 'INVITATION')
+
+    if @match_invites.count > 0
+      @match_invite_string = "#{@match_invites.count} Match Invitations"
+    else
+      @match_invite_string = "Match Invitation"
+    end
+  end
+
+  def team_members
+    @team = Team.find(params[:id])
+    @players = @team.players
   end
 
   private
