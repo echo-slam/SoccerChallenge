@@ -8,4 +8,6 @@
 //= require gmaps/google
 //= require moment
 //= require fullcalendar
+//= require statsAnimation
+//= require teamModals
 //= require_tree .

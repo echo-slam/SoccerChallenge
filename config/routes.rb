@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   end
   get 'signin' => 'sessions#new'
   get 'signed_in_index' => 'home#signed_in_index'
+  get 'team_members' => 'teams#team_members'
   post 'signin' => 'sessions#create'
   delete 'signout' => 'sessions#destroy'
   delete 'accept_team_request' => 'team_requests#accept'
