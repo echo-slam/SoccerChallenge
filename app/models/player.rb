@@ -11,17 +11,6 @@ class Player < ApplicationRecord
   validates_processing_of :image_url
   validate :image_size_validation
 
-  def create_notification(id, notice_messages)
-    unless id == current_player.id
-      Notification.create(
-        notified_by_id: current_player.id,
-        player_id: id,
-        notice_type: 'player',
-        notice_messages: notice_messages
-      )
-    end 
-  end
-  
   def notify_messages
     Notification.where(player_id: self.id)
   end
