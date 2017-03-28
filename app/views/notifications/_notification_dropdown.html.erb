@@ -1,0 +1,3 @@
+<% current_player.notifications.each do |notify| %>
+  <%= link_to notify.notice_messages, link_through_path(notify), class: 'item' %> 
+<% end %>
