@@ -17,6 +17,8 @@ initialize_calendar = function() {
       selectHelper: true,
       editable: true,
       eventLimit: true,
+      eventOverlap: false,
+      eventColor: 'green',
       events: '/matches.json',
 
       eventClick: function(event, jsEvent, view) {
@@ -26,8 +28,30 @@ initialize_calendar = function() {
         });
       },
 
+      eventRender: function(event, element, view) {
+        if (event.changing) {
+          console.log(event.end.format());
+        }
+      },
+
+      eventResizeStart: function(event, jsEvent, ui, view) {
+        event.changing = true;
+      },
+
+      eventResizeEnd: function(event, jsEvent, ui, view) {
+        event.changing = false;
+      },
+
       eventResize: function(event, delta, revertFunc) {
-        event.end.format();
+        console.log("end: " + event.end.format())
+      },
+
+      eventDragStart: function(event, jsEvent, ui, view) {
+        event.changing = true;
+      },
+
+      eventDragEnd: function(event, jsEvent, ui, view) {
+        event.changing = false;
       },
 
     });
