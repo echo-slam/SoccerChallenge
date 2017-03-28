@@ -5,31 +5,20 @@
     <div class="ten wide column">
 
       <h1 class="ui blue header">Home: <%= @home_team.name %></h1>
-      <div class="ui five cards">
+      <div class="ui five link cards">
         <% @home_team_players.each do |player| %>
           <div class="card">
             <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
             <div class="center aligned content">
-              <div class="ui small header">
+              <div class="header">
                 <%= player.full_name  %>
               </div>
             </div>
           </div>
         <% end %>
       </div>
-      
       <% if @match.is_start %>
-        <h1 class="ui red header">Away: <%= @away_team.name %></h1>
-        <div class="ui five cards">
-          <% @away_team_players.each do |player| %>
-            <div class="card">
-              <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
-              <div class="center aligned content">
-                <div class="ui small header"><%= player.full_name  %></div>
-              </div>
-            </div>
-          <% end %>
-        </div>
+        <%= render 'away', away_team: @away_team, away_team_players: @away_team_players %>
       <% else %>
         <% if @match.team_owner_id == current_player.team_owner.team_id %>
           <h1 class="ui header">Free Teams</h1>

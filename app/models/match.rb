@@ -14,6 +14,14 @@ class Match < ApplicationRecord
     Team.find(team_owner_id).name
   end
 
+  def requests
+    match_requests.where(status: 'PENDING')
+  end
+
+  def invitations
+    match_requests.where(status: 'INVITATION')
+  end
+
   def self.upcoming
     where("starts_at > ?", Time.now)
   end
