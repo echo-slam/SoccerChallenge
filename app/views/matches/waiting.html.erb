@@ -74,19 +74,21 @@
         </div>
       <% end %>
 
-      <h1 class="ui header">Match Discussion</h1>
+      <h1 class="ui header" id="match-text-color">Match Discussion</h1>
 
-      <%= form_for [@match, MatchMessage.new], remote: true do |f| %>
-        <div class="ui large form">
-          <div class="fields">
-            <%= f.text_field :body, placeholder: 'New message', required: true %>
-            <%= f.submit 'Send', class: 'ui large green button' %>
+      <div class="ui green segment">
+        <%= form_for [@match, MatchMessage.new], remote: true do |f| %>
+          <div class="ui form">
+            <div class="fields">
+              <%= f.text_field :body, placeholder: 'New message', required: true %>
+              <%= f.submit 'Send', class: 'ui green right floated button', style: 'display: none' %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
 
-      <div class="match-messages ui basic segment">
-        <%= render @match_messages %>
+        <div class="match-messages ui basic segment">
+          <%= render @match_messages %>
+        </div>
       </div>
     </div>
   </div>
