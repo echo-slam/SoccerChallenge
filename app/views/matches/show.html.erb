@@ -4,27 +4,25 @@
   <div class="ui grid">
     <div class="ten wide column">
 
-      <h1 class="ui header">Home</h1>
+      <h1 class="ui blue header">Home</h1>
       <div class="ui five cards">
         <% @home_team_players.each do |player| %>
           <div class="card">
             <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
             <div class="center aligned content">
-              <div class="header">
-                <%= player.full_name  %>
-              </div>
+              <div class="ui small header"><%= player.full_name %></div>
             </div>
           </div>
         <% end %>
       </div>
 
-      <h1 class="ui header">Away</h1>
+      <h1 class="ui red header">Away</h1>
       <div class="ui five cards">
         <% @away_team_players.each do |player| %>
           <div class="card">
           <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
             <div class="center aligned content">
-              <div class="header"><%= player.full_name %></div>
+              <div class="ui small header"><%= player.full_name %></div>
             </div>
           </div>
         <% end %>
