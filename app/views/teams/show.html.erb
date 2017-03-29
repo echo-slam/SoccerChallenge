@@ -1,70 +1,104 @@
 <br><br>
 <div class="ui container">
   <%= flash_messages %>
-  <div class="ui basic segment" id="team-segment-bg">
-    <div class="ui grid">
-      <div class="five wide column">
-        <%= image_tag(@team.image_url_or_default, class: "ui rounded image") %>
-      </div>
-      <div class="eleven wide column">
-        <a class="ui inverted fluid label" id="team-label-bg">
-          <div class="ui inverted three statistics">
-            <div class="invi statistic" id="stat_1">
-              <div class="value">
-                <%= @team.points %>
-              </div>
-              <div class="label">
-                pts
-              </div>
-            </div>
-            <div class="invi statistic" id="stat_2">
-              <div class="value">
-                <%= image_tag("ball_blue.png", class: "ui circular inline image") %>
-                <%= @games_played %>
-              </div>
-              <div class="label">
-                Games Played
-              </div>
-            </div>
-            <div class="invi statistic" id="stat_3">
-              <div class="value">
-                <%= image_tag("member.png", class: "ui circular inline image") %>
-                <%= @players.count %>
-              </div>
-              <div class="label">
-                Team Members
-              </div>
-            </div>
-          </div>
-        </a>
-        
-        <br><br><br><br>
-        <div class="ui basic segment">
+
+  <div class="ui grid">
+    <div class="row">
+      <div class="ten wide column">
+        <div class="ui basic segment" id="team-segment-bg">
           <div class="ui grid">
-            <div class="ui row">
-              <div class="two wide column"></div>
-
-              <div class="fourteen wide column">
-                <div class="team-font team-text-color">
-                  <strong><%= @team.name.upcase %></strong>
+            <div class="five wide column">
+              <%= image_tag(@team.image_url_or_default, class: "ui rounded image") %>
+            </div>
+            <div class="eleven wide column">
+              <a class="ui inverted fluid label" id="team-label-bg">
+                <div class="ui inverted three statistics">
+                  <div class="invi statistic" id="stat_1">
+                    <div class="value">
+                      <%= @team.points %>
+                    </div>
+                    <div class="label">
+                      pts
+                    </div>
+                  </div>
+                  <div class="invi statistic" id="stat_2">
+                    <div class="value">
+                      <%= image_tag("bicycle_kick.png", class: "ui circular inline image") %>
+                      <%= @games_played %>
+                    </div>
+                    <div class="label">
+                      Games Played
+                    </div>
+                  </div>
+                  <div class="invi statistic" id="stat_3">
+                    <div class="value">
+                      <%= image_tag("members.png", class: "ui circular inline image") %>
+                      <%= @players.count %>
+                    </div>
+                    <div class="label">
+                      Team Members
+                    </div>
+                  </div>
                 </div>
+              </a>
+              
+              <h1 class="team-text-color">
+                <strong><%= @team.name.upcase %></strong>
+              </h1>
 
-                <h3 class="team-subtext-color">
-                  Founded in <%= @team.created_at.strftime("%Y") %>
-                </h3><br>
+              <h5 class="team-subtext-color">
+                Founded in <%= @team.created_at.strftime("%Y") %>
+              </h5><br>
 
-                <%= link_to "Find Players", players_path , class: 'ui button'%>
+              <%= link_to "Find Players", players_path , class: 'ui button'%>
 
-                <%= link_to @team_request_string, nil, class: 'ui button',
-                    :id => "team_request_btn", :remote => true %>
+              <%= link_to @team_request_string, nil, class: 'ui button',
+                  :id => "team_request_btn", :remote => true %>
 
-                <%= link_to @match_invite_string, nil, class: 'ui button',
-                    :id => "match_invite_btn", :remote => true %>
-              </div>
+              <%= link_to @match_invite_string, nil, class: 'ui button',
+                  :id => "match_invite_btn", :remote => true %>
+
             </div>
           </div>
         </div>
+      </div>
 
+      <div class="six wide column">
+        <h1 class="ui center aligned header" id="team-text-color">
+          Upcoming Match
+        </h1>
+
+        <div class="ui grid">
+          <div class="row">
+            <div class="seven wide column">
+              <h3 class="ui center aligned header" id="team-text-color">Home</h3>
+
+              <%= image_tag(@team.image_url_or_default, class: "ui tiny centered rounded image") %>
+
+              <h4 class="ui center aligned header" id="team-text-color"><%= @team.name %></h4>
+            </div>
+
+            <div class="two column">
+              <div class="ui vertical divider" id="team-text-color">VS</div>
+            </div>
+
+            <div class="seven wide column">
+              <h3 class="ui center aligned header" id="team-text-color">Away</h3>
+
+              <%= image_tag("unknown_team.png", class: "ui tiny centered rounded image") %>
+
+              <h4 class="ui center aligned header">???</h4>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="sixteen wide column">
+              <h5 class="ui center aligned red header">
+                Currently this team do not have any upcoming match.
+              </h5>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -73,7 +107,7 @@
     <div class="ui grid">
       <div class="row">
         <div class="ten wide column">
-          <h1 class="ui header">
+          <h1 class="ui header" id="team-text-color">
             Squad (<%= @players.count %>)
           </h1>
 
@@ -95,8 +129,8 @@
         </div>
 
         <div class="six wide column">
-          <h1 class="ui header">
-            Team Discussion
+          <h1 class="ui header" id="team-text-color">
+            Messages
           </h1>
 
           <div class="ui segment">
@@ -117,7 +151,7 @@
       </div>
     </div>
   <% else %>
-    <h1 class="ui header">
+    <h1 class="ui header" id="team-text-color">
       Squad (<%= @players.count %>)
     </h1>
 
