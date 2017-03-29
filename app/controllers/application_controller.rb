@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_field_owner, :current_player, :player_belongs_to_team
+  helper_method :current_field_owner, :current_player, :check_match_permission
 
   def current_field_owner
     return @current_field_owner if @current_field_owner
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
 
   def check_current_field_owner
     unless current_field_owner
-      flash[:error] = "You must be field owner to conduct this action"
+      flash[:error] = "You must be Field Owner to conduct this action"
       redirect_to root_path
     end
   end
@@ -24,6 +24,13 @@ class ApplicationController < ActionController::Base
     @field = Field.find(params[:id])
     unless current_field_owner.id == @field.field_owner_id  
       flash[:error] = "You don't have permission to conduct this action"
+      redirect_to root_path
+    end
+  end
+
+  def check_match_permission
+    unless current_player.team_owner.team_id
+      flash[:error] = "You must be Team Owner to conduct this action"
       redirect_to root_path
     end
   end

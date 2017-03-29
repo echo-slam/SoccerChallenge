@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :waiting, :select, :edit, :update]
+  before_action :check_match_permission, only: [:new]
 
   def index
     @matches = Match.upcoming.not_ended
