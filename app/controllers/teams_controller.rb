@@ -40,7 +40,6 @@ class TeamsController < ApplicationController
     @players = @team.players
     @first_five_players = @team.players.first(5)
 
-
     @player_requests = TeamRequest.where(team_id: @team.id).where(kind: "request")
 
     if @player_requests.count > 0
