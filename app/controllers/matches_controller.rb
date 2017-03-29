@@ -22,7 +22,7 @@ class MatchesController < ApplicationController
   end
 
   def select
-
+    @matches = Match.upcoming.not_ended.where(venue_id: @match.venue_id)
   end
 
   def edit

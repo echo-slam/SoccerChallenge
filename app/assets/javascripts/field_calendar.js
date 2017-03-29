@@ -2,6 +2,7 @@ var initialize_calendar;
 initialize_calendar = function() {
   $('.field-calendar').each(function(){
     var calendar = $(this);
+    var current_path = window.location.pathname;
     calendar.fullCalendar({
       defaultView: 'agendaWeek',
       header: {
@@ -19,7 +20,7 @@ initialize_calendar = function() {
       eventLimit: true,
       eventOverlap: false,
       eventColor: 'green',
-      events: '/matches.json',
+      events: current_path + '.json',
 
       eventClick: function(event, jsEvent, view) {
         $.getScript(event.edit_url, function() {
