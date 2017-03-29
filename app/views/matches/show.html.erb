@@ -8,9 +8,9 @@
       <div class="ui five cards">
         <% @home_team_players.each do |player| %>
           <div class="card">
-            <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
+            <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
             <div class="center aligned content">
-              <div class="ui small header">
+              <div class="header">
                 <%= player.full_name  %>
               </div>
             </div>
@@ -22,9 +22,9 @@
       <div class="ui five cards">
         <% @away_team_players.each do |player| %>
           <div class="card">
-            <%= image_tag("muller.jpg", class: "ui rounded team-member-image image") %>
+          <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
             <div class="center aligned content">
-              <div class="ui small header"><%= player.full_name  %></div>
+              <div class="header"><%= player.full_name %></div>
             </div>
           </div>
         <% end %>
