@@ -24,20 +24,15 @@
 }
 
 #home-card-bg {
-  background: #FFFFFF; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #FFFFFF, #FFF8D2); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #FFFFFF, #FFF8D2); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #FFFFFF, #FFF8D2); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #FFFFFF, #FFF8D2); /* Standard syntax */
   box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
 }
 
 .home-bg {
   background: #FFFFFF; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #FFFFFF, #FFFBF3); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #FFFFFF, #FFFBF3); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #FFFFFF, #FFFBF3); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #FFFFFF, #FFFBF3); /* Standard syntax */
+  background: -webkit-linear-gradient(left top, #FFFFFF, #D8D8D8); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #FFFFFF, #D8D8D8); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #FFFFFF, #D8D8D8); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #FFFFFF, #D8D8D8); /* Standard syntax */
   height: 100%;
 }
 
@@ -63,5 +58,13 @@
 
 #purple-text {
   color: #8C54A1;  
+}
+
+#surge-text {
+  color: #36B8B2;  
+}
+
+#elegant-text {
+  color: #32373A;  
 }
 
