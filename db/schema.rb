@@ -69,6 +69,18 @@ ActiveRecord::Schema.define(version: 20170327181200) do
     t.boolean  "is_end"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "notified_by_id"
+    t.integer  "player_id"
+    t.integer  "match_id"
+    t.integer  "team_id"
+    t.string   "notice_type"
+    t.string   "notice_messages"
+    t.boolean  "read",            default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
   create_table "player_references", force: :cascade do |t|
     t.string   "name"
     t.string   "club"

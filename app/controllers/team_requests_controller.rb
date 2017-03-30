@@ -31,6 +31,8 @@ class TeamRequestsController < ApplicationController
         redirect_to players_path
       end
     end
+
+    @team_request.create_join_invite_notify
   end
 
   def destroy
@@ -55,6 +57,12 @@ class TeamRequestsController < ApplicationController
       @player.team_id = params[:team_id]
       @player.save
 
+      TeamRequest.create_accept_notify(
+        team_id = params[:team_id],
+        player_id = @player.id,
+        type = "accept_invite"
+      )
+
       @team_requests = TeamRequest.where(player_id: @player.id)
       @team_requests.each do |team_request|
         team_request.destroy
@@ -66,6 +74,12 @@ class TeamRequestsController < ApplicationController
       @player = Player.find(params[:player_id])
       @player.team_id = current_player.team_id
       @player.save
+
+      TeamRequest.create_accept_notify(
+        team_id = @player.team_id,
+        player_id = @player.id,
+        type = "accept_request"
+      )
 
       @team_requests = TeamRequest.where(player_id: params[:player_id])
       @team_requests.each do |team_request|
@@ -82,11 +96,23 @@ class TeamRequestsController < ApplicationController
       @team_request = TeamRequest.where(team_id: params[:team_id]).first
       @team_request.destroy
 
+      TeamRequest.create_decline_notify(
+        team_id = params[:team_id],
+        player_id = current_player.id,
+        type = "decline_invite"
+      )
+
       flash[:notice] = "Refuse to join team #{Team.find(params[:team_id]).name}"
       redirect_to player_path(current_player.id)
     elsif params[:player_id]
       @team_request = TeamRequest.where(player_id: params[:player_id]).first
       @team_request.destroy
+
+      TeamRequest.create_decline_notify(
+        team_id = current_player.team_id,
+        player_id = params[:player_id],
+        type = "decline_request"
+      )
 
       flash[:notice] = "Refuse player #{Player.find(params[:player_id]).full_name} to join your team"
       redirect_to team_path(current_player.team_id)

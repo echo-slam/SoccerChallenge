@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  
+  get 'notifications/:id/link_through', to: 'notifications#link_through',
+                                        as: :link_through
+
   root 'home#index'
   resources :field_owners do 
     resources :fields

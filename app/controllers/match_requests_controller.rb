@@ -10,6 +10,7 @@ class MatchRequestsController < ApplicationController
 
     if @match_request.save
       flash[:success] = 'Request is sent'
+      @match_request.create_join_invite_notify("join")
     else
       flash[:error] = @match_request.errors.full_messages.to_sentence
     end
@@ -27,6 +28,7 @@ class MatchRequestsController < ApplicationController
 
       if @match_invite.save
         flash[:success] = 'Send invitation'
+        @match_invite.create_join_invite_notify("invite")
       else
         flash[:error] = @match_invite.errors.full_messages.to_sentence
       end
@@ -39,6 +41,9 @@ class MatchRequestsController < ApplicationController
       @match.team_away_id = @match_request.team_id
       @match.is_start = true
       @match.save
+
+      @match_request.create_accept_decline_notify("accept_request")
+
       @match.match_requests.destroy_all
       flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
       redirect_to waiting_match_path(params[:match_id])
@@ -46,6 +51,9 @@ class MatchRequestsController < ApplicationController
       @match.team_away_id = @match_request.team_id
       @match.is_start = true
       @match.save
+
+      @match_request.create_accept_decline_notify("accept_invite")
+
       @match.match_requests.destroy_all
       flash[:success] = "Accept request from #{Team.find(@match_request.team_received_id).name}"
       redirect_to waiting_match_path(@match_request.match_id)
@@ -53,14 +61,16 @@ class MatchRequestsController < ApplicationController
   end
 
   def decline
-    @match_request.destroy
     if params[:match_id]
       flash[:notice] = "Decline request"
+      @match_request.create_accept_decline_notify("decline_request")
       redirect_to waiting_match_path(params[:match_id])
     else # decline invite
       flash[:notice] = "Decline invite"
+      @match_request.create_accept_decline_notify("decline_invite")
       redirect_to matches_path
     end
+    @match_request.destroy
   end
 
   private
