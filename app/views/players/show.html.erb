@@ -84,15 +84,3 @@
     <% end %>
   </div>
 </div>
-
-<div class="ui inline dropdown">
-  <i class="alarm outline icon"> </i>
-  <a class="ui red circular label"> <%= current_player.notifications.count %>  </a> 
-  <div class="menu">
-    <%= render 'notifications/notification_dropdown' %>
-  </div>
-</div>
-
-<script type="text/javascript">
-  $(".ui.inline.dropdown").dropdown()
-</script>

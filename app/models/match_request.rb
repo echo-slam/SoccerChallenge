@@ -41,6 +41,7 @@ to your team(#{team_recipient.name})"
       notified_by_id: team_sender.team_owner_id,
       player_id: team_recipient.team_owner_id,
       match_id: self.match_id,
+      team_id: nil,
       notice_type: 'match_request_' + type,
       notice_messages: notice_messages)
   end

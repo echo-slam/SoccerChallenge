@@ -10,7 +10,14 @@
     <a class="item" href="<%= field_owner_fields_path(field_owner_id: current_field_owner) %>">Fields</a>
   <% end %>
   <div class="right menu">
-    <% if current_player %> 
+    <% if current_player %>
+      <div class="ui inline dropdown item">
+        Notification <span class="ui red circular label"> <%= current_player.notifications.where({read: false}).count %> </span>
+        <div class="menu">
+          <%= render 'notifications/notification_dropdown' %>
+        </div>
+      </div>
+
       <a class="ui active item">Player: <%= current_player %></a>
       <%= link_to "New Match", new_match_path, class: 'ui item' %>
       <%= link_to "Profile", player_path(current_player), class: 'ui item' %>

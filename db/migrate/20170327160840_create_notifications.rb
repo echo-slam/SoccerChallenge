@@ -4,6 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[5.0]
       t.integer :notified_by_id
       t.integer :player_id
       t.integer :match_id
+      t.integer :team_id
       t.string :notice_type
       t.string :notice_messages
       t.boolean :read, default: false
