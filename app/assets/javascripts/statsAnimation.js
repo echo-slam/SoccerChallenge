@@ -11,17 +11,17 @@ jQuery(document).on('page:ready turbolinks:before-visit', function() {
 function statsAnimate() {
   $('#stat_1').transition({
     animation : 'scale in',
-    duration  : '1s',
+    duration  : '500ms',
     onComplete : function() {
       $('#stat_1').removeClass('invi');
       $('#stat_2').transition({
         animation : 'horizontal flip in',
-        duration  : '1s',
+        duration  : '500ms',
         onComplete : function() {
           $('#stat_2').removeClass('invi');
           $('#stat_3').transition({
             animation : 'vertical flip in',
-            duration  : '1s',
+            duration  : '500ms',
             onComplete : function() {
               $('#stat_3').removeClass('invi');
             }
