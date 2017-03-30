@@ -1,39 +1,41 @@
-<div class="ui top fixed large inverted menu">
-  <a class="item" href="<%= root_path %>">
-    <%= image_tag("trophy.png", class: "ui image my-logo-small") %>
-  </a>
-  <% if current_player %>
-    <a class="item" href="<%= teams_path %>">Teams</a>
-    <a class="item" href="<%= players_path %>">Players</a>
-    <a class="item" href="<%= matches_path %>">Matches</a>
-  <% elsif current_field_owner %>
-    <a class="item" href="<%= field_owner_fields_path(field_owner_id: current_field_owner) %>">Fields</a>
-  <% end %>
-  <div class="right menu">
+<div class="ui top fixed large inverted menu" id="surge-bg">
+  <div class="ui container">
+    <a class="item" href="<%= root_path %>">
+      <%= image_tag("logo-soccer-challenge.svg", class: "ui small image") %>
+    </a>
     <% if current_player %>
-      <div class="ui inline dropdown item">
-        Notification <span class="ui red circular label"> <%= current_player.notifications.where({read: false}).count %> </span>
-        <div class="menu">
-          <%= render 'notifications/notification_dropdown' %>
-        </div>
-      </div>
-
-      <a class="ui active item">Player: <%= current_player %></a>
-      <%= link_to "New Match", new_match_path, class: 'ui item' %>
-      <%= link_to "Profile", player_path(current_player), class: 'ui item' %>
-      <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
+      <a class="item" href="<%= teams_path %>">Teams</a>
+      <a class="item" href="<%= players_path %>">Players</a>
+      <a class="item" href="<%= matches_path %>">Matches</a>
     <% elsif current_field_owner %>
-      <a class="ui active item">Field Owner: <%= current_field_owner %></a>
-      <%= link_to "Profile", field_owner_path(current_field_owner), class: 'ui item' %>
-      <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
-    <% else %>
-      <a class="item" href="<%= signin_path %>">
-        Sign in
-      </a>
-      <a class="item" href="<%= new_player_path %>">
-        Sign up
-      </a>
+      <a class="item" href="<%= field_owner_fields_path(field_owner_id: current_field_owner) %>">Fields</a>
     <% end %>
+    <div class="right menu">
+      <% if current_player %>
+        <div class="ui inline dropdown item">
+          Notification <span class="ui red circular label"> <%= current_player.notifications.where({read: false}).count %> </span>
+          <div class="menu">
+            <%= render 'notifications/notification_dropdown' %>
+          </div>
+        </div>
+
+        <a class="ui active item">Player: <%= current_player %></a>
+        <%= link_to "New Match", new_match_path, class: 'ui item' %>
+        <%= link_to "Profile", player_path(current_player), class: 'ui item' %>
+        <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
+      <% elsif current_field_owner %>
+        <a class="ui active item">Field Owner: <%= current_field_owner %></a>
+        <%= link_to "Profile", field_owner_path(current_field_owner), class: 'ui item' %>
+        <%= link_to "Sign Out", signout_path, method: 'delete', class: 'ui item' %>
+      <% else %>
+        <a class="item" href="<%= signin_path %>">
+          Sign in
+        </a>
+        <a class="item" href="<%= new_player_path %>">
+          Sign up
+        </a>
+      <% end %>
+    </div>
   </div>
 </div>
 <br><br>
