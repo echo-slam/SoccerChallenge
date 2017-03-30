@@ -20,16 +20,25 @@ initialize_calendar = function() {
       eventLimit: true,
       eventOverlap: false,
       eventColor: 'green',
-      events: current_path + '.json',
+      events: {
+        url: current_path + '.json',
+      },
 
       eventClick: function(event, jsEvent, view) {
-        $.getScript(event.edit_url, function() {
-          $('#start-time').val(moment(event.start).format('YYYY-MM-DD HH:mm'));
-          $('#end-time').val(moment(event.end).format('YYYY-MM-DD HH:mm'));
-        });
+        if (event.host_id == event.viewer_id) {
+          $.getScript(event.edit_url, function() {
+            $('#start-time').val(moment(event.start).format('YYYY-MM-DD HH:mm'));
+            $('#end-time').val(moment(event.end).format('YYYY-MM-DD HH:mm'));
+          });
+        }
       },
 
       eventRender: function(event, element, view) {
+        if (event.host_id == event.viewer_id) {
+          element.css('backgroundColor', 'green');
+        } else {
+          element.css('backgroundColor', 'red');
+        }
         if (event.changing) {
           console.log(event.end.format());
         }
