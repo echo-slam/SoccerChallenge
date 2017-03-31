@@ -1,6 +1,6 @@
-<% if @away_team %>
-  <%= image_tag(@away_team.image_url_or_default, class: "ui small centered rounded image") %>
-  <h4 class="ui huge center aligned header" id="team-text-color"><%= @away_team.name %></h4>
+<% if away_team %>
+  <%= image_tag(away_team.image_url_or_default, class: "ui small centered rounded image") %>
+  <h4 class="ui huge center aligned header" id="team-text-color"><%= away_team.name %></h4>
 <% else %>
   <%= image_tag("unknown_team.png", class: "ui small centered rounded image") %>
   <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
