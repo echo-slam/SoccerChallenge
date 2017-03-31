@@ -22,6 +22,9 @@ class PlayersController < ApplicationController
   def create
     @player = Player.new player_params
     if @player.save
+
+      PlayerMailer.welcome_player(@player).deliver_later
+      
       flash[:success] = 'Register successfully'
       session[:player_id] = @player.id
 
