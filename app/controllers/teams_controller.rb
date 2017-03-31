@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   end
 
   def away
-    @away_team = Team.find(params[:id])
+    @team = Team.find(params[:id])
   end
 
   def new
