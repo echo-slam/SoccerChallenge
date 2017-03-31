@@ -12,7 +12,7 @@
         <div class="ui inline dropdown item">
           Notification
 
-          <span class="ui red circular label">
+          <span class="ui red circular label" id="notifications_count">
             <%= current_player.notifications.where({read: false}).count %>
           </span>
 
