@@ -17,10 +17,10 @@
 
       <div class="seven wide column">
         <h3 class="ui center aligned header" id="team-text-color">Away</h3>
-
-        <%= image_tag(@away_team.image_url_or_default, class: "ui small centered rounded image") %>
-
-        <h4 class="ui huge center aligned header" id="team-text-color"><%= @away_team.name || '???' %></h4>
+        <div class="away-team">
+          <%= image_tag("unknown_team.png", class: "ui small centered rounded image") %>
+          <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
+        </div>
       </div>
     </div>
 
@@ -45,7 +45,6 @@
       <div class="six wide column">
         <% if @match.team_owner_id == current_player.team_owner.team_id %>
           <div class="ui basic center aligned segment">
-            <button class="ui massive button" onclick="showSideBar()">Request</button>
             <%= link_to 'Select Field', select_match_path(@match), class: 'ui massive green button' %>
           </div>
         <% else %>
@@ -58,22 +57,19 @@
   </div>
 </div>
 
-<div class="ui bottom sidebar">
-  Invite & request will be placed here
-</div>
-
 <script>
-  function showSideBar() {
-    $('.ui.sidebar')
-      .sidebar('toggle')
-    ;
-  }
-
   function reload() {
     $.get("<%= match_match_messages_path(@match, format: :js) %>", function(response) {
       console.log("Reload successfully", response)
     });
   }
 
+  function reloadAway() {
+    $.get("<%= away_team_path(@away_team, format: :js) if @away_team %>", function(response) {
+      console.log("Reload successfully", response)
+    });
+  }
+
   // setInterval(reload, 3000);
+  // setInterval(reloadAway, 3000);
 </script>
