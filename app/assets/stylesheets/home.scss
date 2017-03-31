@@ -2,7 +2,12 @@
   size: 100% 100%;
   height: 100%;
   position: absolute;
-  opacity: 0.7;
+  opacity: 0.6;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
 }
 
 .main-board-align {
@@ -23,41 +28,13 @@
   width: 70px;
 }
 
-#home-card-bg {
+#home-card {
+  border-radius: 25px;
+  padding-top: 10px;
+  padding-right: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
   box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
-}
-
-.home-bg {
-  background: #FFFFFF; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #FFFFFF, #D8D8D8); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #FFFFFF, #D8D8D8); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #FFFFFF, #D8D8D8); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #FFFFFF, #D8D8D8); /* Standard syntax */
-  height: 100%;
-}
-
-#green-text {
-  color: #1FAB89;
-}
-
-#blue-text {
-  color: #07689F;
-}
-
-#red-text {
-  color: #EA5455;
-}
-
-#orange-text {
-  color: #F07B3F;
-}
-
-#cygan-text {
-  color: #3EC1D3;
-}
-
-#purple-text {
-  color: #8C54A1;
 }
 
 #surge-text {
@@ -68,6 +45,12 @@
   color: #32373A;
 }
 
-.black-bg {
-  background-color: #181818;
+#silver-text {
+  color: #D8D8D8;
+}
+
+.shape-bg {
+  background-image: url("black_soft.png");
+  background-repeat: repeat;
+  height: 100%;
 }
