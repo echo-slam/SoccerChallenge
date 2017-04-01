@@ -1,0 +1,16 @@
+<% player = Player.find(world_message.player_id) %>
+
+<% if player == current_player %>
+  <p align="right">
+    <a class="ui blue label">
+      <%= world_message.body %>
+    </a>
+  </p>
+<% else %>
+  <p>
+    <%= player.full_name %>: 
+    <a class="ui label">
+      <%= world_message.body %>
+    </a>
+  </p>
+<% end %>

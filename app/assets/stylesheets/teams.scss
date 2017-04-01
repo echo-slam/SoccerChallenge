@@ -4,34 +4,10 @@
 }
 
 #team-segment-bg {
-  background: #F9F7F7; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(left top, #DBE2EF, #F9F7F7); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #DBE2EF, #F9F7F7); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #DBE2EF, #F9F7F7); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #DBE2EF, #F9F7F7); /* Standard syntax */
+  border-radius: 15px;
   box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
-}
-
-#team-label-bg {
-  background-color: #112D4E;
-}
-
-.invi {
-  opacity: 0;
 }
 
 .team-font {
   font-size: 30px;
-}
-
-.team-text-color {
-  color: #112D4E;
-}
-
-#team-text-color {
-  color: #112D4E;
-}
-
-.team-subtext-color {
-  color: #3F72AF;
 }

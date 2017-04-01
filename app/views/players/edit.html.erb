@@ -1,25 +1,14 @@
 <br><br>
 <div class="ui container">
-  <%= flash_messages %>
   <div class="ui grid">
     <div class="ui row">
       <div class="eight wide column">
         <div class="ui large form">
-          <h1 class="ui header">Sign up as Player</h1><br>
+          <h1 class="ui header">Edit Player Profile</h1><br>
           <%= form_for @player do |f| %>
             <div class="field">
               <%= f.label :full_name, 'Name' %>
               <%= f.text_field :full_name, placeholder: 'Name' %>
-            </div>
-
-            <div class="field">
-              <%= f.label :email %>
-              <%= f.text_field :email, placeholder: 'Email' %>
-            </div>
-
-            <div class="field">
-              <%= f.label :password %>
-              <%= f.password_field :password, placeholder: 'Password' %>
             </div>
 
             <div class="field">
@@ -44,27 +33,12 @@
             </div>
 
             <br>
-            <%= f.submit 'Create Player', class: 'ui large green button' %>
-            <%= link_to 'You are Field Owner ?', new_field_owner_path, class: 'ui large blue button' %>
+            <%= f.submit 'Change', class: 'ui large green button' %>
           <% end %>
         </div>
       </div>
 
-      <div class="two wide column">
-      </div>
-
-      <div class="six wide column">
-        <%= image_tag("muller.jpg", class: "ui fluid rounded image")%>
-
-        <div class="ui medium info message">
-          <div class="header"><i class="info circle icon"></i>
-            Who is Player?
-          </div>
-          <ul class="list">
-            <li>Player mean Soccer Player.</li>
-            <li>Player play for a team and help their team become famous.</li>
-          </ul>
-        </div>
+      <div class="eight wide column">
       </div>
     </div>
   </div>

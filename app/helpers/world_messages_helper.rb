@@ -1,0 +1,2 @@
+module WorldMessagesHelper
+end
