@@ -11,11 +11,11 @@ class Match < ApplicationRecord
   end
 
   def field_name_or_default
-    if field_id
-      Field.find(field_id).name
-    else
-      'Unknown'
-    end
+    field_id ? Field.find(field_id).name : 'Unknown'
+  end
+
+  def ends_at_or_default
+    ends_at.presence || starts_at
   end
 
   def home_team_name

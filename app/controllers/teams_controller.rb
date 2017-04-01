@@ -11,10 +11,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  def away
-    @team = Team.find(params[:id])
-  end
-
   def new
     @player = current_player
     @team = @team_owner.build_team

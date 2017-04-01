@@ -46,7 +46,7 @@
             <i class="marker icon"></i>
             <div class="content">
               <strong>Field:</strong>
-              <%= @match.field_name %>
+              <%= @match.field_name_or_default %>
             </div>
           </div>
 
@@ -62,7 +62,7 @@
             <i class="clock icon"></i>
             <div class="content">
               <strong>End:</strong>
-              <%= @match.ends_at.strftime("%Y/%m/%d - %H:%M") %>
+              <%= @match.ends_at_or_default.strftime("%Y/%m/%d - %H:%M") %>
             </div>
           </div>
         </div>

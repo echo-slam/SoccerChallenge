@@ -3,94 +3,91 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="row">
-      <div class="two wide column">
-        <h1 class="ui blue header">Home</h1>
-        <div class="ui large middle aligned relaxed animated list">
-          <% @home_team_players.each do |player| %>
-            <div class="item">
-              <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
-              <div class="content">
-                <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
-              </div>
-            </div>
-          <% end %>
-        </div>
-      </div>
-      <div class="twelve wide column">
-        <div class="ui basic segment" id="match-segment-bg">
-          <div class="ui grid">
-            <div class="five wide column">
-              <%= image_tag(@home_team.image_url_or_default, class: "ui centered rounded image") %>
-              <h4 class="ui huge center aligned header" id="team-text-color"><%= @home_team.name %></h4>
-            </div>
-
-            <div class="six wide column">
-              <div id="match-segment-top">
-                <span id="match-segment-content">
-                  <div class="ui three large statistics">
-                    <div class="statistic">
-                      <div class="value" id="match-text-color"><%= @match.home_goal_or_default %></div>
-                    </div>
-                    <div class="statistic">
-                      <div class="value" id="match-text-color">VS</div>
-                    </div>
-                    <div class="statistic">
-                      <div class="value" id="match-text-color"><%= @match.away_goal_or_default %></div>
-                    </div>
+      <div class="ui basic segment" id="match-segment-bg">
+        <div class="ui grid">
+          <div class="two wide column">
+            <h1 class="ui header" id="match-text-color">Home</h1>
+            <div class="ui large middle aligned relaxed animated list">
+              <% @home_team_players.each do |player| %>
+                <div class="item">
+                  <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
+                  <div class="content">
+                    <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
                   </div>
-                </span>
-              </div>
-
-              <div id="match-segment-bottom">
-                <span class="match-segment-content">
-                  <div class="ui three mini statistics">
-                    <div class="statistic"></div>
-                    <div class="statistic">
-                      <div class="value" id="match-text-color"><%= @match.venue_name %></div>
-                      <br>
-                      <% if @match.team_owner_id == current_player.team_owner.team_id %>
-                          <%= link_to 'Select Field', select_match_path(@match), class: 'ui green button' %>
-                      <% else %>
-                        <div class="ui basic center aligned segment">
-                          <%= link_to 'View', match_path(@match), class: 'ui massive blue button' %>
-                        </div>
-                      <% end %>
-                    </div>
-                    <div class="statistic"></div>
-                  </div>
-                </span>
-              </div>
-            </div>
-
-            <div class="five wide column">
-              <div class="away-team">
-                <%= image_tag("unknown_team.png", class: "ui centered rounded image") %>
-                <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
-              </div>
+                </div>
+              <% end %>
             </div>
           </div>
+
+          <div class="four wide column">
+            <%= image_tag(@home_team.image_url_or_default, class: "ui centered rounded image") %>
+            <h4 class="ui huge center aligned header" id="team-text-color"><%= @home_team.name %></h4>
+          </div>
+
+          <div class="four wide column">
+            <div id="match-segment-top">
+              <span id="match-segment-content">
+                <div class="ui three large statistics">
+                  <div class="statistic">
+                    <div class="value" id="match-text-color"><%= @match.home_goal_or_default %></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="value" id="match-text-color">VS</div>
+                  </div>
+                  <div class="statistic">
+                    <div class="value" id="match-text-color"><%= @match.away_goal_or_default %></div>
+                  </div>
+                </div>
+              </span>
+            </div>
+
+            <div id="match-segment-bottom">
+              <span class="match-segment-content">
+                <div class="ui three mini statistics">
+                  <div class="statistic"></div>
+                  <div class="statistic">
+                    <div class="value" id="match-text-color"><%= @match.venue_name %></div>
+                    <br>
+                    <% if @match.team_owner_id == current_player.team_owner.team_id %>
+                      <%= link_to 'Select Field', select_match_path(@match), class: 'ui green button' %>
+                    <% else %>
+                      <%= link_to 'View', match_path(@match), class: 'ui blue button' %>
+                    <% end %>
+                  </div>
+                  <div class="statistic"></div>
+                </div>
+              </span>
+            </div>
+          </div>
+
+          <div class="four wide column">
+            <div class="away-team">
+              <%= image_tag("unknown_team.png", class: "ui centered rounded image") %>
+              <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
+            </div>
+          </div>
+
+          <div class="two wide column">
+            <h1 class="ui header" id="match-text-color">Away</h1>
+            <div class="away-team-players"></div>
+          </div>
         </div>
-      </div>
-      <div class="two wide column">
-        <h1 class="ui red right aligned header">Away</h1>
       </div>
     </div>
 
     <div class="row">
       <div class="twelve wide column">
-        <div class="ui segment">
-          <%= form_for [@match, MatchMessage.new], remote: true do |f| %>
-            <div class="ui form">
-              <div class="fields">
-                <%= f.text_field :body, placeholder: 'New message', required: true %>
-                <%= f.submit 'Send', class: 'ui green right floated button', style: 'display: none' %>
-              </div>
+        <%= form_for [@match, MatchMessage.new], remote: true do |f| %>
+          <div class="ui form">
+            <div class="fields">
+              <%= f.text_field :body, placeholder: 'New message', required: true %>
+              <%= f.submit 'Send', class: 'ui green right floated button', style: 'display: none' %>
             </div>
-          <% end %>
-
-          <div class="match-messages-segment ui basic segment">
-            <%= render @match_messages %>
           </div>
+        <% end %>
+
+        <div class="match-messages-segment">
+          <%= render @match_messages %>
         </div>
       </div>
 
@@ -143,16 +140,16 @@
 <script>
   function reload() {
     $.get("<%= match_match_messages_path(@match, format: :js) %>", function(response) {
-      console.log("Reload successfully", response)
+      console.log("Reload match messages successfully", response)
     });
   }
 
   function reloadAway() {
-    $.get("<%= away_team_path(@away_team, format: :js) if @away_team %>", function(response) {
-      console.log("Reload successfully", response)
-    });
+    $.get("<%= away_match_path(@match, format: :js) %>", function(response) {
+      console.log("Reload away team successfully", response)
+    })
   }
 
   setInterval(reload, 3000);
-  // setInterval(reloadAway, 3000);
+  setInterval(reloadAway, 8000);
 </script>

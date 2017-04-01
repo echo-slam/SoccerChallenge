@@ -1,5 +1,5 @@
 class MatchesController < ApplicationController
-  before_action :set_match, only: [:show, :waiting, :select, :edit, :update]
+  before_action :set_match, only: [:show, :waiting, :away, :select, :edit, :update]
   before_action :check_match_permission, only: [:new]
 
   def index
@@ -19,6 +19,10 @@ class MatchesController < ApplicationController
     @team_requested_ids = @match.match_requests.select(:team_id)
     @available_teams = Team.where.not(id: @match.team_owner_id).where.not(id: @team_requested_ids).where.not(id: @match.team_away_id)
     @match_messages = @match.match_messages.order(created_at: "DESC").first(50)
+  end
+
+  def away
+    
   end
 
   def select
