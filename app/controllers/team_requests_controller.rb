@@ -12,10 +12,10 @@ class TeamRequestsController < ApplicationController
 
       if @team_request.save
         flash[:info] = "Request to join #{Team.find(params[:team_id]).name} has been sent"
-        redirect_to teams_path
+        redirect_to :back
       else
         flash[:error] = "Unable to send team request"
-        redirect_to teams_path
+        redirect_to :back
       end
     elsif params[:player_id]
       @team_request = TeamRequest.new
@@ -25,10 +25,10 @@ class TeamRequestsController < ApplicationController
 
       if @team_request.save
         flash[:info] = "Player #{Player.find(params[:player_id]).full_name} is invited to join your team"
-        redirect_to players_path
+        redirect_to :back
       else
         flash[:error] = "Unable to invite player"
-        redirect_to players_path
+        redirect_to :back
       end
     end
 
@@ -41,13 +41,13 @@ class TeamRequestsController < ApplicationController
       @team_request.destroy
 
       flash[:info] = "Cancel request to join team #{Team.find(params[:team_id]).name}"
-      redirect_to teams_path
+      redirect_to :back
     elsif params[:player_id]
       @team_request = TeamRequest.where(player_id: params[:player_id]).first
       @team_request.destroy
 
       flash[:info] = "Cancel invitation to player #{Player.find(params[:player_id]).full_name}"
-      redirect_to players_path
+      redirect_to :back
     end
   end
 
@@ -69,7 +69,7 @@ class TeamRequestsController < ApplicationController
       end
 
       flash[:success] = "Join team #{@player.team.name} successfully"
-      redirect_to team_path(params[:team_id])
+      redirect_to :back
     elsif params[:player_id]
       @player = Player.find(params[:player_id])
       @player.team_id = current_player.team_id
@@ -87,7 +87,7 @@ class TeamRequestsController < ApplicationController
       end
 
       flash[:success] = "Accept player #{@player.full_name} to join your team"
-      redirect_to team_path(current_player.team_id)
+      redirect_to :back
     end
   end
 
@@ -103,7 +103,7 @@ class TeamRequestsController < ApplicationController
       )
 
       flash[:notice] = "Refuse to join team #{Team.find(params[:team_id]).name}"
-      redirect_to player_path(current_player.id)
+      redirect_to :back
     elsif params[:player_id]
       @team_request = TeamRequest.where(player_id: params[:player_id]).first
       @team_request.destroy
@@ -115,7 +115,7 @@ class TeamRequestsController < ApplicationController
       )
 
       flash[:notice] = "Refuse player #{Player.find(params[:player_id]).full_name} to join your team"
-      redirect_to team_path(current_player.team_id)
+      redirect_to :back
     end
   end
 end

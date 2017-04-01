@@ -3,62 +3,73 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="five wide column">
-      <h1 class="ui header">
+      <h1 class="ui header" id="elegant-text">
         Profile
       </h1>
 
-      <div class="ui card">
+      <div class="ui fluid card">
+
         <div class="image">
           <%= image_tag(@player.image_url_or_default,
               class: "ui image") %>
         </div>
 
         <div class="content">
-          <h3 class="header"><%= @player.full_name %></h3>
+          <span><h3 id="elegant-text">
+            <%= @player.full_name %>
+          </h3></span>
 
           <div class="meta">
             <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
-          </div>
+          </div><br>
 
           <div class="description">
             <% if @team %>
-              <strong>Team: </strong>
-              <a class="ui circular violet label" href="<%= team_path(@team) %>">
-                <%= @team.name %>
+              <a href="<%= team_path(@team) %>">
+                <%= image_tag(@team.image_url_or_default,
+                    class: "ui circular image team-badge") %>
+                <strong id="elegant-text"><%= @team.name %></strong>
               </a>
             <% else %>
-              Team: None
+                <%= image_tag("037-pennant.svg",
+                    class: "ui image mini") %>
+                <span><strong id="elegant-text">Free Player</strong></span>
             <% end %>
+            <br><br>
+
+            <p>Nickname: </p>
+            <p>Favorite Number: </p>
+            <p>Favorite Player: </p>
           </div>
         </div>
-      </div>
 
-      <% unless current_player.team_id %>
-        <% if @player == current_player %>
-          <%= link_to 'Find Team', teams_path, class: 'ui blue button' %>
-          <%= link_to 'Create Team', new_team_path, class: 'ui green button' %>
+        <% unless current_player.team_id %>
+          <% if @player == current_player %>
+            <div class="ui two bottom attached buttons">
+            <%= link_to 'Create Team', new_team_path, class: 'ui teal button' %>
+            <%= link_to 'Invitation', nil, class: 'ui teal button' %>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+
+      </div>
     </div>
 
     <% if current_player.id == @player.id %>
       <div class="eleven wide column">
-          <h1 class="ui header">
+          <h1 id="elegant-text">
             Team Invitations
           </h1>
 
-          <div class="ui segment player-invite-segment" >
-            <div class="ui three link cards">
+            <div class="ui four link cards">
               <% @team_invitations.each do |team_invitation| %>
                 <% team = team_invitation.team %>
 
                 <div class="ui card">
-                  <div class="ui basic segment card-segment-small">
-                    <%= link_to team_path(team) do %>
-                      <%= image_tag("logo_1.png", 
-                          class: "ui image") %>
-                    <% end %>
-                  </div>
+                  <%= link_to team_path(team) do %>
+                    <%= image_tag(team.image_url_or_default, 
+                        class: "ui image") %>
+                  <% end %>
 
                   <div class="center aligned content">
                     <div class="ui tiny header">
@@ -67,19 +78,21 @@
                   </div>
 
                   <div class="extra content">
-                    <div class="ui two tiny buttons">
+                    <div class="ui two mini buttons">
                       <%= link_to "Accept",
                           accept_team_request_path(team_id: team.id),
-                                                   :method => :delete, class: 'ui green button' %>
+                                                   :method => :delete,
+                                                   class: 'ui green button' %>
                       <%= link_to "Decline",
                           decline_team_request_path(team_id: team.id),
-                                                    :method => :delete, class: 'ui red button' %>
+                                                    :method => :delete,
+                                                    class: 'ui red button' %>
                     </div>
                   </div>
                 </div>
               <% end %>
             </div>
-        </div>
+
       </div>
     <% end %>
   </div>
