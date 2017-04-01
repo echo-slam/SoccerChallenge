@@ -7,7 +7,12 @@ class NotificationsController < ApplicationController
 
   def index
     @paths = []
-    @notifications = current_player.notifications.where({read: false})
+    if current_player
+      @notifications = current_player.notifications.where({read: false})  
+    else
+      @notifications = []
+    end
+    
     @notifications.each do |notify|
       @paths.push notify.return_path
     end
