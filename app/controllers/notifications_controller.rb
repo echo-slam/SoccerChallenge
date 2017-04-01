@@ -11,11 +11,5 @@ class NotificationsController < ApplicationController
     @notifications.each do |notify|
       @paths.push notify.return_path
     end
-
-    respond_to do |format|
-      format.html
-      format.json {render json: { notifications: @notifications,
-                                  paths: @paths }}
-    end
   end
 end
