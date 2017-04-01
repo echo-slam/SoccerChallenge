@@ -2,73 +2,132 @@
 <div class="ui container">
   <%= flash_messages %>
   <div class="ui grid">
-    <div class="ten wide column">
+    <div class="row">
+      <div class="ui basic segment" id="match-segment-bg">
+        <div class="ui grid">
 
-      <h1 class="ui blue header">Home: <%= @home_team.name %></h1>
-      <div class="ui five cards">
-        <% @home_team_players.each do |player| %>
-          <div class="card">
-            <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
-            <div class="center aligned content">
-              <div class="ui small header"><%= player.full_name %></div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-      <h1 class="ui red header">Away: <%= @away_team.name %></h1>
-      <div class="ui five cards">
-        <% @away_team_players.each do |player| %>
-          <div class="card">
-          <a href="<%= player_path(player) %>"><div class="custom_img" style="background-image: url(<%= player.image_url_or_default %>);"></div></a>
-            <div class="center aligned content">
-              <div class="ui small header"><%= player.full_name %></div>
-            </div>
-          </div>
-        <% end %>
-      </div>
-
-    </div>
-
-    <div class="six wide column">
-      <h1 class="ui header">Match Information</h1>
-      <div class="ui large message">
-        <div class="ui list">
-          <div class="item">
-            <i class="marker icon"></i>
-            <div class="content">
-              <strong>District:</strong>
-              <%= @match.venue_name %>
+          <div class="two wide column">
+            <h1 class="ui header" id="match-text-color">Home</h1>
+            <div class="ui large middle aligned relaxed animated list">
+              <% @home_team_players.each do |player| %>
+                <div class="item">
+                  <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
+                  <div class="content">
+                    <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
+                  </div>
+                </div>
+              <% end %>
             </div>
           </div>
 
-          <div class="item">
-            <i class="marker icon"></i>
-            <div class="content">
-              <strong>Field:</strong>
-              <%= @match.field_name_or_default %>
+          <div class="four wide column">
+            <%= image_tag(@home_team.image_url_or_default, class: "ui centered rounded image") %>
+            <h4 class="ui huge center aligned header" id="team-text-color"><%= @home_team.name %></h4>
+          </div>
+
+          <div class="four wide column">
+            <div id="match-segment-top">
+              <span id="match-segment-content">
+                <div class="ui three large statistics">
+                  <div class="statistic">
+                    <div class="value" id="match-text-color"><%= @match.home_goal_or_default %></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="value" id="match-text-color">-</div>
+                  </div>
+                  <div class="statistic">
+                    <div class="value" id="match-text-color"><%= @match.away_goal_or_default %></div>
+                  </div>
+                </div>
+              </span>
+            </div>
+
+            <div id="match-segment-bottom">
+              <span class="match-segment-content">
+                <div class="ui three mini statistics">
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"><%= @match.field_name_or_default %></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"></div>
+                  </div>
+                </div>
+                <div class="ui three mini statistics">
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"><%= @match.starts_at.strftime("%Y/%m/%d") %></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"></div>
+                  </div>
+                </div>
+                <div class="ui three mini statistics">
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"><%= @match.starts_at.strftime("%H:%M") %> - <%= @match.ends_at_or_default.strftime("%H:%M") %></div>
+                  </div>
+                  <div class="statistic">
+                    <div class="label" id="match-text-color"></div>
+                  </div>
+                </div>
+              </span>
             </div>
           </div>
 
-          <div class="item">
-            <i class="clock icon"></i>
-            <div class="content">
-              <strong>Start:</strong>
-              <%= @match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
+          <div class="four wide column">
+            <div class="away-team">
+              <% if @away_team %>
+                <%= image_tag(@away_team.image_url_or_default, class: "ui centered rounded image") %>
+                <h4 class="ui huge center aligned header" id="team-text-color"><%= @away_team.name %></h4>
+              <% else %>
+                <%= image_tag("unknown_team.png", class: "ui centered rounded image") %>
+                <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
+              <% end %>
             </div>
           </div>
 
-          <div class="item">
-            <i class="clock icon"></i>
-            <div class="content">
-              <strong>End:</strong>
-              <%= @match.ends_at_or_default.strftime("%Y/%m/%d - %H:%M") %>
+          <div class="two wide column">
+            <h1 class="ui header" id="match-text-color">Away</h1>
+            <div class="away-team-players">
+              <div class="ui large middle aligned relaxed animated list">
+                <% if @away_team_players %>
+                  <% @away_team_players.each do |player| %>
+                    <div class="item">
+                      <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
+                      <div class="content">
+                        <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
+                      </div>
+                    </div>
+                  <% end %>
+                <% else %>
+                  <% 5.times do %>
+                    <div class="item">
+                      <img src="http://i.imgur.com/WbCAvCJ.png" alt="???" class="ui avatar image">
+                      <div class="content">
+                        <a class="header">???</a>
+                      </div>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
+
         </div>
-      
       </div>
     </div>
 
+    <div class="row">
+      <% if @match.team_owner_id == current_player.team_owner.team_id %>
+        <%= link_to 'Edit', edit_match_path(@match), class: 'ui blue button' %>
+      <% end %>
+    </div>
   </div>
 </div>

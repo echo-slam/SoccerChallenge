@@ -63,8 +63,13 @@
 
           <div class="four wide column">
             <div class="away-team">
-              <%= image_tag("unknown_team.png", class: "ui centered rounded image") %>
-              <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
+              <% if @away_team %>
+                <%= image_tag(@away_team.image_url_or_default, class: "ui centered rounded image") %>
+                <h4 class="ui huge center aligned header" id="team-text-color"><%= @away_team.name %></h4>
+              <% else %>
+                <%= image_tag("unknown_team.png", class: "ui centered rounded image") %>
+                <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
+              <% end %>
             </div>
           </div>
 
@@ -72,13 +77,24 @@
             <h1 class="ui header" id="match-text-color">Away</h1>
             <div class="away-team-players">
               <div class="ui large middle aligned relaxed animated list">
-                <% 5.times do %>
-                  <div class="item">
-                    <img src="http://i.imgur.com/WbCAvCJ.png" alt="???" class="ui avatar image">
-                    <div class="content">
-                      <a class="header">???</a>
+                <% if @away_team_players %>
+                  <% @away_team_players.each do |player| %>
+                    <div class="item">
+                      <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
+                      <div class="content">
+                        <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
+                      </div>
                     </div>
-                  </div>
+                  <% end %>
+                <% else %>
+                  <% 5.times do %>
+                    <div class="item">
+                      <img src="http://i.imgur.com/WbCAvCJ.png" alt="???" class="ui avatar image">
+                      <div class="content">
+                        <a class="header">???</a>
+                      </div>
+                    </div>
+                  <% end %>
                 <% end %>
               </div>
             </div>
@@ -164,5 +180,5 @@
   }
 
   setInterval(reload, 3000);
-  setInterval(reloadAway, 6000);
+  setInterval(reloadAway, 10000);
 </script>

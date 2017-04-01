@@ -8,7 +8,7 @@ initialize_calendar = function() {
       header: {
         left: '',
         center: 'title',
-        right: ''
+        right: 'prev, next today'
       },
       firstDay: 1,
       minTime: '06:00:00',
