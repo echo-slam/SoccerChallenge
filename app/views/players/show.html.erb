@@ -17,6 +17,11 @@
         <div class="content">
           <span><h3 id="elegant-text">
             <%= @player.full_name %>
+            <% if current_player == @player %>
+              <%= link_to(edit_player_path(current_player.id)) do %>
+                <i class="edit icon"></i>
+              <% end %>
+            <% end %>
           </h3></span>
 
           <div class="meta">
@@ -37,9 +42,9 @@
             <% end %>
             <br><br>
 
-            <p>Nickname: </p>
-            <p>Favorite Number: </p>
-            <p>Favorite Player: </p>
+            <p>Nickname: <%= @player.nickname.presence || "None" %></p>
+            <p>Favorite Team: <%= @player.favorite_team.presence || "None" %></p>
+            <p>Favorite Player: <%= @player.favorite_player.presence || "None" %></p>
           </div>
         </div>
 

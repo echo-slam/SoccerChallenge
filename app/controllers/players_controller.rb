@@ -30,6 +30,22 @@ class PlayersController < ApplicationController
     @player = Player.new
   end
 
+  def edit
+    set_player
+  end
+
+  def update
+    set_player
+
+    if @player.update(player_params)
+      flash[:success] = 'Update Profile successfully'
+      redirect_to player_path(@player)
+    else
+      flash[:error] = @player.errors.full_messages.to_sentence
+      render 'edit'
+    end
+  end
+
   def create
     @player = Player.new player_params
     if @player.save
@@ -55,6 +71,7 @@ class PlayersController < ApplicationController
       @player = Player.find(params[:id])
     end
     def player_params
-      params.require(:player).permit(:full_name, :email, :password, :image_url)
+      params.require(:player).permit(:full_name, :email, :password, 
+                                     :image_url, :nickname, :favorite_team, :favorite_player)
     end
 end
