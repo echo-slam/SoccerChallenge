@@ -22,6 +22,6 @@ $(document).on('turbolinks:load', function() {
 
   var interval = 5000; // 5 second
   // ajax_call();
-  // setInterval(ajax_call, interval)
+  setInterval(ajax_call, interval)
 
 }); 
