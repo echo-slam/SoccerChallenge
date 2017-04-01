@@ -12,9 +12,6 @@ Rails.application.routes.draw do
   end
   resources :team_owners
   resources :teams do
-    member do
-      get 'away'
-    end
     resources :team_messages
   end
   resources :team_requests
@@ -22,6 +19,7 @@ Rails.application.routes.draw do
   resources :matches do
     member do
       get 'waiting'
+      get 'away'
       get 'select'
     end
     resources :match_messages

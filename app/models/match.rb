@@ -10,12 +10,24 @@ class Match < ApplicationRecord
     Venue.find(venue_id).name
   end
 
-  def field_name
-    Field.find(field_id).name
+  def field_name_or_default
+    field_id ? Field.find(field_id).name : 'Unknown'
+  end
+
+  def ends_at_or_default
+    ends_at.presence || starts_at
   end
 
   def home_team_name
     Team.find(team_owner_id).name
+  end
+
+  def home_goal_or_default
+    home_goal || ' '
+  end
+
+  def away_goal_or_default
+    away_goal || ' '
   end
 
   def requests
