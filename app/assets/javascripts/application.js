@@ -10,4 +10,5 @@
 //= require fullcalendar
 //= require statsAnimation
 //= require teamModals
+//= require playerModals
 //= require_tree .

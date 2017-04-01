@@ -47,7 +47,9 @@
           <% if @player == current_player %>
             <div class="ui two bottom attached buttons">
             <%= link_to 'Create Team', new_team_path, class: 'ui teal button' %>
-            <%= link_to 'Invitation', nil, class: 'ui teal button' %>
+            <%= link_to 'Invitation', nil,
+                class: 'ui teal button',
+                id: "invitation_btn", remote: true %>
             </div>
           <% end %>
         <% end %>
@@ -55,45 +57,133 @@
       </div>
     </div>
 
-    <% if current_player.id == @player.id %>
-      <div class="eleven wide column">
-          <h1 id="elegant-text">
-            Team Invitations
-          </h1>
+    <div class="eleven wide column">
+      <% if @player == current_player %>
+        <h1 class="ui header" id="elegant-text">
+          Messages
+        </h1>
 
-            <div class="ui four link cards">
-              <% @team_invitations.each do |team_invitation| %>
-                <% team = team_invitation.team %>
+        <div class="ui top attached tabular menu">
+          <% if @channel == "world" %>
+            <a class="active item" id="channels" href="<%= player_path(channel: 'world') %>">
+              World Channel
+            </a>
+            <% if current_player.team_id %>
+              <a class="item" id="channels" href="<%= player_path(channel: 'team') %>">
+                Team Channel
+              </a>
+            <% end %>
+          <% else %>
+            <a class="item" id="channels" href="<%= player_path(channel: 'world') %>">
+              World Channel
+            </a>
 
-                <div class="ui card">
-                  <%= link_to team_path(team) do %>
-                    <%= image_tag(team.image_url_or_default, 
-                        class: "ui image") %>
-                  <% end %>
+            <a class="active item" id="channels" href="<%= player_path(channel: 'team') %>">
+              Team Channel
+            </a>
+          <% end %>
+        </div>
 
-                  <div class="center aligned content">
-                    <div class="ui tiny header">
-                      <%= link_to team.name, team_path(team), class: "black-color" %>
-                    </div>
-                  </div>
+        <div class="ui  bottom attached segment">
+          <% if @channel == "world" %>
+            <%= form_for WorldMessage.new(), remote: true do |f| %>
+              <div class="ui form">
+                <div class="fields">
+                  <%= f.text_field :body, placeholder: "Your message" %><br>
+                  <%= f.submit "Send", class: "ui teal right floated button" %>
+                </div>
+              </div>
+            <% end %>
 
-                  <div class="extra content">
-                    <div class="ui two mini buttons">
-                      <%= link_to "Accept",
-                          accept_team_request_path(team_id: team.id),
-                                                   :method => :delete,
-                                                   class: 'ui green button' %>
-                      <%= link_to "Decline",
-                          decline_team_request_path(team_id: team.id),
-                                                    :method => :delete,
-                                                    class: 'ui red button' %>
-                    </div>
+            <div class="ui basic world-messages-segment segment">
+              <%= render @world_messages %>
+            </div>
+          <% else %>
+            <% if current_player.team_id %>
+              <%= form_for [@team, TeamMessage.new()], remote: true do |f| %>
+                <div class="ui form">
+                  <div class="fields">
+                    <%= f.text_field :body, placeholder: "Your message" %><br>
+                    <%= f.submit "Send", class: "ui teal right floated button" %>
                   </div>
                 </div>
               <% end %>
-            </div>
 
+              <div class="ui basic segment team-discussion-segment">
+                <%= render @team_messages %>
+              </div>
+            <% end %>
+          <% end %>
+
+        <% end %>
       </div>
-    <% end %>
+
+    </div>
   </div>
 </div>
+
+<% if current_player.team_id == nil %>
+  <div class="ui long modal" id="invitation_modal">
+    <div class="header" id="elegant-text">Invitations</div>
+
+    <div class="content">
+      <% if @team_invitations.count > 0 %>
+      <div class="ui three link cards">
+        <% @team_invitations.each do |team_invitation| %>
+          <% team = team_invitation.team %>
+          <div class="ui link card">
+            <%= image_tag(team.image_url_or_default,
+                class: "ui image") %>
+
+            <div class="center aligned content">
+              <div class="ui small header">
+                <%= link_to team.name, team_path(team), class: "black-color" %>
+              </div>
+            </div>
+
+            <div class="extra content">
+              <div class="ui two buttons">
+                <%= link_to "Accept",
+                    accept_team_request_path(team_id: team.id),
+                                             :method => :delete,
+                                             class: 'ui green button' %>
+                <%= link_to "Decline",
+                    decline_team_request_path(team_id: team.id),
+                                              :method => :delete,
+                                              class: 'ui red button' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+      <% else %>
+        <p>No invitation from another team.</p>
+      <% end %>
+
+    </div>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  function reload() {
+    var channel = window.location.search.substring(1);
+
+    if (channel == "channel=team") {
+      $.get("<%=  team_team_messages_path(@team, format: :js) if @team %>", function(response) {
+        console.log("Reload successfully", response)
+      })
+    } else {
+      $.get("<%=  world_messages_path(format: :js) %>", function(response) {
+        console.log("Reload world messages successfully", response)
+      })
+    }
+
+  }
+
+  setInterval(reload, 3000);
+
+  $('#channels.item').click(function(){
+      $(".active").removeClass("active");
+      $(this).addClass("active");
+  })
+</script>

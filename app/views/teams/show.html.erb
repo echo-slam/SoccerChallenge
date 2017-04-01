@@ -11,7 +11,7 @@
               <%= image_tag(@team.image_url_or_default, class: "ui rounded image") %>
             </div>
             <div class="eleven wide column">
-              <a class="ui inverted fluid label" id="team-label-bg">
+              <a class="ui inverted fluid label" id="surge-bg">
                 <div class="ui inverted three statistics">
                   <div class="invi statistic" id="stat_1">
                     <div class="value">
@@ -41,22 +41,26 @@
                   </div>
                 </div>
               </a>
+              <br><br><br>
               
-              <h1 class="team-text-color">
+              <span><h1 id="elegant-text">
                 <strong><%= @team.name.upcase %></strong>
-              </h1>
+              </h1></span>
 
-              <h5 class="team-subtext-color">
+              <span id="silver-text">
                 Founded in <%= @team.created_at.strftime("%Y") %>
-              </h5><br>
+              </span>
+              <br><br><br>
 
               <%= link_to "Find Players", players_path , class: 'ui button'%>
 
-              <%= link_to @team_request_string, nil, class: 'ui button',
-                  :id => "team_request_btn", :remote => true %>
+              <% if current_player.team_owner.team_id == @team.id %>
+                <%= link_to @team_request_string, nil, class: 'ui button',
+                    :id => "team_request_btn", :remote => true %>
 
-              <%= link_to @match_invite_string, nil, class: 'ui button',
-                  :id => "match_invite_btn", :remote => true %>
+                <%= link_to @match_invite_string, nil, class: 'ui button',
+                    :id => "match_invite_btn", :remote => true %>
+              <% end %>
 
             </div>
           </div>
@@ -64,30 +68,30 @@
       </div>
 
       <div class="six wide column">
-        <h1 class="ui center aligned header" id="team-text-color">
+        <h1 class="ui center aligned header" id="surge-text">
           Upcoming Match
         </h1>
 
         <div class="ui grid">
           <div class="row">
             <div class="seven wide column">
-              <h3 class="ui center aligned header" id="team-text-color">Home</h3>
+              <h3 class="ui center aligned header" id="elegant-text">Home</h3>
 
               <%= image_tag(@team.image_url_or_default, class: "ui tiny centered rounded image") %>
 
-              <h4 class="ui center aligned header" id="team-text-color"><%= @team.name %></h4>
+              <h4 class="ui center aligned header" id="elegant-text"><%= @team.name %></h4>
             </div>
 
             <div class="two column">
-              <div class="ui vertical divider" id="team-text-color">VS</div>
+              <div class="ui vertical divider" id="elegant-text">VS</div>
             </div>
 
             <div class="seven wide column">
-              <h3 class="ui center aligned header" id="team-text-color">Away</h3>
+              <h3 class="ui center aligned header" id="elegant-text">Away</h3>
 
               <%= image_tag("unknown_team.png", class: "ui tiny centered rounded image") %>
 
-              <h4 class="ui center aligned header">???</h4>
+              <h4 class="ui center aligned header" id="elegant-text">???</h4>
             </div>
           </div>
 
@@ -107,7 +111,7 @@
     <div class="ui grid">
       <div class="row">
         <div class="ten wide column">
-          <h1 class="ui header" id="team-text-color">
+          <h1 class="ui header" id="elegant-text">
             Squad (<%= @players.count %>)
           </h1>
 
@@ -129,7 +133,7 @@
         </div>
 
         <div class="six wide column">
-          <h1 class="ui header" id="team-text-color">
+          <h1 class="ui header" id="elegant-text">
             Messages
           </h1>
 
@@ -151,7 +155,7 @@
       </div>
     </div>
   <% else %>
-    <h1 class="ui header" id="team-text-color">
+    <h1 class="ui header" id="elegant-text">
       Squad (<%= @players.count %>)
     </h1>
 
@@ -177,83 +181,86 @@
   <br><br>
 </div>
 
-<div class="ui long modal" id="team_request_modal">
-  <div class="header">Team Requests</div>
 
-  <div class="content">
-    <% if @player_requests.count > 0 %>
-    <div class="ui three link cards">
-      <% @player_requests.each do |player_request| %>
-        <% player = player_request.player %>
-        <div class="ui link card">
-          <%= image_tag(player.image_url_or_default,
-              class: "ui image") %>
+<% if current_player.team_owner.team_id == @team.id %>
+  <div class="ui long modal" id="team_request_modal">
+    <div class="header" id="elegant-text">Team Requests</div>
 
-          <div class="center aligned content">
-            <div class="ui small header">
-              <%= link_to player.full_name, player_path(player), class: "black-color" %>
-            </div>
-          </div>
-
-          <div class="extra content">
-            <% if current_player.id == @team_owner.player_id %>
-              <div class="ui two buttons">
-                <%= link_to "Accept",
-                    accept_team_request_path(player_id: player.id),
-                                             :method => :delete, class: 'ui green button' %>
-                <%= link_to "Decline",
-                    decline_team_request_path(player_id: player.id),
-                                              :method => :delete, class: 'ui red button' %>
-              </div>
-            <% else %>
-              <p>Only team leader can accept or decline the request.</p>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <% else %>
-      <p>No team request</p>
-    <% end %>
-
-  </div>
-
-</div>
-
-<div class="ui long modal" id="match_invite_modal">
-  <div class="header">Match Invitations</div>
-
-  <div class="content">
-    <% if @match_invites.count > 0 %>
+    <div class="content">
+      <% if @player_requests.count > 0 %>
       <div class="ui three link cards">
-        <% @match_invites.each do |match_invite| %>
-         <div class="ui card">
+        <% @player_requests.each do |player_request| %>
+          <% player = player_request.player %>
+          <div class="ui link card">
+            <%= image_tag(player.image_url_or_default,
+                class: "ui image") %>
+
             <div class="center aligned content">
               <div class="ui small header">
-                <%= Team.find(match_invite.team_received_id).name %>
-               </div>
+                <%= link_to player.full_name, player_path(player), class: "black-color" %>
+              </div>
             </div>
 
             <div class="extra content">
               <% if current_player.id == @team_owner.player_id %>
                 <div class="ui two buttons">
-                  <%= link_to 'Accept', accept_match_request_path(match_invite),
-                      class: 'ui green button' %>
-                  <%= link_to 'Decline', decline_match_request_path(match_invite, team_id: @team.id),
-                      class: 'ui red button' %>
+                  <%= link_to "Accept",
+                      accept_team_request_path(player_id: player.id),
+                                               :method => :delete, class: 'ui green button' %>
+                  <%= link_to "Decline",
+                      decline_team_request_path(player_id: player.id),
+                                                :method => :delete, class: 'ui red button' %>
                 </div>
               <% else %>
-                <p>Only team leader can accept or decline the invitation.</p>
+                <p>Only team leader can accept or decline the request.</p>
               <% end %>
             </div>
           </div>
         <% end %>
       </div>
-    <% else %>
-      <p>No match invitation</p>
-    <% end %>
+      <% else %>
+        <p>No team request</p>
+      <% end %>
+
+    </div>
+
   </div>
-</div>
+
+  <div class="ui long modal" id="match_invite_modal">
+    <div class="header" id="elegant-text">Match Invitations</div>
+
+    <div class="content">
+      <% if @match_invites.count > 0 %>
+        <div class="ui three link cards">
+          <% @match_invites.each do |match_invite| %>
+           <div class="ui card">
+              <div class="center aligned content">
+                <div class="ui small header">
+                  <%= Team.find(match_invite.team_received_id).name %>
+                 </div>
+              </div>
+
+              <div class="extra content">
+                <% if current_player.id == @team_owner.player_id %>
+                  <div class="ui two buttons">
+                    <%= link_to 'Accept', accept_match_request_path(match_invite),
+                        class: 'ui green button' %>
+                    <%= link_to 'Decline', decline_match_request_path(match_invite, team_id: @team.id),
+                        class: 'ui red button' %>
+                  </div>
+                <% else %>
+                  <p>Only team leader can accept or decline the invitation.</p>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% else %>
+        <p>No match invitation</p>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 
 <script type="text/javascript">
   function reload() {

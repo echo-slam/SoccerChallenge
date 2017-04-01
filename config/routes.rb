@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/notifications' => 'notifications#index'
 
   root 'home#index'
+  resources :world_messages
   resources :field_owners do 
     resources :fields
   end

@@ -11,7 +11,18 @@ class PlayersController < ApplicationController
 
   def show
     set_player
+
+    @world_messages = WorldMessage.order(created_at: "DESC").first(100)
+    @channel = "world"
+
+    if params[:channel] == "world"
+      @channel = "world"
+    elsif params[:channel] == "team"
+      @channel = "team"
+    end
+
     @team = Team.find(@player.team_id) if @player.team_id
+    @team_messages = @team.team_messages.order(created_at: "DESC").first(50) if @player.team_id
     @team_invitations = TeamRequest.where(player_id: current_player.id).where(kind: "invite")
   end
 
