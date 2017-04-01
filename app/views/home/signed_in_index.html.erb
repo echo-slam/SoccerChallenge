@@ -1,4 +1,7 @@
 <br><br><br>
+<div class="ui container">
+  <%= flash_messages %>
+</div>
 <br><br><br>
 <br><br><br>
 
@@ -101,19 +104,19 @@
       </div>
     </a>
 
-    <a class="ui fluid link card grid" href="#" id="home-card">
+    <a class="ui fluid link card grid" href="<%= articles_path %>" id="home-card">
       <div class="row">
         <div class="four wide column">
-          <%= image_tag("037-strategy.svg",
+          <%= image_tag("037-fan-1.svg",
               class: "ui rounded image") %>
         </div>
 
         <div class="twelve wide column">
           <div class="content">
-            <h3 id="surge-text">Tactical Box</h3>
+            <h3 id="surge-text">Soccer and Life</h3>
             <div class="ui divider" id="elegant-text"></div>
             <p class="description justify-text black-color">
-              Player can show their knowledge or discuss with others about soccer tactics.
+              Write your own article about teams, players, tactics or enjoy other players articles.
             </p>
           </div>
         </div>

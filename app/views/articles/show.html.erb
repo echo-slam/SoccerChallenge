@@ -1,0 +1,62 @@
+<br><br>
+<div class="ui container">
+  <%= flash_messages %>
+  <div class="ui grid">
+    <div class="five wide column">
+      <div id="player-fixed-profile">
+        <h1 class="ui header" id="elegant-text">
+          Author
+        </h1>
+
+        <div class="ui fluid card">
+
+          <div class="image">
+            <%= image_tag(@player.image_url_or_default,
+                class: "ui image") %>
+          </div>
+
+          <div class="content">
+            <span><h3 id="elegant-text">
+              <%= @player.full_name %>
+            </h3></span>
+
+            <div class="meta">
+              <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
+            </div><br>
+
+            <div class="description">
+              <% if @team %>
+                <a href="<%= team_path(@team) %>">
+                  <%= image_tag(@team.image_url_or_default,
+                      class: "ui circular image team-badge") %>
+                  <strong id="elegant-text"><%= @team.name %></strong>
+                </a>
+              <% else %>
+                  <%= image_tag("037-pennant.svg",
+                      class: "ui image mini") %>
+                  <span><strong id="elegant-text">Free Player</strong></span>
+              <% end %>
+              <br><br>
+
+              <p>Nickname: <%= @player.nickname.presence || "None" %></p>
+              <p>Favorite Team: <%= @player.favorite_team.presence || "None" %></p>
+              <p>Favorite Player: <%= @player.favorite_player.presence || "None" %></p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="eleven wide column">
+      <span><h1 id="elegant-text"><%= @article.title %></h1></span>
+
+      <div class="meta">
+        <span class="date"><%= @article.created_at.strftime("%Y-%m-%d") %></span>
+      </div><br>
+
+      <%= @markdown.render(@article.body).html_safe %>
+    </div>
+  </div>
+</div>
+<br><br>

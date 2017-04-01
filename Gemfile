@@ -67,3 +67,5 @@ gem 'geocoder'
 gem 'gmaps4rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
+
+gem 'redcarpet'

@@ -3,62 +3,64 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="five wide column">
-      <h1 class="ui header" id="elegant-text">
-        Profile
-      </h1>
+      <div id="player-fixed-profile">
+        <h1 class="ui header" id="elegant-text">
+          Profile
+        </h1>
 
-      <div class="ui fluid card">
+        <div class="ui card">
 
-        <div class="image">
-          <%= image_tag(@player.image_url_or_default,
-              class: "ui image") %>
-        </div>
-
-        <div class="content">
-          <span><h3 id="elegant-text">
-            <%= @player.full_name %>
-            <% if current_player == @player %>
-              <%= link_to(edit_player_path(current_player.id)) do %>
-                <i class="edit icon"></i>
-              <% end %>
-            <% end %>
-          </h3></span>
-
-          <div class="meta">
-            <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
-          </div><br>
-
-          <div class="description">
-            <% if @team %>
-              <a href="<%= team_path(@team) %>">
-                <%= image_tag(@team.image_url_or_default,
-                    class: "ui circular image team-badge") %>
-                <strong id="elegant-text"><%= @team.name %></strong>
-              </a>
-            <% else %>
-                <%= image_tag("037-pennant.svg",
-                    class: "ui image mini") %>
-                <span><strong id="elegant-text">Free Player</strong></span>
-            <% end %>
-            <br><br>
-
-            <p>Nickname: <%= @player.nickname.presence || "None" %></p>
-            <p>Favorite Team: <%= @player.favorite_team.presence || "None" %></p>
-            <p>Favorite Player: <%= @player.favorite_player.presence || "None" %></p>
+          <div class="image">
+            <%= image_tag(@player.image_url_or_default,
+                class: "ui image") %>
           </div>
-        </div>
 
-        <% unless current_player.team_id %>
-          <% if @player == current_player %>
-            <div class="ui two bottom attached buttons">
-            <%= link_to 'Create Team', new_team_path, class: 'ui teal button' %>
-            <%= link_to 'Invitation', nil,
-                class: 'ui teal button',
-                id: "invitation_btn", remote: true %>
+          <div class="content">
+            <span><h3 id="elegant-text">
+              <%= @player.full_name %>
+              <% if current_player == @player %>
+                <%= link_to(edit_player_path(current_player.id)) do %>
+                  <i class="teal edit icon"></i>
+                <% end %>
+              <% end %>
+            </h3></span>
+
+            <div class="meta">
+              <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
+            </div><br>
+
+            <div class="description">
+              <% if @team %>
+                <a href="<%= team_path(@team) %>">
+                  <%= image_tag(@team.image_url_or_default,
+                      class: "ui circular image team-badge") %>
+                  <strong id="elegant-text"><%= @team.name %></strong>
+                </a>
+              <% else %>
+                  <%= image_tag("037-pennant.svg",
+                      class: "ui image mini") %>
+                  <span><strong id="elegant-text">Free Player</strong></span>
+              <% end %>
+              <br><br>
+
+              <p>Nickname: <%= @player.nickname.presence || "None" %></p>
+              <p>Favorite Team: <%= @player.favorite_team.presence || "None" %></p>
+              <p>Favorite Player: <%= @player.favorite_player.presence || "None" %></p>
             </div>
-          <% end %>
-        <% end %>
+          </div>
 
+          <% unless current_player.team_id %>
+            <% if @player == current_player %>
+              <div class="ui two bottom attached buttons">
+              <%= link_to 'Create Team', new_team_path, class: 'ui teal button' %>
+              <%= link_to 'Invitation', nil,
+                  class: 'ui teal button',
+                  id: "invitation_btn", remote: true %>
+              </div>
+            <% end %>
+          <% end %>
+
+        </div>
       </div>
     </div>
 
@@ -120,12 +122,26 @@
             <% end %>
           <% end %>
 
+        </div>
+      <% end %>
+      
+
+      <h1 class="ui header" id="elegant-text">
+        Articles
+
+        <% if current_player == @player %>
+          <%= link_to(new_article_path) do %>
+            <i class="teal write icon"></i>
+          <% end %>
         <% end %>
-      </div>
+      </h1>
+
+      <%= render @articles %>
 
     </div>
   </div>
 </div>
+<br><br>
 
 <% if current_player.team_id == nil %>
   <div class="ui long modal" id="invitation_modal">

@@ -1,0 +1,15 @@
+<div class="ui segment">
+  <div class="ui basic segment articles-segment">
+    <span><h3><%= article.title %></h3></span>
+    <div class="meta">
+      <span class="date"><%= article.created_at.strftime("%Y-%m-%d") %></span>
+    </div><br>
+
+    <%= @markdown.render(article.body).html_safe %>
+  </div>
+
+  <div class="ui basic segment">
+    <%= link_to "Read more", article_path(article), class: "ui blue button" %>
+  </div>
+</div>
+<br><br>

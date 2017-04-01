@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170401095324) do
+ActiveRecord::Schema.define(version: 20170401173350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "articles", force: :cascade do |t|
+    t.string   "title"
+    t.text     "body"
+    t.integer  "player_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["player_id"], name: "index_articles_on_player_id", using: :btree
+  end
 
   create_table "field_owners", force: :cascade do |t|
     t.string   "full_name"
@@ -159,6 +168,7 @@ ActiveRecord::Schema.define(version: 20170401095324) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "articles", "players"
   add_foreign_key "match_messages", "matches"
   add_foreign_key "team_messages", "teams"
   add_foreign_key "time_slots", "fields"
