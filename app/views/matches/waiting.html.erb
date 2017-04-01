@@ -3,6 +3,19 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="row">
+      <div class="two wide column">
+        <h1 class="ui blue header">Home</h1>
+        <div class="ui large middle aligned relaxed animated list">
+          <% @home_team_players.each do |player| %>
+            <div class="item">
+              <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
+              <div class="content">
+                <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
       <div class="twelve wide column">
         <div class="ui basic segment" id="match-segment-bg">
           <div class="ui grid">
@@ -58,8 +71,8 @@
           </div>
         </div>
       </div>
-      <div class="four wide column">
-
+      <div class="two wide column">
+        <h1 class="ui red right aligned header">Away</h1>
       </div>
     </div>
 
