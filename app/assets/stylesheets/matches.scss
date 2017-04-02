@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.ui.cards > .card {
+#match-card {
   &:hover {
     box-shadow: 0 0 8px #808080;
     transition: 0.5s;

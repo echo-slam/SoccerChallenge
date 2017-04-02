@@ -12,6 +12,10 @@ class FieldOwner < ApplicationRecord
     full_name
   end
 
+  def image_url_or_default
+    image_url.url.presence || 'http://i.imgur.com/rWrONuem.jpg'
+  end
+
   private
     def image_size_validation
       errors[:image_url] << "should be less than 500KB" if image_url.size > 0.5.megabytes

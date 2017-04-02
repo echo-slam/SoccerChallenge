@@ -2,24 +2,33 @@
 <div class="ui container">
   <%= flash_messages %>
   <div class="ui grid">
+
     <div class="five wide column">
       <h1 class="ui header">Field</h1>
-      <div class="ui card">
-        <div class="custom_img" style="background-image: url(<%= @field.image_url %>);"></div>
+      <div class="ui card" id="field-card">
+        <div class="custom_img" style="background-image: url(<%= @field.image_url_or_default %>);"></div>
         <div class="content">
           <div class="header"><%= @field.name %></div>
           <div class="meta">
             <span class="date">Created in <%= @field.created_at.strftime("%Y-%m-%d") %></span>
           </div>
         </div>
+        <div class="extra content">
+          <a>
+            <i class="marker icon"></i>
+            <%= @field.addr %>, <%= @field.venue_name %>
+          </a>
+        </div>
       </div>
     </div>
+
     <div class="eleven wide column">
       <h1 class="ui header">Direction</h1>
-      <div style='width: 800px;'>
+      <div style='width: 100%;'>
         <div id="map" style='width: 800px; height: 400px;'></div>
       </div>
     </div>
+
   </div>
 </div>
 

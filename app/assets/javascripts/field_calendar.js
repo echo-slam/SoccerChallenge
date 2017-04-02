@@ -1,4 +1,6 @@
 var initialize_calendar;
+var field_owner_calendar;
+
 initialize_calendar = function() {
   $('.field-calendar').each(function(){
     var calendar = $(this);
@@ -74,4 +76,21 @@ initialize_calendar = function() {
   })
 };
 
-$(document).on('turbolinks:load', initialize_calendar)
+field_owner_calendar = function() {
+  $('.field-owner-calendar').each(function() {
+    var calendar = $(this);
+    calendar.fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: '',
+        right: 'month,agendaWeek,agendaDay'
+      },
+      firstDay: 1,
+      minTime: '06:00:00',
+      maxTime: '23:00:00',
+      allDaySlot: false,
+    });
+  })
+};
+
+$(document).on('turbolinks:load', initialize_calendar, field_owner_calendar)
