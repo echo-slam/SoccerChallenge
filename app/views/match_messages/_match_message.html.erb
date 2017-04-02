@@ -1,11 +1,11 @@
 <% if match_message.player_id == current_player.id %>
   <p align="right">
-    <a class="ui red label"><%= match_message.body %></a> : 
+    <a class="ui red circular label"><%= match_message.body %></a> : 
     <%= match_message.player_name %>
   </p>
 <% else %>
   <p>
     <%= match_message.player_name %> : 
-    <a class="ui blue label"><%= match_message.body %></a>
+    <a class="ui blue circular label"><%= match_message.body %></a>
   </p>
 <% end %>

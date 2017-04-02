@@ -8,7 +8,7 @@ initialize_calendar = function() {
       header: {
         left: '',
         center: 'title',
-        right: 'prev, next today'
+        right: 'next today'
       },
       firstDay: 1,
       minTime: '06:00:00',
@@ -19,7 +19,13 @@ initialize_calendar = function() {
       editable: true,
       eventLimit: true,
       eventOverlap: false,
-      eventColor: 'green',
+      selectConstraint: {
+        start: moment().subtract(1, 'hour'),
+        end: moment().startOf('day').add(1, 'day')
+      },
+      eventConstraint: {
+        start: moment().format('YYYY-MM-DD'),
+      },
       events: {
         url: current_path + '.json',
       },
