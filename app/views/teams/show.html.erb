@@ -4,45 +4,42 @@
 
   <div class="ui grid">
     <div class="row">
-      <div class="ten wide column">
-        <div class="ui basic segment" id="team-segment-bg">
-          <div class="ui grid">
-            <div class="five wide column">
-              <%= image_tag(@team.image_url_or_default, class: "ui rounded image") %>
-            </div>
-            <div class="eleven wide column">
-              <a class="ui inverted fluid label" id="surge-bg">
-                <div class="ui inverted three statistics">
-                  <div class="invi statistic" id="stat_1">
-                    <div class="value">
-                      <%= @team.points %>
-                    </div>
-                    <div class="label">
-                      pts
-                    </div>
+      <div class="five wide column">
+        <div id="team-fixed-profile">
+          <div class="ui card" id="card-bg">
+            <%= image_tag(@team.image_url_or_default, class: "ui centered image") %>
+            <br>
+
+              <div class="ui mini three statistics">
+                <div class="invi statistic" id="stat_1">
+                  <div class="value">
+                    <%= image_tag("037-soccer.svg", class: "ui inline image team-stats") %>
+                    <%= @games_played %>
                   </div>
-                  <div class="invi statistic" id="stat_2">
-                    <div class="value">
-                      <%= image_tag("bicycle_kick.png", class: "ui circular inline image") %>
-                      <%= @games_played %>
-                    </div>
-                    <div class="label">
-                      Games Played
-                    </div>
-                  </div>
-                  <div class="invi statistic" id="stat_3">
-                    <div class="value">
-                      <%= image_tag("members.png", class: "ui circular inline image") %>
-                      <%= @players.count %>
-                    </div>
-                    <div class="label">
-                      Team Members
-                    </div>
+                  <div class="label">
+                    Matches
                   </div>
                 </div>
-              </a>
-              <br><br><br>
-              
+                <div class="invi statistic" id="stat_2">
+                  <div class="value">
+                    <%= @team.points %>
+                  </div>
+                  <div class="label">
+                    pts
+                  </div>
+                </div>
+                <div class="invi statistic" id="stat_3">
+                  <div class="value">
+                    <%= image_tag("037-football-player.svg", class: "ui inline image team-stats") %>
+                    <%= @players.count %>
+                  </div>
+                  <div class="label">
+                    Members
+                  </div>
+                </div>
+              </div>
+
+            <div class="ui basic segment">
               <span><h1 id="elegant-text">
                 <strong><%= @team.name.upcase %></strong>
               </h1></span>
@@ -50,133 +47,274 @@
               <span id="silver-text">
                 Founded in <%= @team.created_at.strftime("%Y") %>
               </span>
-              <br><br><br>
+            </div>
 
-              <%= link_to "Find Players", players_path , class: 'ui button'%>
-
-              <% if current_player.team_owner.team_id == @team.id %>
-                <%= link_to @team_request_string, nil, class: 'ui button',
+            <% if current_player.team_owner.team_id == @team.id %>
+              <div class="ui bottom attached tiny buttons">
+                <%= link_to @team_request_string, nil, class: 'ui teal button',
                     :id => "team_request_btn", :remote => true %>
 
-                <%= link_to @match_invite_string, nil, class: 'ui button',
+                <%= link_to @match_invite_string, nil, class: 'ui teal button',
                     :id => "match_invite_btn", :remote => true %>
-              <% end %>
+              </div>
 
-            </div>
+            <% elsif current_player.free_player? %>
+              <% if @team_invites.where(team_id: @team.id).count == 0  %>
+                <% if @team_requests.where(team_id: @team.id).count == 0 %>
+                  <%= link_to "Request to join",
+                      team_requests_path(team_id: @team.id),
+                      :method => :post, class: 'ui tiny teal button' %>
+                <% else %>
+                  <%= link_to "Cancel request",
+                      team_request_path(id: @team_requests.where(team_id: @team.id),
+                                        team_id: @team.id),
+                      :method => :delete, class: 'ui tiny black button' %>
+                <% end %>
+              <% else %>
+                <div class="ui bottom attached tiny buttons">
+                  <%= link_to "Accept",
+                      accept_team_request_path(team_id: @team.id),
+                                               :method => :delete, class: 'ui teal button' %>
+                  <%= link_to "Decline",
+                      decline_team_request_path(team_id: @team.id),
+                                                :method => :delete, class: 'ui black button' %>
+                </div>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>
 
-      <div class="six wide column">
-        <h1 class="ui center aligned header" id="surge-text">
-          Upcoming Match
-        </h1>
-
+      <div class="eleven wide column">
         <div class="ui grid">
           <div class="row">
+
+            <div class="nine wide column">
+              <h1 class="ui header" id="elegant-text">
+                Squad (<%= @players.count %>)
+              </h1>
+
+              <div class="ui three link cards">
+                <% @first_six_players.each do |player| %>
+                  <a href="<%= player_path(player) %>">
+
+                  <div class="ui card " id="squad-card-bg">
+                    <%= image_tag(player.image_url_or_default,
+                        class: "ui image", id: "squad-image")%>
+                    <div class="center aligned content">
+                      <p>
+                        <%= link_to player.full_name, player_path(player), class: "red-color" %>
+                      </p>
+                    </div>
+                  </div>
+
+                  </a>
+                <% end %>
+              </div><br><br>
+
+              <% if @players.count > 6 %>
+                <%= link_to "Show all", team_members_path(id: @team.id), class: "ui blue tiny button" %>
+              <% end %>
+            </div>
+
             <div class="seven wide column">
-              <h3 class="ui center aligned header" id="elegant-text">Home</h3>
+              <h1 class="ui center aligned header" id="elegant-text">
+                Upcoming Match
+              </h1>
 
-              <%= image_tag(@team.image_url_or_default, class: "ui tiny centered rounded image") %>
+              <% if @upcoming_match  %>
+                <% if @team_is_home %>
+                  <div class="ui grid">
+                    <div class="row">
+                      <div class="seven wide column">
+                        <h3 class="ui center aligned header" id="elegant-text">Home</h3>
 
-              <h4 class="ui center aligned header" id="elegant-text"><%= @team.name %></h4>
-            </div>
+                        <%= image_tag(@team.image_url_or_default,
+                            class: "ui tiny centered rounded image") %>
 
-            <div class="two column">
-              <div class="ui vertical divider" id="elegant-text">VS</div>
-            </div>
+                        <h4 class="ui center aligned header" id="elegant-text">
+                          <%= @team.name %>
+                        </h4>
+                      </div>
 
-            <div class="seven wide column">
-              <h3 class="ui center aligned header" id="elegant-text">Away</h3>
+                      <div class="two column">
+                        <div class="ui vertical divider" id="elegant-text">VS</div>
+                      </div>
 
-              <%= image_tag("unknown_team.png", class: "ui tiny centered rounded image") %>
+                      <div class="seven wide column">
+                        <h3 class="ui center aligned header" id="elegant-text">Away</h3>
 
-              <h4 class="ui center aligned header" id="elegant-text">???</h4>
-            </div>
-          </div>
+                        <%= image_tag(@remain_team.image_url_or_default,
+                            class: "ui tiny centered rounded image") %>
 
-          <div class="row">
-            <div class="sixteen wide column">
-              <h5 class="ui center aligned red header">
-                Currently this team do not have any upcoming match.
-              </h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <% if current_player.team_id == @team.id %>
-    <div class="ui grid">
-      <div class="row">
-        <div class="ten wide column">
-          <h1 class="ui header" id="elegant-text">
-            Squad (<%= @players.count %>)
-          </h1>
+                        <h4 class="ui center aligned header" id="elegant-text">
+                          <%= @remain_team.name %>
+                        </h4>
+                      </div>
+                    </div>
 
-          <div class="ui five link cards">
-            <% @first_five_players.each do |player| %>
-              <div class="ui card " id="card-bg">
-                <%= image_tag(player.image_url_or_default,
-                    class: "ui image") %>
-                <div class="center aligned content">
-                  <%= link_to player.full_name, player_path(player), class: "red-color" %>
+                    <div class="row">
+                      <div class="sixteen wide column">
+                        <h5 class="ui center aligned header">
+                          <%= link_to @upcoming_match.starts_at.strftime("%Y-%m-%d"),
+                              match_path(@upcoming_match), id: "elegant-text" %>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                <% else %>
+                  <div class="ui grid">
+                    <div class="row">
+                      <div class="seven wide column">
+                        <h3 class="ui center aligned header" id="elegant-text">Home</h3>
+
+                        <%= image_tag(@remain_team.image_url_or_default,
+                            class: "ui tiny centered rounded image") %>
+
+                        <h4 class="ui center aligned header" id="elegant-text">
+                          <%= @remain_team.name %>
+                        </h4>
+                      </div>
+
+                      <div class="two column">
+                        <div class="ui vertical divider" id="elegant-text">VS</div>
+                      </div>
+
+                      <div class="seven wide column">
+                        <h3 class="ui center aligned header" id="elegant-text">Away</h3>
+
+                        <%= image_tag(@team.image_url_or_default,
+                            class: "ui tiny centered rounded image") %>
+
+                        <h4 class="ui center aligned header" id="elegant-text">
+                          <%= @team.name %>
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="sixteen wide column">
+                        <h5 class="ui center aligned header">
+                          <%= link_to @upcoming_match.starts_at.strftime("%Y-%m-%d"),
+                              match_path(@upcoming_match), id: "elegant-text" %>
+                        </h5>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+
+              <% else %>
+                <div class="ui grid">
+                  <div class="row">
+                    <div class="seven wide column">
+                      <h3 class="ui center aligned header" id="elegant-text">Home</h3>
+
+                      <%= image_tag(@team.image_url_or_default,
+                          class: "ui tiny centered rounded image") %>
+
+                      <h4 class="ui center aligned header" id="elegant-text">
+                        <%= @team.name %>
+                      </h4>
+                    </div>
+
+                    <div class="two column">
+                      <div class="ui vertical divider" id="elegant-text">VS</div>
+                    </div>
+
+                    <div class="seven wide column">
+                      <h3 class="ui center aligned header" id="elegant-text">Away</h3>
+
+                      <%= image_tag("team-badge.svg",
+                          class: "ui tiny centered rounded image") %>
+                      <h4 class="ui center aligned header" id="elegant-text">
+                        ???
+                      </h4>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="sixteen wide column">
+                      <h5 class="ui center aligned red header">
+                        Currently this team do not have any upcoming match.
+                      </h5>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div><br>
+              <% end %>
 
-          <% if @players.count > 5 %>
-            <%= link_to "Show all", team_members_path(id: @team.id), class: "ui small  blue button" %>
-          <% end %>
+
+              <h1 class="ui center aligned header" id="elegant-text">
+                Recent Matches
+              </h1>
+
+            </div>
+
+          </div>
         </div>
 
-        <div class="six wide column">
+        <% if current_player.team_id == @team.id %>
           <h1 class="ui header" id="elegant-text">
             Messages
           </h1>
 
-          <div class="ui segment">
-            <%= form_for [@team, TeamMessage.new()], remote: true do |f| %>
-              <div class="ui form">
-                <div class="fields">
-                  <%= f.text_field :body, placeholder: "Your message" %><br>
-                  <%= f.submit "Send", class: "ui green right floated button" %>
+          <div class="ui top attached tabular menu">
+            <% if @channel == "world" %>
+              <a class="active item" id="channels" href="<%= team_path(channel: 'world') %>">
+                World Channel
+              </a>
+              <% if current_player.team_id %>
+                <a class="item" id="channels" href="<%= team_path(channel: 'team') %>">
+                  Team Channel
+                </a>
+              <% end %>
+            <% else %>
+              <a class="item" id="channels" href="<%= team_path(channel: 'world') %>">
+                World Channel
+              </a>
+
+              <a class="active item" id="channels" href="<%= team_path(channel: 'team') %>">
+                Team Channel
+              </a>
+            <% end %>
+          </div>
+
+          <div class="ui  bottom attached segment">
+            <% if @channel == "world" %>
+              <%= form_for WorldMessage.new(), remote: true do |f| %>
+                <div class="ui form">
+                  <div class="fields">
+                    <%= f.text_field :body, placeholder: "Your message" %><br>
+                    <%= f.submit "Send", class: "ui teal right floated button" %>
+                  </div>
                 </div>
+              <% end %>
+
+              <div class="ui basic world-messages-segment segment">
+                <%= render @world_messages %>
+              </div>
+            <% else %>
+              <%= form_for [@team, TeamMessage.new()], remote: true do |f| %>
+                <div class="ui form">
+                  <div class="fields">
+                    <%= f.text_field :body, placeholder: "Your message" %><br>
+                    <%= f.submit "Send", class: "ui teal right floated button" %>
+                  </div>
+                </div>
+              <% end %>
+
+              <div class="ui basic segment team-discussion-segment">
+                <%= render @team_messages %>
               </div>
             <% end %>
 
-            <div class="ui basic segment team-discussion-segment">
-              <%= render @team_messages %>
-            </div>
           </div>
-        </div>
+        <% end %>
+
       </div>
+
     </div>
-  <% else %>
-    <h1 class="ui header" id="elegant-text">
-      Squad (<%= @players.count %>)
-    </h1>
 
-    <div class="ui five link cards">
-      <% @first_five_players.each do |player| %>
-        <div class="ui card " id="card-bg">
-          <%= image_tag(player.image_url_or_default,
-              class: "ui image") %>
-          <div class="center aligned content">
-            <div class="ui small header">
-              <%= link_to player.full_name, player_path(player), class: "red-color" %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div><br><br>
-
-    <% if @players.count > 5 %>
-      <%= link_to "Show all", team_members_path(id: @team.id), class: "ui blue button" %>
-    <% end %>
-  <% end %>
+  </div>
 
   <br><br>
 </div>
@@ -206,10 +344,10 @@
                 <div class="ui two buttons">
                   <%= link_to "Accept",
                       accept_team_request_path(player_id: player.id),
-                                               :method => :delete, class: 'ui green button' %>
+                                               :method => :delete, class: 'ui teal button' %>
                   <%= link_to "Decline",
                       decline_team_request_path(player_id: player.id),
-                                                :method => :delete, class: 'ui red button' %>
+                                                :method => :delete, class: 'ui black button' %>
                 </div>
               <% else %>
                 <p>Only team leader can accept or decline the request.</p>
@@ -244,9 +382,9 @@
                 <% if current_player.id == @team_owner.player_id %>
                   <div class="ui two buttons">
                     <%= link_to 'Accept', accept_match_request_path(match_invite),
-                        class: 'ui green button' %>
+                        class: 'ui teal button' %>
                     <%= link_to 'Decline', decline_match_request_path(match_invite, team_id: @team.id),
-                        class: 'ui red button' %>
+                        class: 'ui black button' %>
                   </div>
                 <% else %>
                   <p>Only team leader can accept or decline the invitation.</p>
@@ -264,9 +402,18 @@
 
 <script type="text/javascript">
   function reload() {
-    $.get("<%=  team_team_messages_path(@team, format: :js) %>", function(response) {
-      console.log("Reload successfully", response)
-    })
+    var channel = window.location.search.substring(1);
+
+    if (channel == "channel=team") {
+      $.get("<%=  team_team_messages_path(@team, format: :js) %>", function(response) {
+        console.log("Reload successfully", response)
+      })
+    } else {
+      $.get("<%=  world_messages_path(format: :js) %>", function(response) {
+        console.log("Reload world messages successfully", response)
+      })
+    }
+
   }
 
   setInterval(reload, 3000);

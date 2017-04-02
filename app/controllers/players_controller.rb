@@ -2,7 +2,7 @@ require 'custom_render_sum.rb'
 
 class PlayersController < ApplicationController
   def index
-    @players = Player.all.order("full_name DESC")
+    @players = Player.all.order("full_name ASC")
     @team_requests = TeamRequest.where(team_id: current_player.team_id).where(kind: "request")
     @team_invites = TeamRequest.where(team_id: current_player.team_id).where(kind: "invite") 
 
