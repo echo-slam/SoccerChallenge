@@ -55,7 +55,7 @@
         <span class="date"><%= @article.created_at.strftime("%Y-%m-%d") %></span>
       </div><br>
 
-      <%= @markdown.render(@article.body).html_safe %>
+      <span class="justify-text"><%= @markdown.render(@article.body).html_safe %></span>
     </div>
   </div>
 </div>
