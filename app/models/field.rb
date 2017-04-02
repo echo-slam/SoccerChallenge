@@ -9,6 +9,14 @@ class Field < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   validates_processing_of :image_url
   validate :image_size_validation
+
+  def venue_name
+    Venue.find(venue_id).name
+  end
+
+  def image_url_or_default
+    image_url.url.presence || 'http://i.imgur.com/VXJ4WiUm.jpg'
+  end
   
   private
     def image_size_validation

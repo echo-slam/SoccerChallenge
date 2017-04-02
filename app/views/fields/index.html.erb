@@ -1,15 +1,19 @@
 <br><br>
 <div class="ui container">
-  <div class="ui three cards">
+  <div class="ui two link cards">
     <% @fields.each do |field| %>
-      <div class="card">
-        <a href="<%= field_owner_field_path(id: field) %>"><div class="custom_img" style="background-image: url(<%= field.image_url %>);"></div></a>
+      <div class="card" id="field-card">
+        <a href="<%= field_owner_field_path(id: field) %>"><div class="custom_img" style="background-image: url(<%= field.image_url_or_default %>);"></div></a>
         <div class="center aligned content">
-          <div class="ui small header">
+          <div class="ui header">
             <%= field.name  %>
           </div>
         </div>
-        <%= link_to 'Edit', edit_field_owner_field_path(id: field), class: 'ui blue attached button' %>
+        <div class="ui two attached buttons">
+          <%= link_to 'View', field_owner_field_path(id: field), class: 'ui teal button' %>
+          <%= link_to 'Edit', edit_field_owner_field_path(id: field), class: 'ui blue button' %>
+        </div>
+        <div class="extra center aligned content"></div>
       </div>
     <% end %>
   </div>

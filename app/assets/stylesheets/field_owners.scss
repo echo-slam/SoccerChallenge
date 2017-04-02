@@ -2,19 +2,19 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.card {
+#field-owner-card {
   &:hover {
-    box-shadow: 0 0 8px #808080;
+    box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
     transition: 0.5s;
   }
 
   .content > .header {
-    color: green !important;
+    color: #009999;
   }
 
   .custom_img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     background-size: cover;
     background-position: 50% 50%;
   }
