@@ -22,6 +22,10 @@ class Match < ApplicationRecord
     Team.find(team_owner_id).name
   end
 
+  def away_team_name
+    Team.find(team_away_id).name
+  end
+
   def home_goal_or_default
     home_goal || ' '
   end

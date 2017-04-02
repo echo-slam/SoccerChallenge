@@ -1,5 +1,4 @@
 var initialize_calendar;
-var field_owner_calendar;
 
 initialize_calendar = function() {
   $('.field-calendar').each(function(){
@@ -43,7 +42,7 @@ initialize_calendar = function() {
 
       eventRender: function(event, element, view) {
         if (event.host_id == event.viewer_id) {
-          element.css('backgroundColor', 'green');
+          element.css('backgroundColor', '#009999');
         } else {
           element.css('backgroundColor', 'red');
         }
@@ -76,21 +75,4 @@ initialize_calendar = function() {
   })
 };
 
-field_owner_calendar = function() {
-  $('.field-owner-calendar').each(function() {
-    var calendar = $(this);
-    calendar.fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: '',
-        right: 'month,agendaWeek,agendaDay'
-      },
-      firstDay: 1,
-      minTime: '06:00:00',
-      maxTime: '23:00:00',
-      allDaySlot: false,
-    });
-  })
-};
-
-$(document).on('turbolinks:load', initialize_calendar, field_owner_calendar)
+$(document).on('turbolinks:load', initialize_calendar)
