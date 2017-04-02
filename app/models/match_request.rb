@@ -34,7 +34,7 @@ class MatchRequest < ApplicationRecord
     team_sender = Team.find(sender_id)
 
     notice_messages = "\
-Team: #{team_sender.name} has sent #{type} request \
+Team: #{team_sender.name} has sent #{type} request <br>\
 to your team(#{team_recipient.name})"
 
     Notification.create(

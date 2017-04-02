@@ -7,7 +7,7 @@ class TeamRequest < ApplicationRecord
       player_recipient = Player.find(self.player_id)
       team_sender = Team.find(self.team_id)
       notice_messages = "\
-Team: #{team_sender.name} has sent #{self.kind} request \
+Team: #{team_sender.name} has sent #{self.kind} request <br>\
 to you(#{player_recipient.full_name})"
       
       create_notify(team_sender.team_owner_id, 
@@ -19,7 +19,7 @@ to you(#{player_recipient.full_name})"
       player_sender = Player.find(self.player_id)
 
       notice_messages = "\
-Player: #{player_sender.full_name} has sent #{self.kind} request \
+Player: #{player_sender.full_name} has sent #{self.kind} request <br>\
 to your team (#{team_recipient.name})"
 
       create_notify(player_sender.id,
@@ -36,7 +36,7 @@ to your team (#{team_recipient.name})"
 
     if type == "accept_invite"
       notice_messages = "\
-Player: #{@player.full_name} has accepted \
+Player: #{@player.full_name} has accepted <br>\
 your invitation to join your team(#{@team.name})"
 
       sub_create_notify(player_id, @team.team_owner_id,
@@ -44,7 +44,7 @@ your invitation to join your team(#{@team.name})"
     else
 
       notice_messages = "\
-Team: #{@team.name} has accepted \
+Team: #{@team.name} has accepted <br>\
 your request(#{@player.full_name}) to join their team"
 
       sub_create_notify(@team.team_owner_id, player_id,
@@ -57,14 +57,14 @@ your request(#{@player.full_name}) to join their team"
     @player = Player.find(player_id)
     if type == "decline_request"
       notice_messages = "\
-Team: #{@team.name} has declined \
+Team: #{@team.name} has declined <br>\
 your request(#{@player.full_name}) to join their team"
       sub_create_notify(@team.team_owner_id, player_id,
         team_id, notice_messages, type)
 
     else
       notice_messages = "\
-Player: #{@player.full_name} has declined \
+Player: #{@player.full_name} has declined <br>\
 your invitation to join your team (#{@team.name})"
       sub_create_notify(player_id, @team.team_owner_id,
         team_id, notice_messages, type)
