@@ -4,11 +4,10 @@ class FieldsController < ApplicationController
   before_action :set_field, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fields = current_field_owner.fields
+    @fields = Field.all
   end
 
   def show
-    @field = Field.find(params[:id])
     @hash = Gmaps4rails.build_markers(@field) do |field, marker|
       marker.lat field.latitude
       marker.lng field.longitude
@@ -51,7 +50,7 @@ class FieldsController < ApplicationController
 
   private
     def set_field
-      @field = current_field_owner.fields.find(params[:id])
+      @field = Field.find(params[:id])
     end
 
     def field_params

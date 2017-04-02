@@ -8,7 +8,7 @@
       <div class="ui card" id="field-owner-card">
         <div class="custom_img" style="background-image: url(<%= @field_owner.image_url_or_default %>);"></div>
         <div class="content">
-          <span><h3 id="elegant-text">
+          <span><h3 id="surge-text">
             <%= @field_owner.full_name %>
             <% if current_field_owner == @field_owner %>
               <%= link_to(edit_field_owner_path(current_field_owner)) do %>
@@ -27,7 +27,7 @@
           </span>
           <span>
             <i class="soccer icon"></i>
-            <%= @fields.count %> Fields
+            <%= @fields.count || 0 %> Fields
           </span>
         </div>
       </div>
