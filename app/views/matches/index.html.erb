@@ -1,14 +1,23 @@
 <br><br>
 <div class="ui container">
   <%= flash_messages %>
-  <div class="ui three cards">
+
+  <div class="ui two link cards">
     <% @matches.each do |match| %>
-      <div class="card">
+      <div class="card" id="match-card">
+        <a><div class="custom_img" style="background-image: url(http://i.imgur.com/TRmGlnzh.jpg);"></div></a>
         <div class="content">
-          <div class="header"><%= match.home_team_name %></div>
-          <div class="description">
-            <%= match.venue_name %><br>
-            Start: <%= match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
+          <div class="header" id="surge-text"><%= match.home_team_name %></div>
+          <br>
+          <div class="meta">
+            <span>
+              <i class="clock icon"></i>
+              <%= match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
+            </span>
+            <span class="right floated">
+              <i class="marker icon"></i>
+              <%= match.venue_name %>
+            </span>
           </div>
         </div>
         <% if match.team_owner_id == current_player.team_id || match.team_away_id == current_player.team_id %>
