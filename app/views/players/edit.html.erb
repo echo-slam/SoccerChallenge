@@ -2,6 +2,9 @@
 <div class="ui container">
   <div class="ui grid">
     <div class="ui row">
+      <div class="four wide column">
+      </div>
+
       <div class="eight wide column">
         <div class="ui large form">
           <h1 class="ui header">Edit Player Profile</h1><br>
@@ -34,11 +37,12 @@
 
             <br>
             <%= f.submit 'Change', class: 'ui large green button' %>
+            <%= link_to 'Back', player_path(@player), class: 'ui large black button' %>
           <% end %>
         </div>
       </div>
 
-      <div class="eight wide column">
+      <div class="four wide column">
       </div>
     </div>
   </div>

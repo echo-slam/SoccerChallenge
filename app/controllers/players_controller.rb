@@ -1,3 +1,5 @@
+require 'custom_render_sum.rb'
+
 class PlayersController < ApplicationController
   def index
     @players = Player.all.order("full_name DESC")
@@ -11,6 +13,10 @@ class PlayersController < ApplicationController
 
   def show
     set_player
+
+    @articles = @player.articles.order(created_at: "DESC")
+
+    @markdown = Redcarpet::Markdown.new(CustomRenderSum)
 
     @world_messages = WorldMessage.order(created_at: "DESC").first(100)
     @channel = "world"
@@ -58,7 +64,7 @@ class PlayersController < ApplicationController
       #Create team_owner record
       @player.create_team_owner
       
-      redirect_to root_path
+      redirect_to signed_in_index_path
     else
       flash[:error] = @player.errors.full_messages.to_sentence
       render 'new'
@@ -70,6 +76,7 @@ class PlayersController < ApplicationController
     def set_player
       @player = Player.find(params[:id])
     end
+
     def player_params
       params.require(:player).permit(:full_name, :email, :password, 
                                      :image_url, :nickname, :favorite_team, :favorite_player)

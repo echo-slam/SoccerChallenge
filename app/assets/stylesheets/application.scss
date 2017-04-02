@@ -66,3 +66,14 @@ body {
 .invi {
   opacity: 0;
 }
+
+#player-fixed-profile {
+  position: fixed;
+  right: 70%;
+  left: 10%;
+}
+
+.articles-segment {
+  overflow: hidden;
+  height: 300px;
+}

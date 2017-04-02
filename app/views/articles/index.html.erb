@@ -1,0 +1,12 @@
+<br><br>
+<div class="ui container">
+  <%= flash_messages %>
+  <h1 class="ui header" id="elegant-text">
+    Soccer and Life
+    <%= link_to(new_article_path) do %>
+      <i class="teal write icon"></i>
+    <% end %>
+  </h1><br>
+
+  <%= render @articles %>
+</div>

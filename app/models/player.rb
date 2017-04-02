@@ -5,6 +5,7 @@ class Player < ApplicationRecord
   mount_uploader :image_url, ImageUploader
   
   has_many :notifications, dependent: :destroy
+  has_many :articles, dependent: :destroy
 
   validates :email, uniqueness: true
   validates :full_name, presence: true

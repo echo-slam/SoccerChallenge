@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   end
   resources :team_requests
   resources :players
+  resources :articles
   resources :matches do
     member do
       get 'waiting'
