@@ -2,12 +2,12 @@ class TeamsController < ApplicationController
   before_action :set_team_owner, only: [:new, :create]
 
   def index
-    @teams = Team.all.order(name: "ASC")
+    @teams = Team.all.order(points: "DESC")
     @team_invites = TeamRequest.where(player_id: current_player.id).where(kind: "invite")
     @team_requests = TeamRequest.where(player_id: current_player.id).where(kind: "request")
 
     if params[:search]
-      @teams = Team.search(params[:search]).order("name ASC")
+      @teams = Team.search(params[:search]).order(points: "DESC")
     end
   end
 
@@ -53,8 +53,10 @@ class TeamsController < ApplicationController
     @away_matches = Match.where(team_away_id: @team.id).where(is_end: true)
     @games_played = @home_matches.count + @away_matches.count
 
-    @next_home_match = Match.where(team_owner_id: @team.id).where(is_start: true).order(starts_at: "ASC").first
-    @next_away_match = Match.where(team_away_id: @team.id).where(is_start: true).order(starts_at: "ASC").first
+    @next_not_end_match = Match.where(is_start: true).where(is_end: nil)
+
+    @next_home_match = @next_not_end_match.where(team_owner_id: @team.id).order(starts_at: "ASC").first
+    @next_away_match = @next_not_end_match.where(team_away_id: @team.id).order(starts_at: "ASC").first
 
     if @next_home_match
       if @next_away_match
