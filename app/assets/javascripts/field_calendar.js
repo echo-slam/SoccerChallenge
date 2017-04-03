@@ -25,7 +25,8 @@ initialize_calendar = function() {
         end: moment().startOf('day').add(1, 'day')
       },
       eventConstraint: {
-        start: moment().format('YYYY-MM-DD'),
+        start: moment().startOf('week'),
+        end: moment().endOf('week'),
       },
       events: {
         url: current_path + '.json',
