@@ -50,9 +50,9 @@
                     <div class="value" id="match-text-color"><%= @match.venue_name %></div>
                     <br>
                     <% if @match.team_owner_id == current_player.team_owner.team_id %>
-                      <%= link_to 'Select Field', select_match_path(@match), class: 'ui green button' %>
+                      <%= link_to 'Select Field', select_match_path(@match), class: 'ui teal button' %>
                     <% else %>
-                      <%= link_to 'View', match_path(@match), class: 'ui blue button' %>
+                      <%= link_to 'View', match_path(@match), class: 'ui button' %>
                     <% end %>
                   </div>
                   <div class="statistic"></div>
@@ -114,9 +114,9 @@
       <div class="four wide column">
         <% if @match.team_owner_id == current_player.team_owner.team_id %>
           <div class="ui buttons">
-            <%= link_to 'Available Teams', nil, class: 'ui button', id: 'available_teams_btn', remote: true %>
+            <%= link_to 'Available Teams', nil, class: 'ui teal button', id: 'available_teams_btn', remote: true %>
             <div class="or"></div>
-            <%= link_to 'Match Requests', nil, class: 'ui button', id: 'match_requests_btn', remote: true %>
+            <%= link_to 'Match Requests', nil, class: 'ui teal button', id: 'match_requests_btn', remote: true %>
           </div>
         <% end %>
       </div>
@@ -124,39 +124,57 @@
   </div>
 </div>
 
-<div class="ui modal" id="available_teams_modal">
+<div class="ui small basic modal" id="available_teams_modal">
   <div class="header">Available Teams</div>
-  <div class="ui large middle aligned relaxed list">
+  <% if @available_teams.count > 0 %>
     <% @available_teams.each do |team| %>
-      <div class="item">
-        <div class="right floated content">
-          <%= link_to 'Invite', invite_match_requests_path(match_id: @match, team_id: team), class: 'ui green mini button' %>
+      <% if team.players.count >= 5 %>
+        <div class="ui large middle aligned relaxed list">
+          <div class="item">
+            <div class="right floated content">
+              <%= link_to 'Invite', invite_match_requests_path(match_id: @match, team_id: team), class: 'ui teal button' %>
+            </div>
+            <img src="<%= team.image_url_or_default %>" alt="<%= team.name %>" class="ui avatar image">
+            <div class="content">
+              <a href="<%= team_path(team) %>" class="header"><%= team.name %></a>
+            </div>
+          </div>
         </div>
-        <img src="<%= team.image_url_or_default %>" alt="<%= team.name %>" class="ui avatar image">
+      <% else %>
         <div class="content">
-          <a href="<%= team_path(team) %>" class="header"><%= team.name %></a>
+          There are no available teams now
         </div>
-      </div>
+      <% end %>
     <% end %>
-  </div>
+  <% else %>
+    <div class="content">
+      There are no available teams now
+    </div>
+  <% end %>
 </div>
 
-<div class="ui modal" id="match_requests_modal">
+<div class="ui small basic modal" id="match_requests_modal">
   <div class="header">Match Requests</div>
-  <div class="ui large middle aligned relaxed list">
-    <% @pending_requests.each do |request| %>
-      <div class="item">
-        <div class="right floated content">
-          <%= link_to 'Accept', accept_match_request_path(request, match_id: @match), class: 'ui green mini button' %>
-          <%= link_to 'Decline', decline_match_request_path(request, match_id: @match), class: 'ui red mini button' %>
+  <% if @pending_requests.count > 0 %>
+    <div class="ui large middle aligned relaxed list">
+      <% @pending_requests.each do |request| %>
+        <div class="item">
+          <div class="right floated content">
+            <%= link_to 'Accept', accept_match_request_path(request, match_id: @match), class: 'ui teal button' %>
+            <%= link_to 'Decline', decline_match_request_path(request, match_id: @match), class: 'ui black button' %>
+          </div>
+          <img src="<%= Team.find(request.team_id).image_url_or_default %>" alt="<%= Team.find(request.team_id).name %>" class="ui avatar image">
+          <div class="content">
+            <a href="<%= team_path(request.team_id) %>" class="header"><%= Team.find(request.team_id).name %></a>
+          </div>
         </div>
-        <img src="<%= Team.find(request.team_id).image_url_or_default %>" alt="<%= Team.find(request.team_id).name %>" class="ui avatar image">
-        <div class="content">
-          <a href="<%= team_path(request.team_id) %>" class="header"><%= Team.find(request.team_id).name %></a>
-        </div>
-      </div>
-    <% end %>
-  </div>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="content">
+      There are no requests now
+    </div>
+  <% end %>
 </div>
 
 <script>

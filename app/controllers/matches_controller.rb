@@ -61,10 +61,10 @@ class MatchesController < ApplicationController
     def set_match
       @match = Match.find(params[:id])
       @home_team = Team.find(@match.team_owner_id)
-      @home_team_players = @home_team.players
+      @home_team_players = @home_team.players.first(5)
       if @match.team_away_id
         @away_team = Team.find(@match.team_away_id)
-        @away_team_players = @away_team.players
+        @away_team_players = @away_team.players.first(5)
       end
     end
 
