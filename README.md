@@ -4,7 +4,7 @@
 
 Submitted by: **Echo Studio**
 
-Time spent: **XXX** hours spent in total
+Time spent: **450** hours spent in total
 
 URL: **https://soccerchallenge.herokuapp.com**
 
