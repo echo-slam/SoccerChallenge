@@ -64,10 +64,10 @@
           <div class="four wide column">
             <div class="away-team">
               <% if @away_team %>
-                <%= image_tag(@away_team.image_url_or_default, class: "ui centered rounded image") %>
+                <%= image_tag(@away_team.image_url_or_default, class: "ui large centered rounded image") %>
                 <h4 class="ui huge center aligned header" id="team-text-color"><%= @away_team.name %></h4>
               <% else %>
-                <%= image_tag("unknown_team.png", class: "ui centered rounded image") %>
+                <%= image_tag("team-badge.svg", class: "ui large centered rounded image") %>
                 <h4 class="ui huge center aligned header" id="team-text-color">???</h4>
               <% end %>
             </div>
