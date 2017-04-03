@@ -99,7 +99,7 @@ class TeamsController < ApplicationController
       @channel = "team"
     end
 
-    @recent_matches = Match.where("team_owner_id = ? OR team_away_id = ?", @team.id, @team.id).where(is_end: true).order(starts_at: 'DESC').first(5)
+    @recent_matches = Match.where("team_owner_id = ? OR team_away_id = ?", @team.id, @team.id).where(is_end: true).order(starts_at: 'ASC').first(5)
   end
 
   def team_members
