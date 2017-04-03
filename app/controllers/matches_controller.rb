@@ -3,7 +3,6 @@ class MatchesController < ApplicationController
   before_action :set_admin, only: [:show, :edit, :update]
   before_action :check_match_permission, only: [:new]
 
-
   def index
     @matches = Match.upcoming.not_ended
   end
@@ -75,6 +74,10 @@ class MatchesController < ApplicationController
     end
 
     def match_params
-      params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :home_goal, :away_goal, :is_end)
+      if current_player.email == "admin@soccerchallenge.com"
+        params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :is_end, :home_goal, :away_goal)
+      else
+        params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :is_end)
+      end
     end
 end
