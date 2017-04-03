@@ -41,7 +41,7 @@
                 <% if @team_invites.where(player_id: player.id).count == 0 %>
                   <%= link_to "Invite player",
                       team_requests_path(player_id: player.id),
-                      :method => :post, class: 'ui tiny green button' %>
+                      :method => :post, class: 'ui tiny teal button' %>
                 <% else %>
                   <%= link_to "Cancel invitation",
                       team_request_path(id: @team_invites.where(player_id: player.id).first,
@@ -49,27 +49,39 @@
                       :method => :delete, class: 'ui tiny black button' %>
                 <% end %>
               <% else %>
-                <%= link_to "#{player.team.name}",
-                    team_path(player.team), class: "ui tiny violet button" %>
+                <% team = Team.find(player.team_id) %>
+                <a href="<%= team_path(team) %>">
+                  <%= image_tag(team.image_url_or_default,
+                      class: "ui circular image team-badge") %>
+                  <strong id="elegant-text"><%= team.name %></strong>
+                </a>
               <% end %>
             <% else %>
               <div class="ui two tiny buttons">
                 <%= link_to "Accept",
                     accept_team_request_path(player_id: player.id),
-                                             :method => :delete, class: 'ui green button' %>
+                                             :method => :delete, class: 'ui teal button' %>
                 <%= link_to "Decline",
                     decline_team_request_path(player_id: player.id),
-                                              :method => :delete, class: 'ui red button' %>
+                                              :method => :delete, class: 'ui black button' %>
               </div>
             <% end %>
           <% else %>
-            <% if player.team_id == nil %>
-              <%= link_to "Free player",
-                  player_path(player), class: "ui tiny orange button" %>
-            <% else %>
-              <%= link_to "#{player.team.name}",
-                  team_path(player.team), class: "ui tiny violet button" %>
-            <% end %>
+              <% if player.team_id %>
+                <% team = Team.find(player.team_id) %>
+                <a href="<%= team_path(team) %>">
+                  <%= image_tag(team.image_url_or_default,
+                      class: "ui circular image team-badge") %>
+                  <strong id="elegant-text"><%= team.name %></strong>
+                </a>
+              <% else %>
+                <a href="<%= player_path(player) %>">
+                  <%= image_tag("team-badge.svg",
+                      class: "ui image mini") %>
+                  <span><strong id="elegant-text">Free Player</strong></span>
+                </a>
+              <% end %>
+              <br>
           <% end %>
 
         </div>

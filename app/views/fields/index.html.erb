@@ -1,16 +1,26 @@
 <br><br>
 <div class="ui container">
-  <div class="ui three cards">
+  <div class="ui two link cards">
     <% @fields.each do |field| %>
-      <div class="card">
-        <a href="<%= field_owner_field_path(id: field) %>"><div class="custom_img" style="background-image: url(<%= field.image_url %>);"></div></a>
-        <div class="center aligned content">
-          <div class="ui small header">
+      <div class="card" id="field-card">
+        <a href="<%= field_owner_field_path(id: field) %>"><div class="custom_img" style="background-image: url(<%= field.image_url_or_default %>);"></div></a>
+        <div class="content">
+          <div class="ui header" id="surge-text">
             <%= field.name  %>
           </div>
+          <div class="meta">
+            <span>
+              <i class="marker icon"></i>
+              <%= field.addr %>, <%= field.venue_name %>
+            </span>
+            <span class="right floated">
+              <i class="clock icon"></i>
+              Mon - Sun / 06:00 - 22:00
+            </span>
+          </div>
         </div>
-        <%= link_to 'Edit', edit_field_owner_field_path(id: field), class: 'ui blue attached button' %>
       </div>
     <% end %>
   </div>
 </div>
+

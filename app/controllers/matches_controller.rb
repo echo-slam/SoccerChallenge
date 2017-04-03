@@ -1,5 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :waiting, :away, :select, :edit, :update]
+  before_action :set_admin, only: [:show, :edit, :update]
   before_action :check_match_permission, only: [:new]
 
   def index
@@ -58,17 +59,25 @@ class MatchesController < ApplicationController
   end
 
   private
+    def set_admin
+      @admin = Player.find_by(email: "admin@soccerchallenge.com")
+    end
+
     def set_match
       @match = Match.find(params[:id])
       @home_team = Team.find(@match.team_owner_id)
-      @home_team_players = @home_team.players
+      @home_team_players = @home_team.players.first(5)
       if @match.team_away_id
         @away_team = Team.find(@match.team_away_id)
-        @away_team_players = @away_team.players
+        @away_team_players = @away_team.players.first(5)
       end
     end
 
     def match_params
-      params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :home_goal, :away_goal, :is_end)
+      if current_player.email == "admin@soccerchallenge.com"
+        params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :is_end, :home_goal, :away_goal)
+      else
+        params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :is_end)
+      end
     end
 end

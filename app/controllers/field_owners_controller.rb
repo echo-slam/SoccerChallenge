@@ -6,7 +6,8 @@ class FieldOwnersController < ApplicationController
   end
 
   def show
-
+    @fields = @field_owner.fields
+    @matches = Match.where(field_id: @field_owner.field_ids)
   end
 
   def new
@@ -43,7 +44,7 @@ class FieldOwnersController < ApplicationController
 
   private
     def set_team_owner
-      @field_owner = FieldOwner.find(params[:id])
+      @field_owner = current_field_owner
     end
 
     def field_owner_params

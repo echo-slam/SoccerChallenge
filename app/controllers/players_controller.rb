@@ -2,7 +2,7 @@ require 'custom_render_sum.rb'
 
 class PlayersController < ApplicationController
   def index
-    @players = Player.all.order("full_name DESC")
+    @players = Player.all.where.not(email: 'admin@soccerchallenge.com').order("full_name ASC")
     @team_requests = TeamRequest.where(team_id: current_player.team_id).where(kind: "request")
     @team_invites = TeamRequest.where(team_id: current_player.team_id).where(kind: "invite") 
 
@@ -30,6 +30,9 @@ class PlayersController < ApplicationController
     @team = Team.find(@player.team_id) if @player.team_id
     @team_messages = @team.team_messages.order(created_at: "DESC").first(50) if @player.team_id
     @team_invitations = TeamRequest.where(player_id: current_player.id).where(kind: "invite")
+
+    @team_requests = TeamRequest.where(team_id: current_player.team_id).where(kind: "request")
+    @team_invites = TeamRequest.where(team_id: current_player.team_id).where(kind: "invite") 
   end
 
   def new

@@ -2,24 +2,41 @@
 <div class="ui container">
   <%= flash_messages %>
   <div class="ui grid">
-    <div class="five wide column">
-      <h1 class="ui header">Field</h1>
-      <div class="ui card">
-        <div class="custom_img" style="background-image: url(<%= @field.image_url %>);"></div>
+
+    <div class="four wide column">
+      <h1 class="ui header" id="field-text-color">Field</h1>
+      <div class="ui card" id="field-card">
+        <div class="custom_img" style="background-image: url(<%= @field.image_url_or_default %>);"></div>
         <div class="content">
-          <div class="header"><%= @field.name %></div>
+          <span><h3 id="surge-text">
+            <%= @field.name %>
+            <% if current_field_owner.id == @field.field_owner_id %>
+              <%= link_to(edit_field_owner_field_path(@field)) do %>
+                <i class="teal edit icon"></i>
+              <% end %>
+            <% end %>
+          </h3></span>
           <div class="meta">
-            <span class="date">Created in <%= @field.created_at.strftime("%Y-%m-%d") %></span>
+            <p>Opening Days: Mon - Sun</p>
+            <p>Opening Hours: 06:00 - 22:00</p>
           </div>
+        </div>
+        <div class="extra content">
+          <a>
+            <i class="marker icon"></i>
+            <%= @field.addr %>, <%= @field.venue_name %>
+          </a>
         </div>
       </div>
     </div>
-    <div class="eleven wide column">
-      <h1 class="ui header">Direction</h1>
-      <div style='width: 800px;'>
-        <div id="map" style='width: 800px; height: 400px;'></div>
+
+    <div class="twelve wide column">
+      <h1 class="ui header" id="field-text-color">Direction</h1>
+      <div style='width: 100%;'>
+        <div id="map" style='width: 100%; height: 400px;'></div>
       </div>
     </div>
+
   </div>
 </div>
 

@@ -11,3 +11,16 @@
 .team-font {
   font-size: 30px;
 }
+
+#stats-bg {
+  border-radius: 0px;
+  background-color: #36B8B2;
+}
+
+#squad-card-bg {
+  border-radius: 10px;
+  box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
+  .image {
+    border-radius: 10px 10px 0px 0px;
+  }
+}

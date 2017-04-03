@@ -1,4 +1,5 @@
 var initialize_calendar;
+
 initialize_calendar = function() {
   $('.field-calendar').each(function(){
     var calendar = $(this);
@@ -8,7 +9,7 @@ initialize_calendar = function() {
       header: {
         left: '',
         center: 'title',
-        right: 'prev, next today'
+        right: 'next today'
       },
       firstDay: 1,
       minTime: '06:00:00',
@@ -19,7 +20,13 @@ initialize_calendar = function() {
       editable: true,
       eventLimit: true,
       eventOverlap: false,
-      eventColor: 'green',
+      selectConstraint: {
+        start: moment().subtract(1, 'hour'),
+        end: moment().startOf('day').add(1, 'day')
+      },
+      eventConstraint: {
+        start: moment().format('YYYY-MM-DD'),
+      },
       events: {
         url: current_path + '.json',
       },
@@ -35,7 +42,7 @@ initialize_calendar = function() {
 
       eventRender: function(event, element, view) {
         if (event.host_id == event.viewer_id) {
-          element.css('backgroundColor', 'green');
+          element.css('backgroundColor', '#009999');
         } else {
           element.css('backgroundColor', 'red');
         }
