@@ -6,7 +6,7 @@ class Notification < ApplicationRecord
     if match_id.nil?
       case notice_type
         when "team_request_invite"
-          return "/players/#{self.player_id}"
+          return "/teams"
         
         when "team_request_request"
           return "/players"
