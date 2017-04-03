@@ -98,6 +98,8 @@ class TeamsController < ApplicationController
     elsif params[:channel] == "team"
       @channel = "team"
     end
+
+    @recent_matches = Match.where("team_owner_id = ? OR team_away_id = ?", @team.id, @team.id).where(is_start: true).first(5)
   end
 
   def team_members

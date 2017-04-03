@@ -246,6 +246,28 @@
               <h1 class="ui center aligned header" id="elegant-text">
                 Recent Matches
               </h1>
+              <div class="ui grid">
+                <% @recent_matches.each do |match| %>
+                  <div class="six wide column">
+                    <h4 class="ui center aligned header" id="elegant-text">
+                      <%= match.home_team_name %>
+                    </h4>
+                  </div>
+                  <div class="four wide column">
+                    <div id="match-segment-top">
+                      <span id="match-segment-content">
+                        <%= match.home_goal_or_default %> - <%= match.away_goal_or_default %>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="six wide column">
+                    <h4 class="ui center aligned header" id="elegant-text">
+                      <%= match.away_team_name %>
+                    </h4>
+                  </div>
+                <% end %>
+              </div>
+
 
             </div>
 
