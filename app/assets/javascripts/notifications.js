@@ -5,10 +5,14 @@ $(document).on('turbolinks:load', function() {
   var ajax_call = function() {
     $.getJSON ("/notifications.json", function(data) {
       var notifications = data.notifications;
-      var paths = data.paths
+      var paths = data.paths;
       
-      $("#notifications_count").html(notifications.length);
-      
+      if (notifications.length != 0) {
+        count = "<span class=\"ui red circular label\">" +
+        notifications.length + "</span>";
+
+        $("#notifications_count").html(count);
+      }
       var notify_messages = "";
     
       $.each(notifications, function(key,val) {

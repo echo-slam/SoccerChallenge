@@ -10,11 +10,15 @@
     <div class="right menu">
       <% if current_player %>
         <div class="ui inline dropdown item">
-          Notification
+          <i class="alarm icon"> </i>
 
-          <span class="ui red circular label" id="notifications_count">
-            <%= current_player.notifications.where({read: false}).count %>
-          </span>
+          <div id="notifications_count">
+            <% unless current_player.notifications.where({read: false}).count == 0 %>
+              <span class="ui red circular label">
+                <%= current_player.notifications.where({read: false}).count %>
+              </span>
+            <% end %>
+          </div>
 
           <div class="ui inverted menu" id="surge-bg">
             <%= render 'notifications/notification_dropdown' %>
