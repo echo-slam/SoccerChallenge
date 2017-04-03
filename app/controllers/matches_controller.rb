@@ -1,6 +1,9 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :waiting, :away, :select, :edit, :update]
+  before_action :set_admin, only: [:show, :edit, :update]
   before_action :check_match_permission, only: [:new]
+  before_action :check_admin_permission, only: [:edit, :update]
+
 
   def index
     @matches = Match.upcoming.not_ended
@@ -58,6 +61,10 @@ class MatchesController < ApplicationController
   end
 
   private
+    def set_admin
+      @admin = Player.find_by(email: "admin@soccerchallenge.com")
+    end
+
     def set_match
       @match = Match.find(params[:id])
       @home_team = Team.find(@match.team_owner_id)

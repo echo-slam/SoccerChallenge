@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  helper_method :current_field_owner, :current_player, :check_match_permission
+  helper_method :current_field_owner, :current_player, :check_match_permission, :check_admin_permission
 
   def current_field_owner
     return @current_field_owner if @current_field_owner
@@ -31,6 +31,13 @@ class ApplicationController < ActionController::Base
   def check_match_permission
     unless current_player.team_owner.team_id
       flash[:error] = "You must be Team Owner to conduct this action"
+      redirect_to root_path
+    end
+  end
+
+  def check_admin_permission
+    unless current_player.email == 'admin@soccerchallenge.com'
+      flash[:error] = "You must be Administrator to conduct this action"
       redirect_to root_path
     end
   end
