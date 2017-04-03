@@ -35,6 +35,8 @@ Rails.application.routes.draw do
       get 'decline'
     end
   end
+  resources :match_results
+
   get 'signin' => 'sessions#new'
   get 'signed_in_index' => 'home#signed_in_index'
   get 'team_members' => 'teams#team_members'

@@ -5,7 +5,7 @@
   </video>
 </div>
 
-<div class="ui black inverted raise segment main-board-align">
+<div class="ui black inverted raise segment main-board-align" id="main-segment">
   <%= image_tag("logo-soccer-challenge.svg", class: "ui medium image") %>
   <br><br>
 
@@ -48,11 +48,10 @@
 </div>
 
 
-<div class="ui modal">
-  <div class="ui icon header">
-    <i class="archive icon"></i>
+<div class="ui small modal">
+  <h3 class="ui icon header">
     Sign in
-  </div>
+  </h3>
   <div class="content">
     <div class="ui large form attached fluid segment">
       <%= form_tag signin_path, method: 'post' do %>

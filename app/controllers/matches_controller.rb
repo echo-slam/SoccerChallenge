@@ -50,6 +50,31 @@ class MatchesController < ApplicationController
       if @match.home_goal and @match.away_goal
         @match.is_end = true
         @match.save
+
+        @match_result = MatchResult.new(match_id: @match.id)
+
+        if @match.home_goal > @match.away_goal
+          @match_result.win_team_id = @match.team_owner_id
+          @match_result.loss_team_id = @match.team_away_id
+        elsif @match.home_goal < @match.away_goal
+          @match_result.win_team_id = @match.team_away_id
+          @match_result.loss_team_id = @match.team_owner_id
+        end
+        
+        @match_result.save
+
+        @home_team = Team.find(@match.team_owner_id)
+        @home_win_matches = MatchResult.where(win_team_id: @home_team.id)
+        @home_loss_matches = MatchResult.where(loss_team_id: @home_team.id)
+        @home_team.points = 1000 + 25 * @home_win_matches.count - 25 * @home_loss_matches.count
+
+        @away_team = Team.find(@match.team_away_id)
+        @away_win_matches = MatchResult.where(win_team_id: @away_team.id)
+        @away_loss_matches = MatchResult.where(loss_team_id: @away_team.id)
+        @away_team.points = 1000 + 25 * @away_win_matches.count - 25 * @away_loss_matches.count
+
+        @home_team.save
+        @away_team.save
       end
       redirect_to match_path(@match), flash: { info: 'Match was successfully updated.' }
     else
