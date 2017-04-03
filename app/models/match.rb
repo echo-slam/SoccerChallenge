@@ -2,6 +2,8 @@ class Match < ApplicationRecord
   has_many :match_requests
   has_many :match_messages, dependent: :destroy
 
+  validates_uniqueness_of :starts_at, scope: :field_id
+
   def captain_id
     Team.find(team_owner_id).team_owner.player_id
   end

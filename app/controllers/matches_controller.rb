@@ -2,7 +2,6 @@ class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :waiting, :away, :select, :edit, :update]
   before_action :set_admin, only: [:show, :edit, :update]
   before_action :check_match_permission, only: [:new]
-  before_action :check_admin_permission, only: [:edit, :update]
 
 
   def index
