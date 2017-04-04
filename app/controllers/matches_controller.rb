@@ -4,7 +4,9 @@ class MatchesController < ApplicationController
   before_action :check_match_permission, only: [:new]
 
   def index
-    @matches = Match.upcoming.not_ended
+    @matches = Match.order(starts_at: 'ASC')
+    @match_invitations = MatchRequest.where(team_id: current_player.team_id).where(status: 'INVITATION')
+    @match_requests = MatchRequest.where(team_id: current_player.team_id).where(status: 'PENDING')
   end
 
   def show
