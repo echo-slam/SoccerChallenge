@@ -39,5 +39,4 @@ $(document).on('turbolinks:load', function() {
   setInterval(get_notify_count, interval)
   setInterval(ajax_call, interval)
 
-
 }); 
