@@ -1,4 +1,4 @@
-require 'custom_render_sum.rb'
+load 'custom_render_sum.rb'
 
 class PlayersController < ApplicationController
   def index

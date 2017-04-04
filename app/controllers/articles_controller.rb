@@ -1,5 +1,5 @@
-require 'custom_render_detail.rb'
-require 'custom_render_sum.rb'
+load 'custom_render_detail.rb'
+load 'custom_render_sum.rb'
 
 class ArticlesController < ApplicationController
   def index
@@ -43,6 +43,6 @@ class ArticlesController < ApplicationController
 
   private
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :body, :ref_url)
     end
 end
