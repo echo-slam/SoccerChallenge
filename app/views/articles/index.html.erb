@@ -13,6 +13,25 @@
       <div class="ten wide column">
         <%= render @articles %>
       </div>
+
+      <div class="six wide column">
+        <div class="ui compact segment" id="articles-segment">
+          <% @data_fetch.each do |article| %>
+            <div class="ui right floated statistic">
+              <%= image_tag(article[:image_url], class: "ui fluid middle aligned rounded image") %>
+            </div>
+            <div class="content">
+              <span><h3 id="surge-text">
+                <%= article[:title] %>
+              </h3></span>
+              <%= article[:content] %>
+              <%= link_to 'Read More', article[:url] %>
+            </div>
+            <div class="ui divider"></div>
+          <% end %>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
