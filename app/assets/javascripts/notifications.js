@@ -34,7 +34,7 @@ $(document).on('turbolinks:load', function() {
     });
   };
 
-  var interval = 1000; // 1 second
+  var interval = 3000; // 3 second
   // ajax_call();
   setInterval(get_notify_count, interval)
   setInterval(ajax_call, interval)

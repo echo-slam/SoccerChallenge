@@ -1,0 +1,21 @@
+<% if available_teams.count > 0 %>
+  <% available_teams.each do |team| %>
+    <% if team.players.count >= 5 %>
+      <div class="ui large middle aligned relaxed list">
+        <div class="item">
+          <div class="right floated content">
+            <%= link_to 'Invite', invite_match_requests_path(match_id: match, team_id: team), class: 'ui teal button' %>
+          </div>
+          <img src="<%= team.image_url_or_default %>" alt="<%= team.name %>" class="ui avatar image">
+          <div class="content">
+            <a href="<%= team_path(team) %>" class="header"><%= team.name %></a>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+<% else %>
+  <div class="content">
+    There are no available teams now
+  </div>
+<% end %>

@@ -20,8 +20,13 @@ class MatchesController < ApplicationController
   def waiting
     @pending_requests = MatchRequest.where(team_received_id: @match.team_owner_id).where(status: 'PENDING')
     @team_requested_ids = @match.match_requests.select(:team_id)
-    @available_teams = Team.where.not(id: @match.team_owner_id).where.not(id: @team_requested_ids).where.not(id: @match.team_away_id)
     @match_messages = @match.match_messages.order(created_at: "DESC").first(50)
+
+    if params[:search]
+      @available_teams = Team.search(params[:search]).where.not(id: @match.team_owner_id).where.not(id: @match.team_away_id).where.not(id: @team_requested_ids)
+    else
+      @available_teams = Team.where.not(id: @match.team_owner_id).where.not(id: @match.team_away_id).where.not(id: @team_requested_ids)
+    end
   end
 
   def away
