@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170404072534) do
+ActiveRecord::Schema.define(version: 20170404133657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20170404072534) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "ref_url"
+    t.string   "image_url"
     t.index ["player_id"], name: "index_articles_on_player_id", using: :btree
   end
 

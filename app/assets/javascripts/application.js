@@ -11,4 +11,5 @@
 //= require statsAnimation
 //= require teamModals
 //= require playerModals
+//= require signInModal
 //= require_tree .

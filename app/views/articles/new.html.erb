@@ -6,7 +6,7 @@
       You want to share posts from another page. Follow these steps:
     </h3>
 
-    <div class="ui steps">
+    <div class="ui three fluid steps">
       <div class="step">
         <%= image_tag("title.svg",
             class: "ui tiny image") %>
@@ -21,7 +21,8 @@
             class: "ui tiny image") %>
         <div class="content">
           <div class="title">Share Link</div>
-          <div class="description">Paste the original post url</div>
+          <div class="description">Paste url of original 
+          post and url of preview image</div>
         </div>
       </div>
 
@@ -40,6 +41,7 @@
         </div>
       </div>
     </div>
+
   </div>
 
   <h1>New Article</h1>
@@ -50,6 +52,9 @@
       <br><br>
       <%= f.text_field :ref_url,
           placeholder: "Link to main article in another pages", class: "field" %>
+      <br><br>
+      <%= f.text_field :image_url,
+          placeholder: "Preview image for your article", class: "field" %>
       <br><br>
       <%= f.text_area :body, placeholder: "Write content or preview", class: "field", id: "my-body" %>
 

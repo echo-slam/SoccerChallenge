@@ -40,7 +40,8 @@
       </div>
 
       <div class="eight wide center aligned column">
-        <%= link_to 'Sign in', '#' , class: 'ui green button', :id => 'signin_index', :remote => true %>
+        <%= link_to 'Sign in', '#' , class: 'ui green button',
+            :id => 'sign_in_btn', :remote => true %>
         <%= link_to 'Sign up', new_player_path, class: 'ui blue button' %>
       </div>
     </div>
@@ -48,7 +49,7 @@
 </div>
 
 
-<div class="ui small modal">
+<div class="ui small modal" id="sign_in_modal">
   <h3 class="ui icon header">
     Sign in
   </h3>
