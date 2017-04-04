@@ -7,25 +7,32 @@ class FetchPage
 
     url_list = []
     fetch_data = []
-
+    image_url = []
     doc.css(".loadmore .td_tintuc_h3 a").each do |link|
       url_list.push(link["href"])
       #puts link["href"]
     end
 
-    url_list.each do |link|
+    doc.css(".img_tintuc").each do |img|
+      image_url.push(img['src'])
+    end
+
+    url_list.each_with_index do |link, index|
       link = URI.encode(link)
 
       doc = Nokogiri::HTML(open(link))
       article_title = doc.css(".post-title-singer").text
+      
       article_content = doc.css("p+ div strong").text
+      article_content = article_content[0..50] + "..."
 
-      data = {title: article_title, content: article_content, url: link}
+      data = {title: article_title, content: article_content, image_url: image_url[index], url: link}
+
       fetch_data.push(data)
     end
 
     fetch_data
-    
+
   end 
 
 end
