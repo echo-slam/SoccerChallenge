@@ -9,7 +9,11 @@
   </div>
 
   <div class="ui basic segment">
-    <%= link_to "Read more", article_path(article), class: "ui blue button" %>
+    <% if article.ref_url %>
+      <%= link_to "Read more", article.ref_url, target: '_blank', class: "ui blue button" %>
+    <% else %>
+      <%= link_to "Read more", article_path(article), class: "ui blue button" %>
+    <% end %>
   </div>
 </div>
 <br><br>

@@ -1,12 +1,57 @@
 <br><br>
 <div class="ui container">
-  <h1>New Articles</h1>
+
+  <div class="ui basic center aligned segment">
+    <h3 class="header">
+      You want to share posts from another page. Follow these steps:
+    </h3>
+
+    <div class="ui steps">
+      <div class="step">
+        <%= image_tag("title.svg",
+            class: "ui tiny image") %>
+        <div class="content">
+          <div class="title">Fill the title</div>
+          <div class="description">Copy the title from original post</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <%= image_tag("share_link.svg",
+            class: "ui tiny image") %>
+        <div class="content">
+          <div class="title">Share Link</div>
+          <div class="description">Paste the original post url</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <%= image_tag("preview.svg",
+            class: "ui tiny image") %>
+        <div class="content">
+          <div class="title">Edit the preview</div>
+            <div class="description">
+              Check this
+              <a href="https://simplemde.com/markdown-guide">
+                <strong>guide</strong>
+              </a>
+              to make your preview look better
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h1>New Article</h1>
 
   <%= form_for @article do |f| %>
     <div class="ui form">
       <%= f.text_field :title, placeholder: "Title", class: "field" %>
       <br><br>
-      <%= f.text_area :body, placeholder: "Content", class: "field", id: "my-body" %>
+      <%= f.text_field :ref_url,
+          placeholder: "Link to main article in another pages", class: "field" %>
+      <br><br>
+      <%= f.text_area :body, placeholder: "Write content or preview", class: "field", id: "my-body" %>
 
       <%= f.submit "Post", class: "ui teal submit button" %>
     </div>
