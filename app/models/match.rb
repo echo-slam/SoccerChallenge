@@ -37,14 +37,6 @@ class Match < ApplicationRecord
     away_goal || ' '
   end
 
-  def requests
-    match_requests.where(status: 'PENDING')
-  end
-
-  def invitations
-    match_requests.where(status: 'INVITATION')
-  end
-
   def self.upcoming
     where("starts_at > ?", Time.now)
   end
