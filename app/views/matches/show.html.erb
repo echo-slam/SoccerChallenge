@@ -116,9 +116,7 @@
     </div>
 
     <div class="row">
-      <% if current_player.email == @admin.email %>
-        <%= link_to 'Edit', edit_match_path(@match), class: 'ui blue button' %>
-      <% end %>
+      <%= link_to 'Update Score', edit_match_path(@match), class: 'ui teal button' %>
     </div>
   </div>
 </div>
