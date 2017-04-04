@@ -10,66 +10,38 @@
   <br><br>
 
   <div class="ui grid">
-    <div class="ui row">
-      <div class="four wide center aligned column">
-        <%= image_tag("white-stadium.svg",
-            class: "ui centered home-image image") %>
-        <h4>Field Owners can manage their fields online</h4>
-      </div>
-      <div class="four wide center aligned column">
-        <%= image_tag("white-football-flag.svg",
-            class: "ui centered home-image image") %>
-        <h4>Build your own soccer team with friends</h4>
-      </div>
+    <div class="row">
+      <div class="three wide column"></div>
 
-      <div class="four wide center aligned column">
-        <%= image_tag("white-sport-charity.svg",
-            class: "ui centered home-image image") %>
-        <h4>Challege other teams with fairplay spirit</h4>
-      </div>
+      <div class="ten wide column">
+        <div class="ui large form">
+          <%= form_for Player.new do |f| %>
+            <div class="field">
+              <%= f.text_field :full_name, placeholder: 'Name' %>
+            </div>
 
-      <div class="four wide center aligned column">
-        <%= image_tag("white-champion.svg",
-            class: "ui centered home-image image") %>
-        <h4>Amazing rating system. Track your result and be come legend</h4>
-      </div>
-    </div>
+            <div class="field">
+              <%= f.text_field :email, placeholder: 'Email' %>
+            </div>
 
-    <div class="ui row">
-      <div class="four wide column">
-      </div>
+            <div class="field">
+              <%= f.password_field :password, placeholder: 'Password' %>
+            </div>
 
-      <div class="eight wide center aligned column">
-        <%= link_to 'Sign in', '#' , class: 'ui green button',
-            :id => 'sign_in_btn', :remote => true %>
-        <%= link_to 'Sign up', new_player_path, class: 'ui blue button' %>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div class="ui small modal" id="sign_in_modal">
-  <h3 class="ui icon header">
-    Sign in
-  </h3>
-  <div class="content">
-    <div class="ui large form attached fluid segment">
-      <%= form_tag signin_path, method: 'post' do %>
-        <div class="field">
-          <%= text_field_tag :email, params[:email], placeholder: "Email" %>
+            <br>
+            <%= f.submit 'Sign Up', class: 'ui large teal basic button' %>
+            <a href="/auth/facebook">
+              <button class="ui large facebook right floated button">
+                <i class="facebook icon"></i>
+                Sign In with Facebook
+              </button>
+            </a>
+          <% end %>
         </div>
-
-        <div class="field">
-            <%= password_field_tag :password, nil, placeholder: "Password" %>
-        </div>
-        <%= submit_tag 'Sign In as Player', name: 'sign_in_player', class: 'ui large green button' %>
-        <%= submit_tag 'Sign In as Field Owner', name: 'sign_in_field_owner', class: 'ui large blue button' %>
-      <% end %>
+      </div>
+      
+      <div class="three wide column"></div>
     </div>
-  </div>
-  <div class="ui large bottom attached warning message">
-    <i class="icon help"></i>
-    Don't have an account? <a href="<%= new_player_path %>">Sign Up</a>
+
   </div>
 </div>
