@@ -5,83 +5,84 @@
   <div class="ui grid">
     <div class="row">
       <div class="five wide column">
-        <div id="team-fixed-profile">
-          <div class="ui card" id="card-bg">
-            <%= image_tag(@team.image_url_or_default, class: "ui centered image") %>
-            <br>
+      </div>
+      
+      <div class="four wide column" id="team-fixed-profile">
+        <div class="ui card" id="card-bg">
+          <%= image_tag(@team.image_url_or_default, class: "ui centered image") %>
+          <br>
 
-              <div class="ui mini three statistics">
-                <div class="invi statistic" id="stat_1">
-                  <div class="value">
-                    <%= image_tag("037-soccer.svg", class: "ui inline image team-stats") %>
-                    <%= @games_played %>
-                  </div>
-                  <div class="label">
-                    Matches
-                  </div>
+            <div class="ui mini three statistics">
+              <div class="invi statistic" id="stat_1">
+                <div class="value">
+                  <%= image_tag("037-soccer.svg", class: "ui inline image team-stats") %>
+                  <%= @games_played %>
                 </div>
-                <div class="invi statistic" id="stat_2">
-                  <div class="value">
-                    <%= @team.points %>
-                  </div>
-                  <div class="label">
-                    pts
-                  </div>
-                </div>
-                <div class="invi statistic" id="stat_3">
-                  <div class="value">
-                    <%= image_tag("037-football-player.svg", class: "ui inline image team-stats") %>
-                    <%= @players.count %>
-                  </div>
-                  <div class="label">
-                    Members
-                  </div>
+                <div class="label">
+                  Matches
                 </div>
               </div>
-
-            <div class="ui basic segment">
-              <span><h1 id="elegant-text">
-                <strong><%= @team.name.upcase %></strong>
-              </h1></span>
-
-              <span id="silver-text">
-                Founded in <%= @team.created_at.strftime("%Y") %>
-              </span>
+              <div class="invi statistic" id="stat_2">
+                <div class="value">
+                  <%= @team.points %>
+                </div>
+                <div class="label">
+                  pts
+                </div>
+              </div>
+              <div class="invi statistic" id="stat_3">
+                <div class="value">
+                  <%= image_tag("037-football-player.svg", class: "ui inline image team-stats") %>
+                  <%= @players.count %>
+                </div>
+                <div class="label">
+                  Members
+                </div>
+              </div>
             </div>
 
-            <% if current_player.team_owner.team_id == @team.id %>
-              <div class="ui bottom attached tiny buttons">
-                <%= link_to @team_request_string, nil, class: 'ui teal button',
-                    :id => "team_request_btn", :remote => true %>
+          <div class="ui basic segment">
+            <span><h1 id="elegant-text">
+              <strong><%= @team.name.upcase %></strong>
+            </h1></span>
 
-                <%= link_to @match_invite_string, nil, class: 'ui teal button',
-                    :id => "match_invite_btn", :remote => true %>
-              </div>
-
-            <% elsif current_player.free_player? %>
-              <% if @team_invites.where(team_id: @team.id).count == 0  %>
-                <% if @team_requests.where(team_id: @team.id).count == 0 %>
-                  <%= link_to "Request to join",
-                      team_requests_path(team_id: @team.id),
-                      :method => :post, class: 'ui tiny teal button' %>
-                <% else %>
-                  <%= link_to "Cancel request",
-                      team_request_path(id: @team_requests.where(team_id: @team.id),
-                                        team_id: @team.id),
-                      :method => :delete, class: 'ui tiny black button' %>
-                <% end %>
-              <% else %>
-                <div class="ui bottom attached tiny buttons">
-                  <%= link_to "Accept",
-                      accept_team_request_path(team_id: @team.id),
-                                               :method => :delete, class: 'ui teal button' %>
-                  <%= link_to "Decline",
-                      decline_team_request_path(team_id: @team.id),
-                                                :method => :delete, class: 'ui black button' %>
-                </div>
-              <% end %>
-            <% end %>
+            <span id="silver-text">
+              Founded in <%= @team.created_at.strftime("%Y") %>
+            </span>
           </div>
+
+          <% if current_player.team_owner.team_id == @team.id %>
+            <div class="ui bottom attached tiny buttons">
+              <%= link_to @team_request_string, nil, class: 'ui teal button',
+                  :id => "team_request_btn", :remote => true %>
+
+              <%= link_to @match_invite_string, nil, class: 'ui teal button',
+                  :id => "match_invite_btn", :remote => true %>
+            </div>
+
+          <% elsif current_player.free_player? %>
+            <% if @team_invites.where(team_id: @team.id).count == 0  %>
+              <% if @team_requests.where(team_id: @team.id).count == 0 %>
+                <%= link_to "Request to join",
+                    team_requests_path(team_id: @team.id),
+                    :method => :post, class: 'ui tiny teal button' %>
+              <% else %>
+                <%= link_to "Cancel request",
+                    team_request_path(id: @team_requests.where(team_id: @team.id),
+                                      team_id: @team.id),
+                    :method => :delete, class: 'ui tiny black button' %>
+              <% end %>
+            <% else %>
+              <div class="ui bottom attached tiny buttons">
+                <%= link_to "Accept",
+                    accept_team_request_path(team_id: @team.id),
+                                             :method => :delete, class: 'ui teal button' %>
+                <%= link_to "Decline",
+                    decline_team_request_path(team_id: @team.id),
+                                              :method => :delete, class: 'ui black button' %>
+              </div>
+            <% end %>
+          <% end %>
         </div>
       </div>
 

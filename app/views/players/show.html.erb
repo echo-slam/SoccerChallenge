@@ -3,86 +3,87 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="five wide column">
-      <div id="player-fixed-profile">
-        <div class="ui card" id="card-bg">
+    </div>
 
-          <div class="image">
-            <%= image_tag(@player.image_url_or_default,
-                class: "ui image") %>
-          </div>
+    <div class="four wide column" id="player-fixed-profile">
+      <div class="ui card" id="card-bg">
 
-          <div class="content">
-            <span><h3 id="elegant-text">
-              <%= @player.full_name %>
-              <% if current_player == @player %>
-                <%= link_to(edit_player_path(current_player.id)) do %>
-                  <i class="teal edit icon"></i>
-                <% end %>
-              <% end %>
-            </h3></span>
-
-            <div class="meta">
-              <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
-            </div><br>
-
-            <div class="description">
-              <% if @team %>
-                <a href="<%= team_path(@team) %>">
-                  <%= image_tag(@team.image_url_or_default,
-                      class: "ui circular image team-badge") %>
-                  <strong id="elegant-text"><%= @team.name %></strong>
-                </a>
-              <% else %>
-                <%= image_tag("team-badge.svg",
-                    class: "ui image mini") %>
-                <span><strong id="elegant-text">Free Player</strong></span>
-              <% end %>
-              <br><br>
-
-              <p>Nickname: <%= @player.nickname.presence || "None" %></p>
-              <p>Favorite Team: <%= @player.favorite_team.presence || "None" %></p>
-              <p>Favorite Player: <%= @player.favorite_player.presence || "None" %></p>
-            </div>
-          </div>
-
-          <% unless current_player.team_id %>
-            <% if @player == current_player %>
-              <div class="ui two bottom attached buttons">
-                <%= link_to 'Create Team', new_team_path, class: 'ui teal button' %>
-                <%= link_to 'Invitation', nil,
-                    class: 'ui teal button',
-                    id: "invitation_btn", remote: true %>
-              </div>
-            <% end %>
-          <% end %>
-
-          <% if current_player.is_team_owner? %>
-            <% if @team_requests.where(player_id: @player.id).count == 0 %>
-              <% if @player.free_player? %>
-                <% if @team_invites.where(player_id: @player.id).count == 0 %>
-                  <%= link_to "Invite player",
-                      team_requests_path(player_id: @player.id),
-                      :method => :post, class: 'ui tiny bottom attached teal button' %>
-                <% else %>
-                  <%= link_to "Cancel invitation",
-                      team_request_path(id: @team_invites.where(player_id: @player.id).first,
-                                        player_id: @player.id),
-                      :method => :delete, class: 'ui tiny bottom attached black button' %>
-                <% end %>
-              <% end %>
-            <% else %>
-              <div class="ui two bottom attached buttons">
-                <%= link_to "Accept",
-                    accept_team_request_path(player_id: @player.id),
-                                             :method => :delete, class: 'ui teal button' %>
-                <%= link_to "Decline",
-                    decline_team_request_path(player_id: @player.id),
-                                              :method => :delete, class: 'ui black button' %>
-              </div>
-            <% end %>
-          <% end %>
-
+        <div class="image">
+          <%= image_tag(@player.image_url_or_default,
+              class: "ui image") %>
         </div>
+
+        <div class="content">
+          <span><h3 id="elegant-text">
+            <%= @player.full_name %>
+            <% if current_player == @player %>
+              <%= link_to(edit_player_path(current_player.id)) do %>
+                <i class="teal edit icon"></i>
+              <% end %>
+            <% end %>
+          </h3></span>
+
+          <div class="meta">
+            <span class="date">Joined in <%= @player.created_at.strftime("%Y-%m-%d") %></span>
+          </div><br>
+
+          <div class="description">
+            <% if @team %>
+              <a href="<%= team_path(@team) %>">
+                <%= image_tag(@team.image_url_or_default,
+                    class: "ui circular image team-badge") %>
+                <strong id="elegant-text"><%= @team.name %></strong>
+              </a>
+            <% else %>
+              <%= image_tag("team-badge.svg",
+                  class: "ui image mini") %>
+              <span><strong id="elegant-text">Free Player</strong></span>
+            <% end %>
+            <br><br>
+
+            <p>Nickname: <%= @player.nickname.presence || "None" %></p>
+            <p>Favorite Team: <%= @player.favorite_team.presence || "None" %></p>
+            <p>Favorite Player: <%= @player.favorite_player.presence || "None" %></p>
+          </div>
+        </div>
+
+        <% unless current_player.team_id %>
+          <% if @player == current_player %>
+            <div class="ui two bottom attached buttons">
+              <%= link_to 'Create Team', new_team_path, class: 'ui teal button' %>
+              <%= link_to 'Invitation', nil,
+                  class: 'ui teal button',
+                  id: "invitation_btn", remote: true %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <% if current_player.is_team_owner? %>
+          <% if @team_requests.where(player_id: @player.id).count == 0 %>
+            <% if @player.free_player? %>
+              <% if @team_invites.where(player_id: @player.id).count == 0 %>
+                <%= link_to "Invite player",
+                    team_requests_path(player_id: @player.id),
+                    :method => :post, class: 'ui tiny bottom attached teal button' %>
+              <% else %>
+                <%= link_to "Cancel invitation",
+                    team_request_path(id: @team_invites.where(player_id: @player.id).first,
+                                      player_id: @player.id),
+                    :method => :delete, class: 'ui tiny bottom attached black button' %>
+              <% end %>
+            <% end %>
+          <% else %>
+            <div class="ui two bottom attached buttons">
+              <%= link_to "Accept",
+                  accept_team_request_path(player_id: @player.id),
+                                           :method => :delete, class: 'ui teal button' %>
+              <%= link_to "Decline",
+                  decline_team_request_path(player_id: @player.id),
+                                            :method => :delete, class: 'ui black button' %>
+            </div>
+          <% end %>
+        <% end %>
+
       </div>
     </div>
 

@@ -53,8 +53,26 @@ class TeamsController < ApplicationController
     @away_matches = Match.where(team_away_id: @team.id).where(is_end: true)
     @games_played = @home_matches.count + @away_matches.count
 
-    @next_not_end_match = Match.where(is_start: true).where(is_end: nil)
+    @home_goals = 0
+    @home_loss_goals = 0
+    if @home_matches.count > 0
+      @home_matches.each do |match|
+        @home_goals += match.home_goal
+        @home_loss_goals += match.away_goal
+      end
+    end
+    @away_goals = 0
+    @away_loss_goals = 0
+    if @away_matches.count > 0
+      @away_matches.each do |match|
+        @away_goals += match.away_goal
+        @away_loss_goals += match.home_goal
+      end
+    end
+    @goals = @home_goals + @away_goals
+    @loss_goals = @home_loss_goals + @away_loss_goals
 
+    @next_not_end_match = Match.where(is_start: true).where(is_end: nil)
     @next_home_match = @next_not_end_match.where(team_owner_id: @team.id).order(starts_at: "ASC").first
     @next_away_match = @next_not_end_match.where(team_away_id: @team.id).order(starts_at: "ASC").first
 
@@ -102,6 +120,13 @@ class TeamsController < ApplicationController
     end
 
     @recent_matches = Match.where("team_owner_id = ? OR team_away_id = ?", @team.id, @team.id).where(is_end: true).order(starts_at: 'ASC').first(5)
+
+    @win_matches = MatchResult.where(win_team_id: @team.id)
+    if @games_played > 0
+      @win_rate = (@win_matches.count * 100) / @games_played
+    else
+      @win_rate = 0
+    end
   end
 
   def team_members
