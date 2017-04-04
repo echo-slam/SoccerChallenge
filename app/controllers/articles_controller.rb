@@ -6,8 +6,11 @@ class ArticlesController < ApplicationController
     @articles = Article.order(created_at: "DESC")
     @markdown = Redcarpet::Markdown.new(CustomRenderSum)
 
+    @data_fetch = Article.seed_article
+
     respond_to do |format|
       format.html
+      format.json
       format.js
     end
   end

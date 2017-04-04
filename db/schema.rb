@@ -154,17 +154,6 @@ ActiveRecord::Schema.define(version: 20170404133657) do
     t.string   "image_url"
   end
 
-  create_table "time_slots", force: :cascade do |t|
-    t.integer  "match_id"
-    t.integer  "field_id"
-    t.datetime "starts_at"
-    t.datetime "ends_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["field_id"], name: "index_time_slots_on_field_id", using: :btree
-    t.index ["match_id"], name: "index_time_slots_on_match_id", using: :btree
-  end
-
   create_table "venues", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -181,6 +170,4 @@ ActiveRecord::Schema.define(version: 20170404133657) do
   add_foreign_key "articles", "players"
   add_foreign_key "match_messages", "matches"
   add_foreign_key "team_messages", "teams"
-  add_foreign_key "time_slots", "fields"
-  add_foreign_key "time_slots", "matches"
 end
