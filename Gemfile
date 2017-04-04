@@ -68,4 +68,7 @@ gem 'gmaps4rails'
 gem 'fullcalendar-rails'
 gem 'momentjs-rails'
 
+# Gem to render markdown and html
 gem 'redcarpet'
+# Gem to draw the charts
+gem "chartkick"

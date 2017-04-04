@@ -119,14 +119,45 @@ class TeamsController < ApplicationController
       @channel = "team"
     end
 
-    @recent_matches = Match.where("team_owner_id = ? OR team_away_id = ?", @team.id, @team.id).where(is_end: true).order(starts_at: 'ASC').first(5)
+    @recent_matches = Match.where("team_owner_id = ? OR team_away_id = ?", @team.id, @team.id).where(is_end: true).order(starts_at: 'DESC').first(5)
 
-    @win_matches = MatchResult.where(win_team_id: @team.id)
-    if @games_played > 0
-      @win_rate = (@win_matches.count * 100) / @games_played
-    else
-      @win_rate = 0
-    end
+    @num_win_matches = MatchResult.where(win_team_id: @team.id).count
+    @num_loss_matches = MatchResult.where(loss_team_id: @team.id).count
+    @num_draw_matches = @games_played - @num_win_matches - @num_loss_matches
+
+    @team_results = { "Win" => @num_win_matches,
+                      "Loss" => @num_loss_matches,
+                      "Draw" => @num_draw_matches
+                    }
+
+    @team_goals = { "Goals For" => @goals,
+                    "Goals Against" => @loss_goals
+                  }
+
+    @library_result = {
+      title: "Matches",
+      titleTextStyle: {
+        color: "#32373A",
+        fontName: "Lato",
+        fontSize: 25
+      },
+      pieHole: 0.6,
+      pieSliceText: "label",
+      legend: 'none'
+    }
+
+    @library_goal = {
+      title: "Goals",
+      titleTextStyle: {
+        color: "#32373A",
+        fontName: "Lato",
+        fontSize: 25
+      },
+      pieHole: 0.6,
+      pieSliceText: "value",
+      legend: 'none'
+    }
+
   end
 
   def team_members

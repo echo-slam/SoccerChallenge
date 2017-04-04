@@ -89,97 +89,163 @@
       <div class="eleven wide column">
         <div class="ui grid">
           <div class="row">
-            <h1 class="ui header" id="elegant-text">
-              Squad (<%= @players.count %>)
-            </h1>
+            <div class="sixteen wide column">
+              <h1 class="ui header" id="elegant-text">
+                Squad (<%= @players.count %>)
+              </h1>
 
-            <div class="ui five link cards">
-              <% @first_five_players.each do |player| %>
-                <a href="<%= player_path(player) %>">
+              <div class="ui five link cards">
+                <% @first_five_players.each do |player| %>
+                  <a href="<%= player_path(player) %>">
 
-                <div class="ui card " id="squad-card-bg">
-                  <%= image_tag(player.image_url_or_default,
-                      class: "ui image", id: "squad-image")%>
-                  <div class="center aligned content">
-                    <p>
-                      <%= link_to player.full_name, player_path(player),
-                          id: "elegant-text" %>
-                    </p>
+                  <div class="ui card " id="squad-card-bg">
+                    <%= image_tag(player.image_url_or_default,
+                        class: "ui image", id: "squad-image")%>
+                    <div class="center aligned content">
+                      <p>
+                        <%= link_to player.full_name, player_path(player),
+                            id: "elegant-text" %>
+                      </p>
+                    </div>
                   </div>
-                </div>
+                  </a>
+                <% end %>
+              </div>
 
-                </a>
-              <% end %>
+              <div>
+                <br>
+                <% if @players.count > 5 %>
+                  <%= link_to "Show all", team_members_path(id: @team.id),
+                      class: "ui teal small button" %>
+                <% end %>
+              </div>
             </div>
-
-            <div>
-              <br>
-              <% if @players.count > 5 %>
-                <%= link_to "Show all", team_members_path(id: @team.id),
-                    class: "ui teal small button" %>
-              <% end %>
-            </div>
-
           </div>
 
           <div class="row">
             <div class="sixteen wide column">
               <br>
-              <h1 class="ui center aligned header" id="elegant-text">
-                Upcoming Match
-              </h1><br>
+            </div>
+          </div>
 
-              <% if @upcoming_match  %>
-                <% if @team_is_home %>
-                  <div class="ui grid">
-                    <div class="row">
-                      <div class="six wide column">
-                        <h3 class="ui center aligned header" id="elegant-text">Home</h3>
+          <div class="row">
+            <div class="eight wide column">
+              <div class="ui basic center aligned segment">
+                <%= pie_chart @team_results,
+                    width: "auto", height: "300px",
+                    donut: true, legend: "top", :library => @library_result %>
+              </div>
+            </div>
 
-                        <%= image_tag(@team.image_url_or_default,
-                            class: "ui tiny centered rounded image") %>
+            <div class="eight wide column">
+              <div class="ui basic center aligned segment">
+                <%= pie_chart @team_goals,
+                    width: "auto", height: "300px",
+                    donut: true, legend: "top", :library => @library_goal %>
+              </div>
+            </div>
+          </div>
 
-                        <h4 class="ui center aligned header" id="elegant-text">
-                          <%= @team.name %>
-                        </h4>
+          <div class="row">
+            <div class="eight wide column">
+              <div class="ui basic segment" id="team-match-segment">
+                <br><br>
+                <h1 class="ui center aligned header" id="elegant-text">
+                  Upcoming Match
+                </h1><br>
+
+                <% if @upcoming_match  %>
+                  <% if @team_is_home %>
+                    <div class="ui grid">
+                      <div class="row">
+                        <div class="six wide column">
+                          <h3 class="ui center aligned header" id="elegant-text">Home</h3>
+
+                          <%= image_tag(@team.image_url_or_default,
+                              class: "ui tiny centered rounded image") %>
+
+                          <h4 class="ui center aligned header" id="elegant-text">
+                            <%= @team.name %>
+                          </h4>
+                        </div>
+
+                        <div class="four wide column">
+                          <div class="ui vertical divider" id="elegant-text">VS</div>
+                        </div>
+
+                        <div class="six wide column">
+                          <h3 class="ui center aligned header" id="elegant-text">Away</h3>
+
+                          <%= image_tag(@remain_team.image_url_or_default,
+                              class: "ui tiny centered rounded image") %>
+
+                          <h4 class="ui center aligned header" id="elegant-text">
+                            <%= @remain_team.name %>
+                          </h4>
+                        </div>
                       </div>
 
-                      <div class="four wide column">
-                        <div class="ui vertical divider" id="elegant-text">VS</div>
-                      </div>
-
-                      <div class="six wide column">
-                        <h3 class="ui center aligned header" id="elegant-text">Away</h3>
-
-                        <%= image_tag(@remain_team.image_url_or_default,
-                            class: "ui tiny centered rounded image") %>
-
-                        <h4 class="ui center aligned header" id="elegant-text">
-                          <%= @remain_team.name %>
-                        </h4>
+                      <div class="row">
+                        <div class="sixteen wide column">
+                          <h5 class="ui center aligned header">
+                            <%= link_to @upcoming_match.starts_at.strftime("%Y-%m-%d"),
+                                match_path(@upcoming_match), id: "elegant-text" %>
+                          </h5>
+                        </div>
                       </div>
                     </div>
+                  <% else %>
+                    <div class="ui grid">
+                      <div class="row">
+                        <div class="six wide column">
+                          <h3 class="ui center aligned header" id="elegant-text">Home</h3>
 
-                    <div class="row">
-                      <div class="sixteen wide column">
-                        <h5 class="ui center aligned header">
-                          <%= link_to @upcoming_match.starts_at.strftime("%Y-%m-%d"),
-                              match_path(@upcoming_match), id: "elegant-text" %>
-                        </h5>
+                          <%= image_tag(@remain_team.image_url_or_default,
+                              class: "ui tiny centered rounded image") %>
+
+                          <h4 class="ui center aligned header" id="elegant-text">
+                            <%= @remain_team.name %>
+                          </h4>
+                        </div>
+
+                        <div class="four wide column">
+                          <div class="ui vertical divider" id="elegant-text">VS</div>
+                        </div>
+
+                        <div class="six wide column">
+                          <h3 class="ui center aligned header" id="elegant-text">Away</h3>
+
+                          <%= image_tag(@team.image_url_or_default,
+                              class: "ui tiny centered rounded image") %>
+
+                          <h4 class="ui center aligned header" id="elegant-text">
+                            <%= @team.name %>
+                          </h4>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="sixteen wide column">
+                          <h5 class="ui center aligned header">
+                            <%= link_to @upcoming_match.starts_at.strftime("%Y-%m-%d"),
+                                match_path(@upcoming_match), id: "elegant-text" %>
+                          </h5>
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  <% end %>
+
                 <% else %>
                   <div class="ui grid">
                     <div class="row">
                       <div class="six wide column">
                         <h3 class="ui center aligned header" id="elegant-text">Home</h3>
 
-                        <%= image_tag(@remain_team.image_url_or_default,
+                        <%= image_tag(@team.image_url_or_default,
                             class: "ui tiny centered rounded image") %>
 
                         <h4 class="ui center aligned header" id="elegant-text">
-                          <%= @remain_team.name %>
+                          <%= @team.name %>
                         </h4>
                       </div>
 
@@ -190,66 +256,22 @@
                       <div class="six wide column">
                         <h3 class="ui center aligned header" id="elegant-text">Away</h3>
 
-                        <%= image_tag(@team.image_url_or_default,
+                        <%= image_tag("team-badge.svg",
                             class: "ui tiny centered rounded image") %>
-
                         <h4 class="ui center aligned header" id="elegant-text">
-                          <%= @team.name %>
+                          ???
                         </h4>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="sixteen wide column">
-                        <h5 class="ui center aligned header">
-                          <%= link_to @upcoming_match.starts_at.strftime("%Y-%m-%d"),
-                              match_path(@upcoming_match), id: "elegant-text" %>
-                        </h5>
                       </div>
                     </div>
                   </div>
                 <% end %>
-
-              <% else %>
-                <div class="ui grid">
-                  <div class="row">
-                    <div class="six wide column">
-                      <h3 class="ui center aligned header" id="elegant-text">Home</h3>
-
-                      <%= image_tag(@team.image_url_or_default,
-                          class: "ui tiny centered rounded image") %>
-
-                      <h4 class="ui center aligned header" id="elegant-text">
-                        <%= @team.name %>
-                      </h4>
-                    </div>
-
-                    <div class="four wide column">
-                      <div class="ui vertical divider" id="elegant-text">VS</div>
-                    </div>
-
-                    <div class="six wide column">
-                      <h3 class="ui center aligned header" id="elegant-text">Away</h3>
-
-                      <%= image_tag("team-badge.svg",
-                          class: "ui tiny centered rounded image") %>
-                      <h4 class="ui center aligned header" id="elegant-text">
-                        ???
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
+              </div>
             </div>
-          </div>
 
-          <div class="row">
-            <br>
-          </div>
-
-          <div class="row">
             <div class="eight wide column">
-              <div class="ui basic segment" id="team-segment-bg">
+              <div class="ui basic segment" id="team-match-segment">
+                <br><br>
+
                 <h1 class="ui center aligned header" id="elegant-text">
                   Recent Matches
                 </h1>
