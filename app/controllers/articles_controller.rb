@@ -1,5 +1,5 @@
-load 'custom_render_detail.rb'
-load 'custom_render_sum.rb'
+require 'custom_render_detail.rb'
+require 'custom_render_sum.rb'
 
 class ArticlesController < ApplicationController
   def index
