@@ -39,6 +39,19 @@ body {
   width: 50px;
 }
 
+.nav-image {
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Chrome, Safari, Opera */
+  transform: rotate(45deg);
+  width: 27px;
+  height: 27px;
+}
+
+.nav-text {
+  padding-left: 5px;
+  font-family: Lato;
+}
+
 #card-bg {
   box-shadow: 0 15px 35px rgba(50,50,93,.1), 0 5px 15px rgba(0,0,0,.07);
 }
