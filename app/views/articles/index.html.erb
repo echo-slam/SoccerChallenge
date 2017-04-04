@@ -15,11 +15,18 @@
       </div>
 
       <div class="six wide column">
-        <div class="ui segment" >
-          <% 2.times do %>
-            <span><h3 id="surge-text"><%= @data_fetch[:title] %></h3></span>
-            <div class="content"><%= @data_fetch[:content] %></div>
-            <%= link_to 'Read More', @data_fetch[:url] %>
+        <div class="ui compact segment" id="articles-segment">
+          <% @data_fetch.each do |article| %>
+            <div class="ui right floated statistic">
+              <%= image_tag(article[:image_url], class: "ui fluid middle aligned rounded image") %>
+            </div>
+            <div class="content">
+              <span><h3 id="surge-text">
+                <%= article[:title] %>
+              </h3></span>
+              <%= article[:content] %>
+              <%= link_to 'Read More', article[:url] %>
+            </div>
             <div class="ui divider"></div>
           <% end %>
         </div>

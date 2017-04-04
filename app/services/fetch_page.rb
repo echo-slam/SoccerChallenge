@@ -24,7 +24,7 @@ class FetchPage
       article_title = doc.css(".post-title-singer").text
       
       article_content = doc.css("p+ div strong").text
-      article_content = article_content[0..50] + "..."
+      article_content = article_content[0..150] + "..."
 
       data = {title: article_title, content: article_content, image_url: image_url[index], url: link}
 
