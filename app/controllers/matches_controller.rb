@@ -48,10 +48,16 @@ class MatchesController < ApplicationController
   def update
     if @match.update(match_params)
       if @match.home_goal and @match.away_goal
+        @match.save
+      end
+      if current_player.email == "admin@soccerchallenge.com"
         @match.is_end = true
         @match.save
 
-        @match_result = MatchResult.new(match_id: @match.id)
+        @match_result = MatchResult.where(match_id: @match.id).first
+        if @match_result == nil
+          @match_result = MatchResult.new(match_id: @match.id)
+        end
 
         if @match.home_goal > @match.away_goal
           @match_result.win_team_id = @match.team_owner_id
@@ -102,7 +108,7 @@ class MatchesController < ApplicationController
       if current_player.email == "admin@soccerchallenge.com"
         params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :is_end, :home_goal, :away_goal)
       else
-        params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :is_end)
+        params.require(:match).permit(:team_owner_id, :team_away_id, :venue_id, :field_id, :starts_at, :ends_at, :is_start, :home_goal, :away_goal)
       end
     end
 end

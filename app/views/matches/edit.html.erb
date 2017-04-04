@@ -14,7 +14,19 @@
             <%= f.label :away_goal %>
             <%= f.text_field :away_goal %>
           </div>
-          <%= f.submit "Submit", class: 'ui large green button' %>
+          <% if @match.home_goal and @match.away_goal %>
+            <% if current_player.email == "admin@soccerchallenge.com" %>
+              <%= f.submit "Verify", class: 'ui large green button' %>
+            <% else %>
+              <% if @match.is_end %>
+                <p>Match result was verified.</p>
+              <% else %>
+                <p>Match result was submitted.</p>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= f.submit "Submit", class: 'ui large teal button' %>
+          <% end %>
         <% end %>
       </div>
     </div>
