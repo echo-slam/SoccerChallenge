@@ -37,6 +37,10 @@ class Match < ApplicationRecord
     away_goal || ' '
   end
 
+  def is_old
+    starts_at < Time.now
+  end
+
   def self.upcoming
     where("starts_at > ?", Time.now)
   end

@@ -23,7 +23,7 @@
         <% if match.team_owner_id == current_player.team_id || match.team_away_id == current_player.team_id %>
           <%= link_to 'View', waiting_match_path(match), class: 'ui attached button' %>
         <% else %>
-          <% if match.is_start %>
+          <% if match.is_start || match.is_old %>
             <%= link_to 'View', match_path(match), class: 'ui attached button' %>
           <% else %>
             <% if @match_invitations.where(team_received_id: match.team_owner_id).count == 0 %>
