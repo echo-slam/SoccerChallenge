@@ -38,7 +38,7 @@ class TeamsController < ApplicationController
     @team_messages = @team.team_messages.order(created_at: "DESC").first(50)
 
     @players = @team.players
-    @first_six_players = @team.players.first(6)
+    @first_five_players = @team.players.first(5)
 
     @player_requests = TeamRequest.where(team_id: @team.id).where(kind: "request")
 

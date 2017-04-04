@@ -1,19 +1,40 @@
 <div class="ui segment">
   <div class="ui basic segment articles-segment">
-    <span><h3><%= article.title %></h3></span>
-    <div class="meta">
-      <span class="date"><%= article.created_at.strftime("%Y-%m-%d") %></span>
-    </div><br>
+    <div class="ui grid">
+      <div class="row">
+        <div class="seven wide column">
+          <% if article.image_url %>
+          <%= image_tag( article.image_url,
+              class: "ui fluid image") %>
+          <% end %>
+        </div>
 
-    <span class="justify-text"><%= @markdown.render(article.body).html_safe %></span>
+        <div class="nine wide column">
+          <% if article.ref_url %>
+            <%= link_to(article.ref_url, target: '_blank') do %>
+              <span><h3 id="surge-text"><%= article.title %></h3></span>
+            <% end %>
+          <% else %>
+            <%= link_to(article_path(article)) do %>
+              <span><h3 id="surge-text"><%= article.title %></h3></span>
+            <% end %>
+          <% end %>
+
+          <div class="meta">
+            <span class="date"><%= article.created_at.strftime("%Y-%m-%d") %></span>
+          </div><br>
+
+          <span class="justify-text"><%= @markdown.render(article.body).html_safe %></span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="ui basic segment">
-    <% if article.ref_url %>
-      <%= link_to "Read more", article.ref_url, target: '_blank', class: "ui blue button" %>
-    <% else %>
-      <%= link_to "Read more", article_path(article), class: "ui blue button" %>
-    <% end %>
+    <address style="text-align: right">
+      Written by <a href="<%= player_path(article.player_id) %>">
+      <%= Player.find(article.player_id) %></a><br> 
+    </address>
   </div>
 </div>
 <br><br>
