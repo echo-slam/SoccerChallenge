@@ -118,7 +118,10 @@
     <div class="row">
       <% if @is_host_or_admin %>
         <%= link_to 'Update Score', edit_match_path(@match), class: 'ui teal button' %>
-      <% else %>
+      <% end %>
+      <% if @player_result == nil %>
+        <%= link_to 'Update Your Goal', new_player_result_path(match_id: @match.id),
+            class: 'ui teal button' %>
       <% end %>
     </div>
   </div>

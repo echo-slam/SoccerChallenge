@@ -14,6 +14,8 @@ class MatchesController < ApplicationController
     if (current_player == @home_team_owner) or (current_player.email == "admin@soccerchallenge.com")
       @is_host_or_admin = true
     end
+
+    @player_result = PlayerResult.where(match_id: @match.id).where(player_id: current_player.id).first
   end
 
   def new
