@@ -1,2 +1,15 @@
 <br><br>
-<%= @match_id %>
+<div class="ui container">
+  <h1>Update your goal</h1>
+  
+  <div class="ui form">
+    <%= form_for @player_result do |f| %>
+      <div class="field">
+        <%= f.text_field :goal,
+            placeholder: "Number of goals you score in this match"%><br>
+      </div>
+      <%= hidden_field_tag(:match_id, @match_id) %>
+      <%= f.submit "Submit", class: 'ui large teal button' %>
+    <% end %>
+  </div>
+</div>

@@ -8,13 +8,10 @@ class PlayerResultsController < ApplicationController
     @player_result = PlayerResult.new player_result_params
     @player_result.match_id = params[:match_id]
     @player_result.player_id = current_player.id
-    @player_result.save
-  end
 
-  def show
-  end
+    @player_result.save!
 
-  def edit
+    redirect_to match_path(@player_result.match_id)
   end
 
   private

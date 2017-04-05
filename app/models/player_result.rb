@@ -1,4 +1,3 @@
 class PlayerResult < ApplicationRecord
-  belongs_to :match
-  belongs_to :player
+  validates :goal, numericality: true
 end
