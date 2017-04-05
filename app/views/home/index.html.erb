@@ -5,43 +5,73 @@
   </video>
 </div>
 
-<div class="ui black inverted raise segment main-board-align" id="main-segment">
-  <%= image_tag("logo-soccer-challenge.svg", class: "ui medium image") %>
-  <br><br>
+<div class="ui grid main-board-align">
+  <div class="row">
+    <div class="two wide column"></div>
+    <div class="twelve wide column">
+      <h2 class="ui center aligned inverted header">New to SoccerChallenge? Sign up now</h2>
+      <h4 class="ui center aligned inverted header">It only takes 3 minutes!</h4>
+    </div>
+    <div class="two wide column"></div>
+  </div>
 
-  <div class="ui grid">
-    <div class="row">
-      <div class="three wide column"></div>
+  <div class="row">
+    <div class="four wide column"></div>
 
-      <div class="ten wide column">
-        <div class="ui large form">
-          <%= form_for Player.new do |f| %>
-            <div class="field">
-              <%= f.text_field :full_name, placeholder: 'Name' %>
-            </div>
-
-            <div class="field">
-              <%= f.text_field :email, placeholder: 'Email' %>
-            </div>
-
-            <div class="field">
-              <%= f.password_field :password, placeholder: 'Password' %>
-            </div>
-
-            <br>
-            <%= f.submit 'Sign Up', class: 'ui large teal basic button' %>
-            <a href="/auth/facebook">
-              <button class="ui large facebook right floated button">
-                <i class="facebook icon"></i>
-                Sign In with Facebook
-              </button>
-            </a>
-          <% end %>
-        </div>
-      </div>
-      
-      <div class="three wide column"></div>
+    <div class="eight wide column">
+      <a href="/auth/facebook">
+        <button class="ui large fluid facebook right floated button">
+          <i class="facebook icon"></i>
+          Sign up with Facebook
+        </button>
+      </a>
     </div>
 
+    <div class="four wide column"></div>
   </div>
+
+  <div class="row">
+    <div class="four wide column"></div>
+    <div class="eight wide column">
+      <div class="ui horizontal inverted divider">Or</div>
+    </div>
+    <div class="four wide column"></div>
+  </div>
+
+  <div class="row">
+    <div class="four wide column"></div>
+
+    <div class="eight wide column">
+
+      <div class="ui large form">
+        <%= form_for Player.new do |f| %>
+          <div class="field">
+            <div class="ui left icon input fluid">
+              <i class="user icon"></i>
+              <%= f.text_field :full_name, placeholder: 'Name' %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="ui left icon input fluid">
+              <i class="mail icon"></i>
+              <%= f.text_field :email, placeholder: 'Email' %>
+            </div>
+          </div>
+
+          <div class="field">
+            <div class="ui left icon input fluid">
+              <i class="key icon"></i>
+              <%= f.password_field :password, placeholder: 'Password' %>
+            </div>
+          </div>
+
+          <%= f.submit 'Sign Up', class: 'ui large fluid teal button' %>
+        <% end %>
+      </div>
+    </div>
+    
+    <div class="four wide column"></div>
+  </div>
+
 </div>
