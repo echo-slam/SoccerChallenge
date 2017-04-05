@@ -26,6 +26,17 @@ class SessionsController < ApplicationController
     end
   end
 
+  def callback
+    if player = Player.from_omniauth(env["omniauth.auth"])
+      flash[:success] = 'Signed in by Facebook successfully'
+      session[:player_id] = @player.id
+      redirect_to root_path
+    else
+      flash[:error] = "Error while signing in by Facebook. Let's register"
+      redirect_to root_path
+    end
+  end
+
   def destroy
     if current_player
       session[:player_id] = nil

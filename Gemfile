@@ -72,3 +72,6 @@ gem 'momentjs-rails'
 gem 'redcarpet'
 # Gem to draw the charts
 gem "chartkick"
+# Signin by Facebook
+gem 'omniauth'
+gem 'omniauth-facebook', '~> 3.0.0'
