@@ -88,6 +88,27 @@
     </div>
 
     <div class="eleven wide column">
+      <% if @player.team_id %>
+        <div class="ui grid">
+          <div class="row">
+            <h1 class="ui header" id="elegant-text">
+              Player Stats
+            </h1>
+          </div>
+
+          <div class="row">
+            <div class="eight wide column">
+              <%= pie_chart @team_results,
+                  width: "auto", height: "300px",
+                  donut: true, legend: "top", :library => @library_result %>
+            </div>
+            <div class="eight wide column">
+              <%= column_chart @player_stats, @library_stats %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
       <% if @player == current_player %>
         <h1 class="ui header" id="elegant-text">
           Messages
