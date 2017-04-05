@@ -1,5 +1,7 @@
 $(document).on('turbolinks:load', function() {
   $(".ui.inline.dropdown").dropdown();
+  get_notify_count();
+  ajax_call();
 
   // ajax_call();
   var noti_1 = setInterval(get_notify_count, interval)
