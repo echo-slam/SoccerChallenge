@@ -2,7 +2,13 @@ $(document).on('turbolinks:load', function() {
   $(".ui.inline.dropdown").dropdown();
 
   // ajax_call();
+  var noti_1 = setInterval(get_notify_count, interval)
+  var noti_2 = setInterval(ajax_call, interval)
+});
 
+jQuery(document).on('page:ready turbolinks:before-render', function() {
+  clearInterval(noti_1);
+  clearInterval(noti_2);
 });
 
 var interval = 10000; // 10 seconds
