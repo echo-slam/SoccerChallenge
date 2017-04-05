@@ -13,7 +13,7 @@ jQuery(document).on('page:ready turbolinks:before-render', function() {
   clearInterval(noti_2);
 });
 
-var interval = 10000; // 10 seconds
+var interval = 5000; // 5 seconds
 
 
 var get_notify_count = function() {
