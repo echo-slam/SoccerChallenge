@@ -13,4 +13,5 @@
 //= require playerModals
 //= require signInModal
 //= require chartkick
+//= require finish_tasks_before_visit
 //= require_tree .

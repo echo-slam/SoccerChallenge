@@ -6,6 +6,7 @@ class Player < ApplicationRecord
   
   has_many :notifications, dependent: :destroy
   has_many :articles, dependent: :destroy
+  has_many :player_results
 
   validates :email, uniqueness: true
   validates :full_name, presence: true

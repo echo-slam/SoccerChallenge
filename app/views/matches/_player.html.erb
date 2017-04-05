@@ -1,12 +1,16 @@
-<div class="ui large middle aligned relaxed animated list">
-  <% if players %>
-    <% players.each do |player| %>
-      <div class="item">
-        <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
-        <div class="content">
-          <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
-        </div>
-      </div>
-    <% end %>
-  <% end %>
+<div class="two wide column">
+  <div class="away-team-players">
+    <div class="ui middle aligned relaxed animated list">
+      <% if players %>
+        <% players.each do |player| %>
+          <div class="item">
+            <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
+            <div class="content">
+              <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 </div>

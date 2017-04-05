@@ -10,7 +10,10 @@ class MatchesController < ApplicationController
   end
 
   def show
-
+    @is_host_or_admin = false
+    if (current_player == @home_team_owner) or (current_player.email == "admin@soccerchallenge.com")
+      @is_host_or_admin = true
+    end
   end
 
   def new
@@ -104,6 +107,7 @@ class MatchesController < ApplicationController
     def set_match
       @match = Match.find(params[:id])
       @home_team = Team.find(@match.team_owner_id)
+      @home_team_owner = Player.find(@home_team.team_owner.player_id)
       @home_team_players = @home_team.players.first(5)
       if @match.team_away_id
         @away_team = Team.find(@match.team_away_id)

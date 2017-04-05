@@ -471,7 +471,7 @@
     var channel = window.location.search.substring(1);
 
     if (channel == "channel=team") {
-      $.get("<%=  team_team_messages_path(@team, format: :js) %>", function(response) {
+      $.get("<%=  team_team_messages_path(@team, format: :js) if @team %>", function(response) {
         console.log("Reload successfully", response)
       })
     } else {
