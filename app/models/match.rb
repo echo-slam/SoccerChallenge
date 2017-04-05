@@ -2,6 +2,7 @@ class Match < ApplicationRecord
   has_many :match_requests
   has_many :match_messages, dependent: :destroy
   has_one :match_result
+  has_many :player_results
 
   validates_uniqueness_of :starts_at, scope: :field_id
 

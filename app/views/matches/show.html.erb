@@ -8,7 +8,7 @@
 
           <div class="two wide column">
             <h1 class="ui header" id="match-text-color">Home</h1>
-            <div class="ui large middle aligned relaxed animated list">
+            <div class="ui middle aligned relaxed animated list">
               <% @home_team_players.each do |player| %>
                 <div class="item">
                   <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
@@ -96,7 +96,7 @@
           <div class="two wide column">
             <h1 class="ui header" id="match-text-color">Away</h1>
             <div class="away-team-players">
-              <div class="ui large middle aligned relaxed animated list">
+              <div class="ui middle aligned relaxed animated list">
                 <% if @away_team_players %>
                   <% @away_team_players.each do |player| %>
                     <div class="item">
@@ -116,7 +116,10 @@
     </div>
 
     <div class="row">
-      <%= link_to 'Update Score', edit_match_path(@match), class: 'ui teal button' %>
+      <% if @is_host_or_admin %>
+        <%= link_to 'Update Score', edit_match_path(@match), class: 'ui teal button' %>
+      <% else %>
+      <% end %>
     </div>
   </div>
 </div>
