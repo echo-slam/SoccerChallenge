@@ -32,7 +32,50 @@ class PlayersController < ApplicationController
     @team_invitations = TeamRequest.where(player_id: current_player.id).where(kind: "invite")
 
     @team_requests = TeamRequest.where(team_id: current_player.team_id).where(kind: "request")
-    @team_invites = TeamRequest.where(team_id: current_player.team_id).where(kind: "invite") 
+    @team_invites = TeamRequest.where(team_id: current_player.team_id).where(kind: "invite")
+
+    if @player.team_id
+      @home_matches = Match.where(team_owner_id: @team.id).where(is_end: true)
+      @away_matches = Match.where(team_away_id: @team.id).where(is_end: true)
+      @games_played = @home_matches.count + @away_matches.count
+
+      @num_win_matches = MatchResult.where(win_team_id: @team.id).count
+      @num_loss_matches = MatchResult.where(loss_team_id: @team.id).count
+      @num_draw_matches = @games_played - @num_win_matches - @num_loss_matches
+
+      @team_results = { "Win" => @num_win_matches,
+                        "Loss" => @num_loss_matches,
+                        "Draw" => @num_draw_matches
+                      }
+
+      @player_stats = [
+                        {name: "Goals", data: {"Goals/Matches": @player.goal}}, 
+                        {name: "Matches", data: {"Goals/Matches": @player.games_played}}
+                      ]
+
+      @library_result = {
+        title: "",
+        titleTextStyle: {
+          color: "#32373A",
+          fontName: "Lato",
+          fontSize: 25
+        },
+        slices: {
+          0 => {color: '#36B8B2'}, 
+          1 => {color: '#EA5455'},
+          2 => {color: '#FFD460'}
+        },
+        pieHole: 0.6,
+        pieSliceText: "label",
+        legend: 'none'
+      }
+
+      @library_stats = {
+        colors: ["#36B8B2", "#FFD460"],
+        legend: 'none'
+      }
+      
+    end 
   end
 
   def new

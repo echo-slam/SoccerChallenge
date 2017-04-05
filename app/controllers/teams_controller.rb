@@ -39,6 +39,7 @@ class TeamsController < ApplicationController
 
     @players = @team.players
     @first_five_players = @team.players.first(5)
+    @top_scorers = @players.order(goal: "ASC").first(5)
 
     @player_requests = TeamRequest.where(team_id: @team.id).where(kind: "request")
 
@@ -134,12 +135,25 @@ class TeamsController < ApplicationController
                     "Goals Against" => @loss_goals
                   }
 
+    @top_scorers_data = ([
+                            [@top_scorers[0].full_name, @top_scorers[0].goal],
+                            [@top_scorers[1].full_name, @top_scorers[1].goal],
+                            [@top_scorers[2].full_name, @top_scorers[2].goal],
+                            [@top_scorers[3].full_name, @top_scorers[3].goal],
+                            [@top_scorers[4].full_name, @top_scorers[4].goal]
+                        ])
+
     @library_result = {
       title: "Matches",
       titleTextStyle: {
         color: "#32373A",
         fontName: "Lato",
         fontSize: 25
+      },
+      slices: {
+        0 => {color: '#36B8B2'}, 
+        1 => {color: '#EA5455'},
+        2 => {color: '#FFD460'}
       },
       pieHole: 0.6,
       pieSliceText: "label",
@@ -153,9 +167,19 @@ class TeamsController < ApplicationController
         fontName: "Lato",
         fontSize: 25
       },
+      slices: {
+        0 => {color: '#36B8B2'}, 
+        1 => {color: '#EA5455'},
+        2 => {color: '#FFD460'}
+      },
       pieHole: 0.6,
       pieSliceText: "value",
       legend: 'none'
+    }
+
+    @library_top_scorers = {
+      legend: 'none',
+      colors: ['#36B8B2', '#36B8B2']
     }
 
   end
