@@ -15,6 +15,11 @@ class MatchesController < ApplicationController
       @is_host_or_admin = true
     end
 
+    @played_this_match = false
+    if (current_player.team_id == @match.team_owner_id) or (current_player.team_id == @match.team_away_id)
+      @played_this_match = true
+    end
+
     @player_result = PlayerResult.where(match_id: @match.id).where(player_id: current_player.id).first
   end
 
