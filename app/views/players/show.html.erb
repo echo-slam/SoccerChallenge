@@ -170,17 +170,19 @@
       <% end %>
       
 
-      <h1 class="ui header" id="elegant-text">
-        Articles
+      <% if (@articles.count > 0) or (current_player == @player) %>
+        <h1 class="ui header" id="elegant-text">
+          Articles
 
-        <% if current_player == @player %>
-          <%= link_to(new_article_path) do %>
-            <i class="teal write icon"></i>
+          <% if current_player == @player %>
+            <%= link_to(new_article_path) do %>
+              <i class="teal write icon"></i>
+            <% end %>
           <% end %>
-        <% end %>
-      </h1>
+        </h1>
 
-      <%= render @articles %>
+        <%= render @articles %>
+      <% end %>
 
     </div>
   </div>

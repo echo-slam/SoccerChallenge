@@ -120,8 +120,10 @@
         <%= link_to 'Update Score', edit_match_path(@match), class: 'ui teal button' %>
       <% end %>
       <% if @player_result == nil %>
-        <%= link_to 'Update Your Goal', new_player_result_path(match_id: @match.id),
-            class: 'ui teal button' %>
+        <% if @played_this_match %>
+          <%= link_to 'Update Your Goal', new_player_result_path(match_id: @match.id),
+              class: 'ui teal button' %>
+        <% end %>
       <% end %>
     </div>
   </div>
