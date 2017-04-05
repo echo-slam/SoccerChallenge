@@ -42,7 +42,7 @@ class Player < ApplicationRecord
     full_name = auth[:info][:name] || "Username"
     player = where(email: email).first_or_initialize
 
-    player.full_name = name
+    player.full_name = full_name
     player.email = email
     player.password = SecureRandom.base64(10)
 
