@@ -12,6 +12,7 @@
 //= require teamModals
 //= require playerModals
 //= require signInModal
-//= require chartkick
 //= require finish_tasks
+//= require highcharts
+//= require chartkick
 //= require_tree .

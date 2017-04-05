@@ -23,8 +23,6 @@
             <%= link_to "Player Profile", player_path(current_player), class: 'ui item' %>
             <% if current_player.team_id %>
               <%= link_to "Team Profile", team_path(current_player.team_id), class: 'ui item' %>
-              <%= link_to "New Match", new_match_path, class: 'ui item' %>
-              <%= link_to "Find Match", matches_path, class: 'ui item' %>
               <%= link_to "Teams", teams_path, class: 'ui item' %>
               <%= link_to "Players", players_path, class: 'ui item' %>
             <% else %>

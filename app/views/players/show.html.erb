@@ -97,12 +97,12 @@
           </div>
 
           <div class="row">
-            <div class="eight wide column">
+            <div class="eight wide column" id="player-chart-1">
               <%= pie_chart @team_results,
                   width: "auto", height: "300px",
-                  donut: true, legend: "top", :library => @library_result %>
+                  donut: true, :library => @library_result %>
             </div>
-            <div class="eight wide column">
+            <div class="eight wide column" id="player-chart-2">
               <%= column_chart @player_stats, @library_stats %>
             </div>
           </div>
