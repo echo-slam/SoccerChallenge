@@ -54,25 +54,37 @@ class PlayersController < ApplicationController
                       ]
 
       @library_result = {
-        title: "",
-        titleTextStyle: {
-          color: "#32373A",
-          fontName: "Lato",
-          fontSize: 25
+        title: {
+          text: "#{@games_played} Matches",
+          align: 'center',
+          verticalAlign: 'middle',
+          style: {
+              fontWeight: 'bold',
+              color: "#32373A",
+              fontName: "Lato",
+              fontSize: 15
+          }
         },
-        slices: {
-          0 => {color: '#36B8B2'}, 
-          1 => {color: '#EA5455'},
-          2 => {color: '#FFD460'}
+        plotOptions: {
+          pie: {
+              shadow: false,
+              center: ['50%', '50%'],
+              innerSize: '70%',
+          },
+          dataLabels: {
+            format: "{x}"
+          }
         },
-        pieHole: 0.6,
-        pieSliceText: "label",
-        legend: 'none'
+        colors: ['#36B8B2', '#EA5455', '#FFD460'],
+        legend: false
       }
 
       @library_stats = {
+        yAxis: [{
+          tickInterval: 5
+        }],
         colors: ["#36B8B2", "#FFD460"],
-        legend: 'none'
+        legend: false,
       }
       
     end 

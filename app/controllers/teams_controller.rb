@@ -72,6 +72,7 @@ class TeamsController < ApplicationController
     end
     @goals = @home_goals + @away_goals
     @loss_goals = @home_loss_goals + @away_loss_goals
+    @goals_dif = @goals - @loss_goals
 
     @next_not_end_match = Match.where(is_start: true).where(is_end: nil)
     @next_home_match = @next_not_end_match.where(team_owner_id: @team.id).order(starts_at: "ASC").first
@@ -112,7 +113,7 @@ class TeamsController < ApplicationController
     end
 
     @world_messages = WorldMessage.order(created_at: "DESC").first(100)
-    @channel = "world"
+    @channel = "team"
 
     if params[:channel] == "world"
       @channel = "world"
@@ -126,13 +127,14 @@ class TeamsController < ApplicationController
     @num_loss_matches = MatchResult.where(loss_team_id: @team.id).count
     @num_draw_matches = @games_played - @num_win_matches - @num_loss_matches
 
-    @team_results = { "Win" => @num_win_matches,
+    @team_results = {
+                      "Win" => @num_win_matches,
                       "Loss" => @num_loss_matches,
                       "Draw" => @num_draw_matches
                     }
 
-    @team_goals = { "Goals For" => @goals,
-                    "Goals Against" => @loss_goals
+    @team_goals = { "GF" => @goals,
+                    "GA" => @loss_goals
                   }
 
     @top_scorers_data = ([
@@ -144,41 +146,62 @@ class TeamsController < ApplicationController
                         ])
 
     @library_result = {
-      title: "Matches",
-      titleTextStyle: {
-        color: "#32373A",
-        fontName: "Lato",
-        fontSize: 25
+      series: {
+        name: 'Matches'
       },
-      slices: {
-        0 => {color: '#36B8B2'}, 
-        1 => {color: '#EA5455'},
-        2 => {color: '#FFD460'}
+      title: {
+        text: "#{@games_played} Matches",
+        align: 'center',
+        verticalAlign: 'middle',
+        style: {
+            fontWeight: 'bold',
+            color: "#32373A",
+            fontName: "Lato",
+            fontSize: 15
+        }
       },
-      pieHole: 0.6,
-      pieSliceText: "label",
-      legend: 'none'
+      plotOptions: {
+        pie: {
+            shadow: false,
+            center: ['50%', '50%'],
+            innerSize: '70%',
+        },
+        dataLabels: {
+          format: "{x}"
+        }
+      },
+      colors: ['#36B8B2', '#EA5455', '#FFD460'],
+      legend: false
     }
 
     @library_goal = {
-      title: "Goals",
-      titleTextStyle: {
-        color: "#32373A",
-        fontName: "Lato",
-        fontSize: 25
+      title: {
+        text: "#{@goals_dif} GD",
+        align: 'center',
+        verticalAlign: 'middle',
+        style: {
+            fontWeight: 'bold',
+            color: "#32373A",
+            fontName: "Lato",
+            fontSize: 15
+        }
       },
-      slices: {
-        0 => {color: '#36B8B2'}, 
-        1 => {color: '#EA5455'},
-        2 => {color: '#FFD460'}
+      plotOptions: {
+        pie: {
+            shadow: false,
+            center: ['50%', '50%'],
+            innerSize: '70%',
+        },
+        dataLabels: {
+          format: "{x}"
+        }
       },
-      pieHole: 0.6,
-      pieSliceText: "value",
-      legend: 'none'
+      colors: ['#36B8B2', '#EA5455', '#FFD460'],
+      legend: false
     }
 
     @library_top_scorers = {
-      legend: 'none',
+      legend: false,
       colors: ['#36B8B2', '#36B8B2']
     }
 
