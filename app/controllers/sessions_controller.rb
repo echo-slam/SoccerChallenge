@@ -29,7 +29,10 @@ class SessionsController < ApplicationController
   def callback
     if player = Player.from_omniauth(env["omniauth.auth"])
       flash[:success] = 'Signed in by Facebook successfully'
-      session[:player_id] = @player.id
+      session[:player_id] = player.id
+      unless player.team_owner
+        player.create_team_owner
+      end
       redirect_to root_path
     else
       flash[:error] = "Error while signing in by Facebook. Let's register"
