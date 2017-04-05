@@ -33,7 +33,7 @@
                     <div class="value" id="match-text-color"><%= @match.home_goal_or_default %></div>
                   </div>
                   <div class="statistic">
-                    <div class="value" id="match-text-color">VS</div>
+                    <div class="value" id="match-text-color">-</div>
                   </div>
                   <div class="statistic">
                     <div class="value" id="match-text-color"><%= @match.away_goal_or_default %></div>
@@ -185,6 +185,6 @@
     })
   }
 
-  setInterval(reload, 3000);
-  setInterval(reloadAway, 10000);
+  var interval_1 = setInterval(reload, 3000);
+  var interval_2 = setInterval(reloadAway, 10000);
 </script>
