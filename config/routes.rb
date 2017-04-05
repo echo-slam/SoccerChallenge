@@ -42,6 +42,7 @@ Rails.application.routes.draw do
   get 'signed_in_index' => 'home#signed_in_index'
   get 'team_members' => 'teams#team_members'
   post 'signin' => 'sessions#create'
+  get 'auth/:provider/callback' => 'sessions#callback'
   delete 'signout' => 'sessions#destroy'
   delete 'accept_team_request' => 'team_requests#accept'
   delete 'decline_team_request' => 'team_requests#decline'

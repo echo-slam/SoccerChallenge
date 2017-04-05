@@ -37,6 +37,18 @@ class Player < ApplicationRecord
     self.image_url.url.presence || "http://i.imgur.com/WbCAvCJ.png"
   end
 
+  def self.from_omniauth(auth)
+    email = auth[:info][:email] || "#{auth[:uid]}@facebook.com"
+    full_name = auth[:info][:name] || "Username"
+    player = where(email: email).first_or_initialize
+
+    player.full_name = name
+    player.email = email
+    player.password = SecureRandom.base64(10)
+
+    player.save! && player
+ end
+
   private
     def image_size_validation
       errors[:image_url] << "should be less than 500KB" if image_url.size > 0.5.megabytes
