@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if @field_owner = FieldOwner.find_by(email: params[:email]) and @field_owner.authenticate(params[:password])
         flash[:success] = "Field owner sign in successfully"
         session[:field_owner_id] = @field_owner.id
-        redirect_to root_path
+        redirect_to field_owner_fields_path(@field_owner)
       else
         flash[:error] = "Field Owner: Invalid username or password"
         render 'new'
