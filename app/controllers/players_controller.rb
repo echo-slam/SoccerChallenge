@@ -92,6 +92,7 @@ class PlayersController < ApplicationController
 
   def new
     @player = Player.new
+    @player_reference = PlayerReference.find(rand(1..100))
   end
 
   def edit
