@@ -38,7 +38,7 @@
       </div>
 
       <div class="six wide column">
-        <%= image_tag("muller.jpg", class: "ui fluid rounded image")%>
+        <%= image_tag("muller.jpg", class: "ui fluid rounded image", id: "refer_player")%>
 
         <div class="ui medium info message">
           <div class="header"><i class="info circle icon"></i>
@@ -53,3 +53,17 @@
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  var player_refer = function() {
+    $.getJSON ("/players/new.json", function(data) {
+      var players = data.player_references;
+      var randomNum = Math.floor(Math.random() * 100) + 1;
+
+      var player_info = players[randomNum]
+      $("#refer_player").attr("src",player_info.image_url);
+    });
+  }
+  var interval = 5000; // 5s
+  setInterval(player_refer, interval)
+</script>

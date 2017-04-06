@@ -6,7 +6,10 @@ class ArticlesController < ApplicationController
     @articles = Article.order(created_at: "DESC")
     @markdown = Redcarpet::Markdown.new(CustomRenderSum)
 
-    @data_fetch = Article.seed_article
+    #@data_fetch = Article.seed_article
+    file = File.read("#{Rails.root}/app/views/articles/index.json")
+    @data = JSON.parse(file)
+    @data_fetch = @data["seed_article"]    
 
     respond_to do |format|
       format.html
