@@ -18,14 +18,14 @@
         <div class="ui compact segment" id="articles-segment">
           <% @data_fetch.each do |article| %>
             <div class="ui right floated statistic">
-              <%= image_tag(article[:image_url], class: "ui fluid middle aligned rounded image") %>
+              <%= image_tag(article["image_url"], class: "ui fluid middle aligned rounded image") %>
             </div>
             <div class="content">
               <span><h3 id="surge-text">
-                <%= article[:title] %>
+                <%= article["title"] %>
               </h3></span>
-              <%= article[:content] %>
-              <%= link_to 'Read More', article[:url], target: '_blank' %>
+              <%= article["content"] %>
+              <%= link_to 'Read More', article["url"], target: '_blank' %>
             </div>
             <div class="ui divider"></div>
           <% end %>
