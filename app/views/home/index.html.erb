@@ -66,12 +66,40 @@
             </div>
           </div>
 
-          <%= f.submit 'Sign Up', class: 'ui large fluid teal button' %>
+          <%= f.submit 'Sign up', class: 'ui large fluid teal button' %>
         <% end %>
       </div>
+      <h4 class="ui center aligned inverted header">
+        Already have an account?
+        <a href="#" id="sign_in_btn" data-remote="true" style="color: #009999">Sign in</a>
+      </h4>
     </div>
     
     <div class="four wide column"></div>
   </div>
 
+</div>
+
+<div class="ui small modal" id="sign_in_modal">
+  <h3 class="ui icon header">Sign in to your account</h3>
+  <div class="content">
+    <div class="ui large form">
+      <%= form_tag signin_path, method: 'post' do %>
+        <div class="field">
+          <div class="ui left icon input fluid">
+            <i class="mail icon"></i>
+            <%= text_field_tag :email, params[:email], placeholder: "Email" %>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="ui left icon input fluid">
+            <i class="key icon"></i>
+            <%= password_field_tag :password, nil, placeholder: "Password" %>
+          </div>
+        </div>
+        <%= submit_tag 'Sign in', name: 'sign_in_player', class: 'ui large fluid teal button' %>
+      <% end %>
+    </div>
+  </div>
 </div>

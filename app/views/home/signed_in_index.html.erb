@@ -1,11 +1,10 @@
-<br><br><br>
+<br><br>
 <div class="ui container">
   <%= flash_messages %>
 </div>
-<br><br><br>
-<br><br><br>
 
-<div class="ui container">
+<div class="ui container" id="top-space">
+
   <div class="ui three link cards">
 
 
@@ -123,5 +122,80 @@
       </div>
     </a>
 
+  </div>
+
+  <br><br><br>
+
+  <div class="ui grid">
+    <div class="row">
+      <div class="four wide column">
+      </div>
+
+      <div class="ui eight wide column">
+        <% if current_player.free_player? %>
+          <div class="ui info message">
+            <div class="ui items">
+              <div class="item">
+                <%= image_tag("037-pennant.svg",
+                    class: "ui rounded team-badge image") %>
+                <div class="middle aligned content">
+                  You are not playing for any team. Try to find one by select
+                  <strong>
+                    Teams
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% elsif current_player.team_owner.team_id %>
+          <% if @num_of_members < 5 %>
+            <div class="ui info message">
+              <div class="ui items">
+                <div class="item">
+                  <%= image_tag("037-football-player.svg",
+                      class: "ui rounded team-badge image") %>
+                  <div class="middle aligned content">
+                    Your team is not have enough players to play. Recruit more
+                    <strong>
+                      Players
+                    </strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% else %>
+            <div class="ui info message">
+              <div class="ui items">
+                <div class="item">
+                  <%= image_tag("037-match.svg",
+                      class: "ui rounded team-badge image") %>
+                  <div class="middle aligned content">
+                    Your team is ready. <strong>Create a match</strong> or
+                    <strong>Find a match</strong> for your team.
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="ui info message">
+            <div class="ui items">
+              <div class="item">
+                <%= image_tag("037-fan-1.svg",
+                    class: "ui rounded team-badge image") %>
+                <div class="middle aligned content">
+                  When you wait for your captain to create new match.
+                  You can read intesting articles in
+                  <strong>Soccer and Life</strong>. You can also write your own too
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="four wide column">
+      </div>
+    </div>
   </div>
 </div>

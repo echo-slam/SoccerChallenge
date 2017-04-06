@@ -11,5 +11,11 @@ class HomeController < ApplicationController
   end
 
   def signed_in_index
+    @player = current_player
+
+    if @player.team_id
+      @team = Team.find(@player.team_id)
+      @num_of_members = @team.players.count
+    end
   end
 end

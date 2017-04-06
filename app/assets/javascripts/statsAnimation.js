@@ -6,6 +6,16 @@ jQuery(document).on('page:ready turbolinks:before-visit', function() {
   $('#stat_1').transition('hide', 'complete');
   $('#stat_2').transition('hide', 'complete');
   $('#stat_3').transition('hide', 'complete');
+  $('#team-chart-1').hide();
+  $('#team-chart-2').hide();
+  $('#team-chart-3').hide();
+  $('#player-chart-1').hide();
+  $('#player-chart-2').hide();
+  $('#team-chart-1').finish();
+  $('#team-chart-2').finish();
+  $('#team-chart-3').finish();
+  $('#player-chart-1').finish();
+  $('#player-chart-2').finish();
 });
 
 function statsAnimate() {

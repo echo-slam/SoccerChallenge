@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
       if @field_owner = FieldOwner.find_by(email: params[:email]) and @field_owner.authenticate(params[:password])
         flash[:success] = "Field owner sign in successfully"
         session[:field_owner_id] = @field_owner.id
-        redirect_to root_path
+        redirect_to field_owner_fields_path(@field_owner)
       else
         flash[:error] = "Field Owner: Invalid username or password"
         render 'new'
@@ -29,7 +29,10 @@ class SessionsController < ApplicationController
   def callback
     if player = Player.from_omniauth(env["omniauth.auth"])
       flash[:success] = 'Signed in by Facebook successfully'
-      session[:player_id] = @player.id
+      session[:player_id] = player.id
+      unless player.team_owner
+        player.create_team_owner
+      end
       redirect_to root_path
     else
       flash[:error] = "Error while signing in by Facebook. Let's register"

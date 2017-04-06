@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405065004) do
+ActiveRecord::Schema.define(version: 20170405110736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -128,6 +128,8 @@ ActiveRecord::Schema.define(version: 20170405065004) do
     t.string   "nickname"
     t.string   "favorite_player"
     t.string   "favorite_team"
+    t.integer  "goal"
+    t.integer  "games_played"
   end
 
   create_table "team_messages", force: :cascade do |t|

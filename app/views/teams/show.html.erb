@@ -130,7 +130,7 @@
 
           <div class="row">
             <div class="eight wide column">
-              <div class="ui basic center aligned segment">
+              <div class="ui basic center aligned segment" id="team-chart-1">
                 <%= pie_chart @team_results,
                     width: "auto", height: "300px",
                     donut: true, legend: "top", :library => @library_result %>
@@ -138,11 +138,20 @@
             </div>
 
             <div class="eight wide column">
-              <div class="ui basic center aligned segment">
+              <div class="ui basic center aligned segment" id="team-chart-2">
                 <%= pie_chart @team_goals,
                     width: "auto", height: "300px",
                     donut: true, legend: "top", :library => @library_goal %>
               </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="sixteen wide column" id="team-chart-3">
+              <h1 class="ui center aligned header" id="elegant-text">
+                Top Scorers
+              </h1>
+              <%= column_chart @top_scorers_data, @library_top_scorers %>
             </div>
           </div>
 
@@ -470,13 +479,13 @@
   function reload() {
     var channel = window.location.search.substring(1);
 
-    if (channel == "channel=team") {
-      $.get("<%=  team_team_messages_path(@team, format: :js) if @team %>", function(response) {
-        console.log("Reload successfully", response)
-      })
-    } else {
+    if (channel == "channel=world") {
       $.get("<%=  world_messages_path(format: :js) %>", function(response) {
         console.log("Reload world messages successfully", response)
+      })
+    } else {
+      $.get("<%=  team_team_messages_path(@team, format: :js) if @team %>", function(response) {
+        console.log("Reload successfully", response)
       })
     }
 
