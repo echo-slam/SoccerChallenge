@@ -3,14 +3,14 @@
 <% if player == current_player %>
   <p align="right">
     <a class="ui circular blue label">
-      <%= world_message.body %>
+      <%= emojify world_message.body %>
     </a>
   </p>
 <% else %>
   <p>
     <%= player.full_name %>: 
     <a class="ui circular label">
-      <%= world_message.body %>
+      <%= emojify world_message.body %>
     </a>
   </p>
 <% end %>

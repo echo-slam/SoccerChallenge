@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_field_owner, :current_player, :check_match_permission
+  helper_method :emojify
 
   def current_field_owner
     return @current_field_owner if @current_field_owner
@@ -34,4 +35,17 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def emojify(content)
+    content.to_str.gsub(/:([\w+-]+):/) do |match|
+      if emoji = Emoji.find_by_alias($1)
+        %(<img alt="#$1" \
+        src="https://www.webpagefx.com/tools/emoji-cheat-sheet/graphics/emojis/#$1.png" \
+        style="vertical-align:middle" width="20" height="20"/>)
+      else
+        match
+      end
+    end.html_safe if content.present?
+  end
+
 end

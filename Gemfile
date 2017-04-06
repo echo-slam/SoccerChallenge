@@ -75,3 +75,5 @@ gem "chartkick"
 # Signin by Facebook
 gem 'omniauth'
 gem 'omniauth-facebook'
+
+gem 'gemoji'
