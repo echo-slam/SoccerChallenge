@@ -16,7 +16,11 @@
           </div>
           <% if @match.home_goal and @match.away_goal %>
             <% if current_player.email == "admin@soccerchallenge.com" %>
-              <%= f.submit "Verify", class: 'ui large green button' %>
+              <% if @match.is_end %>
+                <p>Match result was verified.</p>
+              <% else %>
+                <%= f.submit "Verify", class: 'ui large green button' %>
+              <% end %>
             <% else %>
               <% if @match.is_end %>
                 <p>Match result was verified.</p>
@@ -27,6 +31,7 @@
           <% else %>
             <%= f.submit "Submit", class: 'ui large teal button' %>
           <% end %>
+          <%= link_to "Back", match_path(@match), class: 'ui large black button'%>
         <% end %>
       </div>
     </div>

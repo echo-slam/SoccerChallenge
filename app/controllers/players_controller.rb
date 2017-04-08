@@ -35,22 +35,23 @@ class PlayersController < ApplicationController
     @team_invites = TeamRequest.where(team_id: current_player.team_id).where(kind: "invite")
 
     if @player.team_id
-      @home_matches = Match.where(team_owner_id: @team.id).where(is_end: true)
-      @away_matches = Match.where(team_away_id: @team.id).where(is_end: true)
-      @games_played = @home_matches.count + @away_matches.count
 
-      @num_win_matches = MatchResult.where(win_team_id: @team.id).count
-      @num_loss_matches = MatchResult.where(loss_team_id: @team.id).count
-      @num_draw_matches = @games_played - @num_win_matches - @num_loss_matches
+      @num_of_win = @player.win.presence || 0
+      @num_of_loss = @player.loss.presence || 0
+      @num_of_draw = @player.draw.presence || 0
 
-      @team_results = { "Win" => @num_win_matches,
-                        "Loss" => @num_loss_matches,
-                        "Draw" => @num_draw_matches
+      @num_of_goals = @player.goal.presence || 0
+
+      @games_played = @num_of_win + @num_of_loss + @num_of_draw 
+
+      @team_results = { "Win" => @num_of_win,
+                        "Loss" => @num_of_loss,
+                        "Draw" => @num_of_draw
                       }
 
       @player_stats = [
-                        {name: "Goals", data: {"Goals/Matches": @player.goal}}, 
-                        {name: "Matches", data: {"Goals/Matches": @player.games_played}}
+                        {name: "Goals", data: {"Goals/Matches": @num_of_goals}}, 
+                        {name: "Matches", data: {"Goals/Matches": @games_played}}
                       ]
 
       @library_result = {

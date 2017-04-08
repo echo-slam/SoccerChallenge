@@ -79,9 +79,60 @@ class MatchesController < ApplicationController
         if @match.home_goal > @match.away_goal
           @match_result.win_team_id = @match.team_owner_id
           @match_result.loss_team_id = @match.team_away_id
+
+          @win_players = Player.where(team_id: @match.team_owner_id)
+          @loss_players = Player.where(team_id: @match.team_away_id)
         elsif @match.home_goal < @match.away_goal
           @match_result.win_team_id = @match.team_away_id
           @match_result.loss_team_id = @match.team_owner_id
+
+          @win_players = Player.where(team_id: @match.team_away_id)
+          @loss_players = Player.where(team_id: @match.team_owner_id)
+        end
+
+        if @match.home_goal == @match.away_goal
+          @draw_players_one = Player.where(team_id: @match.team_away_id)
+          @draw_players_two = Player.where(team_id: @match.team_owner_id)
+
+          @draw_players_one.each do |player|
+            if player.draw
+              player.draw += 1
+            else
+              player.draw = 1
+            end
+
+            player.save
+          end
+
+          @draw_players_two.each do |player|
+            if player.draw
+              player.draw += 1
+            else
+              player.draw = 1
+            end
+
+            player.save
+          end
+        else
+          @win_players.each do |player|
+            if player.win
+              player.win += 1
+            else
+              player.win = 1
+            end
+
+            player.save
+          end
+
+          @loss_players.each do |player|
+            if player.loss
+              player.loss += 1
+            else
+              player.loss = 1
+            end
+
+            player.save
+          end
         end
         
         @match_result.save
