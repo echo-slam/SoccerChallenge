@@ -1,46 +1,113 @@
 <br><br>
 <div class="ui container">
   <%= flash_messages %>
-
-  <div class="ui three link cards">
-    <% @matches.each do |match| %>
-      <div class="card" id="match-card">
-        <a><div class="custom_img" style="background-image: url(http://i.imgur.com/TRmGlnzh.jpg);"></div></a>
-        <div class="content">
-          <div class="header" id="surge-text"><%= match.home_team_name %></div>
-          <br>
-          <div class="meta">
-            <span>
-              <i class="clock icon"></i>
-              <%= match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
-            </span>
-            <span class="right floated">
-              <i class="marker icon"></i>
-              <%= match.venue_name %>
-            </span>
+  <div class="ui grid">
+    <div class="six wide column">
+      <h1 class="ui center aligned header" id="elegant-text">
+        Top 10
+      </h1>
+      <div class="ui big middle aligned relaxed list">
+        <% @top_10_teams.each do |team| %>
+          <div class="item">
+            <div class="right floated content">
+              <a class="ui teal circular label"><%= team.points %> pts</a>
+            </div>
+            <div class="ui mini image">
+              <img src="<%= team.image_url_or_default %>" alt="<%= team.name %>">
+            </div>
+            <div class="content">
+              <a href="<%= team_path(team) %>" class="header"><%= team.name %></a>
+            </div>
           </div>
-        </div>
-        <% if match.is_start || match.is_old || match.is_end || current_player.team_owner.team_id == nil %>
-          <%= link_to 'View', match_path(match), class: 'ui attached button' %>
-        <% else %>
-          <% if match.team_owner_id == current_player.team_id || match.team_away_id == current_player.team_id %>
-            <%= link_to 'View', waiting_match_path(match), class: 'ui attached button' %>
-          <% else %>
-            <% if @match_invitations.where(team_received_id: match.team_owner_id).count == 0 %>
-              <% if @match_requests.where(team_received_id: match.team_owner_id).count == 0 %>
-                <%= link_to 'Join', join_match_requests_path(match_id: match), method: 'post', class: 'ui teal attached button' %>
-              <% else %>
-                <%= link_to 'Cancel', decline_match_request_path(@match_requests.where(match_id: match.id).first.id, team_id: current_player.team_id) ,class: 'ui black attached button' %>
-              <% end %>
-            <% else %>
-              <div class="ui two buttons">
-                <%= link_to 'Accept', accept_match_request_path(@match_invitations.where(match_id: match.id).first.id), class: 'ui teal attached button' %>
-                <%= link_to 'Decline', decline_match_request_path(@match_invitations.where(match_id: match.id).first.id, team_id: current_player.team_id), class: 'ui black attached button' %>
-              </div>
-            <% end %>
-          <% end %>
         <% end %>
       </div>
-    <% end %>
+    </div>
+    <div class="ten wide column">
+      <div class="ui buttons">
+        <%= link_to 'All', matches_path, class: 'ui large button' %>
+        <%= link_to 'My Match', matches_path(sort: 'mine'), class: 'ui large button' %>
+        <%= link_to 'Waiting', matches_path(sort: 'waiting'), class: 'ui large button' %>
+        <%= link_to 'Completed', matches_path(sort: 'completed'), class: 'ui large button' %>
+        <% if current_player.email == 'admin@soccerchallenge.com' %>
+          <%= link_to 'Verify', matches_path(sort: 'verify'), class: 'ui large button' %>
+        <% end %>
+      </div>
+      <div class="ui hidden divider"></div>
+      <div class="ui two link cards">
+        <% @matches.each do |match| %>
+          <div class="card" id="match-card">
+            <br>
+            <a href="<%= match_path(match) %>" id="surge-text">
+              <div class="ui grid">
+                <div class="six wide column">
+                  <%= image_tag(Team.find(match.team_owner_id).image_url_or_default, class: "ui large centered rounded image") %>
+                </div>
+                <div class="four wide column">
+                  <div id="match-segment">
+                    <span id="match-segment-content">
+                      <div class="ui three large statistics">
+                        <div class="statistic">
+                          <div class="label" id="match-text-color"><%= match.home_goal_or_default %></div>
+                        </div>
+                        <div class="statistic">
+                          <div class="label" id="match-text-color">-</div>
+                        </div>
+                        <div class="statistic">
+                          <div class="label" id="match-text-color"><%= match.away_goal_or_default %></div>
+                        </div>
+                      </div>
+                    </span>
+                  </div>
+                </div>
+                <div class="six wide column">
+                  <% if match.team_away_id %>
+                    <%= image_tag(Team.find(match.team_away_id).image_url_or_default, class: "ui large centered rounded image") %>
+                  <% else %>
+                    <%= image_tag("team-badge.svg", class: "ui large centered rounded image") %>
+                  <% end %>
+                </div>
+              </div>
+            </a>
+            <br>
+            <div class="content">
+              <div class="center aligned header">
+                <a href="<%= match_path(match) %>" id="surge-text"><%= match.home_team_name %> - <%= match.away_team_name %></a>
+              </div>
+              <br>
+              <div class="description">
+                <span>
+                  <i class="marker icon"></i>
+                  <%= match.venue_name %>
+                </span>
+                <span class="right floated">
+                  <i class="clock icon"></i>
+                  <%= match.starts_at.strftime("%Y/%m/%d - %H:%M") %>
+                </span>
+              </div>
+            </div>
+            <% if match.is_start || match.is_old || match.is_end || current_player.team_owner.team_id == nil %>
+              <%= link_to 'View', match_path(match), class: 'ui attached button' %>
+            <% else %>
+              <% if match.team_owner_id == current_player.team_id || match.team_away_id == current_player.team_id %>
+                <%= link_to 'View', waiting_match_path(match), class: 'ui attached button' %>
+              <% else %>
+                <% if @match_invitations.where(team_received_id: match.team_owner_id).count == 0 %>
+                  <% if @match_requests.where(team_received_id: match.team_owner_id).count == 0 %>
+                    <%= link_to 'Join', join_match_requests_path(match_id: match), method: 'post', class: 'ui teal attached button' %>
+                  <% else %>
+                    <%= link_to 'Cancel', decline_match_request_path(@match_requests.where(match_id: match.id).first.id, team_id: current_player.team_id) ,class: 'ui black attached button' %>
+                  <% end %>
+                <% else %>
+                  <div class="ui two buttons">
+                    <%= link_to 'Accept', accept_match_request_path(@match_invitations.where(match_id: match.id).first.id), class: 'ui teal attached button' %>
+                    <%= link_to 'Decline', decline_match_request_path(@match_invitations.where(match_id: match.id).first.id, team_id: current_player.team_id), class: 'ui black attached button' %>
+                  </div>
+                <% end %>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>

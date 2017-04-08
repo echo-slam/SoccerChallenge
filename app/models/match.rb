@@ -27,7 +27,7 @@ class Match < ApplicationRecord
   end
 
   def away_team_name
-    Team.find(team_away_id).name
+    team_away_id ? Team.find(team_away_id).name : '???'
   end
 
   def home_goal_or_default

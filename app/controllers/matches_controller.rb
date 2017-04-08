@@ -4,9 +4,22 @@ class MatchesController < ApplicationController
   before_action :check_match_permission, only: [:new]
 
   def index
-    @matches = Match.order(starts_at: 'DESC')
+    @matches = Match.order(is_start: 'DESC').order(starts_at: 'ASC')
     @match_invitations = MatchRequest.where(team_id: current_player.team_id).where(status: 'INVITATION')
     @match_requests = MatchRequest.where(team_id: current_player.team_id).where(status: 'PENDING')
+
+    @top_10_teams = Team.order(points: 'DESC').first(10)
+
+    case params[:sort]
+    when 'mine'
+      @matches = Match.where(team_owner_id: current_player.team_id).order(is_start: 'DESC')
+    when 'waiting'
+      @matches = Match.where(is_start: nil).order(starts_at: 'ASC')
+    when 'completed'
+      @matches = Match.where.not(is_end: nil).order(starts_at: 'DESC')
+    when 'verify'
+      @matches = Match.where.not(is_end: nil).order(starts_at: 'DESC')
+    end
   end
 
   def show
