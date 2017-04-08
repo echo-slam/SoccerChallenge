@@ -3,7 +3,7 @@
 --
 
 -- Dumped from database version 9.6.1
--- Dumped by pg_dump version 9.6.2
+-- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -773,10 +773,6 @@ environment	development	2017-04-05 11:21:10.222926	2017-04-05 11:21:10.222926
 --
 
 COPY articles (id, title, body, player_id, created_at, updated_at, ref_url, image_url) FROM stdin;
-1	BATISTUTA - FIORENTINA, CHUYỆN TÌNH MÀU TÍM	Nếu bạn hỏi tôi, đâu là mối tình đẹp nhất trong tiểu thuyết võ hiệp Kim Dung, câu trả lời của tôi sẽ không phải là Dương Quá – Tiểu Long Nữ hay A Châu – Kiều Phong, đẹp nhất trong tất cả các mối tình diễm lệ của Kim Dung chính là đoạn tình bi thảm của Đinh Điển và Lăng Sương Hoa ở tác phẩm Liên Thành Quyết. Trang sách ấy, khi Đinh Điển bị cha của Lăng Sương Hoa hãm hại và đẩy vào lao tù, Lăng Sương Hoa vì không chấp nhận bị cha mình lợi dụng, nàng đã lấy dao rạch lên khuôn mặt kiều diễm của cô. Đinh Điển – vị đại hiệp đệ nhất thiên hạ khi thấy khuôn mặt nham nhở vết sẹo của nàng, đã ôm lấy nàng òa khóc mà thốt lên: "Nàng vì ta mà hủy hoại dung nhan, trong mắt ta, nàng đẹp gấp trăm vạn lần ngày trước”. Một đoạn trường khiến biết bao người không cầm được nước mắt.	37	2017-04-05 22:36:16.112099	2017-04-05 22:36:16.112099	https://www.facebook.com/notes/d%C5%A9ng-phan/batistuta-fiorentina-chuy%E1%BB%87n-t%C3%ACnh-m%C3%A0u-t%C3%ADm/1443883505645605	https://scontent.fsgn4-1.fna.fbcdn.net/v/t31.0-8/p720x720/16586927_1257227970992609_1645672274863469464_o.jpg?oh=1c45b0a07fde42af8c7187e111600110&oe=594EA2E7
-2	PIRLO, NỤ CƯỜI THANH BÌNH TUỔI 37	 Hồi còn bé, trong một cuốn sách mà tôi từng đọc, có kể về mối tình. Người con trai trong câu chuyện đó tâm sự: "Tôi sống giữa hoa thơm và trái ngọt, tôi vẽ tranh bên cạnh niềm cảm hứng bất tận là cô ấy." Khi ấy tôi tự hỏi, thế nào là "Niềm cảm hứng bất tận"? Cho đến sau này khi tôi lớn dần lên, bắt đầu tập tành viết lách, tôi mới hiểu ra ý nghĩa đích thực của 5 chữ cái ấy: khi người nghệ sĩ yêu một điều gì thật sâu đậm, sẽ sáng tác mãi về điều đó bằng thứ cảm xúc tuôn trào chẳng bao giờ có hồi kết. \r\n \r\n Tôi đã viết cả trăm bài về anh, không có lần nào giống như lần nào. Tôi viết say sưa, viết mãi, những thứ cảm xúc tưởng rằng sẽ bị khánh kiệt hóa ra lại luôn rạo rực mỗi khi bắt đầu. Có lẽ bởi vì Andrea Pirlo đẹp, trong cái đẹp lại xen lẫn cái buồn, trong lối chơi nghệ sĩ lại phảng phất chất chiến binh, đá ở một vị trí hiện đại nhưng man mác chất hoài cổ. Những điều đó cứ thế hòa quyện vào nhau, kéo cảm xúc người hâm mộ đi vào một mê cung của những điều tưởng như chưa bao giờ có.	37	2017-04-05 22:37:44.340317	2017-04-05 22:37:44.340317	https://www.facebook.com/notes/d%C5%A9ng-phan/pirlo-n%E1%BB%A5-c%C6%B0%E1%BB%9Di-thanh-b%C3%ACnh-tu%E1%BB%95i-37/1192683870765571	https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.0-9/13226635_1031016960280379_5339132736891509079_n.jpg?oh=3d0cbbe296ca07db5fc7b4f17d7e08a2&oe=598F7B9A
-3	Ronaldo, sẽ chẳng ai chờ anh nữa đâu	 Không có ai gây thất vọng bằng Cristiano Ronaldo cho đến thời điểm này của Euro 2016. Anh đã đến bằng tư cách của siêu sao số 1 Châu Âu, là cầu thủ đã ghi 16 bàn tại Champions League vừa qua, là người sút thành công quả penalty quyết định cho chức vô địch mang tên “La Undecima” của Real Madrid, và là người mà giới chuyên môn tin rằng quả bóng vàng 2016 khó thoát khỏi tay. Anh đã đến bằng phát ngôn ngạo nghễ “Tôi là cầu thủ hay nhất 20 năm qua”, phát ngôn ấy chính thức “phản phé” lại anh ít ra là đến lúc này. Ronaldo, không có cầu thủ nào tự nhận hay nhất 20 năm qua lại có màn trình diễn nhạt nhòa để khiến đội mình bị loại từ vòng bảng. Đêm nay, không ai chờ anh nữa đâu. 	37	2017-04-05 22:39:17.706566	2017-04-05 22:39:17.706566	https://www.facebook.com/notes/d%C5%A9ng-phan/ronaldo-s%E1%BA%BD-ch%E1%BA%B3ng-ai-ch%E1%BB%9D-anh-n%E1%BB%AFa-%C4%91%C3%A2u/1214789485221676	https://scontent.fsgn4-1.fna.fbcdn.net/v/t1.0-9/13516687_1050828488299226_8037411169211095896_n.jpg?oh=ca14b2879334964e6f045d901dc358f3&oe=598DE625
-4	Anh ở đâu, Bastian Schweinsteiger?	 Man United lại thắng, nhưng anh ở đâu, Bastian Schweinsteiger? Anh được đem về với những kỳ vọng sẽ đem đến chiến thắng, chứ đâu phải biến mất như thế này. Mười hai năm về trước, bóng đá Đức trong giai đoạn khan hiếm nhân tài, nơi chỉ có một mình Michael Ballack gồng gánh cả thời đại nước Đức. Anh đã xuất hiện, tuổi 19, áo số 7, tóc bạch kim, luôn ra sân với chiếc áo để ngoài quần, tên anh rất khó đọc và khó viết: Bastian Schweinsteiger. \r\n \r\n Chàng trai với khuôn mặt còn lấm tấm tàn nhang ấy xông xáo trên hàng công, làm điểm sáng rực rỡ của đội tuyển Đức trong buổi giao thời, là tác giả của đường chuyền nhạy cảm cho Michael Ballack tung cú sút sấm sét mở tỉ số trong trận đấu với Cộng Hòa Czech tại vòng bảng. Cũng giống như cách đó hai năm, khi HLV Ottmar Hitzfeld tung anh ra sân trong trận đấu giữa Bayern với Lens, anh chiếm niềm tin để xứ Baravia tin rằng họ có một người con đặc biệt – người trưởng thành từ lò đào tạo trẻ của đội, kế tục vinh quang các thế hệ đi trước của Bayern Munich vĩ đại.  Vậy mà đã 12 năm trôi qua rồi, khuôn mặt lấm tấm tàn nhang ấy càng ngày càng đẹp ra, đậm chất Đức và hút hồn những thiếu nữ. Tài năng tiềm tàng hôm nào, theo thời gian trở thành một trong những cầu thủ hay nhất thế giới, được bao nhiêu CLB lớn săn đón. Nhưng lại có những giai đoạn thăng trầm như một cuốn phim.	37	2017-04-05 22:40:36.089944	2017-04-05 22:40:36.089944	https://www.facebook.com/notes/d%C5%A9ng-phan/anh-%E1%BB%9F-%C4%91%C3%A2u-bastian-schweinsteiger/1400098630024093	https://scontent.fsgn4-1.fna.fbcdn.net/v/t31.0-8/p720x720/15776831_1222806764434730_2571462309627184872_o.jpg?oh=85e68d1ab69759d11c3129e5cb309ca8&oe=5998D7FC
 \.
 
 
@@ -784,7 +780,7 @@ COPY articles (id, title, body, player_id, created_at, updated_at, ref_url, imag
 -- Name: articles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('articles_id_seq', 4, true);
+SELECT pg_catalog.setval('articles_id_seq', 1, false);
 
 
 --
@@ -833,7 +829,7 @@ COPY match_messages (id, body, player_id, match_id, created_at, updated_at) FROM
 -- Name: match_messages_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('match_messages_id_seq', 2, true);
+SELECT pg_catalog.setval('match_messages_id_seq', 1, false);
 
 
 --
@@ -841,7 +837,6 @@ SELECT pg_catalog.setval('match_messages_id_seq', 2, true);
 --
 
 COPY match_requests (id, match_id, team_id, created_at, updated_at, team_received_id, status) FROM stdin;
-12	11	5	2017-04-08 14:17:44.090619	2017-04-08 14:17:44.090619	1	INVITATION
 \.
 
 
@@ -849,7 +844,7 @@ COPY match_requests (id, match_id, team_id, created_at, updated_at, team_receive
 -- Name: match_requests_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('match_requests_id_seq', 13, true);
+SELECT pg_catalog.setval('match_requests_id_seq', 1, false);
 
 
 --
@@ -857,15 +852,6 @@ SELECT pg_catalog.setval('match_requests_id_seq', 13, true);
 --
 
 COPY match_results (id, match_id, win_team_id, loss_team_id, created_at, updated_at) FROM stdin;
-1	1	1	2	2017-04-05 20:32:10.654769	2017-04-05 20:32:10.654769
-2	2	2	6	2017-04-05 20:56:20.399775	2017-04-05 20:56:20.399775
-3	3	1	5	2017-04-05 21:13:00.645753	2017-04-05 21:13:00.645753
-4	5	4	3	2017-04-05 21:50:28.427447	2017-04-05 21:50:28.427447
-5	4	\N	\N	2017-04-05 21:56:02.201764	2017-04-05 21:56:02.201764
-6	6	\N	\N	2017-04-05 21:56:24.947447	2017-04-05 21:56:24.947447
-7	7	3	1	2017-04-05 22:09:06.074158	2017-04-05 22:09:06.074158
-8	8	2	3	2017-04-05 22:23:54.967063	2017-04-05 22:23:54.967063
-9	9	1	3	2017-04-05 22:32:08.381851	2017-04-05 22:32:08.381851
 \.
 
 
@@ -873,7 +859,7 @@ COPY match_results (id, match_id, win_team_id, loss_team_id, created_at, updated
 -- Name: match_results_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('match_results_id_seq', 10, true);
+SELECT pg_catalog.setval('match_results_id_seq', 1, false);
 
 
 --
@@ -881,17 +867,6 @@ SELECT pg_catalog.setval('match_results_id_seq', 10, true);
 --
 
 COPY matches (id, team_owner_id, team_away_id, field_id, starts_at, ends_at, is_start, home_goal, away_goal, created_at, updated_at, venue_id, is_end) FROM stdin;
-1	1	2	1	2017-04-08 10:00:00	2017-04-08 11:00:00	t	3	1	2017-04-05 20:19:50.568848	2017-04-05 20:32:10.637282	1	t
-2	2	6	3	2017-04-07 23:00:00	2017-04-08 00:00:00	t	5	3	2017-04-05 20:48:08.82905	2017-04-05 20:56:20.32757	1	t
-3	1	5	2	2017-04-09 00:00:00	2017-04-09 01:00:00	t	6	3	2017-04-05 20:57:20.758607	2017-04-05 21:13:00.510368	2	t
-5	4	3	2	2017-04-09 13:00:00	2017-04-09 14:00:00	t	3	2	2017-04-05 21:40:35.453833	2017-04-05 21:50:28.394001	2	t
-4	5	6	3	2017-04-09 03:00:00	2017-04-09 04:00:00	t	4	4	2017-04-05 21:32:44.990565	2017-04-05 21:56:02.196335	1	t
-6	6	1	1	2017-04-11 01:00:00	2017-04-11 02:00:00	t	2	2	2017-04-05 21:51:28.006862	2017-04-05 21:56:24.940811	1	t
-7	1	3	3	2017-04-12 14:00:00	2017-04-12 15:00:00	t	1	3	2017-04-05 21:59:50.837424	2017-04-05 22:09:06.065287	1	t
-8	2	3	\N	2017-04-13 09:00:00	\N	t	6	1	2017-04-05 22:10:49.672982	2017-04-05 22:23:54.931355	2	t
-9	3	1	2	2017-04-13 14:00:00	2017-04-13 15:00:00	t	0	4	2017-04-05 22:25:09.870506	2017-04-05 22:32:08.377102	2	t
-11	1	\N	\N	2017-04-09 14:15:00	\N	\N	\N	\N	2017-04-08 14:16:43.895903	2017-04-08 14:16:43.895903	1	\N
-12	6	\N	\N	2017-04-15 15:00:00	\N	\N	\N	\N	2017-04-08 14:20:17.227575	2017-04-08 14:20:17.227575	1	\N
 \.
 
 
@@ -899,7 +874,7 @@ COPY matches (id, team_owner_id, team_away_id, field_id, starts_at, ends_at, is_
 -- Name: matches_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('matches_id_seq', 12, true);
+SELECT pg_catalog.setval('matches_id_seq', 1, false);
 
 
 --
@@ -907,80 +882,56 @@ SELECT pg_catalog.setval('matches_id_seq', 12, true);
 --
 
 COPY notifications (id, notified_by_id, player_id, match_id, team_id, notice_type, notice_messages, read, created_at, updated_at) FROM stdin;
+1	1	14	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(S. Ramos)	f	2017-04-05 16:15:47.279437	2017-04-05 16:15:47.279437
+2	1	4	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(Marcelo)	f	2017-04-05 16:15:50.455404	2017-04-05 16:15:50.455404
 3	1	13	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(K. Benzema)	f	2017-04-05 16:15:53.307107	2017-04-05 16:15:53.307107
+4	1	2	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(L. Modric)	f	2017-04-05 16:16:02.03658	2017-04-05 16:16:02.03658
+5	1	5	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(C. Ronaldo)	f	2017-04-05 16:16:17.855311	2017-04-05 16:16:17.855311
 6	1	3	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(G. Bale)	t	2017-04-05 16:16:20.360095	2017-04-05 16:43:33.439106
+9	4	1	\N	1	team_request_accept_invite	Player: Marcelo has accepted <br>your invitation to join your team(Real Madrid)	f	2017-04-05 16:45:19.186945	2017-04-05 16:45:19.186945
+10	14	1	\N	1	team_request_accept_invite	Player: S. Ramos has accepted <br>your invitation to join your team(Real Madrid)	f	2017-04-05 16:45:39.228962	2017-04-05 16:45:39.228962
 7	2	1	\N	1	team_request_accept_invite	Player: L. Modric has accepted <br>your invitation to join your team(Real Madrid)	t	2017-04-05 16:44:18.513125	2017-04-05 16:46:20.415524
 8	5	1	\N	1	team_request_accept_invite	Player: C. Ronaldo has accepted <br>your invitation to join your team(Real Madrid)	t	2017-04-05 16:44:44.497268	2017-04-05 16:46:44.765114
 11	10	7	\N	2	team_request_invite	Team: FC Barcelona has sent invite request <br>to you(L. Messi)	f	2017-04-05 16:51:15.44523	2017-04-05 16:51:15.44523
+12	10	11	\N	2	team_request_invite	Team: FC Barcelona has sent invite request <br>to you(Ronaldinho)	f	2017-04-05 16:51:23.595558	2017-04-05 16:51:23.595558
 13	10	8	\N	2	team_request_invite	Team: FC Barcelona has sent invite request <br>to you(V. Valdes)	f	2017-04-05 16:51:27.627101	2017-04-05 16:51:27.627101
 14	10	9	\N	2	team_request_invite	Team: FC Barcelona has sent invite request <br>to you(G. Pique)	f	2017-04-05 16:51:32.066649	2017-04-05 16:51:32.066649
+15	8	10	\N	2	team_request_accept_invite	Player: V. Valdes has accepted <br>your invitation to join your team(FC Barcelona)	f	2017-04-05 16:52:13.165846	2017-04-05 16:52:13.165846
+16	11	10	\N	2	team_request_accept_invite	Player: Ronaldinho has accepted <br>your invitation to join your team(FC Barcelona)	f	2017-04-05 16:52:31.554474	2017-04-05 16:52:31.554474
+17	7	10	\N	2	team_request_accept_invite	Player: L. Messi has accepted <br>your invitation to join your team(FC Barcelona)	f	2017-04-05 16:52:52.699399	2017-04-05 16:52:52.699399
+18	9	10	\N	2	team_request_accept_invite	Player: G. Pique has accepted <br>your invitation to join your team(FC Barcelona)	f	2017-04-05 16:53:16.849525	2017-04-05 16:53:16.849525
 19	18	15	\N	3	team_request_request	Player: T. Courtois has sent request request <br>to your team (Chelsea F.C.)	t	2017-04-05 17:08:34.331463	2017-04-05 17:08:40.736066
+20	15	18	\N	3	team_request_accept_request	Team: Chelsea F.C. has accepted <br>your request(T. Courtois) to join their team	f	2017-04-05 17:08:46.432953	2017-04-05 17:08:46.432953
 23	15	20	\N	3	team_request_accept_request	Team: Chelsea F.C. has accepted <br>your request(C. Fabregas) to join their team	f	2017-04-05 17:13:35.582356	2017-04-05 17:13:35.582356
+24	15	19	\N	3	team_request_accept_request	Team: Chelsea F.C. has accepted <br>your request(D. Costa) to join their team	f	2017-04-05 17:13:37.676833	2017-04-05 17:13:37.676833
+26	15	21	\N	3	team_request_accept_request	Team: Chelsea F.C. has accepted <br>your request(D. Luiz) to join their team	f	2017-04-05 17:18:02.032881	2017-04-05 17:18:02.032881
 21	19	15	\N	3	team_request_request	Player: D. Costa has sent request request <br>to your team (Chelsea F.C.)	t	2017-04-05 17:10:15.078094	2017-04-05 17:21:27.126018
 22	20	15	\N	3	team_request_request	Player: C. Fabregas has sent request request <br>to your team (Chelsea F.C.)	t	2017-04-05 17:12:27.785244	2017-04-05 17:21:35.183436
 25	21	15	\N	3	team_request_request	Player: D. Luiz has sent request request <br>to your team (Chelsea F.C.)	t	2017-04-05 17:16:18.974548	2017-04-05 17:21:37.970806
+27	23	22	\N	4	team_request_request	Player: J. Hart has sent request request <br>to your team (Manchester City F.C.)	f	2017-04-05 17:29:01.088904	2017-04-05 17:29:01.088904
+28	24	22	\N	4	team_request_request	Player: S. Aguero has sent request request <br>to your team (Manchester City F.C.)	f	2017-04-05 17:30:34.02064	2017-04-05 17:30:34.02064
 29	22	23	\N	4	team_request_accept_request	Team: Manchester City F.C. has accepted <br>your request(J. Hart) to join their team	f	2017-04-05 17:31:13.707703	2017-04-05 17:31:13.707703
 30	22	24	\N	4	team_request_accept_request	Team: Manchester City F.C. has accepted <br>your request(S. Aguero) to join their team	f	2017-04-05 17:31:18.790518	2017-04-05 17:31:18.790518
+31	25	22	\N	4	team_request_request	Player: V. Kompany has sent request request <br>to your team (Manchester City F.C.)	f	2017-04-05 17:35:45.110511	2017-04-05 17:35:45.110511
 32	22	25	\N	4	team_request_accept_request	Team: Manchester City F.C. has accepted <br>your request(V. Kompany) to join their team	f	2017-04-05 17:37:25.447123	2017-04-05 17:37:25.447123
+33	26	22	\N	4	team_request_request	Player: K. Bruyne has sent request request <br>to your team (Manchester City F.C.)	f	2017-04-05 17:41:23.990023	2017-04-05 17:41:23.990023
+34	22	26	\N	4	team_request_accept_request	Team: Manchester City F.C. has accepted <br>your request(K. Bruyne) to join their team	f	2017-04-05 17:41:45.918913	2017-04-05 17:41:45.918913
 36	29	27	\N	5	team_request_request	Player: G. Chiellini  has sent request request <br>to your team (Juventus F.C.)	f	2017-04-05 17:50:16.857342	2017-04-05 17:50:16.857342
 37	30	27	\N	5	team_request_request	Player: L. Bonucci has sent request request <br>to your team (Juventus F.C.)	f	2017-04-05 17:51:51.113537	2017-04-05 17:51:51.113537
 38	31	27	\N	5	team_request_request	Player: A. Pirlo has sent request request <br>to your team (Juventus F.C.)	f	2017-04-05 17:53:50.001844	2017-04-05 17:53:50.001844
 35	28	27	\N	5	team_request_request	Player: G. Higuain has sent request request <br>to your team (Juventus F.C.)	t	2017-04-05 17:48:26.512585	2017-04-05 17:55:14.04222
 39	27	31	\N	5	team_request_accept_request	Team: Juventus F.C. has accepted <br>your request(A. Pirlo) to join their team	f	2017-04-05 17:55:16.705199	2017-04-05 17:55:16.705199
 40	27	29	\N	5	team_request_accept_request	Team: Juventus F.C. has accepted <br>your request(G. Chiellini ) to join their team	f	2017-04-05 17:55:22.241859	2017-04-05 17:55:22.241859
+41	27	28	\N	5	team_request_accept_request	Team: Juventus F.C. has accepted <br>your request(G. Higuain) to join their team	f	2017-04-05 17:55:25.339048	2017-04-05 17:55:25.339048
 42	27	30	\N	5	team_request_accept_request	Team: Juventus F.C. has accepted <br>your request(L. Bonucci) to join their team	f	2017-04-05 17:55:29.805838	2017-04-05 17:55:29.805838
 43	32	12	\N	6	team_request_request	Player: Charles has sent request request <br>to your team (CoderSchool)	t	2017-04-05 17:59:36.198707	2017-04-05 18:04:12.674455
 44	12	32	\N	6	team_request_accept_request	Team: CoderSchool has accepted <br>your request(Charles) to join their team	f	2017-04-05 18:04:16.705373	2017-04-05 18:04:16.705373
-45	33	12	\N	6	team_request_request	Player: Dave has sent request request <br>to your team (CoderSchool)	t	2017-04-05 18:05:04.162988	2017-04-05 20:50:01.217348
-47	35	12	\N	6	team_request_request	Player: Tan has sent request request <br>to your team (CoderSchool)	t	2017-04-05 18:08:11.050668	2017-04-05 20:50:11.144444
-46	34	12	\N	6	team_request_request	Player: Vy has sent request request <br>to your team (CoderSchool)	t	2017-04-05 18:05:39.427717	2017-04-05 20:50:12.540455
-10	14	1	\N	1	team_request_accept_invite	Player: S. Ramos has accepted <br>your invitation to join your team(Real Madrid)	t	2017-04-05 16:45:39.228962	2017-04-05 20:57:56.134658
-27	23	22	\N	4	team_request_request	Player: J. Hart has sent request request <br>to your team (Manchester City F.C.)	t	2017-04-05 17:29:01.088904	2017-04-05 20:59:25.100126
-33	26	22	\N	4	team_request_request	Player: K. Bruyne has sent request request <br>to your team (Manchester City F.C.)	t	2017-04-05 17:41:23.990023	2017-04-05 20:59:27.548047
-41	27	28	\N	5	team_request_accept_request	Team: Juventus F.C. has accepted <br>your request(G. Higuain) to join their team	t	2017-04-05 17:55:25.339048	2017-04-05 21:10:21.73713
-28	24	22	\N	4	team_request_request	Player: S. Aguero has sent request request <br>to your team (Manchester City F.C.)	t	2017-04-05 17:30:34.02064	2017-04-05 21:41:01.143709
-31	25	22	\N	4	team_request_request	Player: V. Kompany has sent request request <br>to your team (Manchester City F.C.)	t	2017-04-05 17:35:45.110511	2017-04-05 21:41:04.980198
-2	1	4	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(Marcelo)	t	2017-04-05 16:15:50.455404	2017-04-05 21:59:07.024741
-1	1	14	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(S. Ramos)	t	2017-04-05 16:15:47.279437	2017-04-05 22:06:35.047065
-15	8	10	\N	2	team_request_accept_invite	Player: V. Valdes has accepted <br>your invitation to join your team(FC Barcelona)	t	2017-04-05 16:52:13.165846	2017-04-05 22:11:11.885441
-16	11	10	\N	2	team_request_accept_invite	Player: Ronaldinho has accepted <br>your invitation to join your team(FC Barcelona)	t	2017-04-05 16:52:31.554474	2017-04-05 22:11:51.443327
-18	9	10	\N	2	team_request_accept_invite	Player: G. Pique has accepted <br>your invitation to join your team(FC Barcelona)	t	2017-04-05 16:53:16.849525	2017-04-05 22:11:56.847605
-17	7	10	\N	2	team_request_accept_invite	Player: L. Messi has accepted <br>your invitation to join your team(FC Barcelona)	t	2017-04-05 16:52:52.699399	2017-04-05 22:11:59.668948
-20	15	18	\N	3	team_request_accept_request	Team: Chelsea F.C. has accepted <br>your request(T. Courtois) to join their team	t	2017-04-05 17:08:46.432953	2017-04-05 22:20:56.892688
-24	15	19	\N	3	team_request_accept_request	Team: Chelsea F.C. has accepted <br>your request(D. Costa) to join their team	t	2017-04-05 17:13:37.676833	2017-04-05 22:22:23.177915
-9	4	1	\N	1	team_request_accept_invite	Player: Marcelo has accepted <br>your invitation to join your team(Real Madrid)	t	2017-04-05 16:45:19.186945	2017-04-05 22:25:46.83469
-26	15	21	\N	3	team_request_accept_request	Team: Chelsea F.C. has accepted <br>your request(D. Luiz) to join their team	t	2017-04-05 17:18:02.032881	2017-04-05 22:28:44.780996
-5	1	5	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(C. Ronaldo)	t	2017-04-05 16:16:17.855311	2017-04-05 22:30:23.592578
-4	1	2	\N	1	team_request_invite	Team: Real Madrid has sent invite request <br>to you(L. Modric)	t	2017-04-05 16:16:02.03658	2017-04-05 22:31:38.03051
+45	33	12	\N	6	team_request_request	Player: Dave has sent request request <br>to your team (CoderSchool)	f	2017-04-05 18:05:04.162988	2017-04-05 18:05:04.162988
+46	34	12	\N	6	team_request_request	Player: Vy has sent request request <br>to your team (CoderSchool)	f	2017-04-05 18:05:39.427717	2017-04-05 18:05:39.427717
+47	35	12	\N	6	team_request_request	Player: Tan has sent request request <br>to your team (CoderSchool)	f	2017-04-05 18:08:11.050668	2017-04-05 18:08:11.050668
 48	12	33	\N	6	team_request_accept_request	Team: CoderSchool has accepted <br>your request(Dave) to join their team	f	2017-04-05 18:08:35.099571	2017-04-05 18:08:35.099571
+49	12	34	\N	6	team_request_accept_request	Team: CoderSchool has accepted <br>your request(Vy) to join their team	f	2017-04-05 18:08:39.71082	2017-04-05 18:08:39.71082
 50	12	35	\N	6	team_request_accept_request	Team: CoderSchool has accepted <br>your request(Tan) to join their team	f	2017-04-05 18:08:42.499243	2017-04-05 18:08:42.499243
-12	10	11	\N	2	team_request_invite	Team: FC Barcelona has sent invite request <br>to you(Ronaldinho)	t	2017-04-05 16:51:23.595558	2017-04-05 20:21:15.622598
-53	10	12	2	\N	match_request_invite	Team: FC Barcelona has sent invite request <br>to your team(CoderSchool)	t	2017-04-05 20:48:45.070388	2017-04-05 20:50:09.526436
-55	1	27	3	\N	match_request_invite	Team: Real Madrid has sent invite request <br>to your team(Juventus F.C.)	f	2017-04-05 20:57:35.218866	2017-04-05 20:57:35.218866
-58	12	27	4	\N	match_request_accept_invite	Team: CoderSchool has sent accept_invite request <br>to your team(Juventus F.C.)	f	2017-04-05 21:33:32.965555	2017-04-05 21:33:32.965555
-60	15	22	5	\N	match_request_accept_invite	Team: Chelsea F.C. has sent accept_invite request <br>to your team(Manchester City F.C.)	f	2017-04-05 21:41:41.657916	2017-04-05 21:41:41.657916
-34	22	26	\N	4	team_request_accept_request	Team: Manchester City F.C. has accepted <br>your request(K. Bruyne) to join their team	t	2017-04-05 17:41:45.918913	2017-04-05 21:45:47.65534
-57	27	12	4	\N	match_request_invite	Team: Juventus F.C. has sent invite request <br>to your team(CoderSchool)	t	2017-04-05 21:32:53.580478	2017-04-05 21:52:20.601592
-49	12	34	\N	6	team_request_accept_request	Team: CoderSchool has accepted <br>your request(Vy) to join their team	t	2017-04-05 18:08:39.71082	2017-04-05 21:55:39.479914
-59	22	15	5	\N	match_request_invite	Team: Manchester City F.C. has sent invite request <br>to your team(Chelsea F.C.)	t	2017-04-05 21:40:45.159675	2017-04-05 22:01:19.47108
-63	1	15	7	\N	match_request_invite	Team: Real Madrid has sent invite request <br>to your team(Chelsea F.C.)	t	2017-04-05 22:00:04.493152	2017-04-05 22:01:21.638725
-65	10	22	8	\N	match_request_invite	Team: FC Barcelona has sent invite request <br>to your team(Manchester City F.C.)	f	2017-04-05 22:10:54.910673	2017-04-05 22:10:54.910673
-51	1	10	1	\N	match_request_invite	Team: Real Madrid has sent invite request <br>to your team(FC Barcelona)	t	2017-04-05 20:20:04.349016	2017-04-05 22:12:03.198983
-54	12	10	2	\N	match_request_accept_invite	Team: CoderSchool has sent accept_invite request <br>to your team(FC Barcelona)	t	2017-04-05 20:49:48.673647	2017-04-05 22:12:06.187361
-66	15	10	8	\N	match_request_join	Team: Chelsea F.C. has sent join request <br>to your team(FC Barcelona)	t	2017-04-05 22:12:51.551777	2017-04-05 22:13:15.068692
-67	10	15	8	\N	match_request_accept_request	Team: FC Barcelona has sent accept_request request <br>to your team(Chelsea F.C.)	t	2017-04-05 22:13:06.924722	2017-04-05 22:17:39.213045
-52	10	1	1	\N	match_request_accept_invite	Team: FC Barcelona has sent accept_invite request <br>to your team(Real Madrid)	t	2017-04-05 20:28:10.919963	2017-04-05 22:25:48.688673
-61	12	1	6	\N	match_request_invite	Team: CoderSchool has sent invite request <br>to your team(Real Madrid)	t	2017-04-05 21:51:36.243933	2017-04-05 22:25:50.16509
-68	15	1	9	\N	match_request_invite	Team: Chelsea F.C. has sent invite request <br>to your team(Real Madrid)	t	2017-04-05 22:25:32.713184	2017-04-05 22:25:51.865387
-56	27	1	3	\N	match_request_accept_invite	Team: Juventus F.C. has sent accept_invite request <br>to your team(Real Madrid)	t	2017-04-05 21:02:02.122111	2017-04-05 22:25:53.133418
-64	15	1	7	\N	match_request_accept_invite	Team: Chelsea F.C. has sent accept_invite request <br>to your team(Real Madrid)	t	2017-04-05 22:01:15.268863	2017-04-05 22:25:54.261597
-69	1	15	9	\N	match_request_accept_invite	Team: Real Madrid has sent accept_invite request <br>to your team(Chelsea F.C.)	t	2017-04-05 22:25:59.455536	2017-04-05 22:27:08.554975
-62	1	12	6	\N	match_request_accept_invite	Team: Real Madrid has sent accept_invite request <br>to your team(CoderSchool)	t	2017-04-05 21:52:45.76348	2017-04-06 02:55:25.229295
-71	12	1	10	\N	match_request_accept_invite	Team: CoderSchool has sent accept_invite request <br>to your team(Real Madrid)	t	2017-04-06 03:02:51.580266	2017-04-06 12:56:39.49358
-70	1	12	10	\N	match_request_invite	Team: Real Madrid has sent invite request <br>to your team(CoderSchool)	t	2017-04-06 03:02:41.528289	2017-04-08 14:17:41.361758
-72	1	27	11	\N	match_request_invite	Team: Real Madrid has sent invite request <br>to your team(Juventus F.C.)	f	2017-04-08 14:17:44.119139	2017-04-08 14:17:44.119139
-73	12	1	11	\N	match_request_join	Team: CoderSchool has sent join request <br>to your team(Real Madrid)	t	2017-04-08 14:23:08.017548	2017-04-08 14:23:42.221386
-74	12	1	11	\N	match_request_decline_invite	Team: CoderSchool has sent decline_invite request <br>to your team(Real Madrid)	f	2017-04-08 14:23:57.059395	2017-04-08 14:23:57.059395
 \.
 
 
@@ -988,7 +939,7 @@ COPY notifications (id, notified_by_id, player_id, match_id, team_id, notice_typ
 -- Name: notifications_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('notifications_id_seq', 74, true);
+SELECT pg_catalog.setval('notifications_id_seq', 50, true);
 
 
 --
@@ -1111,93 +1062,6 @@ SELECT pg_catalog.setval('player_references_id_seq', 100, true);
 --
 
 COPY player_results (id, match_id, player_id, goal, created_at, updated_at, verify_status) FROM stdin;
-1	1	5	2	2017-04-05 20:32:49.996272	2017-04-05 20:32:49.996272	\N
-2	1	11	1	2017-04-05 20:33:31.303067	2017-04-05 20:33:31.303067	\N
-3	1	1	1	2017-04-05 20:34:06.286994	2017-04-05 20:34:06.286994	\N
-4	1	4	0	2017-04-05 20:35:18.044119	2017-04-05 20:35:18.044119	\N
-5	1	14	0	2017-04-05 20:36:14.847166	2017-04-05 20:36:14.847166	\N
-6	1	2	0	2017-04-05 20:36:45.544747	2017-04-05 20:36:45.544747	\N
-7	1	7	0	2017-04-05 20:38:43.890426	2017-04-05 20:38:43.890426	\N
-8	1	8	0	2017-04-05 20:39:22.500611	2017-04-05 20:39:22.500611	\N
-9	1	9	0	2017-04-05 20:39:54.717873	2017-04-05 20:39:54.717873	\N
-10	1	10	0	2017-04-05 20:40:44.672845	2017-04-05 20:40:44.672845	\N
-11	2	10	1	2017-04-05 20:51:01.251248	2017-04-05 20:51:01.251248	\N
-12	2	7	3	2017-04-05 20:51:29.480673	2017-04-05 20:51:29.480673	\N
-13	2	11	1	2017-04-05 20:52:01.066065	2017-04-05 20:52:01.066065	\N
-14	2	8	0	2017-04-05 20:52:32.728027	2017-04-05 20:52:32.728027	\N
-15	2	9	0	2017-04-05 20:53:09.514056	2017-04-05 20:53:09.514056	\N
-16	2	12	1	2017-04-05 20:53:35.1081	2017-04-05 20:53:35.1081	\N
-17	2	33	1	2017-04-05 20:54:08.59359	2017-04-05 20:54:08.59359	\N
-18	2	32	1	2017-04-05 20:54:44.228426	2017-04-05 20:54:44.228426	\N
-19	2	34	0	2017-04-05 20:55:21.797219	2017-04-05 20:55:21.797219	\N
-20	2	35	0	2017-04-05 20:55:44.746526	2017-04-05 20:55:44.746526	\N
-21	3	1	0	2017-04-05 21:03:07.886631	2017-04-05 21:03:07.886631	\N
-22	3	2	1	2017-04-05 21:03:39.512855	2017-04-05 21:03:39.512855	\N
-23	3	14	1	2017-04-05 21:04:00.891617	2017-04-05 21:04:00.891617	\N
-24	3	4	2	2017-04-05 21:04:25.3256	2017-04-05 21:04:25.3256	\N
-25	3	5	2	2017-04-05 21:04:41.401013	2017-04-05 21:04:41.401013	\N
-26	3	27	0	2017-04-05 21:05:16.400867	2017-04-05 21:05:16.400867	\N
-27	3	28	2	2017-04-05 21:06:24.392121	2017-04-05 21:06:24.392121	\N
-28	3	30	0	2017-04-05 21:11:09.686591	2017-04-05 21:11:09.686591	\N
-29	3	29	0	2017-04-05 21:11:55.619339	2017-04-05 21:11:55.619339	\N
-30	3	31	1	2017-04-05 21:12:32.078328	2017-04-05 21:12:32.078328	\N
-31	4	27	0	2017-04-05 21:34:06.533642	2017-04-05 21:34:06.533642	\N
-32	4	28	2	2017-04-05 21:34:39.422929	2017-04-05 21:34:39.422929	\N
-33	4	31	1	2017-04-05 21:34:59.23959	2017-04-05 21:34:59.23959	\N
-34	4	30	1	2017-04-05 21:36:25.925044	2017-04-05 21:36:25.925044	\N
-35	4	12	1	2017-04-05 21:36:52.065389	2017-04-05 21:36:52.065389	\N
-36	4	32	1	2017-04-05 21:37:12.771967	2017-04-05 21:37:12.771967	\N
-37	4	35	1	2017-04-05 21:37:40.115426	2017-04-05 21:37:40.115426	\N
-38	4	34	1	2017-04-05 21:38:43.695128	2017-04-05 21:38:43.695128	\N
-39	5	22	1	2017-04-05 21:42:58.418182	2017-04-05 21:42:58.418182	\N
-40	5	24	2	2017-04-05 21:43:42.128989	2017-04-05 21:43:42.128989	\N
-41	5	25	0	2017-04-05 21:44:09.346193	2017-04-05 21:44:09.346193	\N
-42	5	23	0	2017-04-05 21:44:55.928862	2017-04-05 21:44:55.928862	\N
-43	5	26	0	2017-04-05 21:45:31.470442	2017-04-05 21:45:31.470442	\N
-44	5	15	1	2017-04-05 21:46:45.553247	2017-04-05 21:46:45.553247	\N
-45	5	19	1	2017-04-05 21:47:12.968418	2017-04-05 21:47:12.968418	\N
-46	5	18	0	2017-04-05 21:48:18.131432	2017-04-05 21:48:18.131432	\N
-47	5	21	0	2017-04-05 21:49:19.246894	2017-04-05 21:49:19.246894	\N
-48	5	20	0	2017-04-05 21:49:46.287585	2017-04-05 21:49:46.287585	\N
-49	6	12	1	2017-04-05 21:53:24.75712	2017-04-05 21:53:24.75712	\N
-50	6	32	1	2017-04-05 21:53:42.521946	2017-04-05 21:53:42.521946	\N
-51	6	33	0	2017-04-05 21:54:03.313853	2017-04-05 21:54:03.313853	\N
-52	6	35	0	2017-04-05 21:54:28.132808	2017-04-05 21:54:28.132808	\N
-53	6	34	0	2017-04-05 21:54:51.196704	2017-04-05 21:54:51.196704	\N
-54	6	1	0	2017-04-05 21:56:48.970172	2017-04-05 21:56:48.970172	\N
-55	6	5	1	2017-04-05 21:57:19.264017	2017-04-05 21:57:19.264017	\N
-56	6	2	0	2017-04-05 21:57:42.419921	2017-04-05 21:57:42.419921	\N
-57	6	14	1	2017-04-05 21:58:09.685214	2017-04-05 21:58:09.685214	\N
-58	6	4	0	2017-04-05 21:58:40.383449	2017-04-05 21:58:40.383449	\N
-59	7	1	0	2017-04-05 22:02:09.138183	2017-04-05 22:02:09.138183	\N
-60	7	2	1	2017-04-05 22:02:43.018997	2017-04-05 22:02:43.018997	\N
-61	7	5	0	2017-04-05 22:05:38.145281	2017-04-05 22:05:38.145281	\N
-62	7	4	0	2017-04-05 22:05:57.287737	2017-04-05 22:05:57.287737	\N
-63	7	14	0	2017-04-05 22:06:19.818888	2017-04-05 22:06:19.818888	\N
-64	7	15	2	2017-04-05 22:07:00.39795	2017-04-05 22:07:00.39795	\N
-65	7	20	1	2017-04-05 22:07:19.149657	2017-04-05 22:07:19.149657	\N
-66	7	19	0	2017-04-05 22:07:42.838488	2017-04-05 22:07:42.838488	\N
-67	7	21	0	2017-04-05 22:08:11.169138	2017-04-05 22:08:11.169138	\N
-68	7	18	0	2017-04-05 22:08:39.555658	2017-04-05 22:08:39.555658	\N
-70	8	11	2	2017-04-05 22:14:21.83262	2017-04-05 22:14:21.83262	\N
-71	8	7	2	2017-04-05 22:14:44.343302	2017-04-05 22:14:44.343302	\N
-72	8	9	1	2017-04-05 22:15:01.448031	2017-04-05 22:15:01.448031	\N
-69	8	10	1	2017-04-05 22:13:58.26269	2017-04-05 22:16:36.474415	\N
-73	8	15	0	2017-04-05 22:17:23.957513	2017-04-05 22:17:23.957513	\N
-74	8	18	0	2017-04-05 22:21:52.498349	2017-04-05 22:21:52.498349	\N
-75	8	19	0	2017-04-05 22:22:18.312871	2017-04-05 22:22:18.312871	\N
-76	8	20	0	2017-04-05 22:23:18.538677	2017-04-05 22:23:18.538677	\N
-77	8	21	1	2017-04-05 22:23:39.737362	2017-04-05 22:23:39.737362	\N
-78	9	15	0	2017-04-05 22:27:01.757291	2017-04-05 22:27:01.757291	\N
-79	9	19	0	2017-04-05 22:27:26.79098	2017-04-05 22:27:26.79098	\N
-80	9	20	0	2017-04-05 22:27:49.473317	2017-04-05 22:27:49.473317	\N
-81	9	18	0	2017-04-05 22:28:28.027811	2017-04-05 22:28:28.027811	\N
-82	9	21	0	2017-04-05 22:28:50.971856	2017-04-05 22:28:50.971856	\N
-83	9	1	0	2017-04-05 22:29:54.922535	2017-04-05 22:29:54.922535	\N
-84	9	5	2	2017-04-05 22:30:13.190954	2017-04-05 22:30:13.190954	\N
-85	9	4	1	2017-04-05 22:30:38.358618	2017-04-05 22:30:38.358618	\N
-86	9	14	1	2017-04-05 22:31:03.409068	2017-04-05 22:31:03.409068	\N
-87	9	2	0	2017-04-05 22:31:33.85748	2017-04-05 22:31:33.85748	\N
 \.
 
 
@@ -1205,7 +1069,7 @@ COPY player_results (id, match_id, player_id, goal, created_at, updated_at, veri
 -- Name: player_results_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('player_results_id_seq', 88, true);
+SELECT pg_catalog.setval('player_results_id_seq', 1, false);
 
 
 --
@@ -1213,42 +1077,40 @@ SELECT pg_catalog.setval('player_results_id_seq', 88, true);
 --
 
 COPY players (id, team_id, full_name, email, password_digest, created_at, updated_at, image_url, nickname, favorite_player, favorite_team, goal, games_played) FROM stdin;
+15	3	E. Hazard	edenhazard@gmail.com	$2a$10$q8c04lyNC3Lv1qTXUcy1Wux/ciGpPCugXQNlFnQwxt0fgTCiU46Xa	2017-04-05 12:31:07.862941	2017-04-05 17:08:24.760223	hazard.jpg				\N	\N
 3	\N	G. Bale	garethbale@gmail.com	$2a$10$8.Z1xLOzLoXtVciBQ4./B.4kVwW8.eBo8Px9QIj/COMn21I6FC9Ky	2017-04-05 12:06:48.005716	2017-04-05 12:07:00.180474	bale.jpg				\N	\N
 6	\N	A. Iniesta	andresiniesta@gmail.com	$2a$10$XPVbajIbwhK4jR/0a2vgn.WUBWC9J65cfN4sQKCLfOciFrHHEn2p2	2017-04-05 12:09:27.626639	2017-04-05 12:09:50.028928	iniesta.jpg				\N	\N
+12	6	Harley	harleytrung@gmail.com	$2a$10$yoNYsER94pHfIn5qyJyn1OhJzXc4vpvVTYFkkgubWmPyDZl0UJRke	2017-04-05 12:24:36.095159	2017-04-05 17:59:01.641738	11703293_10100901374320434_2543083367635502905_o.jpg				\N	\N
+26	4	K. Bruyne	kevindebruyne@gmail.com	$2a$10$F/oQLO7tqX4AA5a3QW3MnO03Gq44nEwXGoJ.tscztmjPzktV0Ovxy	2017-04-05 17:41:19.301777	2017-04-05 17:41:45.908779	kevin-de-bruyne.jpg				\N	\N
+20	3	C. Fabregas	cescfabregas@gmail.com	$2a$10$rc8.XPOkJO3cz90UAhlGr.P9FgOxRW/Ovj3ydd4aWrMdaYQqUsYre	2017-04-05 17:12:24.254866	2017-04-05 17:13:35.572805	cesc-fabregas-513844.jpg				\N	\N
+19	3	D. Costa	diegocosta@gmail.com	$2a$10$QpF4RNilv6/iKufJTfRv6.cT9xPgvEsY6kHBdcN8Fr8vAHeDjkbxq	2017-04-05 17:09:23.022427	2017-04-05 17:13:37.66784	costa.jpg				\N	\N
+35	6	Tan	tan@gmail.com	$2a$10$I.fGjMcS.VtD.aoP7EFzNOHjZ1uHMzxax6w2g64TqWPLFqp2bL8wq	2017-04-05 18:08:07.969601	2017-04-05 18:08:42.49086	tan.jpg				\N	\N
 13	\N	K. Benzema	karimbenzema@gmail.com	$2a$10$DATr62P13wgJnY7ygECQvOVcrP7F2ZLtBM7eucF8z.ukyVkA2EXCW	2017-04-05 12:25:59.368937	2017-04-05 12:27:53.962413	benzema.jpg				\N	\N
-36	\N	Admin	admin@soccerchallenge.com	$2a$10$cavICOimGI7Zx2VjdsG9HusWQy6lmtTZG/lEqtL573ZV94KoREQUW	2017-04-05 20:31:47.489828	2017-04-05 20:31:47.489828	player.png	\N	\N	\N	\N	\N
-24	4	S. Aguero	sergioaguero@gmail.com	$2a$10$L7BRNtItOQ7qiK1yahHGSOUPyqSDq4dEwmmvVCN/o3JNZ/Z.84kFC	2017-04-05 17:29:40.972342	2017-04-05 21:43:44.192742	sergio-aguero-443067.jpg				2	1
-21	3	D. Luiz	davidluiz@gmail.com	$2a$10$rNJpshk5p8waNHQNhX1OCu3/HqVcQ6WLjaxsJ81/6MIo1sdQWnESe	2017-04-05 17:14:56.704369	2017-04-05 22:28:56.956554	david-luiz.jpg				1	4
-29	5	G. Chiellini 	giorgiochiellini@gmail.com	$2a$10$S.6UU9tl17uQC6frpf2U5eLR.3IYp/4BO6LJZio43tc/LSx3AuU8K	2017-04-05 17:50:12.60117	2017-04-05 21:11:57.101702	Giorgio-Chiellini.jpg				0	1
-30	5	L. Bonucci	leonardobonucci@gmail.com	$2a$10$gw17VofCbKIg0MMCaU/X4eL1jyzIDL9UVTV/LQhc9NO2sGZ2JWcHG	2017-04-05 17:51:46.511721	2017-04-05 21:36:28.187344	Leonardo-Bonucci.jpg				1	2
-27	5	G. Buffon	gianluigibuffon@gmail.com	$2a$10$SorSVD/wvTWz2tO7rNc95u0mODsgi4vLy9tpU.4iru/ohOF6yFjTi	2017-04-05 17:45:00.873726	2017-04-05 21:34:08.461959	gianluigi-buffon.jpg				0	2
-28	5	G. Higuain	gonzalohiguain@gmail.com	$2a$10$BFHNd0ekVHqcoMNh1LmmaOUNiir2zmy9Ck1Gb.86MWlkKHICQlFx.	2017-04-05 17:48:21.489886	2017-04-05 21:34:41.215124	Gonzalo-Higuain.jpg				4	2
-25	4	V. Kompany	vincentkompany@gmail.com	$2a$10$kOE4tHQTpsn8OT.Wj0.Ahexjl71rVCTWpYT0AF/8uTn2cNSOWL5ya	2017-04-05 17:35:39.885709	2017-04-05 21:44:11.318574	vincent1.jpg				0	1
-35	6	Tan	tan@gmail.com	$2a$10$I.fGjMcS.VtD.aoP7EFzNOHjZ1uHMzxax6w2g64TqWPLFqp2bL8wq	2017-04-05 18:08:07.969601	2017-04-05 21:54:29.96155	tan.jpg				1	3
-23	4	J. Hart	joehart@gmail.com	$2a$10$yLAYGRNMaTIAhpaB5MftzuEAkx7jOMtoQ9UMVRXaoNOLC26ZXoGhS	2017-04-05 17:28:07.38639	2017-04-05 21:44:57.982553	joe-hart.jpg				0	1
-11	2	Ronaldinho	ronaldinho@gmail.com	$2a$10$gWS1ao0gMqIPzS.HDnjvsOqNABP/nNRT1gdFW1r8XZaheGqGcCNo6	2017-04-05 12:18:11.58827	2017-04-05 22:14:23.54563	ronaldinho.jpg				4	3
-15	3	E. Hazard	edenhazard@gmail.com	$2a$10$q8c04lyNC3Lv1qTXUcy1Wux/ciGpPCugXQNlFnQwxt0fgTCiU46Xa	2017-04-05 12:31:07.862941	2017-04-05 22:27:03.751492	hazard.jpg				3	4
-19	3	D. Costa	diegocosta@gmail.com	$2a$10$QpF4RNilv6/iKufJTfRv6.cT9xPgvEsY6kHBdcN8Fr8vAHeDjkbxq	2017-04-05 17:09:23.022427	2017-04-05 22:27:28.823516	costa.jpg				1	4
-8	2	V. Valdes	victorvaldes@gmail.com	$2a$10$EJRu9iV0yA3lDp44fR7yuOZEi//ep.uY2qVW/EwGE/wVnMlM1Kife	2017-04-05 12:12:50.526966	2017-04-05 20:52:35.086005	valdes.jpg				0	2
-26	4	K. Bruyne	kevindebruyne@gmail.com	$2a$10$F/oQLO7tqX4AA5a3QW3MnO03Gq44nEwXGoJ.tscztmjPzktV0Ovxy	2017-04-05 17:41:19.301777	2017-04-05 21:45:33.373777	kevin-de-bruyne.jpg				0	1
-7	2	L. Messi	lionelmessi@gmail.com	$2a$10$bIJh9LwrfJtPsaSE/BsM3uP.Z1twTFu9zjpBIzY2hqTizmHoIPrbG	2017-04-05 12:11:08.473381	2017-04-05 22:14:46.094039	messi.jpg				5	3
-37	\N	Dũng Phan	dungphan@gmail.com	$2a$10$Ilhvr9BmCTkRLj9rXRW0R.IUtT5VkSqtG3iKSQ9c3cYioHgeDWsPK	2017-04-05 22:33:51.278414	2017-04-05 22:34:57.404847	dung_phan.jpg	Kỹ sư mê bóng	Pirlo	Italy, Real Madrid	\N	\N
-5	1	C. Ronaldo	cristianoronaldo@gmail.com	$2a$10$VujyILF0jHtHECdiWuTYjOKDHw4QQ336d4AohRXj4h9gjeMfAMaXG	2017-04-05 12:08:29.462637	2017-04-05 22:45:46.872127	cr.jpg	CR7		Real Madrid	7	5
-34	6	Vy	vy@gmail.com	$2a$10$Ah9qvMo7uOQVJGRxq.2SK.CazqiD3H2ekTEl3MOj5IjmJTH7OYupi	2017-04-05 18:05:36.163637	2017-04-05 21:54:53.195708	11751969_480131162153797_5252605283203578367_n.jpg				1	3
-20	3	C. Fabregas	cescfabregas@gmail.com	$2a$10$rc8.XPOkJO3cz90UAhlGr.P9FgOxRW/Ovj3ydd4aWrMdaYQqUsYre	2017-04-05 17:12:24.254866	2017-04-05 22:27:54.592871	cesc-fabregas-513844.jpg				1	4
-31	5	A. Pirlo	andreapirlo@gmail.com	$2a$10$kyw25MrVy05.gMXfrBxAcOzzAJeFFwLMFjloI16Rc1p3VdtIH1L8S	2017-04-05 17:53:46.173911	2017-04-05 21:35:01.444515	Andrea-Pirlo.jpg				2	2
-17	\N	Lanh Hoang	ryu.hayabusha@gmail.com	$2a$10$MHlKPC/D.IxPvM7oMHVPieWLrO/HlxA0z.wowHRg7GJehepM5dMAC	2017-04-05 15:28:25.260453	2017-04-06 02:53:08.636103	\N	\N	\N	\N	\N	\N
-1	1	I. Casillas	casillas@gmail.com	$2a$10$euljWKPe0BR/vCJvFJHoNO/E14glD2apIIluymPUNWaymGYOQmQCC	2017-04-05 11:23:10.961886	2017-04-06 03:04:49.764725	casillas.jpg				4	6
-22	4	D. Silva	davidsilva@gmail.com	$2a$10$oF4eBlSiUTJnk.72Hc8HPOllZ/bMNRRjPvzVU2ES1P8gWIA0MT3Eq	2017-04-05 17:24:03.917193	2017-04-05 21:43:00.076579	david-silva.jpg				1	1
-9	2	G. Pique	geraldpique@gmail.com	$2a$10$djbh3Ux/.Qglqj1va.FroudZiRNab.ZZry3hEv3GcYiwnrxGghm8a	2017-04-05 12:13:58.020224	2017-04-05 22:15:04.618695	pique.jpg				1	3
-4	1	Marcelo	marcelo@gmail.com	$2a$10$0n8.fV4LcH7LTINpacZIFu5JwOQs0VRiNjj2.fc8FsQHSN.TMoK0C	2017-04-05 12:07:39.647234	2017-04-05 22:30:40.180091	Marcelo.jpg				3	5
-14	1	S. Ramos	sergioramos@gmail.com	$2a$10$N6Exq0fwvakkASIvfHY8TehjGe5MOTEkKa89MRUQx7ALZYzoXCjTC	2017-04-05 12:28:28.041186	2017-04-05 22:31:07.119149	ramos.jpg				3	5
-12	6	Harley	harleytrung@gmail.com	$2a$10$yoNYsER94pHfIn5qyJyn1OhJzXc4vpvVTYFkkgubWmPyDZl0UJRke	2017-04-05 12:24:36.095159	2017-04-05 21:53:26.902509	11703293_10100901374320434_2543083367635502905_o.jpg				3	3
-32	6	Charles	charleslee@gmail.com	$2a$10$WZy1WQ2hcwyyBkqW7B8fI.HGKRtY8mRqJ4c9dltpMMJsPzoiA3AqW	2017-04-05 17:59:31.645193	2017-04-05 21:53:44.381384	Luvocracy_327_1_x8yw9e.jpg				3	3
-33	6	Dave	dave@gmail.com	$2a$10$kIETJzt3wEszxKCR/7FQ1eYyqGrLoseYxh9OnaTAaLveHFj5/P2N.	2017-04-05 18:04:37.078945	2017-04-05 21:54:05.165061	dave.jpeg				1	2
-2	1	L. Modric	lukamodric@gmail.com	$2a$10$oFLoj/Z5GdbN94QcrMwAv.EmxnCQIHU85qqEeyH1f4zmAMJNcnGuO	2017-04-05 12:04:41.400877	2017-04-05 22:31:35.943075	modric.jpg				2	5
-18	3	T. Courtois	thibautcourtois@gmail.com	$2a$10$SrhaC8.VAu1SVNgxsSPrAeExwuUj6aK/fP60X5/YqrKjVZG387NI6	2017-04-05 17:06:14.795314	2017-04-05 22:28:31.020103	thibaut-courtois-540866.jpg				0	4
-10	2	Xavi	xavierhernandez@gmail.com	$2a$10$2qGB3jssut8xRXPsLLlnN.VplGRIqa5wOPAq8Ilj/MhlPy4tap4kW	2017-04-05 12:15:37.53193	2017-04-05 22:14:00.231134	xavi.png				1	3
+18	3	T. Courtois	thibautcourtois@gmail.com	$2a$10$SrhaC8.VAu1SVNgxsSPrAeExwuUj6aK/fP60X5/YqrKjVZG387NI6	2017-04-05 17:06:14.795314	2017-04-05 17:17:46.055948	thibaut-courtois-540866.jpg				\N	\N
+21	3	D. Luiz	davidluiz@gmail.com	$2a$10$rNJpshk5p8waNHQNhX1OCu3/HqVcQ6WLjaxsJ81/6MIo1sdQWnESe	2017-04-05 17:14:56.704369	2017-04-05 17:18:02.023497	david-luiz.jpg				\N	\N
+17	\N	Lanh Hoang	ryu.hayabusha@gmail.com	$2a$10$lz/ILqaU/RKsyTvUvKT3YO.hTr7TX.PXq2skXIOKve/gr79sEmyYG	2017-04-05 15:28:25.260453	2017-04-05 15:55:05.001852	\N	\N	\N	\N	\N	\N
+1	1	I. Casillas	casillas@gmail.com	$2a$10$euljWKPe0BR/vCJvFJHoNO/E14glD2apIIluymPUNWaymGYOQmQCC	2017-04-05 11:23:10.961886	2017-04-05 16:15:16.856987	casillas.jpg				\N	\N
+2	1	L. Modric	lukamodric@gmail.com	$2a$10$oFLoj/Z5GdbN94QcrMwAv.EmxnCQIHU85qqEeyH1f4zmAMJNcnGuO	2017-04-05 12:04:41.400877	2017-04-05 16:44:18.503755	modric.jpg				\N	\N
+5	1	C. Ronaldo	cristianoronaldo@gmail.com	$2a$10$VujyILF0jHtHECdiWuTYjOKDHw4QQ336d4AohRXj4h9gjeMfAMaXG	2017-04-05 12:08:29.462637	2017-04-05 16:44:44.489087	cr.jpg				\N	\N
+4	1	Marcelo	marcelo@gmail.com	$2a$10$0n8.fV4LcH7LTINpacZIFu5JwOQs0VRiNjj2.fc8FsQHSN.TMoK0C	2017-04-05 12:07:39.647234	2017-04-05 16:45:19.177064	Marcelo.jpg				\N	\N
+14	1	S. Ramos	sergioramos@gmail.com	$2a$10$N6Exq0fwvakkASIvfHY8TehjGe5MOTEkKa89MRUQx7ALZYzoXCjTC	2017-04-05 12:28:28.041186	2017-04-05 16:45:39.220437	ramos.jpg				\N	\N
+10	2	Xavi	xavierhernandez@gmail.com	$2a$10$2qGB3jssut8xRXPsLLlnN.VplGRIqa5wOPAq8Ilj/MhlPy4tap4kW	2017-04-05 12:15:37.53193	2017-04-05 16:48:10.939207	xavi.png				\N	\N
+8	2	V. Valdes	victorvaldes@gmail.com	$2a$10$EJRu9iV0yA3lDp44fR7yuOZEi//ep.uY2qVW/EwGE/wVnMlM1Kife	2017-04-05 12:12:50.526966	2017-04-05 16:52:13.15608	valdes.jpg				\N	\N
+11	2	Ronaldinho	ronaldinho@gmail.com	$2a$10$gWS1ao0gMqIPzS.HDnjvsOqNABP/nNRT1gdFW1r8XZaheGqGcCNo6	2017-04-05 12:18:11.58827	2017-04-05 16:52:31.544799	ronaldinho.jpg				\N	\N
+7	2	L. Messi	lionelmessi@gmail.com	$2a$10$bIJh9LwrfJtPsaSE/BsM3uP.Z1twTFu9zjpBIzY2hqTizmHoIPrbG	2017-04-05 12:11:08.473381	2017-04-05 16:52:52.689499	messi.jpg				\N	\N
+9	2	G. Pique	geraldpique@gmail.com	$2a$10$djbh3Ux/.Qglqj1va.FroudZiRNab.ZZry3hEv3GcYiwnrxGghm8a	2017-04-05 12:13:58.020224	2017-04-05 16:53:16.838851	pique.jpg				\N	\N
+27	5	G. Buffon	gianluigibuffon@gmail.com	$2a$10$SorSVD/wvTWz2tO7rNc95u0mODsgi4vLy9tpU.4iru/ohOF6yFjTi	2017-04-05 17:45:00.873726	2017-04-05 17:47:55.009555	gianluigi-buffon.jpg				\N	\N
+22	4	D. Silva	davidsilva@gmail.com	$2a$10$oF4eBlSiUTJnk.72Hc8HPOllZ/bMNRRjPvzVU2ES1P8gWIA0MT3Eq	2017-04-05 17:24:03.917193	2017-04-05 17:26:22.080914	david-silva.jpg				\N	\N
+23	4	J. Hart	joehart@gmail.com	$2a$10$yLAYGRNMaTIAhpaB5MftzuEAkx7jOMtoQ9UMVRXaoNOLC26ZXoGhS	2017-04-05 17:28:07.38639	2017-04-05 17:31:13.699209	joe-hart.jpg				\N	\N
+24	4	S. Aguero	sergioaguero@gmail.com	$2a$10$L7BRNtItOQ7qiK1yahHGSOUPyqSDq4dEwmmvVCN/o3JNZ/Z.84kFC	2017-04-05 17:29:40.972342	2017-04-05 17:31:18.783643	sergio-aguero-443067.jpg				\N	\N
+32	6	Charles	charleslee@gmail.com	$2a$10$WZy1WQ2hcwyyBkqW7B8fI.HGKRtY8mRqJ4c9dltpMMJsPzoiA3AqW	2017-04-05 17:59:31.645193	2017-04-05 18:04:16.696835	Luvocracy_327_1_x8yw9e.jpg				\N	\N
+25	4	V. Kompany	vincentkompany@gmail.com	$2a$10$kOE4tHQTpsn8OT.Wj0.Ahexjl71rVCTWpYT0AF/8uTn2cNSOWL5ya	2017-04-05 17:35:39.885709	2017-04-05 17:37:25.435441	vincent1.jpg				\N	\N
+31	5	A. Pirlo	andreapirlo@gmail.com	$2a$10$kyw25MrVy05.gMXfrBxAcOzzAJeFFwLMFjloI16Rc1p3VdtIH1L8S	2017-04-05 17:53:46.173911	2017-04-05 17:55:16.693915	Andrea-Pirlo.jpg				\N	\N
+29	5	G. Chiellini 	giorgiochiellini@gmail.com	$2a$10$S.6UU9tl17uQC6frpf2U5eLR.3IYp/4BO6LJZio43tc/LSx3AuU8K	2017-04-05 17:50:12.60117	2017-04-05 17:55:22.231434	Giorgio-Chiellini.jpg				\N	\N
+28	5	G. Higuain	gonzalohiguain@gmail.com	$2a$10$BFHNd0ekVHqcoMNh1LmmaOUNiir2zmy9Ck1Gb.86MWlkKHICQlFx.	2017-04-05 17:48:21.489886	2017-04-05 17:55:25.329815	Gonzalo-Higuain.jpg				\N	\N
+30	5	L. Bonucci	leonardobonucci@gmail.com	$2a$10$gw17VofCbKIg0MMCaU/X4eL1jyzIDL9UVTV/LQhc9NO2sGZ2JWcHG	2017-04-05 17:51:46.511721	2017-04-05 17:55:29.796545	Leonardo-Bonucci.jpg				\N	\N
+33	6	Dave	dave@gmail.com	$2a$10$kIETJzt3wEszxKCR/7FQ1eYyqGrLoseYxh9OnaTAaLveHFj5/P2N.	2017-04-05 18:04:37.078945	2017-04-05 18:08:35.089881	dave.jpeg				\N	\N
+34	6	Vy	vy@gmail.com	$2a$10$Ah9qvMo7uOQVJGRxq.2SK.CazqiD3H2ekTEl3MOj5IjmJTH7OYupi	2017-04-05 18:05:36.163637	2017-04-05 18:08:39.698926	11751969_480131162153797_5252605283203578367_n.jpg				\N	\N
 \.
 
 
@@ -1256,7 +1118,7 @@ COPY players (id, team_id, full_name, email, password_digest, created_at, update
 -- Name: players_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('players_id_seq', 37, true);
+SELECT pg_catalog.setval('players_id_seq', 35, true);
 
 
 --
@@ -1355,8 +1217,6 @@ COPY team_owners (id, player_id, team_id, created_at, updated_at) FROM stdin;
 33	33	\N	2017-04-05 18:04:37.096709	2017-04-05 18:04:37.096709
 34	34	\N	2017-04-05 18:05:36.18326	2017-04-05 18:05:36.18326
 35	35	\N	2017-04-05 18:08:07.992999	2017-04-05 18:08:07.992999
-36	36	\N	2017-04-05 20:31:56.109185	2017-04-05 20:31:56.109185
-37	37	\N	2017-04-05 22:33:51.91658	2017-04-05 22:33:51.91658
 \.
 
 
@@ -1364,7 +1224,7 @@ COPY team_owners (id, player_id, team_id, created_at, updated_at) FROM stdin;
 -- Name: team_owners_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('team_owners_id_seq', 37, true);
+SELECT pg_catalog.setval('team_owners_id_seq', 35, true);
 
 
 --
@@ -1387,12 +1247,12 @@ SELECT pg_catalog.setval('team_requests_id_seq', 26, true);
 --
 
 COPY teams (id, team_owner_id, name, points, created_at, updated_at, image_url) FROM stdin;
-5	27	Juventus F.C.	975	2017-04-05 17:46:34.063796	2017-04-05 21:13:03.745613	Juventus_Crest.jpg
-4	22	Manchester City F.C.	1025	2017-04-05 17:25:25.160951	2017-04-05 21:50:32.178019	manchester-city-logo.png
-2	10	FC Barcelona	1025	2017-04-05 16:48:09.733687	2017-04-05 22:23:57.031139	Barcelona.png
-3	15	Chelsea F.C.	950	2017-04-05 17:08:22.285221	2017-04-05 22:32:10.322236	Chelsea_FC.png
-1	1	Real Madrid	1050	2017-04-05 16:15:15.500333	2017-04-06 03:22:00.63724	real-madrid-logo-vector-400x400.png
-6	12	CoderSchool	975	2017-04-05 17:59:00.635628	2017-04-06 03:30:53.225279	12508965_440033509524520_1012190472859090009_n.png
+1	1	Real Madrid	1000	2017-04-05 16:15:15.500333	2017-04-05 16:15:15.500333	real-madrid-logo-vector-400x400.png
+2	10	FC Barcelona	1000	2017-04-05 16:48:09.733687	2017-04-05 16:48:09.733687	Barcelona.png
+3	15	Chelsea F.C.	1000	2017-04-05 17:08:22.285221	2017-04-05 17:08:22.285221	Chelsea_FC.png
+4	22	Manchester City F.C.	1000	2017-04-05 17:25:25.160951	2017-04-05 17:25:25.160951	manchester-city-logo.png
+5	27	Juventus F.C.	1000	2017-04-05 17:46:34.063796	2017-04-05 17:46:34.063796	Juventus_Crest.jpg
+6	12	CoderSchool	1000	2017-04-05 17:59:00.635628	2017-04-05 17:59:00.635628	12508965_440033509524520_1012190472859090009_n.png
 \.
 
 
