@@ -24,7 +24,18 @@ class Notification < ApplicationRecord
           return "/teams"
       end
     else
-      return "/matches"
+      case notice_type
+        when "match_request_accept_request", "match_request_accept_invite", \
+          "match_request_join"
+          return "/matches/#{self.match_id}/waiting"
+
+        when "match_request_invite"
+          return "/matches"
+
+        else
+          return "/matches" 
+      end
+      
     end
 
   end
