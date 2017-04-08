@@ -13,7 +13,6 @@ class PlayerResultsController < ApplicationController
 
     @player = current_player
     @player_results = PlayerResult.where(player_id: @player.id)
-    @player.games_played = @player_results.count
 
     @goals = 0
     if @player_results.count > 0
