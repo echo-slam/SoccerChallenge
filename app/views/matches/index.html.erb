@@ -91,16 +91,17 @@
               <% if match.team_owner_id == current_player.team_id || match.team_away_id == current_player.team_id %>
                 <%= link_to 'View', waiting_match_path(match), class: 'ui attached button' %>
               <% else %>
-                <% if @match_invitations.where(team_received_id: match.team_owner_id).count == 0 %>
-                  <% if @match_requests.where(team_received_id: match.team_owner_id).count == 0 %>
-                    <%= link_to 'Join', join_match_requests_path(match_id: match), method: 'post', class: 'ui teal attached button' %>
+                <% if @match_invitations.where({match_id: match.id, team_id: match.team_owner_id}).count == 0 %>
+                  <% if @match_requests.where({match_id: match.id, team_received_id: match.team_owner_id}).count == 0 %>
+                    <%= link_to 'Join', match_requests_path(match_id: match), method: 'post', class: 'ui teal attached button' %>
                   <% else %>
-                    <%= link_to 'Cancel', decline_match_request_path(@match_requests.where(match_id: match.id).first.id, team_id: current_player.team_id) ,class: 'ui black attached button' %>
+                    <%= link_to 'Cancel', decline_match_request_path(id: @match_requests.where({match_id: match.id, team_received_id: match.team_owner_id}).first.id, match_id: match.id), class: 'ui black attached button' %>
                   <% end %>
                 <% else %>
                   <div class="ui two buttons">
-                    <%= link_to 'Accept', accept_match_request_path(@match_invitations.where(match_id: match.id).first.id), class: 'ui teal attached button' %>
-                    <%= link_to 'Decline', decline_match_request_path(@match_invitations.where(match_id: match.id).first.id, team_id: current_player.team_id), class: 'ui black attached button' %>
+                    <%= link_to 'Accept', accept_match_request_path(@match_invitations.where({match_id: match.id, team_id: match.team_owner_id}).first.id), class: 'ui teal attached button' %>
+                    <%= link_to 'Decline', decline_match_request_path(@match_invitations.where({match_id: match.id, team_id: match.team_owner_id}).first.id, team_id: current_player.team_id), class: 'ui black attached button' %>
+                    <%# raise 'hello' %>
                   </div>
                 <% end %>
               <% end %>

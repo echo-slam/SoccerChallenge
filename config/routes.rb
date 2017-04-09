@@ -28,7 +28,6 @@ Rails.application.routes.draw do
   end
   resources :match_requests do
     collection do
-      post 'join'
       get 'invite'
     end
     member do
