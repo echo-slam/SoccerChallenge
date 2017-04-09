@@ -2,10 +2,18 @@
 <div class="ui container">
   <%= flash_messages %>
   <div class="ui grid">
-    <div class="column"></div>
-    <div class="fourteen wide column">
-      <div class="field-calendar" id="match-calendar-segment"></div>
+    <div class="row">
+      <div class="column">
+        <a href="<%= select_match_path(@match) %>">
+          <div class="circular ui icon black button">
+            <i class="chevron left icon"></i>
+          </div>
+        </a>
+      </div>
+      <div class="fourteen wide column">
+        <div class="field-calendar" id="match-calendar-segment"></div>
+      </div>
+      <div class="column"></div>
     </div>
-    <div class="column"></div>
   </div>
 </div>

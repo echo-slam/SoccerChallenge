@@ -3,14 +3,18 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="row">
-      <div class="four wide column">
-        <h1 class="ui header">Waiting Away Team</h1>
-      </div>
-      <div class="eleven wide column"></div>
       <div class="column">
         <a href="<%= signed_in_index_path %>">
           <div class="circular ui icon black button">
             <i class="chevron left icon"></i>
+          </div>
+        </a>
+      </div>
+      <div class="fourteen wide column"></div>
+      <div class="column">
+        <a href="<%= select_match_path(@match) %>">
+          <div class="circular ui icon teal button">
+            <i class="chevron right icon"></i>
           </div>
         </a>
       </div>
