@@ -4,7 +4,11 @@
       <div class="ui large middle aligned relaxed list">
         <div class="item">
           <div class="right floated content">
-            <%= link_to 'Invite', invite_match_requests_path(match_id: match, team_id: team), class: 'ui teal button' %>
+            <% if @waiting_invitations.where(team_received_id: team.id).count == 0 %>
+              <%= link_to 'Invite', invite_match_requests_path(match_id: match.id, team_id: team.id), class: 'ui teal button' %>
+            <% else %>
+              <%= link_to 'Cancel', match_request_path(id: @waiting_invitations.where(team_received_id: team.id).first.id, team_id: team.id), method: 'delete', class: 'ui black button' %>
+            <% end %>
           </div>
           <img src="<%= team.image_url_or_default %>" alt="<%= team.name %>" class="ui avatar image">
           <div class="content">

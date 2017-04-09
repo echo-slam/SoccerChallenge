@@ -5,7 +5,7 @@ class MatchesController < ApplicationController
 
   def index
     @matches = Match.order(is_start: 'DESC').order(starts_at: 'ASC')
-    @match_invitations = MatchRequest.where(team_id: current_player.team_id).where(status: 'INVITATION')
+    @match_invitations = MatchRequest.where(team_received_id: current_player.team_id).where(status: 'INVITATION')
     @match_requests = MatchRequest.where(team_id: current_player.team_id).where(status: 'PENDING')
 
     @top_10_teams = Team.order(points: 'DESC').first(10)
@@ -41,8 +41,9 @@ class MatchesController < ApplicationController
   end
 
   def waiting
-    @pending_requests = MatchRequest.where(team_received_id: @match.team_owner_id).where(status: 'PENDING')
-    @team_requested_ids = @match.match_requests.select(:team_id)
+    @pending_requests = MatchRequest.where({match_id: @match.id, team_received_id: @match.team_owner_id, status: 'PENDING'})
+    @waiting_invitations = MatchRequest.where({match_id: @match.id, team_id: @match.team_owner_id, status: 'INVITATION'})
+    @team_requested_ids = @pending_requests.select(:team_id)
     @match_messages = @match.match_messages.order(created_at: "DESC").first(50)
 
     if params[:search]

@@ -170,8 +170,8 @@
           <% @pending_requests.each do |request| %>
             <div class="item">
               <div class="right floated content">
-                <%= link_to 'Accept', accept_match_request_path(request, match_id: @match), class: 'ui teal button' %>
-                <%= link_to 'Decline', decline_match_request_path(request, match_id: @match), class: 'ui black button' %>
+                <%= link_to 'Accept', accept_match_request_path(id: request.id, match_id: @match), class: 'ui teal button' %>
+                <%= link_to 'Decline', match_request_path(id: request.id, match_id: @match.id), method: 'delete', class: 'ui black button' %>
               </div>
               <img src="<%= Team.find(request.team_id).image_url_or_default %>" alt="<%= Team.find(request.team_id).name %>" class="ui avatar image">
               <div class="content">
