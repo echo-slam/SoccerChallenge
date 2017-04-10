@@ -46,7 +46,7 @@ class MatchRequestsController < ApplicationController
       @match.is_start = true
       @match.save
 
-      @match_request.create_accept_decline_notify("accept request")
+      @match_request.create_accept_decline_notify("accept_request")
 
       @match.match_requests.destroy_all
       flash[:success] = "Accept request from #{Team.find(@match.team_away_id).name}"
@@ -58,7 +58,7 @@ class MatchRequestsController < ApplicationController
       @match.is_start = true
       @match.save
 
-      @match_invite.create_accept_decline_notify("accept invite")
+      @match_invite.create_accept_decline_notify("accept_invite")
 
       @match.match_requests.destroy_all
       flash[:success] = "Accept request from #{Team.find(@match.team_owner_id).name}"
@@ -70,14 +70,14 @@ class MatchRequestsController < ApplicationController
     if params[:match_id]
       @match_request = MatchRequest.find(params[:id])
       flash[:notice] = "Decline match request from #{Team.find(@match_request.team_id).name}"
-      @match_request.create_accept_decline_notify("decline request")
+      @match_request.create_accept_decline_notify("decline_request")
       @match_request.destroy
       redirect_to waiting_match_path(params[:match_id])
     elsif params[:team_id]
       @match_invite = MatchRequest.find(params[:id])
       @match = Match.find(@match_invite.match_id)
       flash[:notice] = "Cancel match invite to #{Team.find(@match_invite.team_received_id).name}"
-      @match_invite.create_accept_decline_notify("cancel invite")
+      @match_invite.create_accept_decline_notify("cancel_invite")
       @match_invite.destroy
       redirect_to waiting_match_path(@match.id)
     end
@@ -87,12 +87,12 @@ class MatchRequestsController < ApplicationController
     if params[:match_id]
       @match_request = MatchRequest.find(params[:id])
       flash[:notice] = "Cancel match request to #{Team.find(@match_request.team_received_id).name}"
-      @match_request.create_accept_decline_notify("cancel request")
+      @match_request.create_accept_decline_notify("cancel_request")
       @match_request.destroy
     elsif params[:team_id]
       @match_invite = MatchRequest.find(params[:id])
       flash[:notice] = "Decline match invite from #{Team.find(@match_invite.team_id).name}"
-      @match_invite.create_accept_decline_notify("decline invite")
+      @match_invite.create_accept_decline_notify("decline_invite")
       @match_invite.destroy
     end
     redirect_to matches_path
