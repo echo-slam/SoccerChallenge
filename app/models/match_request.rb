@@ -16,9 +16,9 @@ class MatchRequest < ApplicationRecord
   end
 
   def create_accept_decline_notify(type)
-    if type == "cancel_invite" || type == "accept_invite"
-      r_sender_id = self.team_received_id
-      r_recipient_id = self.team_id
+    if type == "cancel_invite" || type == "cancel_request"
+      r_sender_id = self.team_id
+      r_recipient_id = self.team_received_id
 
     else
       r_sender_id = self.team_received_id
@@ -44,7 +44,12 @@ to join their match"
 
       when "cancel_invite"
         notice_messages = "\
-#{team_sender.name} has declined your invitation <br>\
+#{team_sender.name} has canceled their invitation <br>\
+to your team to join their match"
+
+      when "cancel_request"
+        notice_messages = "\
+#{team_sender.name} has canceled their request <br>\
 to join your match"
 
       when "accept_invite"
