@@ -2,16 +2,19 @@
 <div class="ui container">
   <%= flash_messages %>
   <div class="ui grid">
-    <div class="four wide column"></div>
+    <div class="row">
+      <div class="four wide column"></div>
 
-    <div class="eight wide column">
-      <h1 class="ui header">Edit Field Information</h1>
-      <div class="ui large form">
-        <%= render partial: 'fields/form', locals: {field: @field} %>
-        <%= link_to 'Back', field_owner_field_path(@field), class: 'ui large right floated button' %>
+      <div class="eight wide column">
+        <h1 class="ui header">Edit Field Information</h1>
+        <div class="ui large form">
+          <%= render partial: 'fields/form', locals: {field: @field} %>
+          <br>
+          <%= link_to 'Back', field_path(@field), class: 'ui large black fluid button' %>
+        </div>
       </div>
-    </div>
 
-    <div class="four wide column"></div>
+      <div class="four wide column"></div>
+    </div>
   </div>
 </div>

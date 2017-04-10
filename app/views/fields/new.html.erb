@@ -2,26 +2,26 @@
 <div class="ui container">
   <%= flash_messages %>
   <div class="ui grid">
-    <div class="eight wide column">
-      <div class="ui large form">
-        <%= render partial: 'fields/form', locals: {field: @field} %>
-      </div>
-    </div>
+    <div class="row">
+      <div class="four wide column"></div>
 
-    <div class="two wide column"></div>
-
-    <div class="six wide column">
-      <%= image_tag("paul.jpg", class: "ui fluid rounded image") %>
-
-      <div class="ui medium info message">
-        <div class="header"><i class="info circle icon"></i>
-          What is Field?
+      <div class="eight wide column">
+        <div class="ui large form">
+          <%= render partial: 'fields/form', locals: {field: @field} %>
         </div>
-        <ul class="list">
-          <li>Field Owner is the person who have fields for rent.</li>
-          <li>Soccer Challenge provide nice service for you to manage your fields.</li>
-        </ul>
+
+        <div class="ui medium info message">
+          <div class="header"><i class="info circle icon"></i>
+            What is a Field?
+          </div>
+          <ul class="list">
+            <li>Field is a place for soccer teams play on.</li>
+            <li>If you are a Field Owner, you can list your fields here</li>
+          </ul>
+        </div>
       </div>
+
+      <div class="four wide column"></div>
     </div>
   </div>
 </div>

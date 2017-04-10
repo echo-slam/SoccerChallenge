@@ -7,9 +7,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
   resources :world_messages
-  resources :field_owners do 
-    resources :fields
-  end
+  resources :field_owners
+  resources :fields
   resources :team_owners
   resources :teams do
     resources :team_messages

@@ -11,7 +11,7 @@
           <span><h3 id="surge-text">
             <%= @field.name %>
             <% if current_field_owner.id == @field.field_owner_id %>
-              <%= link_to(edit_field_owner_field_path(@field)) do %>
+              <%= link_to(edit_field_path(@field)) do %>
                 <i class="teal edit icon"></i>
               <% end %>
             <% end %>

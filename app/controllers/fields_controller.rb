@@ -4,7 +4,11 @@ class FieldsController < ApplicationController
   before_action :set_field, only: [:show, :edit, :update, :destroy]
 
   def index
-    @fields = Field.all
+    @fields = Field.order(name: 'ASC')
+
+    if params[:search]
+      @fields = Field.search(params[:search]).order(name: 'ASC')
+    end
   end
 
   def show
@@ -26,7 +30,7 @@ class FieldsController < ApplicationController
     @field = current_field_owner.fields.build(field_params)
     if @field.save
       flash[:success] = "Your field is created"
-      redirect_to field_owner_fields_path
+      redirect_to fields_path
     else
       flash[:error] = @field.errors.full_messages.to_sentence
       render 'new'
@@ -36,7 +40,7 @@ class FieldsController < ApplicationController
   def update
     if @field.update(field_params)
       flash[:success] = "Your field is updated"
-      redirect_to field_owner_fields_path
+      redirect_to fields_path
     else
       flash[:error] = @field.errors.full_messages.to_sentence
       render 'edit'
@@ -45,7 +49,7 @@ class FieldsController < ApplicationController
 
   def destroy
     @field.destroy
-    redirect_to field_owner_fields_path, flash: {notice: 'Field was successfully destroyed' }
+    redirect_to fields_path, flash: {notice: 'Field was successfully destroyed' }
   end
 
   private

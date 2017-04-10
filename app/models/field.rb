@@ -14,6 +14,10 @@ class Field < ApplicationRecord
     Venue.find(venue_id).name
   end
 
+  def self.search(search)
+    where("name || addr ILIKE ?", "%#{search}%")
+  end
+
   def image_url_or_default
     image_url.url.presence || 'http://i.imgur.com/VXJ4WiUm.jpg'
   end

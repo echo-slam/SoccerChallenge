@@ -26,7 +26,7 @@ class FieldOwnersController < ApplicationController
       flash[:success] = 'Register successfully'
       session[:field_owner_id] = @field_owner.id
       
-      redirect_to root_path
+      redirect_to field_owner_path(@field_owner)
     else
       flash[:error] = @field_owner.errors.full_messages.to_sentence
       render 'new'
@@ -35,7 +35,7 @@ class FieldOwnersController < ApplicationController
 
   def update
     if @field_owner.update(field_owner_params)
-      redirect_to field_owner_path, flash: { success: 'Field Owner profile was successfully updated' }
+      redirect_to field_owner_path(@field_owner), flash: { success: 'Field Owner profile was successfully updated' }
     else
       flash[:error] = @field_owner.errors.full_messages.to_sentence
       render 'edit'
