@@ -47,7 +47,7 @@ class Player < ApplicationRecord
     player.password = SecureRandom.base64(10)
 
     player.save! && player
- end
+  end
 
   private
     def image_size_validation
