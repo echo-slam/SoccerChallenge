@@ -52,6 +52,11 @@ to join your match"
 #{team_sender.name} has accepted your invitation <br>\
 to join your match"
       
+      when "accept_request"
+        notice_messages = "\
+#{team_sender.name} has accepted your request <br>\
+to join their match"
+      
       when "decline_request"
         notice_messages = "\
 #{team_sender.name} has rejected your team <br>\
