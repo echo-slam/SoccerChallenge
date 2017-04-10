@@ -34,43 +34,29 @@ class MatchRequest < ApplicationRecord
     team_sender = Team.find(sender_id)
     case type
       when "invite"
-        notice_messages = "\
-#{team_sender.name} has invited your team <br>\
-to join their match"
+        notice_messages = "#{team_sender.name} invites your team <br>\
+        to join their match"
 
       when "join"
-        notice_messages = "\
-#{team_sender.name} has joined your match"
+        notice_messages = "#{team_sender.name} wants to join your match"
 
       when "cancel_invite"
-        notice_messages = "\
-#{team_sender.name} has canceled their invitation <br>\
-to your team to join their match"
+        notice_messages = "#{team_sender.name} cancels match invitation"
 
       when "cancel_request"
-        notice_messages = "\
-#{team_sender.name} has canceled their request <br>\
-to join your match"
+        notice_messages = "#{team_sender.name} cancels match request"
 
       when "accept_invite"
-        notice_messages = "\
-#{team_sender.name} has accepted your invitation <br>\
-to join your match"
+        notice_messages = "#{team_sender.name} accepts your match invitation"
       
       when "accept_request"
-        notice_messages = "\
-#{team_sender.name} has accepted your request <br>\
-to join their match"
+        notice_messages = "#{team_sender.name} accepts your match request"
       
       when "decline_request"
-        notice_messages = "\
-#{team_sender.name} has rejected your team <br>\
-to join their match"
+        notice_messages = "#{team_sender.name} rejects your match request"
         
       when "decline_invite"
-        notice_messages = "\
-#{team_sender.name} has rejected your invitation <br>\
-to join your match"
+        notice_messages = "#{team_sender.name} rejects your match invitation"
     end
 
     Notification.create(

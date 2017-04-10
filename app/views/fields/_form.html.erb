@@ -1,4 +1,4 @@
-<%= form_for [current_field_owner, field] do |f| %>
+<%= form_for field do |f| %>
   <div class="field">
     <%= f.label :Name %>
     <%= f.text_field :name %>
@@ -19,5 +19,5 @@
     <%= f.file_field :image_url %>
   </div>
   
-  <%= f.submit 'Submit', class: 'ui green large right floated button' %>
+  <%= f.submit 'Submit', class: 'ui teal large fluid button' %>
 <% end %>

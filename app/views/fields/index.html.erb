@@ -1,14 +1,31 @@
 <br><br>
 <div class="ui container">
+  <%= flash_messages %>
+  <h1 class="ui header">Choose these fields</h1>
+
+  <div class="ui grid">
+    <div class="eight wide column">
+    <form class="ui icon form">
+      <div class="field">
+        <div class="ui icon input">
+          <input placeholder="Search fields" type="text" name="search">
+          <i class="search link icon"></i>
+        </div>
+      </div>
+    </form>
+    </div>
+  </div>
+  <br><br>
+
   <div class="ui two link cards">
     <% @fields.each do |field| %>
       <div class="card" id="field-card">
-        <a href="<%= field_owner_field_path(id: field) %>"><div class="custom_img" style="background-image: url(<%= field.image_url_or_default %>);"></div></a>
+        <a href="<%= field_path(id: field) %>"><div class="custom_img" style="background-image: url(<%= field.image_url_or_default %>);"></div></a>
         <div class="content">
           <div class="ui header" id="surge-text">
             <%= field.name  %>
           </div>
-          <div class="meta">
+          <div class="description">
             <span>
               <i class="marker icon"></i>
               <%= field.addr %>, <%= field.venue_name %>
