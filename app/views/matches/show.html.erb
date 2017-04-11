@@ -3,6 +3,18 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="row">
+      <div class="column">
+        <a href="<%= select_match_path(@match) %>">
+          <div class="circular ui icon black button">
+            <i class="chevron left icon"></i>
+          </div>
+        </a>
+      </div>
+      <div class="fourteen wide column"></div>
+      <div class="column"></div>
+    </div>
+
+    <div class="row">
       <div class="ui basic segment" id="match-segment-bg">
         <div class="ui grid">
 
@@ -44,39 +56,13 @@
 
             <div id="match-segment-bottom">
               <span class="match-segment-content">
-                <div class="ui three mini statistics">
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"></div>
-                  </div>
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"><%= @match.field_name_or_default %></div>
-                  </div>
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"></div>
-                  </div>
-                </div>
-                <div class="ui three mini statistics">
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"></div>
-                  </div>
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"><%= @match.starts_at.strftime("%Y/%m/%d") %></div>
-                  </div>
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"></div>
-                  </div>
-                </div>
-                <div class="ui three mini statistics">
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"></div>
-                  </div>
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"><%= @match.starts_at.strftime("%H:%M") %> - <%= @match.ends_at_or_default.strftime("%H:%M") %></div>
-                  </div>
-                  <div class="statistic">
-                    <div class="label" id="match-text-color"></div>
-                  </div>
-                </div>
+                <h1 class="ui header">
+                  <a href="<%= field_path(@match.field_id) %>" id="match-text-color">
+                    <%= @match.field_name_or_default %>
+                  </a>
+                  <div class="sub header"><%= @match.starts_at.strftime("%Y/%m/%d") %></div>
+                  <div class="sub header"><%= @match.starts_at.strftime("%H:%M") %> - <%= @match.ends_at_or_default.strftime("%H:%M") %></div>
+                </h1>
               </span>
             </div>
           </div>
