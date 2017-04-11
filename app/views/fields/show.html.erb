@@ -10,9 +10,11 @@
         <div class="content">
           <span><h3 id="surge-text">
             <%= @field.name %>
-            <% if current_field_owner.id == @field.field_owner_id %>
-              <%= link_to(edit_field_path(@field)) do %>
-                <i class="teal edit icon"></i>
+            <% if current_field_owner %>
+              <% if current_field_owner.id == @field.field_owner_id %>
+                <%= link_to(edit_field_path(@field)) do %>
+                  <i class="teal edit icon"></i>
+                <% end %>
               <% end %>
             <% end %>
           </h3></span>
