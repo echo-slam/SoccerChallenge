@@ -4,7 +4,7 @@
   <div class="ui grid">
     <div class="row">
       <div class="column">
-        <a href="<%= select_match_path(@match) %>">
+        <a href="<%= waiting_match_path(@match) %>">
           <div class="circular ui icon black button">
             <i class="chevron left icon"></i>
           </div>
@@ -13,7 +13,15 @@
       <div class="fourteen wide column">
         <div class="field-calendar" id="match-calendar-segment"></div>
       </div>
-      <div class="column"></div>
+      <div class="column">
+        <% if @match.ends_at %>
+          <a href="<%= match_path(@match) %>">
+            <div class="circular ui icon teal button">
+              <i class="chevron right icon"></i>
+            </div>
+          </a>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
