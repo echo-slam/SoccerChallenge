@@ -5,8 +5,8 @@ class FieldOwner < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true
   validates :full_name, presence: true
-  # validates_processing_of :image_url
-  # validate :image_size_validation
+  validates_processing_of :image_url
+  validate :image_size_validation
 
   def to_s
     full_name
@@ -16,8 +16,8 @@ class FieldOwner < ApplicationRecord
     image_url.url.presence || 'http://i.imgur.com/rWrONuem.jpg'
   end
 
-  # private
-  #   def image_size_validation
-  #     errors[:image_url] << "should be less than 500KB" if image_url.size > 0.5.megabytes
-  #   end
+  private
+    def image_size_validation
+      errors[:image_url] << "should be less than 500KB" if image_url.size > 0.5.megabytes
+    end
 end
