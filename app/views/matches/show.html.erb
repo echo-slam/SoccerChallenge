@@ -57,9 +57,7 @@
             <div id="match-segment-bottom">
               <span class="match-segment-content">
                 <h1 class="ui header">
-                  <a href="<%= field_path(@match.field_id) %>" id="match-text-color">
-                    <%= @match.field_name_or_default %>
-                  </a>
+                  <%= @match.field_name_or_default %>
                   <div class="sub header"><%= @match.starts_at.strftime("%Y/%m/%d") %></div>
                   <div class="sub header"><%= @match.starts_at.strftime("%H:%M") %> - <%= @match.ends_at_or_default.strftime("%H:%M") %></div>
                 </h1>

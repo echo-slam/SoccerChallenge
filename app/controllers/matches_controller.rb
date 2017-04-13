@@ -16,9 +16,9 @@ class MatchesController < ApplicationController
     when 'waiting'
       @matches = Match.where(is_start: nil).order(starts_at: 'ASC')
     when 'completed'
-      @matches = Match.where.not(is_end: nil).order(starts_at: 'DESC')
+      @matches = Match.where(is_end: true).order(starts_at: 'DESC')
     when 'verify'
-      @matches = Match.where.not(is_end: nil).order(starts_at: 'DESC')
+      @matches = Match.where(is_start: true).where.not({home_goal: nil, away_goal: nil}).order(starts_at: 'DESC')
     end
   end
 
