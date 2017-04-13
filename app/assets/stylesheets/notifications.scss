@@ -1,3 +1,11 @@
 // Place all the styles related to the Notifications controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#image_notify {
+  height: auto; 
+  width: auto; 
+  max-width: 40px; 
+  max-height: 40px;
+  border: 3px solid transparent;
+ }

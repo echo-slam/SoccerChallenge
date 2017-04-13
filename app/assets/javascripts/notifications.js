@@ -41,10 +41,12 @@ var ajax_call = function() {
     var paths = data.paths;
 
     var notify_messages = "";
-  
+    var notify_image = "";
+
     $.each(notifications, function(key,val) {
+      notify_image = "<img src=\"" +  val.image_url + '\" ' + "id='image_notify'> </img> " ;
       notify_messages += "<a class=\"ui item\" href=\"/notifications/" +
-        val.id + "/link_through\">" +  val.notice_messages  +  "</a>" ;
+        val.id + "/link_through\">" + notify_image +  val.notice_messages  +  "</a>" ;
     });
 
     $('#notifications').html(notify_messages);
