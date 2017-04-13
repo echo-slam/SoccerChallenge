@@ -52,7 +52,7 @@
                 <% team = Team.find(player.team_id) %>
                 <a href="<%= team_path(team) %>">
                   <%= image_tag(team.image_url_or_default,
-                      class: "ui circular image team-badge") %>
+                      class: "ui rounded image team-badge") %>
                   <strong id="elegant-text"><%= team.name %></strong>
                 </a>
               <% end %>
@@ -71,7 +71,7 @@
                 <% team = Team.find(player.team_id) %>
                 <a href="<%= team_path(team) %>">
                   <%= image_tag(team.image_url_or_default,
-                      class: "ui circular image team-badge") %>
+                      class: "ui rounded image team-badge") %>
                   <strong id="elegant-text"><%= team.name %></strong>
                 </a>
               <% else %>
