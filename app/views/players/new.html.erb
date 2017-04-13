@@ -3,9 +3,10 @@
   <%= flash_messages %>
   <div class="ui grid">
     <div class="ui row">
+      <div class="four wide column"></div>
       <div class="eight wide column">
         <div class="ui large form">
-          <h1 class="ui header">Sign up as Player</h1><br>
+          <h1 class="ui header">Sign up as Player</h1>
           <%= form_for @player do |f| %>
             <div class="field">
               <%= f.label :full_name, 'Name' %>
@@ -32,13 +33,6 @@
             <%= link_to 'You are Field Owner ?', new_field_owner_path, class: 'ui large blue button' %>
           <% end %>
         </div>
-      </div>
-
-      <div class="two wide column">
-      </div>
-
-      <div class="six wide column">
-        <img class="ui fluid rounded image" src="<%= @player_reference.image_url %>" alt="<%= @player_reference.name %>">
 
         <div class="ui medium info message">
           <div class="header"><i class="info circle icon"></i>
@@ -50,6 +44,8 @@
           </ul>
         </div>
       </div>
+
+      <div class="four wide column"></div>
     </div>
   </div>
 </div>
