@@ -1,0 +1,33 @@
+<br><br>
+<div class="ui container">
+  <div class="ui grid">
+    <div class="ui row">
+      <div class="four wide column">
+      </div>
+
+      <div class="eight wide column">
+        <div class="ui large form">
+          <h1 class="ui header">Edit Team Profile</h1><br>
+          <%= form_for @team do |f| %>
+            <div class="field">
+              <%= f.label :intro, 'Intro' %>
+              <%= f.text_area :intro, placeholder: 'Write something about your team' %>
+            </div>
+
+            <div class="field">
+              <%= f.label :image_url, 'Logo' %>
+              <%= f.file_field :image_url %>
+            </div>
+
+            <br>
+            <%= f.submit 'Change', class: 'ui large teal button' %>
+            <%= link_to 'Back', team_path(@team), class: 'ui large black button' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="four wide column">
+      </div>
+    </div>
+  </div>
+</div>

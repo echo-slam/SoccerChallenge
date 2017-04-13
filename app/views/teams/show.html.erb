@@ -44,6 +44,12 @@
           <div class="ui basic segment">
             <span><h1 id="elegant-text">
               <strong><%= @team.name.upcase %></strong>
+
+              <% if current_player.team_owner.team_id == @team.id %>
+                <%= link_to(edit_team_path(@team.id)) do %>
+                  <i class="teal small edit icon"></i>
+                <% end %>
+              <% end %>
             </h1></span>
 
             <span id="silver-text">
@@ -88,6 +94,27 @@
 
       <div class="eleven wide column">
         <div class="ui grid">
+          <div class="row">
+            <div class="sixteen wide column">
+              <h1 class="ui header" id="elegant-text">
+                Intro
+              </h1>
+              
+              <div class="ui basic segment" id="intro-bg">
+                <% if @team.intro %>
+                  <p class="justify-text intro-font">
+                    <%= @team.intro %>
+                  </p>
+                <% else %>
+                  <p class="justify-text intro-font">
+                    There is no team introduction
+                  </p>
+                <% end %>
+              </div>
+              <br>
+            </div>
+          </div>
+
           <div class="row">
             <div class="sixteen wide column">
               <h1 class="ui header" id="elegant-text">

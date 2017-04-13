@@ -16,6 +16,22 @@ class TeamsController < ApplicationController
     @team = @team_owner.build_team
   end
 
+  def edit
+    @team = Team.find(params[:id])
+  end
+
+  def update
+    @team = Team.find(params[:id])
+
+    if @team.update(team_params)
+      flash[:success] = 'Update Profile successfully'
+      redirect_to team_path(@team)
+    else
+      flash[:error] = @team.errors.full_messages.to_sentence
+      render 'edit'
+    end
+  end
+
   def create
     @player = current_player
     @team = @team_owner.build_team(team_params)
@@ -218,6 +234,6 @@ class TeamsController < ApplicationController
     end
 
     def team_params
-      params.require(:team).permit(:name, :image_url)
+      params.require(:team).permit(:name, :image_url, :intro)
     end
 end
