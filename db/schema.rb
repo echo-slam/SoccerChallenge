@@ -129,7 +129,7 @@ ActiveRecord::Schema.define(version: 20170413151720) do
     t.string   "nickname"
     t.string   "favorite_player"
     t.string   "favorite_team"
-    t.integer  "goal"
+    t.integer  "goal",        default: 0
     t.integer  "win"
     t.integer  "loss"
     t.integer  "draw"
