@@ -4,22 +4,44 @@
   <div class="ui grid">
     <div class="six wide column">
       <h1 class="ui center aligned header" id="elegant-text">
-        Top 10
+        Top 10 Teams
       </h1>
-      <div class="ui big middle aligned relaxed list">
-        <% @top_10_teams.each do |team| %>
-          <div class="item">
-            <div class="right floated content">
-              <a class="ui teal circular label"><%= team.points %> pts</a>
+      <div class="ui basic segment">
+        <div class="ui big middle aligned relaxed list">
+          <% @top_10_teams.each do |team| %>
+            <div class="item">
+              <div class="right floated content">
+                <a class="ui teal circular label"><%= team.points %> pts</a>
+              </div>
+              <div class="ui mini image">
+                <img src="<%= team.image_url_or_default %>" alt="<%= team.name %>">
+              </div>
+              <div class="content">
+                <a href="<%= team_path(team) %>" class="header"><%= team.name %></a>
+              </div>
             </div>
-            <div class="ui mini image">
-              <img src="<%= team.image_url_or_default %>" alt="<%= team.name %>">
+          <% end %>
+        </div>
+      </div>
+      <h1 class="ui center aligned header" id="elegant-text">
+        Top 10 Scorers
+      </h1>
+      <div class="ui basic segment">
+        <div class="ui big middle aligned relaxed list">
+          <% @top_10_scorers.each do |player| %>
+            <div class="item">
+              <div class="right floated content">
+                <a class="ui circular label" style="background-color: #EA5455; color: white"><%= player.goal %> goals</a>
+              </div>
+              <div class="ui mini rounded image">
+                <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>">
+              </div>
+              <div class="content">
+                <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
+              </div>
             </div>
-            <div class="content">
-              <a href="<%= team_path(team) %>" class="header"><%= team.name %></a>
-            </div>
-          </div>
-        <% end %>
+          <% end %>
+        </div>
       </div>
     </div>
     <div class="ten wide column">
