@@ -17,23 +17,26 @@
   </div>
   <br><br>
 
-  <div class="ui two link cards">
+  <div class="ui four link cards">
     <% @fields.each do |field| %>
       <div class="card" id="field-card">
-        <a href="<%= field_path(id: field) %>"><div class="custom_img" style="background-image: url(<%= field.image_url_or_default %>);"></div></a>
+        <a href="<%= field_path(id: field) %>">
+          <%= image_tag(field.image_url_or_default,
+            class: "ui image") %>
+        </a>
+        
         <div class="content">
           <div class="ui header" id="surge-text">
             <%= field.name  %>
           </div>
+
           <div class="description">
-            <span>
-              <i class="marker icon"></i>
-              <%= field.addr %>, <%= field.venue_name %>
-            </span>
-            <span class="right floated">
-              <i class="clock icon"></i>
-              Mon - Sun / 06:00 - 22:00
-            </span>
+            <i class="marker icon"></i>
+            <%= field.addr %>, <%= field.venue_name %>
+            <br>
+
+            <i class="clock icon"></i>
+            Mon - Sun / 06:00 - 22:00
           </div>
         </div>
       </div>
