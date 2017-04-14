@@ -86,7 +86,9 @@
                     <div class="item">
                       <img src="<%= player.image_url_or_default %>" alt="<%= player.full_name %>" class="ui avatar image">
                       <div class="content">
-                        <a href="<%= player_path(player) %>" class="header"><%= player.full_name %></a>
+                        <a href="<%= player_path(player) %>" class="header">
+                          <%= player.full_name %>
+                        </a>
                       </div>
                     </div>
                   <% end %>
@@ -101,14 +103,76 @@
 
     <div class="row">
       <% if @is_host_or_admin %>
-        <%= link_to 'Update Score', edit_match_path(@match), class: 'ui teal button' %>
+        <%= link_to 'Update Score', nil,
+            class: 'ui teal button', id: "update_score_btn", remote: true %>
       <% end %>
       <% if @player_result == nil %>
         <% if @played_this_match %>
-          <%= link_to 'Update Your Goal', new_player_result_path(match_id: @match.id),
-              class: 'ui teal button' %>
+          <%= link_to 'Update Your Goal', nil,
+              class: 'ui teal button', id: "update_goal_btn", remote: true %>
         <% end %>
       <% end %>
     </div>
   </div>
 </div>
+
+<% if @is_host_or_admin %>
+  <div class="ui compact modal" id="update_score_modal">
+    <div class="header" id="elegant-text">Update Score</div>
+
+    <div class="content">
+
+      <div class="ui large form">
+        <%= form_for @match do |f| %>
+          <div class="field">
+            <%= f.label :home_goal %>
+            <%= f.text_field :home_goal %>
+          </div>
+          <div class="field">
+            <%= f.label :away_goal %>
+            <%= f.text_field :away_goal %>
+          </div>
+          <% if @match.home_goal and @match.away_goal %>
+            <% if current_player.email == "admin@soccerchallenge.com" %>
+              <% if @match.is_end %>
+                <p>Match result was verified.</p>
+              <% else %>
+                <%= f.submit "Verify", class: 'ui large teal button' %>
+              <% end %>
+            <% else %>
+              <% if @match.is_end %>
+                <p>Match result was verified.</p>
+              <% else %>
+                <p>Match result was submitted.</p>
+              <% end %>
+            <% end %>
+          <% else %>
+            <%= f.submit "Submit", class: 'ui large teal button' %>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+<% end %>
+
+<% if @player_result == nil %>
+  <% if @played_this_match %>
+    <div class="ui compact modal" id="update_goal_modal">
+      <div class="header" id="elegant-text">Update Your Goal</div>
+
+      <div class="content">
+        <div class="ui large form">
+          <%= form_for PlayerResult.new do |f| %>
+            <div class="field">
+              <%= f.text_field :goal,
+                  placeholder: "Number of goals you score in this match"%><br>
+            </div>
+            <%= hidden_field_tag(:match_id, @match.id) %>
+            <%= f.submit "Submit", class: 'ui large teal button' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>

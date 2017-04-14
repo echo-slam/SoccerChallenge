@@ -15,4 +15,5 @@
 //= require finish_tasks
 //= require highcharts
 //= require chartkick
+//= require update_score_goal_modal
 //= require_tree .
