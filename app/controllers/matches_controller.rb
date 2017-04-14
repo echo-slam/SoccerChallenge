@@ -9,6 +9,7 @@ class MatchesController < ApplicationController
     @match_requests = MatchRequest.where(team_id: current_player.team_id).where(status: 'PENDING')
 
     @top_10_teams = Team.order(points: 'DESC').first(10)
+    @top_10_scorers = Player.where.not({goal: 0, win: nil}).order(goal: 'DESC').first(10)
 
     case params[:sort]
     when 'mine'
