@@ -13,7 +13,7 @@ to you"
       create_notify(team_sender.team_owner_id, 
         player_recipient.id,
         notice_messages,
-        team_sender.image_url.url,
+        team_sender.image_url_or_default,
         self.kind)
     else
       team_recipient = Team.find(self.team_id)
@@ -26,7 +26,7 @@ to your team"
       create_notify(player_sender.id,
         team_recipient.team_owner_id,
         notice_messages,
-        player_sender.image_url.url,
+        player_sender.image_url_or_default,
         self.kind)
     end
 
@@ -43,7 +43,7 @@ your invitation to join your team"
 
       sub_create_notify(player_id, @team.team_owner_id,
         team_id, notice_messages, 
-        @player.image_url.url, type)
+        @player.image_url_or_default, type)
     else
 
       notice_messages = "\
@@ -52,7 +52,7 @@ your request to join their team"
 
       sub_create_notify(@team.team_owner_id, player_id,
         team_id, notice_messages, 
-        @team.image_url.url, type)
+        @team.image_url_or_default, type)
     end
   end
 
@@ -65,7 +65,7 @@ Team: #{@team.name} has declined <br>\
 your request to join their team"
       sub_create_notify(@team.team_owner_id, player_id,
         team_id, notice_messages, 
-        @team.image_url.url, type)
+        @team.image_url_or_default, type)
 
     else
       notice_messages = "\
@@ -73,7 +73,7 @@ Player: #{@player.full_name} has declined <br>\
 your invitation to join your team"
       sub_create_notify(player_id, @team.team_owner_id,
         team_id, notice_messages, 
-        @player.image_url.url, type)
+        @player.image_url_or_default, type)
 
     end
 
