@@ -178,7 +178,12 @@
               <h1 class="ui center aligned header" id="elegant-text">
                 Top Scorers
               </h1>
-              <%= column_chart @top_scorers_data, @library_top_scorers %>
+              <% if @top_scorers.count > 4 %>
+                <%= column_chart @top_scorers_data, @library_top_scorers %>
+              <% else %>
+                <p align="center">You must have at least 5 players to see this feature.</p>
+                <br><br>
+              <% end %>
             </div>
           </div>
 

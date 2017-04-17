@@ -153,13 +153,15 @@ class TeamsController < ApplicationController
                     "GA" => @loss_goals
                   }
 
-    @top_scorers_data = ([
-                            [@top_scorers[0].full_name, @top_scorers[0].goal],
-                            [@top_scorers[1].full_name, @top_scorers[1].goal],
-                            [@top_scorers[2].full_name, @top_scorers[2].goal],
-                            [@top_scorers[3].full_name, @top_scorers[3].goal],
-                            [@top_scorers[4].full_name, @top_scorers[4].goal]
-                        ])
+    if @top_scorers.count > 4
+      @top_scorers_data = ([
+                              [@top_scorers[0].full_name, @top_scorers[0].goal],
+                              [@top_scorers[1].full_name, @top_scorers[1].goal],
+                              [@top_scorers[2].full_name, @top_scorers[2].goal],
+                              [@top_scorers[3].full_name, @top_scorers[3].goal],
+                              [@top_scorers[4].full_name, @top_scorers[4].goal]
+                          ])
+    end
 
     @library_result = {
       series: {
