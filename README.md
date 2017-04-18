@@ -1,55 +1,82 @@
-# SoccerChallenge Website
+# Soccer Arena Website
 
-**SoccerChallenge** is a Ruby on Rails website let users find and challenge other soccer teams.
+**Soccer Arena** is a Ruby on Rails website let users find and challenge other soccer teams.
 
 Submitted by: **Echo Studio**
 
-Time spent: **450** hours spent in total
+Time spent: **500** hours spent in total
 
 URL: **https://soccerchallenge.herokuapp.com**
 
 ## User stories
 
 ### Field Owner
-* [ ] User can register as owner with username and password.
-* [ ] User can log in, log out as owner.
-* [ ] Owner can create the field with name, address, matches.
-* [ ] Owner can create matches for its field.
-* [ ] Owner can edit its the field detail. The other users or owners does not have this permission.
+* [x] User can register as owner with avatar, username and password.
+* [x] User can log in, log out as owner.
+* [x] Owner can create the field with name, address.
+* [x] Owner can edit its the field detail. The other users or owners does not have this permission.
+* [x] Owner can see all the matches have booked through a calendar
 
 ### Field
-* [ ] The owner can create the field and match time.
-* [ ] The field contains detail including name, address, upcoming matches.
-* [ ] User can search field by name
+* [x] Field owner can create the field.
+* [x] Field contains detail information including name, address, map.
+* [x] User can search field by name
 
 ### Match
-* [ ] Need 2 teams to start the match.
+* [x] Need 2 teams to start the match.
+* [x] Host can invite other teams
+* [x] Host can accept/decline request to match
+* [x] Host can choose start time & end time for match through a calendar
+* [x] Player can update match result, goal
+* [x] Player can view match result
+* [x] Record result of each match will be verified by admin
 * [ ] User can select referee in a match.
-* [ ] User can view match result
-* [ ] User can see available time slot of field
-* [ ] Record result of each match
 
 ### Player
-* [ ] User can create user as player with full name, email, password
-* [ ] User can log in, log out, update profile as player.
-* [ ] Player can join the team. Player can join only one team.
-* [ ] Team onwer wants to book a slot need to put a deposit money.
+* [x] User can create user as player with avatar, full name, email, password
+* [x] User can log in, log out as player.
+* [x] Player can update profile information.
+* [x] Player can join the team. Player can join only one team.
+* [x] Player has playing statistic (scored goal, played matches)
+* [x] Player can write own blog post
+* [ ] Team owner wants to book a slot need to put a deposit money.
 
 ### Team
-* [ ] Team will have default point 1000 after created.
-* [ ] Team can add or remove user
-* [ ] Team can book match.
-* [ ] Team point will be increase or decrease by 25 for each win or loss.
-* [ ] User can sort team ranking by its current point.
+* [x] Team will have default point 1000 after created.
+* [x] Team can add or remove user
+* [x] Team can book match.
+* [x] Team has playing statistic (scored goal, played matches)
+* [x] Team point will be increase or decrease by 25 for each win or loss.
+* [x] User can sort team ranking by its current point.
 
+### Notification
+* [x] Player send/cancel join team request
+* [x] Player accept/decline team invitation
+* [x] Team send/cancel team invitation
+* [x] Team accept/decline join team request
+* [x] Home team send/cancel match invitation
+* [x] Home team accept/decline match request
+* [x] Away team send/cancel match request
+* [x] Away team accept/decline match invitation
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+![Video Walkthrough](walkthrough.gif)
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-* Add any notes here 
+* Front-end: Semantic UI, Javascript, Jquery
+* Database: PostgreSQL
+* Back-end: Ruby on Rails
 
 ## Challenges
 
-* Add any challenges in development progress
+* Database design
+* How to record & verify match result
 
 ## License
 
