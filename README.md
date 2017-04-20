@@ -1,12 +1,12 @@
 # Soccer Arena Website
 
-**Soccer Arena** is a Ruby on Rails website let users find and challenge other soccer teams.
+**Soccer Arena** is a Ruby on Rails website let amateurs soccer teams meet, play and challenge each other.
 
 Submitted by: **Echo Studio**
 
 Time spent: **500** hours spent in total
 
-URL: **https://soccerchallenge.herokuapp.com**
+URL: **https://soccerarena.herokuapp.com**
 
 ## User stories
 
@@ -70,8 +70,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 * Front-end: Semantic UI, Javascript, Jquery
-* Database: PostgreSQL
 * Back-end: Ruby on Rails
+* Database: PostgreSQL
 
 ## Challenges
 
